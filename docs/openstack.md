@@ -34,6 +34,11 @@ glance image-create --name "$OS_IMAGE_NAME" --file "$LATEST_IMAGE" --disk-format
 
 #OpenStack Setup
 
+  * Default user is cloudbreak
+  * Cloudbreak Deployer location is `/var/lib/cloudbreak-deployment`.
+  * All `cbd` actions must be executed from the `cbd` folder.
+  * Most of the `cbd` commands require `root` permissions.
+
 ## Setup Cloudbreak Deployer
 
 > This feature is currently `TECHNICAL PREVIEW` and is available for the `OpenStack Juno` release.

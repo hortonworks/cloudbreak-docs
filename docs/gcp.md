@@ -37,6 +37,11 @@ You can **create your own Cloudbreak Deployer (cbd) instance from the imported i
 
 # Google Setup
 
+  * Default user is cloudbreak
+  * Cloudbreak Deployer location is `/var/lib/cloudbreak-deployment`.
+  * All `cbd` actions must be executed from the `cbd` folder.
+  * Most of the `cbd` commands require `root` permissions.
+
 ## Setup Cloudbreak Deployer
 
 You should already have the Cloudbreak Deployer either by [using the GCP Cloud Images](gcp.md) or by [installing the 
