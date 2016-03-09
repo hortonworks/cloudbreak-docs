@@ -20,12 +20,17 @@ Please make sure you opened the following ports on your security group:
 
 # AWS Setup
 
+  * Default user is `ec2-user`
+  * Cloudbreak Deployer location is `/var/lib/cloudbreak-deployment`.
+  * All `cbd` actions must be executed from the `cbd` folder.
+  * Most of the `cbd` commands require `root` permissions.
+
 ## Setup Cloudbreak Deployer
 
 Open the `cloudbreak-deployment` directory:
 
 ```
-cd cloudbreak-deployment
+cd /var/lib/cloudbreak-deployment`
 ```
 
 This is the directory of the configuration files and the supporting binaries for Cloudbreak Deployer.
