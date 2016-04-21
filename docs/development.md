@@ -57,7 +57,7 @@ The `-Dcb.cert.dir=FULL_PATH_OF_THE_CERTS_DIR_GENERATED_BY_CBD` value above need
 
 #### Command line
 
-To run Cloudbreak from command line you have to create a property file, for example application.properties, with the content below, and execute `./gradlew bootRun -Dspring.config.location=file:/path/of/property/application.properties` command at project root.
+To run Cloudbreak from command line you have to create a property file, for example `application.properties`, with the content below, and execute `./gradlew :core:bootRun -Dspring.config.location=file:///path/of/property/application.properties` command at project root. Important that the path of `application.properties` must be an absolute path.
 ```
 cb.cert.dir=FULL_PATH_OF_THE_CERTS_DIR_GENERATED_BY_CBD
 cb.client.id=cloudbreak
