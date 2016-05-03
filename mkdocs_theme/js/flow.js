@@ -9,6 +9,8 @@ var flows = {
     "StackSyncFlowConfig" : "Stack synchronization flow",
     "StackStopFlowConfig" : "Stack stop flow",
     "StackStartFlowConfig" : "Stack start flow",
+    "ClusterUpscaleFlowConfig" : "Cluster upscale flow",
+    "StackDownscaleConfig" : "Stack downscale flow",
     "ClusterTerminationFlowConfig" : "Cluster temination flow",
     "StackTerminationFlowConfig" : "Stack temination flow",
     "InstanceTerminationFlowConfig" : "Instance temination flow"
@@ -29,7 +31,7 @@ var initGraphByDot = function(dot) {
     graph.nodes().forEach(function(v) {
         var node = graph.node(v);
         node.label = v.replace(/_STATE/g, '');
-        if (node.label.indexOf("_FAIL") >= 0 || node.label.indexOf("_ERROR") >= 0) {
+        if (node.label.indexOf("FAIL") >= 0 || node.label.indexOf("ERROR") >= 0) {
             node.color = "red";
         } else if (node.label == "INIT" || node.label == "FINAL") {
             node.color = "green";
