@@ -131,7 +131,8 @@ After the `cbd start` command finishes, use this command to check the logs of th
 ```
 cbd logs cloudbreak
 ```
->Cloudbreak should start within a minute - you should see a line like this: `Started CloudbreakApplication in 36.823 seconds`
+
+You should see a message like this in the log: `Started CloudbreakApplication in 36.823 seconds`. Cloudbreak normally takes less than a minute to start. 
 
 
 ## Troubleshooting
