@@ -45,7 +45,7 @@ links to provider-specific instructions for configuring and launching **cbd (Clo
 | AWS | Follow the [AWS instructions](aws.md). |
 | Azure | There are no pre-built cloud images available for Azure. However, we give you an option to use Azure Resource Manager Templates instead. See [Azure Setup](azure.md) to install and configure Cloudbreak Deployer. |
 | GCP | Follow the [GCP instructions](gcp.md) |
-| OpenStack | Follow the OpenStack instructions [OpenStack instructions](openstack.md) |
+| OpenStack | Follow the [OpenStack instructions](openstack.md) |
 
 ## Learn More
 
