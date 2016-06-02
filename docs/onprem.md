@@ -85,7 +85,7 @@ cbd --version
 
 Once the Cloudbreak Deployer is installed, you can start to set up the Cloudbreak application.
 
-## Initialize your Profile
+## Initialize Your Profile
 
 First initialize `cbd`:
 
@@ -99,7 +99,7 @@ Cloudbreak Deployer creates a file called Profile in the current directory. The 
 
 
 
-## Generate your Profile
+## Generate Your Profile
 
 You are done with the configuration of Cloudbreak Deployer. The last thing you have to do is to generate the configurations by executing:
 
