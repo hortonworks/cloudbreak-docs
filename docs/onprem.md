@@ -95,7 +95,7 @@ cd cloudbreak-deployment
 cbd init
 ```
 
-Cloudbreak Deployer creates a file called Profile in the current directory. The Profile file includes your PUBLIC_IP. Edit PUBLIC_IP to provide an IP address that will be used to access the Cloudbreak UI. In some cases, cbd tries to guess the IP address; if can't. this will give a hint.
+This will create a `Profile` file in the current directory. Open the `Profile` file and check the `PUBLIC_IP`. Cloudbreak UI uses the `PUBLIC_IP` to access the Cloudbreak UI. In some cases, the `cbd` tool tries to guess it. If `cbd` did not get the IP address during the initialization, set the appropriate value.
 
 
 
