@@ -2,7 +2,7 @@
 
 Follow these steps to install Cloudbreak Deployer on your operating system. 
 
->The instructions below are for CentOS. If you are using a differnt OS, perform equivalent steps. 
+> The instructions below are for CentOS. If you are using a differnt OS, perform equivalent steps. 
 
 ## Minimum and Recommended System Requirements
 
@@ -18,7 +18,7 @@ To run the Cloudbreak Deployer and install the Cloudbreak Application, you must 
 > You can install Cloudbreak on **Mac OS X for evaluation purposes only**. This operating system is not supported
 for a production deployment of Cloudbreak.
 
-Make sure that you opened the following ports:
+Make sure that you have opened the following ports:
 
  * SSH (22)
  * Cloudbreak API (8080)
@@ -85,7 +85,7 @@ cbd --version
 
 Once the Cloudbreak Deployer is installed, you can start to set up the Cloudbreak application.
 
-## Initialize your Profile
+## Initialize Your Profile
 
 First initialize `cbd`:
 
@@ -99,7 +99,7 @@ Cloudbreak Deployer creates a file called Profile in the current directory. The 
 
 
 
-## Generate your Profile
+## Generate Your Profile
 
 You are done with the configuration of Cloudbreak Deployer. The last thing you have to do is to generate the configurations by executing:
 
@@ -147,7 +147,7 @@ If you are faced with permission or connection issues, try to disable **SELinux*
 setenforce 0 && sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
 ```
 
-## Next steps
+## Next Steps
 
 After you have met all the pre-requisites for Cloudbreak, perform the **cloud provider specific** configuration. Select your cloud  provider and follow the steps in the **Setup** section:
 
@@ -156,4 +156,4 @@ After you have met all the pre-requisites for Cloudbreak, perform the **cloud pr
  * [GCP](gcp.md#google-setup)
  * [OpenStack](openstack.md#openstack-setup)
 
-> **Note:** AWS and OpenStack Setup sections contain additional and provider-specific `Profile` settings.
+> AWS and OpenStack Setup sections contain additional and provider-specific `Profile` settings.
