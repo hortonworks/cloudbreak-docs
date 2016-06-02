@@ -2,7 +2,7 @@
 
 Follow these steps to install Cloudbreak Deployer on your operating system. 
 
->The instructions below are for CentOS. If you are using a differnt OS, perform equivalent steps. 
+> **Note:** The instructions below are for CentOS. If you are using a different OS, perform equivalent steps. 
 
 ## Minimum and Recommended System Requirements
 
@@ -15,7 +15,7 @@ To run the Cloudbreak Deployer and install the Cloudbreak Application, you must 
     * 10GB disk
     * 2 cores
 
-> You can install Cloudbreak on **Mac OS X for evaluation purposes only**. This operating system is not supported
+> **Note:** You can install Cloudbreak on **Mac OS X for evaluation purposes only**. This operating system is not supported
 for a production deployment of Cloudbreak.
 
 Make sure that you opened the following ports:
