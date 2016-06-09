@@ -42,10 +42,10 @@ links to provider-specific instructions for configuring and launching **cbd (Clo
 
 | Cloud | Cloud Image |
 |---|---|
-| AWS | Follow the AWS instructions using this [link](aws.md). |
+| AWS | Follow the [AWS instructions](aws.md). |
 | Azure | There are no pre-built cloud images available for Azure. However, we give you an option to use Azure Resource Manager Templates instead. See [Azure Setup](azure.md) to install and configure Cloudbreak Deployer. |
-| GCP | Follow the GCP instructions using this [link](gcp.md) |
-| OpenStack | Follow the OpenStack instructions using this [link](openstack.md) |
+| GCP | Follow the [GCP instructions](gcp.md) |
+| OpenStack | Follow the [OpenStack instructions](openstack.md) |
 
 ## Learn More
 
@@ -54,6 +54,6 @@ For more information on Cloudbreak, Ambari and Ambari Blueprints, see:
 | Resource | Description |
 |---|---|
 |[Cloudbreak Project](http://hortonworks.com/hadoop/cloudbreak/) | Cloudbreak simplifies the provisioning of HDP clusters in virtual and cloud environments. |
-|[Cloudbreak Forums](http://hortonworks.com/hadoop/cloudbreak/#forums) | Visit the Cloudbreak Forums to get connected with the Cloudbreak community. |
+|[Cloudbreak Forums](https://community.hortonworks.com/spaces/61/operations-track_2.html?topics=Cloudbreak&type=question) | Visit the Cloudbreak Forums to get connected with the Cloudbreak community. |
 |[Apache Ambari Project](http://hortonworks.com/hadoop/ambari/) | Apache Ambari is an operational platform for provisioning, managing, and monitoring Apache Hadoop clusters. Ambari exposes a robust set of REST APIs and a rich Web interface for cluster management. |
 |[Ambari Blueprints](https://cwiki.apache.org/confluence/display/AMBARI/Blueprints)| Ambari Blueprints are a declarative definition of a Hadoop cluster that Ambari can use to create Hadoop clusters. |
