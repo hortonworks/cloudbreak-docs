@@ -3,8 +3,212 @@
 
 The Change Log summarizes the changes in Cloudbreak.
 
+## [v1.5.0-dev.55]
 
-## Unreleased
+### Fixed
+
+- ClusterBootstrapperTest randomly fails
+- slider does not work with ssl on python 2.7.9+
+
+### Added
+
+- added HDP version field to RDS config
+- ability to configure remote MySQL database for Ambari
+- ability to configure remote Postgres database for Ambari
+
+### Changed
+
+- reinstate recipes on Uluwatu UI
+- increase Ambari password length and fix error message
+- automatic blueprint update during startup
+
+## [v1.4.0-rc.46]
+
+### Fixed
+
+- remove invalid auto scaling group history check
+- fix sync to avoid node count corruption of instance groups
+- HDP on AWS can return 502 Bad Gateway while accessing Ambari
+- fix Ambari server ip selection on AWS
+- fix enable auto scaling with different user
+
+### Added
+
+- new RDS config resource
+- shell commands for RDS config operations
+- configurable image catalog
+- allow dynamically change Ambari version
+- added `canada` region to Azure
+- add basic auth to Zeppelin, Zeppelin is secured with the same password like Ambari
+
+### Changed
+
+- update images for on-the-fly ambari update
+- increase poll timeout for ARM
+- disable automated map/reduce smoke test
+- parallel command execution in Ambari
+- update to Smartsense 1.3.0
+- add admin user to `hadoop` and `hdfs` groups after Ambari install
+- use only Cloudbreak address to connect Cloudbreak
+
+## [v1.3.0-rc.2]
+
+### Fixed
+
+- Ambari restart
+- avoid duplicated alarmas
+- before upscale the sync won't change the stack state
+- upscale / downscale fix with Ambari 2.4
+
+### Added
+
+- reverse proxy for UI components
+- new supported volume type on aws: ST1
+- Spark reverse proxy settings
+- Spark jobhistory server reverse proxy settings
+- create admin user for Ambari views
+- added group name to AWS instance Name tags
+- add etl-edw default blueprint
+- configure Hive RDS through Cloudbreak
+- configurable default SmartSense configuration and installation
+- add SmartSense server to a single noded hostgroup if possible
+- generate SmartSense id as credential attribute
+- set SmartSense capture schedule on hosts by recipe
+
+### Changed
+
+- update to Ambari 2.4.0.0
+- use OpenJDK instead of Oracle JDK
+- use Ambari password as default service password
+- make Sultans base path configurable with '/sl' as default value
+- create individual root path for Cloudbreak and Periscope
+- set DNS TTL for AWS clients to <= 60s
+- rewrite url if ambari sessionid appears in cookies
+- remove MYSQL_SERVER component from blueprint if there is rds config present
+- handle AWS account id as String during SmartSense id generation
+- update proxy users hosts to avoid unauthorized connection for super-user in Oozie
+- set ONLY_STACK_DEFAULTS_APPLY as default since the new recommendation strategy does not work for Falcon and Ozzie
+- show blueprint name on review panel and hide hostroup panel by default
+- show only the previously selected network on the review panel
+
+### Removed
+
+- Spark and Zeppelin nginx proxy settings
+
+## [v1.3.0] - 2016-06-06
+
+### Fixed
+
+- delete cluster containers only if orchestrator type is container
+- show reason of failed commands when using the shell
+- login when password contains special characters
+- textarea placeholder on Internet Explorer 11
+- HDP repo verification on Uluwatu
+- wrong instance metadata status during cluster sync
+- manage platforms close button on UI
+- null pointer during router creation on non existing Openstack network
+
+### Added
+
+- use salt bootstrap instead of cloudbreak bootstrap
+- missing gateway port to stack response
+- enable spot price instances
+- AWS cluster creation with existing key pair
+- AWS existing SSH key pair could be configured by credential command
+- new description and output for CFN stack
+- add ssh port into instance metadata
+- seamless s3 connection
+- custom CIDR validator for subnet
+- custom tag to CloudFormation stack created by Cloudbreak
+- start termination flow stops other running flows on the same stack
+- Openstack API facing option
+
+### Changed
+
+- openstack network shell command improvement for the new network types
+- ability to select where to put ambari server
+- reorganize kerberos setup in Salt
+- using private address if only private address is available
+- always use ports on Openstack even there is no floating ip assigned
+- floating IP shall not be mandatory, and do not create separate ports
+- follow HBase port changes
+- move variant from advanced option to the basic options page
+- Spring update
+- elastic ips are managed by CloudFormation
+- sync starts automatically at startup
+- read nginx SSL port from parameter instead of static 443
+- sync to handle instances that are stopped on the provider side
+- Openstack metadata collection handles manually terminated instances
+- cleaned up Openstack resources in case of existing subnet
+
+### Removed
+
+- recipe and ssd config were removed
+- docker properties removed from UI
+
+## [v1.2.6] - 2016-05-19
+
+### Changed
+
+- use lates cloud images with ambari-agent:2.2.1-v20
+- map public ips to vms in case of existing vpc
+
+## [v1.2.5] - 2016-04-07
+
+### Fixed
+
+- slow lazy format on Azure
+- mounted disks are not visible in containers
+
+### Added
+
+- assume role without adding the keys into cbd Profile
+- ability to create cluster without public ip
+- high availability blueprint validator
+- support for older gcp projectids
+
+## [v1.2.4] - 2016-03-22
+
+### Fixed
+
+- azure storage location
+- openstack create network form
+- azure create network form
+- gcp disk type
+
+### Added
+
+- GCP subnetsupport  to shell
+
+### Changed
+
+- use the provided public network id for allocation floating ips
+- allow 24 attached volumes for aws
+- cleaned up openstack resources in case of existing subnet
+
+## [v1.2.3] - 2016-03-22
+
+### Fixed
+
+- sudo right of CB user
+
+### Added
+
+- Azure default network
+
+## [v1.2.2] - 2016-03-21
+
+### Fixed
+
+- credential validation in case of Mesos/Marathon
+
+## [v1.2.1] - 2016-03-21
+
+### Fixed
+
+- live migration operations
+
+## [v1.2.0] - 2016-03-18
 
 ### Fixed
 
@@ -53,8 +257,6 @@ The Change Log summarizes the changes in Cloudbreak.
 - binary version of gnu-sed 4.2.2 is now included, to solve lot of osx/busybox issues
 - consul recursor test are added
 
-### Removed
-
 ### Changed
 
 - sequenceiq/cloudbreak image updated to 1.0.3
@@ -65,13 +267,9 @@ The Change Log summarizes the changes in Cloudbreak.
 
 ## [v1.0.2] - 2015-08-25
 
-### Fixed
-
 ### Added
 
 - `DOCKER_CONSUL_OPTIONS` config option to provide arbitrary consul option
-
-### Removed
 
 ### Changed
 
@@ -81,36 +279,18 @@ The Change Log summarizes the changes in Cloudbreak.
 - consul image updated to 0.5.2 (from 0.5.0)
 - consul discovers host dns settings, and uses the configured nameserver as recursor
 
-## [v1.0.0] - 2015-08-15
-
-### Fixed
-
-### Added
-
-### Removed
-
-### Changed
-
 ## [v1.0.0] - 2015-07-23
 
 ### Fixed
+
 - GA Release
-### Added
 
-### Removed
-
-### Changed
 ## [v0.5.8] - 2015-07-23
 
 ### Fixed
 
 - Fix CircleCI release. CircleCI doesn’t allow --rm on docker run
 
-### Added
-
-### Removed
-
-### Changed
 ## [v0.5.7] - 2015-07-23
 
 ### Fixed
@@ -118,34 +298,18 @@ The Change Log summarizes the changes in Cloudbreak.
 - Fix make release dependency
 - Fix CHANGELOG generation at `make release-next-ver` avoid inserting extra -e
 
-### Added
-
-### Removed
-
-### Changed
-
 ## [v0.5.6] - 2015-07-23
-
-### Fixed
 
 ### Added
 
 - Release artifacts are published at public-repo-1.hortonworks.com/HDP/cloudbreak/
 
-### Removed
-
-### Changed
-
 ## [v0.5.5] - 2015-07-10
-
-### Fixed
 
 ### Added
 
 - Command `pull-parallel` added for quicker/simultaneous image pull
 - Release process includes upload to public-repo s3 bucket
-
-### Removed
 
 ### Changed
 
@@ -153,8 +317,6 @@ The Change Log summarizes the changes in Cloudbreak.
 - release artifact includes additional files: license/readme/notes
 
 ## [v0.5.4] - 2015-07-03
-
-### Fixed
 
 ### Added
 
@@ -169,8 +331,6 @@ The Change Log summarizes the changes in Cloudbreak.
 - Command `cloudbreak-shell-quiet` added
 - Command `local-dev` added
 - Command `token` added
-
-### Removed
 
 ### Changed
 
@@ -189,17 +349,7 @@ The Change Log summarizes the changes in Cloudbreak.
 
 - New release proposal can be done by `make release-next-ver`
 
-### Removed
-
-### Changed
-
 ## [v0.5.2] - 2015-05-21
-
-### Fixed
-
-### Added
-
-### Removed
 
 ### Changed
 
@@ -219,8 +369,6 @@ The Change Log summarizes the changes in Cloudbreak.
 
 - Issue #55: Sed handles more robust the issue with: curl includes an extra CR char in header fields.
 
-### Added
-
 ### Removed
 
 - deployer doesn’t specify cloud specific image defaults. If left empty, they fall back
@@ -232,7 +380,7 @@ The Change Log summarizes the changes in Cloudbreak.
 
 ### Changed
 
-- Command `logs` got usage example for specifying servies as filter
+- Command `logs` got usage example for specifying services as filter
 - Default docker images are updated to:
     - sequenceiq/cloudbreak:0.5.49
     - sequenceiq/uluwatu:0.5.16
@@ -258,10 +406,8 @@ The Change Log summarizes the changes in Cloudbreak.
 - Mini Getting Started guide added into README
 - `make dev-debug` installs a special cbd on local OSX, which doesn’t includes *.bash scrips, only refers them
    by path. No need to `make dev` to test small changes in bash scripts.
-- Load AWS key and AWS id from Profile
-- Command `init` helps to guess the PUBLIC_IP in public clouds: google, amazon
-
-### Removed
+   - Load AWS key and AWS id from Profile
+   - Command `init` helps to guess the PUBLIC_IP in public clouds: google, amazon
 
 ### Changed
 
@@ -312,12 +458,6 @@ The Change Log summarizes the changes in Cloudbreak.
 
 - Bash 4.3 is included in the binary, extracted into .deps/bin upon start
 
-### Added
-
-### Removed
-
-### Changed
-
 ## [v0.0.8] - 2015-04-13
 
 ### Fixed
@@ -334,15 +474,11 @@ The Change Log summarizes the changes in Cloudbreak.
 - `pull` command added
 - `logs` command added
 
-### Removed
-
 ### Changed
 
 - Docker containers are managed by **docker-compose**
 
 ## [v0.0.7] - 2015-03-26
-
-### Fixed
 
 ### Added
 
@@ -351,8 +487,6 @@ The Change Log summarizes the changes in Cloudbreak.
 - start command added: WIP consul, registrator starts
 - kill command addd: stops and removes cloudbreak specific containers
 - SKIP_XXX skips the container start
-
-### Removed
 
 ### Changed
 
@@ -377,8 +511,6 @@ The Change Log summarizes the changes in Cloudbreak.
 - export env command in DEBUG mode
 - doctor: add instruction about setting DOCKER_XXX env vars in Profile
 - info() function added to print green text to STDOUT
-
-### Removed
 
 ### Changed
 
@@ -405,13 +537,9 @@ The Change Log summarizes the changes in Cloudbreak.
 - Print version number in debug mode
 - `update-snap` downloads binary from latest os specific CircleCI binary artifact.
 
-### Removed
-
 ### Changed
 
 - Tool specific library renamed from cloudbreak.bash to deployer.bash
-
-## [v0.0.6] - 2015-03-25
 
 ## [v0.0.3] - 2015-03-19
 
@@ -422,10 +550,6 @@ The Change Log summarizes the changes in Cloudbreak.
 ### Added
 
 - Docs: release process described
-
-### Removed
-
-### Changed
 
 ## [v0.0.2] - 2015-03-19
 
@@ -443,3 +567,4 @@ Added
 - Added --version
 - CircleCI build
 - Linux/Darwin binary releases on github
+
