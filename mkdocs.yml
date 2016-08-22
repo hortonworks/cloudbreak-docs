@@ -7,33 +7,36 @@ dev_addr: 0.0.0.0:8000
 markdown_extensions:
     - markdown_include.include
 pages:
-    - Home:
-        - Introduction : index.md
-        - Architecture : architecture.md
-        - Installation : onprem.md
-        - Release Notes : releasenotes.md
-        - Change Log : changelog.md
-    - AWS: aws.md
-    - Azure : azure.md
-    - GCP : gcp.md
-    - OpenStack : openstack.md
-    - Reference:
-        - API : api.md
-        - CLI/Shell : shell.md
+    - Intro:
+        - Overview: index.md
+        - Architecture: architecture.md
+    - Setup:
+        - Your Own VM: onprem.md
+        - AWS: aws.md
+        - Azure: azure.md
+        - GCP: gcp.md
+        - OpenStack: openstack.md
+        - Mesos (TP): mesos.md
         - Update Cloudbreak: update.md
+    - Configuration:
         - Account Management: ui_account.md
-        - Auto-Scaling : periscope.md
+        - Basic Configuration: operations.md
+        - Advanced Configuration: configuration.md
+        - Custom Cloud Images: images.md
+        - Auto-Scaling: periscope.md
         - Recipes: recipes.md
-        - Blueprints : blueprints.md
-        - Platforms : topologies.md
-        - Cloud Images: images.md
-        - Kerberos: kerberos.md
+        - Platform Tagging (TP): topologies.md
+        - Kerberos (TP): kerberos.md
         - Ambari Database: database.md
-        - Mesos: mesos.md
+        - Development:
+            - Environments: environments.md
+            - Flows: flow.html
+    - Reference:
+        - API: api.md
+        - Cloudbreak Shell: shell.md
+        - Blueprints: blueprints.md
         - SPI: spi.md
-        - Operations : operations.md
-        - Advanced Configuration : configuration.md
-        - Development :
-            - Environments : environments.md
-            - Flows : flow.html
+    - Release Notes:        
+        - Release Notes: releasenotes.md
         - Known Issues: issues.md
+        - Change Log: changelog.md
