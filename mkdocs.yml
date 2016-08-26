@@ -18,7 +18,10 @@ pages:
         - OpenStack: openstack.md
         - Mesos (TP): mesos.md
         - Update Cloudbreak: update.md
-    - Configuration:
+    - Reference:
+        - API: api.md
+        - Cloudbreak Shell: shell.md
+        - Blueprints: blueprints.md
         - Account Management: ui_account.md
         - Basic Configuration: operations.md
         - Advanced Configuration: configuration.md
@@ -28,14 +31,10 @@ pages:
         - Platform Tagging (TP): topologies.md
         - Kerberos (TP): kerberos.md
         - Ambari Database: database.md
+        - SPI: spi.md
         - Development:
             - Environments: environments.md
             - Flows: flow.html
-    - Reference:
-        - API: api.md
-        - Cloudbreak Shell: shell.md
-        - Blueprints: blueprints.md
-        - SPI: spi.md
     - Release Notes:        
         - Release Notes: releasenotes.md
         - Known Issues: issues.md
