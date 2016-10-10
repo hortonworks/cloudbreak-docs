@@ -9,10 +9,7 @@ We have pre-built Cloudbreak Deployer cloud image for Google Cloud Platform (GCP
 Make sure that you have opened the following ports on your [Security Group](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html):
  
  * SSH (22)
- * Cloudbreak API (8080)
- * Identity server (8089)
- * Cloudbreak UI (3000)
- * User authentication (3001)
+ * Cloudbreak (443)
 
 ## Cloudbreak Deployer GCP Image Details
 

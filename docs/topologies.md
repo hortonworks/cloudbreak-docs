@@ -25,7 +25,7 @@ Based on this mapping, the Cloudbreak application ensures that the rack informat
 
 ### Manage Platform Configuration
 
->You can log in to the Cloudbreak application at http://PUBLIC_IP:3000. You can find the provider-specific documentation here:
+>You can log in to the Cloudbreak application at https://PUBLIC_IP:443. You can find the provider-specific documentation here:
 >
 * [AWS](aws.md)
 * [Azure](azure.md)

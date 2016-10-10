@@ -7,10 +7,7 @@ pre-installed. Following steps will guide you through the launch of the images t
 Please make sure you opened the following ports on your [security group](http://docs.openstack.org/openstack-ops/content/security_groups.html):
 
  * SSH (22)
- * Cloudbreak API (8080)
- * Identity server (8089)
- * Cloudbreak GUI (3000)
- * User authentication (3001)
+ * Cloudbreak (443)
 
 ## OpenStack Image Details
 

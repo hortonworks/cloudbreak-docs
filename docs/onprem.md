@@ -26,10 +26,7 @@ You must satisfy the following preprequisites before installing the Cloudbreak D
 Make sure that the following ports are open:
 
 * SSH (22)
-* Cloudbreak API (8080)
-* Identity server (8089)
-* Cloudbreak GUI (3000)
-* User authentication (3001)
+* Cloudbreak (443)
 
 #### Root Access  
 
