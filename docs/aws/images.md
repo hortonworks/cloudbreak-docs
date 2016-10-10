@@ -9,11 +9,7 @@ We have pre-built Cloudbreak Deployer cloud images for AWS with the Cloudbreak D
 Make sure that you have opened the following ports on your [security group](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html):
  
  * SSH (22)
- * Cloudbreak API (8080)
- * Identity server (8089)
- * Cloudbreak UI (3000)
- * User authentication (3001) 
-
+ * Cloudbreak (443)
  
 ## Cloudbreak Deployer AWS Image Details
 

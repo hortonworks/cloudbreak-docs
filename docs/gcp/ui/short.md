@@ -1,4 +1,4 @@
-You can log into the Cloudbreak application at `http://<PUBLIC_IP>:3000`.
+You can log into the Cloudbreak application at `https://<PUBLIC_IP>:443`.
 
 The main goal of the Cloudbreak UI is to easily create clusters on your own cloud provider account.
 This description details the GCP setup - if you'd like to use a different cloud provider check out its manual.

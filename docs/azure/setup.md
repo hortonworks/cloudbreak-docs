@@ -42,7 +42,7 @@ progress on the resource group details. If any issue has occurred, open the `Aud
 but overall fail](https://github.com/Azure/azure-quickstart-templates/issues/1294).
 
   * Once it's successful done, you can reach the Cloudbreak UI
-at:```http://<VM Public IP>:3000/```
+at:```https://<VM Public IP>:443/```
     * email: admin@example.com
     * password: cloudbreak
 

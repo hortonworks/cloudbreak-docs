@@ -24,7 +24,7 @@ cbd init
 cbd start  
 ```  
 
-**Step 3:** If Cloudbreak starts correctly, Cloudbreak application will be available at http://192.168.59.103:3000. For more details and config parameters, check the documentation for [Cloudbreak Deployer](https://github.com/sequenceiq/cloudbreak-deployer).
+**Step 3:** If Cloudbreak starts correctly, Cloudbreak application will be available at https://192.168.59.103:443. For more details and config parameters, check the documentation for [Cloudbreak Deployer](https://github.com/sequenceiq/cloudbreak-deployer).
 
 **Step 4:** Note that the deployer has generated a `certs` directory under `cbd-local` directory. You will need it later to set up the IDEA.
 
