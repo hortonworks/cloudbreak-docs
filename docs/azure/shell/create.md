@@ -47,7 +47,7 @@ Stack means the running cloud infrastructure that is created based on the instan
 use your templates and by using Azure ARM will launch your cloud stack. Use the following command to create a
 stack to be used with your Hadoop cluster:
 ```
-stack create --name myazurestack --region "North Europe"
+stack create --AZURE --name myazurestack --region "North Europe"
 ```
 The infrastructure is created asynchronously, the state of the stack can be checked with the stack `show command`. If
 it reports AVAILABLE, it means that the virtual machines and the corresponding infrastructure is running at the cloud provider.

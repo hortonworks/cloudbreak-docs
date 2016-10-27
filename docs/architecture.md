@@ -23,7 +23,7 @@ Cloudbreak is built on the foundation of cloud provider APIs and Apache Ambari.
 
 The goal of the Apache Ambari project is to simplify Hadoop management by developing software for provisioning, managing, and monitoring Apache Hadoop clusters. Ambari provides an intuitive, easy-to-use Hadoop management web UI backed by its RESTful APIs.
 
-![](https://raw.githubusercontent.com/sequenceiq/cloudbreak/master/docs/images/ambari-overview.png)
+![](https://raw.githubusercontent.com/sequenceiq/cloudbreak-docs/master/docs/diagrams/ambari-overview.png)
 
 Ambari enables System Administrators to: 
 

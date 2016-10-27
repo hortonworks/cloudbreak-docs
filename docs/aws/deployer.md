@@ -68,7 +68,7 @@ After the `cbd start` command finishes, check the following:
 
 There are two ways to create AWS credentials in Cloudbreak:
 
-**Key-based:** This requires your AWS access key and secret key pair. Cloudbreak will use these keys to launch the resources. For starters, this is a simpler option that does not require additional configuration. You will provide the keys later when you [provision an HDP cluster](credentials.md).
+**Key-based:** This requires your AWS access key and secret key pair. Cloudbreak will use these keys to launch the resources. For starters, this is a simpler option that does not require additional configuration. You will provide the keys later when you [provision an HDP cluster](#cluster-provisioning-via-browser).
  
 **Role-based:** This requires a valid [IAM role](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html) with "AssumeRole" policy. Cloudbreak will assume this role to get temporary access and the access/secret key pair.
 
@@ -76,10 +76,8 @@ To configure role-based credentials, start your instance with an "AssumeRole" po
 
 Alternatively, you can set your AWS keys of an IAM user with an"AssumeRole" policy in the `Profile` file:
 
-  ```
-  export AWS_ACCESS_KEY_ID=AKIA**************W7SA
-  export AWS_SECRET_ACCESS_KEY=RWCT4Cs8******************/*skiOkWD
-  ```
+    export AWS_ACCESS_KEY_ID=AKIA**************W7SA
+    export AWS_SECRET_ACCESS_KEY=RWCT4Cs8******************/*skiOkWD
   
 > If you want to use instance profile, do not set these variables. If you want to use Cloudbreak with Role ARNs instead of keys, make sure that the instance profile role can assume roles on AWS.   
 
