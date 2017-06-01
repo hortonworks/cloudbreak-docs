@@ -26,7 +26,7 @@ Before you can use interactive login, you must provide your tenant ID and subscr
     * Only alphanumeric and lowercase characters (min 5, max 100 characters) can be used
   
 2. Copy your SSH public key to the `SSH public key` field
-    * The SSH public key must be in the OpenSSH format. The matching private key can be used later to [SSH onto every instance](operations.md#ssh-to-the-hosts) of every cluster that you'll create with this credential. The **SSH username** for the AZzure instances is always **cloudbreak**.
+    * The SSH public key must be in the OpenSSH format. The matching private key can be used later to [SSH onto every instance](operations.md#ssh-to-the-hosts) of every cluster that you'll create with this credential. The **SSH username** for the Azure instances is always **cloudbreak**.
 
 3. Select Azure role type. You have the option to decide if Cloudbreak should use the built-in `Contributor` Azure role, a custom existing role, or a new role for managing cluster resources in Azure. 
     You have the following options:
@@ -35,9 +35,9 @@ Before you can use interactive login, you must provide your tenant ID and subscr
     * `Reuse existing custom role`
         * You can reuse an existing Azure role as long as it has the required minimal permissions necessary for Cloudbreak to be able the manage the cluster's resources. It returns an error if no role with the specified name exists or if the role does not have the required permissions. 
     * `Let Cloudbreak create a custom role`
-        * Choosing this option will let the Cloudbreak application create an Azure role with the necessary permissions. It returns an error if a role with the specified name alerady exists.
+        * Choosing this option will let the Cloudbreak application create the Azure role with the necessary permissions. It returns an error if a role with the specified name alerady exists.
 
-> The necessary action set for Cloudbreak to be able to manage the clusters include:
+> The necessary Action set for Cloudbreak to be able to manage the clusters include:
                     "Microsoft.Compute/\*",
                     "Microsoft.Network/\*",
                     "Microsoft.Storage/\*",
@@ -76,7 +76,7 @@ Before you can use interactive login, you must provide your tenant ID and subscr
     <sub>*Full size [here](/azure/images/azure-application.png).*</sub>
 
 4. Copy your SSH public key to the `SSH public key` field
-    * The SSH public key must be in the OpenSSH format. The matching private key can be used later to [SSH onto every instance](operations.md#ssh-to-the-hosts) of every cluster that you'll create with this credential. The **SSH username** for the AZzure instances is always **cloudbreak**.
+    * The SSH public key must be in the OpenSSH format. The matching private key can be used later to [SSH onto every instance](operations.md#ssh-to-the-hosts) of every cluster that you'll create with this credential. The **SSH username** for the Azure instances is always **cloudbreak**.
 
 >All other parameters are optional.
 
