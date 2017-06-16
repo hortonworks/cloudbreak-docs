@@ -2,23 +2,23 @@
 
 The Release Notes document describes new features and fixes incorporated in this version of Cloudbreak.
 
-## Improvements
+## New Features 
 
-This release includes the following improvements:
+This release includes the following features:
 
 | Feature | Description |
 |----|----|
-| HDP and Ambari | Update to HDP 2.6 and Ambari 2.5. |
-| Azure Support for Private IPs | Support for using Azure Private IPs. |
+| Flex Subscription | Introduces support for enabling a Hortonworks Flex Support Subscription for Cloudbreak clusters and the Cloudbreak node. For information on how to enable Flex Subscription in Cloudbreak, refer to [Flex Subscription](help.md#flex-subscription). If you are looking for general information about Flex Support Subscriptions, visit the Hortonworks Support page at [https://hortonworks.com/services/support/enterprise/](https://hortonworks.com/services/support/enterprise/).|
+
 
 ## Fixes & Changes
 
 This release include the following changes:
 > Refer to the [Change Log](changelog.md) for a full list of changes.
 
-| Area | Change |
-|---|---|
-| Azure Cloud Provider | Deallocate VMs instead of just stopping the instances. |
+[//]: <> (| Area | Change |)
+[//]: <> (|---|---|)
+
 
 ## Technical Preview
 
