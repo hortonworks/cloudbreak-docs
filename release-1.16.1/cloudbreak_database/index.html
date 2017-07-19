@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="http://sequenceiq.com/cloudbreak-docs/cloudbreak_database/">
+        <link rel="canonical" href="http://hortonworks.github.io/cloudbreak-docs/cloudbreak_database/">
         <link rel="shortcut icon" href="../img/favicon.ico">
 
 	<title>Cloudbreak Database - Cloudbreak 1.16.1</title>
@@ -299,7 +299,7 @@
                 
                 
                     <li>
-                        <a href="https://github.com/sequenceiq/cloudbreak-docs/blob/master/docs/" >
+                        <a href="https://github.com/hortonworks/cloudbreak-docs/blob/master/docs/" >
                             
                                 <i class="fa fa-github"></i>
                             
@@ -373,7 +373,7 @@ cbd db restore-volume-from-dump common periscopedb
 docker run --rm -v cbreak_dump:/dump -it alpine cat /dump/uaadb/latest/dump.sql &gt; uaadb.sql
 docker run --rm -v cbreak_dump:/dump -it alpine cat /dump/periscopedb/latest/dump.sql &gt; periscopedb.sql
 </code></pre>
-                    <a href="https://github.com/sequenceiq/cloudbreak-docs/blob/master/docs/cloudbreak_database.md" ><i class="fa fa-github"></i> Edit on GitHub </a>
+                    <a href="https://github.com/hortonworks/cloudbreak-docs/blob/master/docs/cloudbreak_database.md" ><i class="fa fa-github"></i> Edit on GitHub </a>
                 </div>
             
         </div>
@@ -418,10 +418,10 @@ docker run --rm -v cbreak_dump:/dump -it alpine cat /dump/periscopedb/latest/dum
 
          <script>
            $( document ).ready(function() {
-               $.getJSON("http://sequenceiq.com/cloudbreak-docs/versions.json", function(data) {
-               $("#versions-dropdown").append('<li><a href="http://sequenceiq.com/cloudbreak-docs/latest">latest ('+data.latest+')</a></li>');
+               $.getJSON("http://hortonworks.github.io/cloudbreak-docs//versions.json", function(data) {
+               $("#versions-dropdown").append('<li><a href="http://hortonworks.github.io/cloudbreak-docs//latest">latest ('+data.latest+')</a></li>');
                 $.each(data.versions, function( index, value ) {
-                  $("#versions-dropdown").append('<li><a href="http://sequenceiq.com/cloudbreak-docs/'+value+'">'+value+'</a></li>');
+                  $("#versions-dropdown").append('<li><a href="http://hortonworks.github.io/cloudbreak-docs//'+value+'">'+value+'</a></li>');
                 });
                });
 

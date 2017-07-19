@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="http://sequenceiq.com/cloudbreak-docs/ldap/">
+        <link rel="canonical" href="http://hortonworks.github.io/cloudbreak-docs/ldap/">
         <link rel="shortcut icon" href="../img/favicon.ico">
 
 	<title>LDAP/AD (TP) - Cloudbreak 1.16.1</title>
@@ -299,7 +299,7 @@
                 
                 
                     <li>
-                        <a href="https://github.com/sequenceiq/cloudbreak-docs/blob/master/docs/" >
+                        <a href="https://github.com/hortonworks/cloudbreak-docs/blob/master/docs/" >
                             
                                 <i class="fa fa-github"></i>
                             
@@ -398,7 +398,7 @@ docker exec cbreak_commondb_1 psql -U postgres -d uaadb -f /tmp/mapping.sql
 </code></pre>
 
 <p>After the mapping is successfully done, you can log in with users authenticated against LDAP. </p>
-                    <a href="https://github.com/sequenceiq/cloudbreak-docs/blob/master/docs/ldap.md" ><i class="fa fa-github"></i> Edit on GitHub </a>
+                    <a href="https://github.com/hortonworks/cloudbreak-docs/blob/master/docs/ldap.md" ><i class="fa fa-github"></i> Edit on GitHub </a>
                 </div>
             
         </div>
@@ -443,10 +443,10 @@ docker exec cbreak_commondb_1 psql -U postgres -d uaadb -f /tmp/mapping.sql
 
          <script>
            $( document ).ready(function() {
-               $.getJSON("http://sequenceiq.com/cloudbreak-docs/versions.json", function(data) {
-               $("#versions-dropdown").append('<li><a href="http://sequenceiq.com/cloudbreak-docs/latest">latest ('+data.latest+')</a></li>');
+               $.getJSON("http://hortonworks.github.io/cloudbreak-docs//versions.json", function(data) {
+               $("#versions-dropdown").append('<li><a href="http://hortonworks.github.io/cloudbreak-docs//latest">latest ('+data.latest+')</a></li>');
                 $.each(data.versions, function( index, value ) {
-                  $("#versions-dropdown").append('<li><a href="http://sequenceiq.com/cloudbreak-docs/'+value+'">'+value+'</a></li>');
+                  $("#versions-dropdown").append('<li><a href="http://hortonworks.github.io/cloudbreak-docs//'+value+'">'+value+'</a></li>');
                 });
                });
 

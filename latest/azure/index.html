@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="http://sequenceiq.com/cloudbreak-docs/azure/">
+        <link rel="canonical" href="http://hortonworks.github.io/cloudbreak-docs/azure/">
         <link rel="shortcut icon" href="../img/favicon.ico">
 
 	<title>Azure - Cloudbreak 1.16.1</title>
@@ -299,7 +299,7 @@
                 
                 
                     <li>
-                        <a href="https://github.com/sequenceiq/cloudbreak-docs/blob/master/docs/" >
+                        <a href="https://github.com/hortonworks/cloudbreak-docs/blob/master/docs/" >
                             
                                 <i class="fa fa-github"></i>
                             
@@ -382,7 +382,7 @@
 <h1 id="azure-setup">Azure Setup</h1>
 <p>Setting up Cloudbreak on Azure is different than on other cloud providers for which we provide pre-built public images with Cloudbreak Deployer pre-installed. On Azure, you launch Cloudbreak Deployer using the <a href="https://github.com/Azure/azure-quickstart-templates">Azure Resource Manager Templates</a>.</p>
 <h2 id="deploy-using-the-azure-portal">Deploy Using the Azure Portal</h2>
-<p>To get started with Cloudbreak installation using the Azure Resource Manager template, click here: <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fsequenceiq%2Fazure-cbd-quickstart%2F1.16.1%2FmainTemplate.json">  <img alt="deploy on azure" src="http://azuredeploy.net/deploybutton.png" /> </a></p>
+<p>To get started with Cloudbreak installation using the Azure Resource Manager template, click here: <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fhortonworks%2Fazure-cbd-quickstart%2F1.16.1%2FmainTemplate.json">  <img alt="deploy on azure" src="http://azuredeploy.net/deploybutton.png" /> </a></p>
 <h3 id="vm-requirements">VM Requirements</h3>
 <p>When selecting an instance type, consider these minimum and recomended requirements:<br />
 - 8GB RAM, 10GB disk, 2 cores 
@@ -1185,7 +1185,7 @@ network template.</p>
 <h4 id="blueprints_1">Blueprints</h4>
 <p>Blueprints are your declarative definition of a Hadoop cluster. These are the same blueprints that are <a href="https://cwiki.apache.org/confluence/display/AMBARI/Blueprints">used by Ambari</a>.</p>
 <p>You can use the 3 default blueprints pre-defined in Cloudbreak or you can create your own ones.
-Blueprints can be added from file or URL (an <a href="https://raw.githubusercontent.com/sequenceiq/cloudbreak/master/integration-test/src/main/resources/blueprint/multi-node-hdfs-yarn.bp">example blueprint</a>).</p>
+Blueprints can be added from file or URL (an <a href="https://raw.githubusercontent.com/hortonworks/cloudbreak/master/integration-test/src/main/resources/blueprint/multi-node-hdfs-yarn.bp">example blueprint</a>).</p>
 <p>The host groups in the JSON will be mapped to a set of instances when starting the cluster. Besides this the services and
  components will also be installed on the corresponding nodes. Blueprints can be modified later from the Ambari UI.</p>
 <blockquote>
@@ -1388,7 +1388,7 @@ cluster create --description &quot;My first cluster&quot; --wait true
 
 <p><strong>Congratulations!</strong> Your cluster should now be up and running on this way as well. To learn more about Cloudbreak and 
 provisioning, we have some <a href="../operations/">interesting insights</a> for you.</p>
-                    <a href="https://github.com/sequenceiq/cloudbreak-docs/blob/master/docs/azure.md" ><i class="fa fa-github"></i> Edit on GitHub </a>
+                    <a href="https://github.com/hortonworks/cloudbreak-docs/blob/master/docs/azure.md" ><i class="fa fa-github"></i> Edit on GitHub </a>
                 </div>
             
         </div>
@@ -1433,10 +1433,10 @@ provisioning, we have some <a href="../operations/">interesting insights</a> for
 
          <script>
            $( document ).ready(function() {
-               $.getJSON("http://sequenceiq.com/cloudbreak-docs/versions.json", function(data) {
-               $("#versions-dropdown").append('<li><a href="http://sequenceiq.com/cloudbreak-docs/latest">latest ('+data.latest+')</a></li>');
+               $.getJSON("http://hortonworks.github.io/cloudbreak-docs//versions.json", function(data) {
+               $("#versions-dropdown").append('<li><a href="http://hortonworks.github.io/cloudbreak-docs//latest">latest ('+data.latest+')</a></li>');
                 $.each(data.versions, function( index, value ) {
-                  $("#versions-dropdown").append('<li><a href="http://sequenceiq.com/cloudbreak-docs/'+value+'">'+value+'</a></li>');
+                  $("#versions-dropdown").append('<li><a href="http://hortonworks.github.io/cloudbreak-docs//'+value+'">'+value+'</a></li>');
                 });
                });
 
