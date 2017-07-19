@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="http://hortonworks.com/cloudbreak-docs/spi/">
+        <link rel="canonical" href="http://hortonworks.github.io/cloudbreak-docs/spi/">
         <link rel="shortcut icon" href="../img/favicon.ico">
 
 	<title>SPI - Cloudbreak 1.16.1</title>
@@ -370,7 +370,7 @@ dependencies {
 }
 </code></pre>
 
-<p>The entry point for the provider is the  <a href="https://github.com/hortonworks/cloudbreak/blob/master/cloud-api/src/main/java/com/sequenceiq/cloudbreak/cloud/CloudConnector.java">CloudConnector</a> interface and every interface that needs to be implemented is reachable trough this interface.</p>
+<p>The entry point for the provider is the  <a href="https://github.com/hortonworks/cloudbreak/blob/master/cloud-api/src/main/java/com/hortonworks/cloudbreak/cloud/CloudConnector.java">CloudConnector</a> interface and every interface that needs to be implemented is reachable trough this interface.</p>
 <h3 id="individual-resource-based-deployments">Individual Resource Based Deployments</h3>
 <p>There are providers such as GCP that do not support suitable templating mechanism, and customisable providers such as OpenStack where the Heat Orchestration (templating) component is optional and individual resources need to be handled separately. </p>
 <p>In such scenarios, resources such as networks, discs, and compute instances need to be created and managed with an ordered sequence of API calls, and Cloudbreak needs to provide a solution to manage the collection of related cloud resources as a whole.</p>
@@ -445,10 +445,10 @@ dependencies {
 
          <script>
            $( document ).ready(function() {
-               $.getJSON("http://hortonworks.com/cloudbreak-docs/versions.json", function(data) {
-               $("#versions-dropdown").append('<li><a href="http://hortonworks.com/cloudbreak-docs/latest">latest ('+data.latest+')</a></li>');
+               $.getJSON("http://hortonworks.github.io/cloudbreak-docs//versions.json", function(data) {
+               $("#versions-dropdown").append('<li><a href="http://hortonworks.github.io/cloudbreak-docs//latest">latest ('+data.latest+')</a></li>');
                 $.each(data.versions, function( index, value ) {
-                  $("#versions-dropdown").append('<li><a href="http://hortonworks.com/cloudbreak-docs/'+value+'">'+value+'</a></li>');
+                  $("#versions-dropdown").append('<li><a href="http://hortonworks.github.io/cloudbreak-docs//'+value+'">'+value+'</a></li>');
                 });
                });
 
