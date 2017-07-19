@@ -1,9 +1,0 @@
-digraph {
-INIT_STATE [label="ClusterStopFlowConfig" shape=ellipse color=green];
-INIT_STATE -> CLUSTER_STOPPING_STATE [label="CLUSTER_STOP_EVENT" color=black style=solid];
-CLUSTER_STOPPING_STATE -> CLUSTER_STOP_FINISHED_STATE [label="CLUSTER_STOP_FINISHED_EVENT" color=black style=solid];
-CLUSTER_STOPPING_STATE -> CLUSTER_STOP_FAILED_STATE [label="CLUSTER_STOP_FINISHED_FAILURE_EVENT" color=red style=dashed];
-CLUSTER_STOP_FAILED_STATE -> FINAL_STATE [label="FAIL_HANDLED_EVENT" color=red style=dashed];
-CLUSTER_STOP_FINISHED_STATE -> FINAL_STATE [label="FINALIZED_EVENT" color=black style=solid];
-CLUSTER_STOP_FINISHED_STATE -> CLUSTER_STOP_FAILED_STATE [label="FAILURE_EVENT" color=red style=dashed];
-}
