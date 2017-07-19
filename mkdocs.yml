@@ -1,6 +1,6 @@
 site_name: Cloudbreak 1.16.1
-site_url: http://sequenceiq.com/cloudbreak-docs
-repo_url: https://github.com/sequenceiq/cloudbreak-docs
+site_url: http://hortonworks.github.io/cloudbreak-docs/
+repo_url: https://github.com/hortonworks/cloudbreak-docs
 theme: mkdocs
 theme_dir: mkdocs_theme
 dev_addr: 0.0.0.0:8000

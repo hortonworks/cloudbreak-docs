@@ -5,7 +5,7 @@
 Blueprints are your declarative definition of a Hadoop cluster. These are the same blueprints that are [used by Ambari](https://cwiki.apache.org/confluence/display/AMBARI/Blueprints).
 
 You can use the 3 default blueprints pre-defined in Cloudbreak or you can create your own ones.
-Blueprints can be added from file or URL (an [example blueprint](https://raw.githubusercontent.com/sequenceiq/cloudbreak/master/integration-test/src/main/resources/blueprint/multi-node-hdfs-yarn.bp)).
+Blueprints can be added from file or URL (an [example blueprint](https://raw.githubusercontent.com/hortonworks/cloudbreak/master/integration-test/src/main/resources/blueprint/multi-node-hdfs-yarn.bp)).
 
 The host groups in the JSON will be mapped to a set of instances when starting the cluster. Besides this the services and
  components will also be installed on the corresponding nodes. Blueprints can be modified later from the Ambari UI.

@@ -38,7 +38,7 @@ If want to use the code or extend it with new commands, follow the steps below.
 Execute the folowing commands:
 
 ```
-git clone https://github.com/sequenceiq/cloudbreak.git
+git clone https://github.com/hortonworks/cloudbreak.git
 cd cloudbreak/shell
 ../gradlew clean build
 ```
@@ -78,7 +78,7 @@ Once you are connected, you can create a cluster. Use `hint` if you get lost or 
 
 ## Documentation 
 
-For **complete documentation** of the Cloudbreak shell, see Cloudbreak  [github repository](https://github.com/sequenceiq/cloudbreak/tree/master/shell).
+For **complete documentation** of the Cloudbreak shell, see Cloudbreak  [github repository](https://github.com/hortonworks/cloudbreak/tree/master/shell).
 
 For **Provider-specific Documentation**, see:
 

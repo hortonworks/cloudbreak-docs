@@ -5,9 +5,9 @@ For your convenience, Cloudbreak provides a list of default HDP cluster blueprin
 
 | Name | Description | Services | Source |
 |----|----|---|---|
-| hdp-small-default | Launch a multi-node HDP 2.4 cluster. | HDFS, YARN, MAPREDUCE2, KNOX, HBASE, HIVE, HCATALOG, WEBHCAT, SLIDER, OOZIE, PIG, SQOOP, METRICS, TEZ, FALCON, ZOOKEEPER | [hdp-small-default.bp](https://raw.githubusercontent.com/sequenceiq/cloudbreak/master/core/src/main/resources/defaults/blueprints/hdp-small-default.bp) |
-| hdp-streaming-cluster | Launch a multi-node HDP 2.4 cluster optimized for streaming. | HDFS, YARN, MAPREDUCE2, STORM, KNOX, HBASE, HIVE, HCATALOG, WEBHCAT, SLIDER, OOZIE, PIG, SQOOP, METRICS, TEZ, FALCON, ZOOKEEPER | [hdp-streaming-cluster.bp](https://raw.githubusercontent.com/sequenceiq/cloudbreak/master/core/src/main/resources/defaults/blueprints/hdp-streaming-cluster.bp) |
-| hdp-spark-cluster | Launch a multi-node HDP 2.4 cluster optimized for Spark analytic jobs. | HDFS, YARN, MAPREDUCE2, SPARK, ZEPPELIN, KNOX, HBASE, HIVE, HCATALOG, WEBHCAT, SLIDER, OOZIE, PIG, SQOOP, METRICS, TEZ, FALCON, ZOOKEEPER | [hdp-spark-cluster.bp](https://raw.githubusercontent.com/sequenceiq/cloudbreak/master/core/src/main/resources/defaults/blueprints/hdp-spark-cluster.bp) |
+| hdp-small-default | Launch a multi-node HDP 2.4 cluster. | HDFS, YARN, MAPREDUCE2, KNOX, HBASE, HIVE, HCATALOG, WEBHCAT, SLIDER, OOZIE, PIG, SQOOP, METRICS, TEZ, FALCON, ZOOKEEPER | [hdp-small-default.bp](https://raw.githubusercontent.com/hortonworks/cloudbreak/master/core/src/main/resources/defaults/blueprints/hdp-small-default.bp) |
+| hdp-streaming-cluster | Launch a multi-node HDP 2.4 cluster optimized for streaming. | HDFS, YARN, MAPREDUCE2, STORM, KNOX, HBASE, HIVE, HCATALOG, WEBHCAT, SLIDER, OOZIE, PIG, SQOOP, METRICS, TEZ, FALCON, ZOOKEEPER | [hdp-streaming-cluster.bp](https://raw.githubusercontent.com/hortonworks/cloudbreak/master/core/src/main/resources/defaults/blueprints/hdp-streaming-cluster.bp) |
+| hdp-spark-cluster | Launch a multi-node HDP 2.4 cluster optimized for Spark analytic jobs. | HDFS, YARN, MAPREDUCE2, SPARK, ZEPPELIN, KNOX, HBASE, HIVE, HCATALOG, WEBHCAT, SLIDER, OOZIE, PIG, SQOOP, METRICS, TEZ, FALCON, ZOOKEEPER | [hdp-spark-cluster.bp](https://raw.githubusercontent.com/hortonworks/cloudbreak/master/core/src/main/resources/defaults/blueprints/hdp-spark-cluster.bp) |
 
 ## Components
 

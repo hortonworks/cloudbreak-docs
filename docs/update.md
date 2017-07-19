@@ -37,7 +37,7 @@ To update existing clusters from `1.3.0` to `1.4.0` or newer versions, run the f
 
 - Update the version of the Salt-Bootsrap tool on the nodes:
 ```
-salt '*' cmd.run 'curl -Ls https://github.com/sequenceiq/salt-bootstrap/releases/download/v0.1.2/salt-bootstrap_0.1.2_Linux_x86_64.tgz | tar -zx -C /usr/sbin/ salt-bootstrap'
+salt '*' cmd.run 'curl -Ls https://github.com/hortonworks/salt-bootstrap/releases/download/v0.1.2/salt-bootstrap_0.1.2_Linux_x86_64.tgz | tar -zx -C /usr/sbin/ salt-bootstrap'
 ```
 - Trigger restart of tool on the nodes:
 ```

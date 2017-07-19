@@ -2,7 +2,7 @@ Setting up Cloudbreak on Azure is different than on other cloud providers for wh
 
 ## Deploy Using the Azure Portal
 
-To get started with Cloudbreak installation using the Azure Resource Manager template, click here: <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fsequenceiq%2Fazure-cbd-quickstart%2F1.16.1%2FmainTemplate.json">  ![deploy on azure](http://azuredeploy.net/deploybutton.png) </a>
+To get started with Cloudbreak installation using the Azure Resource Manager template, click here: <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fhortonworks%2Fazure-cbd-quickstart%2F1.16.1%2FmainTemplate.json">  ![deploy on azure](http://azuredeploy.net/deploybutton.png) </a>
 
 ### VM Requirements
 
