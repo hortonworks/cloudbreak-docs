@@ -46,7 +46,7 @@ dependencies {
 }
 ```
 
-The entry point for the provider is the  [CloudConnector](https://github.com/hortonworks/cloudbreak/blob/master/cloud-api/src/main/java/com/sequenceiq/cloudbreak/cloud/CloudConnector.java) interface and every interface that needs to be implemented is reachable trough this interface.
+The entry point for the provider is the  [CloudConnector](https://github.com/hortonworks/cloudbreak/blob/master/cloud-api/src/main/java/com/hortonworks/cloudbreak/cloud/CloudConnector.java) interface and every interface that needs to be implemented is reachable trough this interface.
 
 ###Individual Resource Based Deployments
 
