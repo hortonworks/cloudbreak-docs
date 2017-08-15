@@ -77,8 +77,6 @@ Besides these you can check the progress on the Cloudbreak Web UI itself if you 
 
 `Custom Image` If you enable this, you can override the default image for provision.
 
-`Shipyard enabled cluster` This is selected by default. Cloudbreak will start a [Shipyard](https://shipyard-project.com/) container which helps you to manage your containers.
-
 `Config recommendation strategy` Strategy for how configuration recommendations will be applied. Recommended 
 configurations gathered by the response of the stack advisor. 
 
