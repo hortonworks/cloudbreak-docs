@@ -78,8 +78,6 @@ There are some advanced features when deploying a new cluster, these are the fol
 
 `Enable Availability sets` You can set up availability set support if enabled.
 
-`Shipyard enabled cluster` This is selected by default. Cloudbreak will start a [Shipyard](https://shipyard-project.com/) container which helps you to manage your containers.
-
 `Persistent Storage Name` This is `cbstore` by default. Cloudbreak will copy the image into a storage which is not deleting under the termination. When you starting a new cluster then the provisioning will be much faster because of the existing image.
 
 `Attached Storage Type` This is `single storage for all vm` by default. If are you using the default option then your whole cluster will by in one storage which could be a bottleneck in case of [Azure](https://azure.microsoft.com/hu-hu/documentation/articles/azure-subscription-service-limits/#storage-limits). If you are using the `separated storage for every vm` then we will deploy as much storage account as many node you have and in this case IOPS limit concern just for one node.
