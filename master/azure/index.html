@@ -1010,7 +1010,6 @@ the <code>Azure Portal Resource groups</code> page.
 <p><code>Validate blueprint</code> This is selected by default. Cloudbreak validates the Ambari blueprint in this case.</p>
 <p><code>Custom Image</code> If you enable this, you can override the default image for provision.</p>
 <p><code>Enable Availability sets</code> You can set up availability set support if enabled.</p>
-<p><code>Shipyard enabled cluster</code> This is selected by default. Cloudbreak will start a <a href="https://shipyard-project.com/">Shipyard</a> container which helps you to manage your containers.</p>
 <p><code>Persistent Storage Name</code> This is <code>cbstore</code> by default. Cloudbreak will copy the image into a storage which is not deleting under the termination. When you starting a new cluster then the provisioning will be much faster because of the existing image.</p>
 <p><code>Attached Storage Type</code> This is <code>single storage for all vm</code> by default. If are you using the default option then your whole cluster will by in one storage which could be a bottleneck in case of <a href="https://azure.microsoft.com/hu-hu/documentation/articles/azure-subscription-service-limits/#storage-limits">Azure</a>. If you are using the <code>separated storage for every vm</code> then we will deploy as much storage account as many node you have and in this case IOPS limit concern just for one node.</p>
 <p><code>Config recommendation strategy</code> Strategy for how configuration recommendations will be applied. Recommended
