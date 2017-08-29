@@ -5,8 +5,6 @@ The goal of **auto-scaling** is to apply Service Level Agreement (SLA) scaling p
 The auto-scaling capability is based on [Ambari Metrics](https://cwiki.apache.org/confluence/display/AMBARI/Metrics) and [Ambari Alerts](https://cwiki.apache.org/confluence/display/AMBARI/Alerts). Based on the blueprint
 used and the services running, Cloudbreak accesses all available metrics from the subsystem and defines alerts based on these metrics.
 
-In addition to the default Ambari Metrics, Cloudbreak includes two custom metrics: `Pending YARN containers` and `Pending applications`. These two custom metrics work with the YARN subsystem in order to bring application-level QoS to the cluster.
-
 ## Enable Auto-scaling through Cloudbreak UI 
 
 Choose `enable` to enable auto-scaling:
