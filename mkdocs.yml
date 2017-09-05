@@ -27,7 +27,7 @@ pages:
         - Auto-Scaling : periscope.md
         - Recipes: recipes.md
         - Blueprints : blueprints.md
-        - Cloud Images (TP): images.md
+        - Custom Images (TP): images.md
         - Platforms (TP): topologies.md
         - Kerberos (TP): kerberos.md
         - LDAP/AD (TP): ldap.md
