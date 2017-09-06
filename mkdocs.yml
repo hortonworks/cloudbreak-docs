@@ -21,6 +21,7 @@ pages:
     - Reference:
         - API : api.md
         - CLI/Shell : shell.md
+        - Customizations: customizations.md
         - Local Development : development.md
         - Cloudbreak Security: security.md
         - Update Cloudbreak: update.md
