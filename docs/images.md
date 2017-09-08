@@ -2,7 +2,7 @@
 
 > Custom Images support is part of `TECHNICAL PREVIEW` and is not suitable for production use.
 
-Cloudbreak includes **Standard** images by default for each cloud platform that are used to install Ambari and HDP. These default images are declared in yml files
+Cloudbreak includes **Standard** images by default for each cloud platform. These default images are declared in `yml` files
 in Cloudbreak, which Cloudbreak loads upon start.
 
 | Cloud Provider | Standard Image OS |
@@ -31,18 +31,18 @@ image in Cloudbreak for use.
 
 ## Registering Custom Images
 
-To register your custom image(s) in Cloudbreak, you need to overwrite the default yml files by place files
-declaring your custom images in the `/var/lib/cloudbreak-deployment/etc` directory on the Cloudbreak host. The
+Register your custom image(s) in Cloudbreak by placing `yml` files that
+declare your custom images in the `/var/lib/cloudbreak-deployment/etc` directory on the Cloudbreak host. The
 `etc` directory does not exist by default so you need to create it.
 
-The format of the yml files is cloud provider specific and described in the following sections.  
+The format of the `yml` files is cloud provider specific and described in the following sections.  
 
 > Important: If you register images after Cloudbreak has been started, you need to restart the application after updating the images.
 
 ### AWS
 
 To override the default images, create the following file: `/var/lib/cloudbreak-deployment/etc/aws-images.yml` and
-replace its content by updating **to your custom image** for each region as desired. The default content of the yml file is:
+replace its content by updating **to your custom image** for each region as desired. The default content of the `yml` file is:
 
 ```
 aws:
@@ -60,7 +60,7 @@ aws:
 
 ### Azure
 To override the default images, create the following file: `/var/lib/cloudbreak-deployment/etc/arm-images.yml` and
-replace its content by updating **to your custom image** for each region as desired. The default content of the yml file is:
+replace its content by updating **to your custom image** for each region as desired. The default content of the `yml` file is:
 
 ```
 azure_rm:
@@ -81,7 +81,7 @@ azure_rm:
 
 ### GCP
 To override the default images, create the following file: `/var/lib/cloudbreak-deployment/etc/gcp-images.yml` and
-replace its content by updating **to your custom image** for each region as desired. It is not required to have an image in every region, as the `default` is used everywhere. The default content of the yml file is:
+replace its content by updating **to your custom image** for each region as desired. It is not required to have an image in every region, as the `default` is used everywhere. The default content of the `yml` file is:
 
 ```
 gcp:
@@ -90,7 +90,7 @@ gcp:
 
 ### OpenStack
 To override the default images, create the following file: `/var/lib/cloudbreak-deployment/etc/os-images.yml` and
-replace its content by updating **to your custom image** for each region as desired. It is not required to have an image in every region, as the `default` is used everywhere. The default content of the yml file is:
+replace its content by updating **to your custom image** for each region as desired. It is not required to have an image in every region, as the `default` is used everywhere. The default content of the `yml` file is:
 
 ```
 openstack:
