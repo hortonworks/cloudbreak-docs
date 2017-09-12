@@ -1,29 +1,14 @@
 # Customizations
 
-Cloudbreak deployer during startup tries to figure the underlay infrastructure and sets required environment variables with competent default values, but some cases it isn't enough. You can set custom environment variables in your `Profile` file.
+During startup, Cloudbreak deployer tries to determine the underlaying infrastructure and then sets required environment variables with appropriate default values. If these environment variables are not sufficient for your use case, you can set additional environment variables in your `Profile` file. Refer to the list below for available custom environment variables.
 
-## Cloudbreak related variables
+## Cloudbreak Variables
 
     ADDRESS_RESOLVING_TIMEOUT 120000
 DNS lookup timeout for internal service discovery
     
-    AWS_ACCESS_KEY_ID ""
-Access key of the AWS account
-    
-    AWS_ROLE_NAME cbreak-deployer
-Name of the AWS role for the `cbd aws [generate-rol, show role]` commands
-    
-    AWS_SECRET_ACCESS_KEY ""
-Secret access key of the AWS account
-    
-    AZURE_SUBSCRIPTION_ID
-Azure subscription ID for interactive login in Web UI
-    
-    AZURE_TENANT_ID
-Azure tenant ID for interactive login in Web UI
-    
     CAPTURE_CRON_EXPRESSION
-SmartSense bundle generation time interval in Cron format
+SmartSense bundle generation time interval in cron format
     
     CBD_CERT_ROOT_PATH "${PWD}/certs"
 Path where deployer stores Cloudbreak certificates
@@ -32,16 +17,16 @@ Path where deployer stores Cloudbreak certificates
 Name of the Cloudbreak log file
     
     CBD_TRAEFIK_TLS "/certs/traefik/client.pem,/certs/traefik/client-key.pem"
-Path inside of the Traefik container where TLS files located
+Path inside of the Traefik container where TLS files are located
     
     CB_AWS_CUSTOM_CF_TAGS ""
-Comma separated list of AWS CloudFormation Stack tags
+Comma separated list of AWS CloudFormation stack tags
     
     CB_AWS_DEFAULT_CF_TAG ""
-Default tag AWS CloudFormation Stack
+Default tag for AWS CloudFormation stack
     
     CB_AWS_DEFAULT_INBOUND_SECURITY_GROUP ""
-Default inbound policy name for AWS CloudFormation Stack
+Default inbound policy name for AWS CloudFormation stack
     
     CB_AWS_EXTERNAL_ID provision-ambari
 External ID of the assume role policy
@@ -50,13 +35,13 @@ External ID of the assume role policy
 Enables host fingerprint verification on AWS
     
     CB_AWS_VPC ""
-Configures the VPC id on AWS if it is the same as provisioned cluster
+Configures the VPC ID on AWS if it is the same as provisioned cluster
     
     CB_BLUEPRINT_DEFAULTS "hdp-small-default;hdp-spark-cluster;hdp-streaming-cluster"
-Comma separated list of the default blueprints what Cloudbreak initialize in database
+Comma separated list of the default blueprints that Cloudbreak initializes in its database
     
     CB_BYOS_DFS_DATA_DIR "/hadoop/hdfs/data"
-Deprecated - Default data dir for BYOP orchestrators
+(Deprecated) Default data directory for BYOP orchestrators
     
     CB_COMPONENT_CLUSTER_ID
 SmartSense component cluster ID
@@ -65,7 +50,7 @@ SmartSense component cluster ID
 SmartSense component ID
     
     CB_COMPOSE_PROJECT cbreak
-Name of the Docker Compose project, will appear in container names too
+Name of the Docker Compose project; it will appear in container names
     
     CB_DB_ENV_DB "cbdb"
 Name of the Cloudbreak database
@@ -74,28 +59,25 @@ Name of the Cloudbreak database
 Password for the Cloudbreak database authentication
     
     CB_DB_ENV_SCHEMA "public"
-Used schema in the Cloudbreak database
+Schema used in the Cloudbreak database
     
     CB_DB_ENV_USER "postgres"
 User for the Cloudbreak database authentication
     
     CB_DB_ROOT_PATH "/var/lib/cloudbreak"
-Deprecated - Location of the database volume on Cloudbreak host
+(Deprecated) Location of the database volume on Cloudbreak host
     
     CB_DEFAULT_SUBSCRIPTION_ADDRESS http://uluwatu.service.consul:3000/notifications
-Address of the default subscription for Cloudbreak notifications
+URL of the default subscription for Cloudbreak notifications
     
     CB_ENABLEDPLATFORMS
 Disables Cloudbreak resource called Platform
     
     CB_ENABLE_CUSTOM_IMAGE "false"
-Flag to enable custom cloud images
+When set to "true", eenables custom cloud images
     
     CBD_FORCE_START
 Disables docker-compose.yml and uaa.yml validation
-    
-    CB_GCP_HOSTKEY_VERIFY "false"
-Enables host fingerprint verification on GCP
     
     CB_HBM2DDL_STRATEGY "validate"
 Configures hibernate.hbm2ddl.auto in Cloudbreak
@@ -104,13 +86,13 @@ Configures hibernate.hbm2ddl.auto in Cloudbreak
 Custom domain of the provisioned cluster
     
     CB_HTTPS_PROXY ""
-HTTPS proxy url
+HTTPS proxy URL
     
     CB_HTTP_PROXY ""
-HTTP proxy url
+HTTP proxy URL
     
     CB_IMAGE_CATALOG_URL "https://s3-eu-west-1.amazonaws.com/cloudbreak-info/cb-image-catalog.json"
-Image catalog url
+Image catalog URL
     
     CB_INSTANCE_NODE_ID
 Unique identifier of the Cloudbreak node     
@@ -155,19 +137,16 @@ SmartSense Cloudbreak cluster name prefix
 SmartSense subscription ID
     
     CB_TEMPLATE_DEFAULTS "minviable-gcp,minviable-azure,minviable-aws"
-Comma separated list of the default templates what Cloudbreak initialize in database
+Comma separated list of the default templates that Cloudbreak initializes in its database
     
     CB_UI_MAX_WAIT 400
 Wait timeout for `cbd start-wait` command
     
-    CERTS_BUCKET ""
-S3 bucket name for backup and restore certificates via `cbd aws [certs-restore-s3  certs-upload-s3]` commands
-    
     CERT_VALIDATION "true"
-Enables cert validation in Cloudbreak and Autoscale
+When set to "true", enables cert validation in Cloudbreak and Autoscale
     
     CLOUDBREAK_SMTP_AUTH "true"
-Configures mail.smtp.auth in Cloudbreak
+When set to "true", configures mail.smtp.auth in Cloudbreak
     
     CLOUDBREAK_SMTP_SENDER_FROM "noreply@hortonworks.com"
 Email address of the sender
@@ -176,7 +155,7 @@ Email address of the sender
 SMTP server address ot hostname
     
     CLOUDBREAK_SMTP_SENDER_PASSWORD "$LOCAL_SMTP_PASSWORD"
-Password
+SMTP server password
     
     CLOUDBREAK_SMTP_SENDER_PORT 25
 Port of the SMTP server
@@ -185,7 +164,7 @@ Port of the SMTP server
 User name for SMTP authentication
     
     CLOUDBREAK_SMTP_STARTTLS_ENABLE "false"
-Configures mail.smtp.starttls.enable in Cloudbreak
+When set to "true", configures mail.smtp.starttls.enable in Cloudbreak
     
     CLOUDBREAK_SMTP_TYPE "smtp"
 Defines mail.transport.protocol in CLoudbreak
@@ -287,7 +266,7 @@ Name of the Identity database
 Password for the Identity database authentication
     
     IDENTITY_DB_URL "${COMMON_DB}.service.consul:5432"
-Url for the Identity database connection included the port number
+URL for the Identity database connection, including the port number
     
     IDENTITY_DB_USER "postgres"
 User for the Identity database authentication
@@ -305,7 +284,7 @@ Name of the Autoscale database
 Password for the Autoscale database authentication
     
     PERISCOPE_DB_SCHEMA_NAME "public"
-Used schema in the Autoscale database
+Schema used in the Autoscale database
     
     PERISCOPE_DB_USER "postgres"
 User for the Autoscale database authentication
@@ -323,22 +302,22 @@ Log level of the Autoscale service
 Flag for Autoscale automatic database schema update
     
     PUBLIC_IP
-Ip address or hostname of the public interface
+IP address or hostname of the public interface
     
     REST_DEBUG "false"
-Enables REST call debug level in Cloudbreak and Autoscale
+When set to "true", enables REST call debug level in Cloudbreak and Autoscale
     
     SL_ADDRESS_RESOLVING_TIMEOUT
 DNS lookup timeout of Authentication service for internal service discovery
     
     SL_NODE_TLS_REJECT_UNAUTHORIZED "0"
-Enables self signed certifications in Authentication service
+When set to "0", enables self-signed certifications in Authentication service
     
     SULTANS_CONTAINER_PATH /sultans
 Default project location in Authentication service container
     
     TRAEFIK_MAX_IDLE_CONNECTION 100
-Configures --maxidleconnsperhost for Traefik
+Sets --maxidleconnsperhost for Traefik to the value entered
     
     UAA_CLOUDBREAK_ID cloudbreak
 Identity of the Cloudbreak scope in Identity
@@ -401,30 +380,57 @@ Secret of the Web UI scope in Identity
 External domain name for zone in Identity
     
     ULUWATU_CONTAINER_PATH /uluwatu
-Default project location in Web UI container
+Default project location in the Web UI container
     
     ULU_DEFAULT_SSH_KEY ""
 Default SSH key for the credentials in Cloudbreak
     
     ULU_HOST_ADDRESS  "https://$PUBLIC_IP"
-Web UI host
+URL for the Web UI host
     
     ULU_NODE_TLS_REJECT_UNAUTHORIZED "0"
-Enables self signed certifications in Web UI
+When set to "0", enables self-signed certifications in Web UI
     
     ULU_OAUTH_REDIRECT_URI  "$ULU_HOST_ADDRESS/authorize"
 Authorization page on Web UI
     
     ULU_SUBSCRIBE_TO_NOTIFICATIONS "false"
-Flag for automatic subscriptions for CLoudbreak events
+When set to true, enables automatic subscriptions for CLoudbreak events
     
     ULU_SULTANS_ADDRESS  "https://$PUBLIC_IP/sl"
-Authentication service address
+Authentication service URL
     
     VERBOSE_MIGRATION false
-Flag of verbose database migration
+When set to true, enables verbose database migration
 
-## Local development related variables
+### AWS Variables
+
+    AWS_ACCESS_KEY_ID ""
+Access key of the AWS account
+    
+    AWS_ROLE_NAME cbreak-deployer
+Name of the AWS role for the `cbd aws [generate-rol, show role]` commands
+    
+    AWS_SECRET_ACCESS_KEY ""
+Secret access key of the AWS account
+
+    CERTS_BUCKET ""
+S3 bucket name for backup and restore certificates via `cbd aws [certs-restore-s3  certs-upload-s3]` commands
+
+### Azure Variables
+
+    AZURE_SUBSCRIPTION_ID
+Azure subscription ID for interactive login in the web UI
+    
+    AZURE_TENANT_ID
+Azure tenant ID for interactive login in the web UI 
+
+### GCP Variables
+
+    CB_GCP_HOSTKEY_VERIFY "false"
+When set to "true", enables host fingerprint verification on GCP
+
+## Local Development Variables
 
     CB_LOCAL_DEV_BIND_ADDR "192.168.64.1"
 Ambassador external address for local development of Cloudbreak and Autoscale
@@ -439,7 +445,7 @@ Ambassador container version for local development
 Location of Cloudbreak schema update files
     
     PRIVATE_IP $BRIDGE_IP
-Ip address or hostname of the private interface
+IP address or hostname of the private interface
     
     REMOVE_CONTAINER "--rm"
 Keeps side effect containers for debug purpose
@@ -451,15 +457,15 @@ Location of the locally developed Authentication service project
 Location of Identity schema update files
     
     ULUWATU_VOLUME_HOST /dev/null
-Location of the locally developed Web UI project
+Location of the locally developed web UI project
 
-## MacOS related variables
+## MacOS Variables
 
     DOCKER_MACHINE ""
 Name of the Docker Machine where Cloudbreak runs
     
     DOCKER_PROFILE Profile
-Profile file for Docker Machine related environment variables
+Profile file for environment variables related to Docker Machine 
     
     MACHINE_CPU 2
 Number of the CPU cores on the Docker Machine instance
