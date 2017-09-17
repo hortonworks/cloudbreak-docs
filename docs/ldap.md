@@ -48,17 +48,17 @@ cbd start
 In order for the users to have access to Cloudbreak resources and to be able to create clusters the Oauth2 scopes must be mapped to LDAP groups. At the moment Cloudbreak only supports `one LDAP group per user` scenario.
 To see the Oauth2 scopes, execute the following command:
 ```
-docker exec -it cbreak_commondb_1 psql -U postgres -d uaadb -c 'select displayname from groups;'
+docker exec -it cbreak_commondb_1 psql -U postgres -d uaadb -c "select displayname from groups where displayname like 'cloudbreak%' or displayname like 'sequenceiq.account%' or displayname='sequenceiq.cloudbreak.user';"
 ```
 To save them to a `groups.txt` file:
 ```
-docker exec cbreak_commondb_1 psql -U postgres -d uaadb -c 'select displayname from groups;' | tail -n +3 | grep -v rows | xargs -I@ echo @ >> groups.txt
+docker exec cbreak_commondb_1 psql -U postgres -d uaadb -c "select displayname from groups where displayname like 'cloudbreak%' or displayname like 'sequenceiq.account%' or displayname='sequenceiq.cloudbreak.user';" | tail -n +3 | grep -v rows | xargs -I@ echo @ >> groups.txt
 ```
 To generate the SQL commands for the mapping we'll use [sigil](https://github.com/gliderlabs/sigil), which is a string interpolator and template processor. It is a single binary written in Golang and you can download it from the [releases](https://github.com/gliderlabs/sigil/releases) page.
 Save the following in a file called: `template.sig` (cn=admin,ou=scopes,dc=ad,dc=hortonworks,dc=com depends on your LDAP group, it must be inside searchBase parameter configured in the first step in UAA.yml):
 ```
-{{ range $k, $v := stdin|split "\n"}}
- INSERT INTO external_group_mapping (group_id, external_group, added, origin) VALUES ((select id from groups where displayname='{{$v}}'), 'cn=admin,ou=scopes,dc=ad,dc=hortonworks,dc=com', '2016-09-30 19:28:24.255', 'ldap');{{end}}
+{{ range $k, $v := stdin|split "\n"}}INSERT INTO external_group_mapping (group_id, external_group, added, origin) VALUES ((select id from groups where displayname='{{$v}}'), 'cn=admin,ou=scopes,dc=ad,dc=hortonworks,dc=com', '2016-09-30 19:28:24.255', 'ldap');
+{{end}}
 ```
 then generate the SQL commands into `mapping.sql`:
 ```
