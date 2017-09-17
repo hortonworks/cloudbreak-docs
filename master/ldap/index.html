@@ -383,7 +383,7 @@ cbd start
 <h2 id="mapping-oauth2-scopes-to-ldap-groups">Mapping Oauth2 scopes to LDAP groups</h2>
 <p>In order for the users to have access to Cloudbreak resources and to be able to create clusters the Oauth2 scopes must be mapped to LDAP groups. At the moment Cloudbreak only supports <code>one LDAP group per user</code> scenario.
 To see the Oauth2 scopes, execute the following command:</p>
-<pre><code>docker exec -it cbreak_commondb_1 psql -U postgres -d uaadb -c 'select displayname from groups where displayname like 'cloudbreak%' or displayname like 'sequenceiq.account%' or displayname='sequenceiq.cloudbreak.user';'
+<pre><code>docker exec -it cbreak_commondb_1 psql -U postgres -d uaadb -c &quot;select displayname from groups where displayname like 'cloudbreak%' or displayname like 'sequenceiq.account%' or displayname='sequenceiq.cloudbreak.user';&quot;
 </code></pre>
 
 <p>To save them to a <code>groups.txt</code> file:</p>
