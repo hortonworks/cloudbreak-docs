@@ -15,8 +15,7 @@ mkdir cbd-local
 To start the complete Cloudbreak ecosystem on your machine just execute the following sequence of commands:
 ```
 cd cbd-local
-curl https://raw.githubusercontent.com/hortonworks/cloudbreak-deployer/master/install | sh && cbd --version
-cbd update master
+curl https://raw.githubusercontent.com/hortonworks/cloudbreak-deployer/master/install-dev | sh && cbd --version
 cbd init
 cbd start
 ```
