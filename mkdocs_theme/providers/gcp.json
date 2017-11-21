@@ -10,8 +10,8 @@
     "created": "2017-08-29 10:07:02 +0000",
     "os_user": "cloudbreak",
     "created_at": "1504001222",
-    "image_name": "cloudbreak-deployer-1164-2017-08-29",
-    "cbd_version": "1.16.4",
+    "image_name": "cloudbreak-deployer-1165-2017-11-17",
+    "cbd_version": "1.16.5",
     "yum_version_docker": "1.9.1"
   },
   "file": false
