@@ -4,12 +4,7 @@ The Release Notes document describes new features and fixes incorporated in this
 
 ## New Features 
 
-This release includes the following features:
-
-| Feature | Description |
-|----|----|
-| Flex Subscription | Introduces support for enabling a Hortonworks Flex Support Subscription for Cloudbreak clusters and the Cloudbreak node. For information on how to enable Flex Subscription in Cloudbreak, refer to [Flex Subscription](help.md#flex-subscription). If you are looking for general information about Flex Support Subscriptions, visit the Hortonworks Support page at [https://hortonworks.com/services/support/enterprise/](https://hortonworks.com/services/support/enterprise/).|
-
+There are no new features.
 
 ## Fixes & Changes
 
