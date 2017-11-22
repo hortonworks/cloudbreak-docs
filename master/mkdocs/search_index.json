@@ -202,7 +202,7 @@
         }, 
         {
             "location": "/changelog/", 
-            "text": "Change Log\n\n\nThe Change Log summarizes the changes in Cloudbreak.\n\n\n[v1.16.1]\n\n\nChanged\n\n\n\n\nupdate HDP version (2.6.0.3 -\n 2.6.1.0)\n\n\nupdate Ambari version (2.5.0.3 -\n 2.5.1.0)\n\n\ndisable Knox from CB if blueprint contains Knox\n\n\n\n\n[v1.16.0]\n\n\nAdded\n\n\n\n\nAdded SmartSense and Flex subscription integration\n\n\n\n\n[v1.15.0]\n\n\nAdded\n\n\n\n\nAzure custom role support for credential creation\n\n\n\n\nChanged\n\n\n\n\nability to query more information about the stack by queryparameters\n\n\n\n\n[v1.14.4]\n\n\nFixed\n\n\n\n\nfix settings generation\n\n\nfix unable to create Azure cluster with WASB\n\n\npreserve Knox settings when switching credentials\n\n\nautomatically create /var/run/knox after restart\n\n\n\n\nAdded\n\n\n\n\nAzure Private IP support\n\n\nadd missing settings block for etl-edw blueprint\n\n\nshow all instance metadata information on shell \"stack metadata\"\n\n\nadd proper error handling for repair flow\n\n\n\n\nChanged\n\n\n\n\nupdate HDP version (2.2.0.1 -\n 2.5.5.0 and 2.6.0.0 -\n 2.6.0.3)\n\n\nupdate Ambari version (2.5.0.0 -\n 2.5.0.3)\n\n\ndisable Hive credential provider\n\n\nAzure static IP allocation method instead of dynamic\n\n\nAzure deallocate VM-s instead of just stopping them on cluster stop\n\n\nconform to more strict Salt-api calls (since 2016.11.4)\n\n\nuse redhat6 repo on amazonlinux\n\n\n\n\n[v1.14.0]\n\n\nAdded\n\n\n\n\nnew Azure connector based on Azure Java SDK\n\n\nAzure interactive credential creation\n\n\nnew alerting system implemented based on prometheus\n\n\n\n\nChanged\n\n\n\n\nability to specify multiple rdsconfig-s per cluster\n\n\n\n\n[v1.6.3]\n\n\nChanged\n\n\n\n\nUpgraded a dependent component in order to address a network configuration issue.\n\n\nUpdated traefik to v1.1.2\n\n\nUpdated Google Cloud SDK to 1.22.0\n\n\n\n\n[v1.6.2]\n\n\nFixed\n\n\n\n\nreturn login error if user has multiple accounts in LDAP/AD\n\n\nextra logging when creating the Ambari client\n\n\navoid deploy failures, due to concurrency in Salt highstate\n\n\nincorrect error message collection from nodes during Salt highstate\n\n\nreduce host name length on Azure in order to be sure that the fully qualified hostname is under 64 chars\n\n\ndo not overwrite manually changed kerberos config\n\n\n'securitygroup create' shell command caused a validation error due to missing provider value\n\n\nautocreate default security groups for every provider\n\n\nfix bower retry in web dockerfile to avoid UI build fails\n\n\nCloudbreak does not work with CentOS on AWS\n\n\nShiro config of Zepplein is always overwritten by Cloudbreak\n\n\nfix cluster sync when a new service is added to Ambari through the wizard\n\n\nrename all open port security group to denote unsecure\n\n\nremove all port open security group as default\n\n\n\n\nAdded\n\n\n\n\nAzure VMs supporting private deployments (when VMs have private ip only)\n\n\ndo not use the same host names for every cluster on Azure\n\n\nconfigurable stack name prefix length in Azure host names\n\n\nset up default HDP version\n\n\nimplement existing MIT KDC\n\n\nexisting AD support\n\n\nsupport exsisting security group on AWS\n\n\nseparate security groups per provider\n\n\nability to specify image id on API to launch a cluster from that base AMI\n\n\n\n\nChanged\n\n\n\n\nOS parameter is optional when providing the HDP repo\n\n\nmodularize integration test Makefile to sh scripts\n\n\n\n\n[v1.6.1]\n\n\nFixed\n\n\n\n\ncannot send invite e-mails from Auth (aka Sultans) when smtp authentictaion is not enabled\n\n\nrecipe shell commands was not aligned with UI and with the implementation\n\n\navoid duplicated privateids for instances (they must be unique)\n\n\nreserve ports on OS for well known Hadoop services\n\n\ndo not fail when there is no default VPC on AWS\n\n\nreserve TCP/UDP ports on OS for well-known Hadoop services\n\n\ninvalid hostmetadata count after sync when a node from master hostgroup died\n\n\nshell fix to avoid error when creating cluster using templates with encrypted EBS\n\n\nfix concurrent removal of alerts in Autoscale (aka Periscope)\n\n\nensure that the gcs-connector.sh recipe runs only one time\n\n\nfix multiple salt-minion start\n\n\nshort names for OpenStack VMs to avoid MySQL / Hive failures\n\n\nfix uluwatu missing template volume type in some cases\n\n\navoid timeouts when IPV6 is disabled https://github.com/saltstack/salt/issues/32719\n\n\ndo not allow cluster reset when external DB is used for Ambari\n\n\nfix smtp related indentations in application.yml\n\n\nintroducing resource definiton cache, to avoid read the same definition from disk multiple times\n\n\ninvalid hdp repo config (update to 2.5 and support cnetos6 on AWS)\n\n\ndisplay AWS autoscaling group errors\n\n\nsporadic ssh connectivity issue from on gcp\n\n\nno transaction for cluster update\n\n\nrenamed s3role to instanceprofile on UI\n\n\navoid alphabetical order of recipes by filename\n\n\nstop cluster is not possible due to invalid spot price check\n\n\nsporadic classpath issue, since StackServiceComponentDescriptorMapFactory returns wrong object type\n\n\n\n\nAdded\n\n\n\n\nOpenStack Liberty and Mitaka support\n\n\nimplement Availibility Zones for OpenStack\n\n\ndynamic load of custom provider definitions\n\n\nlog every recipe by default (/var/log/recipses)\n\n\neventlog about recipe execution\n\n\nability to restart cluster installation in case of failed recipe\n\n\n\n\nChanged\n\n\n\n\nambari client with sources and extra logging\n\n\nremove unnecessary admin user\n\n\nremove cloudbreak log highlighting\n\n\nremove unused timeout value from recipes\n\n\nimproved logging for saltbootstrap\n\n\nevery recipe runs only once by default\n\n\n\n\n[v1.6.0]\n\n\nFixed\n\n\n\n\nproper handling of upstart config to avoid concurrency between sysv and upstart during ambari agent / server start\n\n\nuse m3 for dry-run check because it can be started in ec2-classic\n\n\nconsider auto scaling activity history in auto scaling group status checker\n\n\neliminate criticals reported by Sonar\n\n\nability to create bigger than 999 GB size volumes on Azure\n\n\nfixed javascript test for nodecount\n\n\nregion is not a required field when posting a new stack\n\n\n\n\nAdded\n\n\n\n\nARM template JSON validation\n\n\nadded property to set static shared volume(s) in BYOS clusters\n\n\ngenerate salt password per stack\n\n\nadded Hibernate field encryptor to encryt sensitive data in DB\n\n\nability to start GCP clusterts in a NATed environment without public IP address\n\n\nAmbari and HDP versions are added to the /stack API call's response\n\n\nwhen deploying a new subnet in an existing VPC on AWS, the CIDR range is automatically calculated when not specified explicitly on the API\n\n\n\n\nChanged\n\n\n\n\nCloudbreak dev version uses latest image from image catalog\n\n\ncleanup unnecessary pillar matchers\n\n\nupdate default blueprints to add hive clients to worker nodes\n\n\nAPI cleanup, remove invalid required fields from swagger\n\n\nupdated Ambari version to 2.4.1.0\n\n\n\n\n[v1.5.0]\n\n\nFixed\n\n\n\n\nClusterBootstrapperTest randomly fails\n\n\nslider does not work with ssl on python 2.7.9+\n\n\nfix Ambari address on UI for clusters that provisioned by an older version of Cloudbreak\n\n\ncredential visibility on cluster details view\n\n\n\"Keystone Version\" dropdown layouts\n\n\n\n\nAdded\n\n\n\n\nadded HDP version field to RDS config\n\n\nability to configure remote database for Ambari\n\n\nstacks/clusters are associated with Cloudbreak version\n\n\nnew resource to configure LDAP service for Knox\n\n\nsupport of Google's spot instances\n\n\nsupport for c4 instance types in AWS\n\n\nenable auto recovery for HDP services on failure via blueprint\n\n\nability to specify multiple subnets for the same VPC on AWS\n\n\nability to configure default regions\n\n\n\n\nChanged\n\n\n\n\nreinstate recipes on Uluwatu UI\n\n\nincrease Ambari password length and fix error message\n\n\nautomatic blueprint update during startup\n\n\non OpenStack stack name contains stack ID\n\n\ndisable upgrade of saltstack\n\n\nremove unecessary \nrequire\n flags from API documentation\n\n\nimprove security of salt communication\n\n\n\n\n[v1.4.0] - 2016-08-12\n\n\nFixed\n\n\n\n\nremove invalid auto scaling group history check\n\n\nfix sync to avoid node count corruption of instance groups\n\n\nHDP on AWS can return 502 Bad Gateway while accessing Ambari\n\n\nfix Ambari server ip selection on AWS\n\n\nfix enable auto scaling with different user\n\n\n\n\nAdded\n\n\n\n\nnew RDS config resource\n\n\nshell commands for RDS config operations\n\n\nconfigurable image catalog\n\n\nallow dynamically change Ambari version\n\n\nadded \ncanada\n region to Azure\n\n\nadd basic auth to Zeppelin, Zeppelin is secured with the same password like Ambari\n\n\nability to configure a custom domain for the clusters with the CB_HOST_DISCOVERY_CUSTOM_DOMAIN env variable\n\n\n\n\nChanged\n\n\n\n\nupdate images for on-the-fly ambari update\n\n\nincrease poll timeout for ARM\n\n\ndisable automated map/reduce smoke test\n\n\nparallel command execution in Ambari\n\n\nupdate to Smartsense 1.3.0\n\n\nadd admin user to \nhadoop\n and \nhdfs\n groups after Ambari install\n\n\nuse only Cloudbreak address to connect Cloudbreak\n\n\n\n\n[v1.3.2]\n\n\nFixed\n\n\n\n\nAmbari restart\n\n\navoid duplicated alarmas\n\n\nbefore upscale the sync won't change the stack state\n\n\nupscale / downscale fix with Ambari 2.4\n\n\n\n\nAdded\n\n\n\n\nreverse proxy for UI components\n\n\nnew supported volume type on aws: ST1\n\n\nSpark reverse proxy settings\n\n\nSpark jobhistory server reverse proxy settings\n\n\ncreate admin user for Ambari views\n\n\nadded group name to AWS instance Name tags\n\n\nadd etl-edw default blueprint\n\n\nconfigure Hive RDS through Cloudbreak\n\n\nconfigurable default SmartSense configuration and installation\n\n\nadd SmartSense server to a single noded hostgroup if possible\n\n\ngenerate SmartSense id as credential attribute\n\n\nset SmartSense capture schedule on hosts by recipe\n\n\n\n\nChanged\n\n\n\n\nupdate to Ambari 2.4.0.0\n\n\nuse OpenJDK instead of Oracle JDK\n\n\nuse Ambari password as default service password\n\n\nmake Sultans base path configurable with '/sl' as default value\n\n\ncreate individual root path for Cloudbreak and Periscope\n\n\nset DNS TTL for AWS clients to \n= 60s\n\n\nrewrite url if ambari sessionid appears in cookies\n\n\nremove MYSQL_SERVER component from blueprint if there is rds config present\n\n\nhandle AWS account id as String during SmartSense id generation\n\n\nupdate proxy users hosts to avoid unauthorized connection for super-user in Oozie\n\n\nset ONLY_STACK_DEFAULTS_APPLY as default since the new recommendation strategy does not work for Falcon and Ozzie\n\n\nshow blueprint name on review panel and hide hostroup panel by default\n\n\nshow only the previously selected network on the review panel\n\n\n\n\nRemoved\n\n\n\n\nSpark and Zeppelin nginx proxy settings\n\n\n\n\n[v1.3.0] - 2016-06-06\n\n\nFixed\n\n\n\n\ndelete cluster containers only if orchestrator type is container\n\n\nshow reason of failed commands when using the shell\n\n\nlogin when password contains special characters\n\n\ntextarea placeholder on Internet Explorer 11\n\n\nHDP repo verification on Uluwatu\n\n\nwrong instance metadata status during cluster sync\n\n\nmanage platforms close button on UI\n\n\nnull pointer during router creation on non existing Openstack network\n\n\n\n\nAdded\n\n\n\n\nuse salt bootstrap instead of cloudbreak bootstrap\n\n\nmissing gateway port to stack response\n\n\nenable spot price instances\n\n\nAWS cluster creation with existing key pair\n\n\nAWS existing SSH key pair could be configured by credential command\n\n\nnew description and output for CFN stack\n\n\nadd ssh port into instance metadata\n\n\nseamless s3 connection\n\n\ncustom CIDR validator for subnet\n\n\ncustom tag to CloudFormation stack created by Cloudbreak\n\n\nstart termination flow stops other running flows on the same stack\n\n\nOpenstack API facing option\n\n\n\n\nChanged\n\n\n\n\nopenstack network shell command improvement for the new network types\n\n\nability to select where to put ambari server\n\n\nreorganize kerberos setup in Salt\n\n\nusing private address if only private address is available\n\n\nalways use ports on Openstack even there is no floating ip assigned\n\n\nfloating IP shall not be mandatory, and do not create separate ports\n\n\nfollow HBase port changes\n\n\nmove variant from advanced option to the basic options page\n\n\nSpring update\n\n\nelastic ips are managed by CloudFormation\n\n\nsync starts automatically at startup\n\n\nread nginx SSL port from parameter instead of static 443\n\n\nsync to handle instances that are stopped on the provider side\n\n\nOpenstack metadata collection handles manually terminated instances\n\n\ncleaned up Openstack resources in case of existing subnet\n\n\n\n\nRemoved\n\n\n\n\nrecipe and ssd config were removed\n\n\ndocker properties removed from UI\n\n\n\n\n[v1.2.6] - 2016-05-19\n\n\nChanged\n\n\n\n\nuse lates cloud images with ambari-agent:2.2.1-v20\n\n\nmap public ips to vms in case of existing vpc\n\n\n\n\n[v1.2.5] - 2016-04-07\n\n\nFixed\n\n\n\n\nslow lazy format on Azure\n\n\nmounted disks are not visible in containers\n\n\n\n\nAdded\n\n\n\n\nassume role without adding the keys into cbd Profile\n\n\nability to create cluster without public ip\n\n\nhigh availability blueprint validator\n\n\nsupport for older gcp projectids\n\n\n\n\n[v1.2.4] - 2016-03-22\n\n\nFixed\n\n\n\n\nazure storage location\n\n\nopenstack create network form\n\n\nazure create network form\n\n\ngcp disk type\n\n\n\n\nAdded\n\n\n\n\nGCP subnetsupport  to shell\n\n\n\n\nChanged\n\n\n\n\nuse the provided public network id for allocation floating ips\n\n\nallow 24 attached volumes for aws\n\n\ncleaned up openstack resources in case of existing subnet\n\n\n\n\n[v1.2.3] - 2016-03-22\n\n\nFixed\n\n\n\n\nsudo right of CB user\n\n\n\n\nAdded\n\n\n\n\nAzure default network\n\n\n\n\n[v1.2.2] - 2016-03-21\n\n\nFixed\n\n\n\n\ncredential validation in case of Mesos/Marathon\n\n\n\n\n[v1.2.1] - 2016-03-21\n\n\nFixed\n\n\n\n\nlive migration operations\n\n\n\n\n[v1.2.0] - 2016-03-18\n\n\nFixed\n\n\n\n\nconsul recursor now exculdes both docker ip and bridge ip to avoid recursive dns recursor chain\n\n\ndocs fixed about getting default credentials (cbd login)\n\n\nupdates cb-shell to 0.5.37 to fix ssl issues\n\n\n\n\nAdded\n\n\n\n\nCommand \ncbd azure configure-arm\n will create your arm application which can used by cloudbreak\n\n\nCommand \ncbd azure deploy-dash\n will deploy a dash application in your Azure account\n\n\nCommand \ncbd start\n will execute the migration by default. If SKIP_DB_MIGRATION_ON_START envvar set to true in Profile, the migration will be skipped\n\n\nUsing Dns SRV record in our services instead of ambassador\n\n\nUsing docker linking system in third party services instead of ambassador\n\n\nIntegration tests are added, where cbd binary is called, not only sourced functions\n\n\nDocker based CentOS integration test make target added\n\n\nUaa db migration\n\n\nSMTP default parameters added: \nCLOUDBREAK_SMTP_AUTH\n and \nCLOUDBREAK_SMTP_STARTTLS_ENABLE\n and \nCLOUDBREAK_SMTP_TYPE\n\n\nLocal development Uluwatu configuration by ULUWATU_VOLUME_HOST environment variable\n\n\nLocal development Sultans configuration by SULTANS_VOLUME_HOST environment variable\n\n\ninstall script for fixed version and install-latest for latest release added\n\n\nEach snapshot artifact is uploaded as http://public-repo-1.hortonworks.com/HDP/cloudbreak/cbd-snapshot-$(uname).tgz\n\n\nConfiguration ability to enable or disable ssh fingerprint verification of virtual machines on GCP and AWS\n\n\n\n\nRemoved\n\n\n\n\nFull removal of ambassador\n\n\n\n\nChanged\n\n\n\n\ncbd start\n doesnt start if compose yaml regeneration is needed\n\n\ncbd generate\n is less verbose, diff doesnt shown\n\n\ncbd doctor\n shows diff if generate would change\n\n\ncbd regenerate\n creates backup files if changes detected\n\n\nsequenceiq/uaadb:1.0.1 is used instead of postgres:9.4.1\n\n\n\n\n[v1.0.3] - 2015-09-03\n\n\nFixed\n\n\n\n\nAuthentication error with \ncloudbreak-shell\n and \ncloudbreak-shell-quiet\n is fixed\n\n\nCommand \ncbd update \nbranch\n checks for artifact\n\n\n\n\nAdded\n\n\n\n\nbinary version of gnu-sed 4.2.2 is now included, to solve lot of osx/busybox issues\n\n\nconsul recursor test are added\n\n\n\n\nChanged\n\n\n\n\n\n\nsequenceiq/cloudbreak image updated to 1.0.3\n\n\n\n\n\n\ndebug() function made multiline capable. Use \\n in messages\n\n\n\n\nrefactor bridge ip discovery to run helper docker command only once\n\n\nconsul recursor handling refactored to be more robust\n\n\n\n\n[v1.0.2] - 2015-08-25\n\n\nAdded\n\n\n\n\nDOCKER_CONSUL_OPTIONS\n config option to provide arbitrary consul option\n\n\n\n\nChanged\n\n\n\n\nFixed docker version checker to be 1.8.1 compatible. (docker added --format option)\n\n\nsequenceiq/cloudbreak image updated to 1.0.2\n\n\nconsul image changed from sequenceiq/consul to gliderlabs/consul\n\n\nconsul image updated to 0.5.2 (from 0.5.0)\n\n\nconsul discovers host dns settings, and uses the configured nameserver as recursor\n\n\n\n\n[v1.0.0] - 2015-07-23\n\n\nFixed\n\n\n\n\nGA Release\n\n\n\n\n[v0.5.8] - 2015-07-23\n\n\nFixed\n\n\n\n\nFix CircleCI release. CircleCI doesnt allow --rm on docker run\n\n\n\n\n[v0.5.7] - 2015-07-23\n\n\nFixed\n\n\n\n\nFix make release dependency\n\n\nFix CHANGELOG generation at \nmake release-next-ver\n avoid inserting extra -e\n\n\n\n\n[v0.5.6] - 2015-07-23\n\n\nAdded\n\n\n\n\nRelease artifacts are published at public-repo-1.hortonworks.com/HDP/cloudbreak/\n\n\n\n\n[v0.5.5] - 2015-07-10\n\n\nAdded\n\n\n\n\nCommand \npull-parallel\n added for quicker/simultaneous image pull\n\n\nRelease process includes upload to public-repo s3 bucket\n\n\n\n\nChanged\n\n\n\n\nLicense changed from MIT to Apache v2\n\n\nrelease artifact includes additional files: license/readme/notes\n\n\n\n\n[v0.5.4] - 2015-07-03\n\n\nAdded\n\n\n\n\nNew \ncbd-cleanup\n command for removing old images or exited containers\n\n\nBaywatch default parameters added: \nCB_BAYWATCH_ENABLED\n and\nCB_BAYWATCH_EXTERN_LOCATION\n\n\nLogs are saved via lospout\n\n\nTLS client certificate needed by Cloudbreak is generated with \ncbd generate\n\n\nCommand \naws delete-role\n added\n\n\nCommand \naws generate-role\n added\n\n\nCommand \naws show-role\n added\n\n\nCommand \ncloudbreak-shell\n added\n\n\nCommand \ncloudbreak-shell-quiet\n added\n\n\nCommand \nlocal-dev\n added\n\n\nCommand \ntoken\n added\n\n\n\n\nChanged\n\n\n\n\nAWS authentication env varibale is fixed to use the correct AWS_SECRET_ACCESS_KEY (instead the old AWS_SECRET_KEY)\n\n\nUsing sequenceiq/ambassadord:0.5.0 docker image instead of progrium/ambassadord:latest\n\n\n\n\n[v0.5.3] - 2015-06-03\n\n\nFixed\n\n\n\n\nOne-liner installer fixed, to work if previous cbd exists on path.\n\n\ncbd update\n upstream changes on go-bahser broke the selfupdate functionality\n\n\nIn some environment cloudbreak starts really slow. See: \ndetails\n, see: \ncommit\n\n\n\n\nAdded\n\n\n\n\nNew release proposal can be done by \nmake release-next-ver\n\n\n\n\n[v0.5.2] - 2015-05-21\n\n\nChanged\n\n\n\n\nCommand \ndoctor\n hints to run boot2docker shellinit if env is unset\n\n\nCommand \ninit\n in case of OSX, DOCKER_XXX envs are initialized in local profile (Profile)\n\n\nDefault docker images are updated to:\n\n\nsequenceiq/cloudbreak:0.5.93\n\n\nsequenceiq/cbdb:0.5.92\n\n\nsequenceiq/uluwatu:0.5.28\n\n\nsequenceiq/sultans:0.5.3\n\n\nsequenceiq/periscope:0.5.5\n\n\n\n\n\n\n\n\n[v0.5.1] - 2015-05-18\n\n\nFixed\n\n\n\n\nIssue #55: Sed handles more robust the issue with: curl includes an extra CR char in header fields.\n\n\n\n\nRemoved\n\n\n\n\ndeployer doesnt specify cloud specific image defaults. If left empty, they fall back\n  to defaults specified in \njava code\n\n\nCB_AZURE_IMAGE_URI\n\n\nCB_AWS_AMI_MAP\n\n\nCB_OPENSTACK_IMAGE\n\n\nCB_GCP_SOURCE_IMAGE_PATH\n\n\n\n\n\n\n\n\nChanged\n\n\n\n\nCommand \nlogs\n got usage example for specifying services as filter\n\n\nDefault docker images are updated to:\n\n\nsequenceiq/cloudbreak:0.5.49\n\n\nsequenceiq/uluwatu:0.5.16\n\n\nsequenceiq/sutans:0.5.2\n\n\n\n\n\n\n\n\n[v0.5.0] - 2015-05-08\n\n\nFixed\n\n\n\n\nCommand \npull\n generates yaml files in case they are missing #31\n\n\n\n\nAdded\n\n\n\n\nCommand \nlogin\n Shows Uluwatu login url and credentials\n\n\nCommand \nregenerate\n deletes and generates docker-compose.yml and uaa.yml\n\n\nCommand \ndelete\n added: deletes yamls and dbs\n\n\nCommand \ncloudbreak-shell\n added, right now it internale use DEBUG=1 fn fn-call\n\n\nCommand \nversion\n does correct \nSemantic Versioning\n check to advise an upgrade\n\n\nCommand \ngenerate\n checks and shows if Profile change would result in yaml change.\n\n\nCommand \nstart\n: prints uluwatu url and credential hint\n\n\nCommand \ndoctor\n: fixes boot2docker date/time if not the same as on the host\n\n\nInternal command: \nbrowse\n added to be able to automatically open a browser to a specified url.\n\n\nMini Getting Started guide added into README\n\n\nmake dev-debug\n installs a special cbd on local OSX, which doesnt includes *.bash scrips, only refers them\n   by path. No need to \nmake dev\n to test small changes in bash scripts.\n\n\nLoad AWS key and AWS id from Profile\n\n\nCommand \ninit\n helps to guess the PUBLIC_IP in public clouds: google, amazon\n\n\n\n\nChanged\n\n\n\n\nCommand \ncbd env export\n adds export to the begining of each line\n\n\ncbd logs accepts optional [services] parameter\n\n\ndocker-compose uses \ncbreak_\n prefix for container naming instead of the directory name\n\n\nCommand \ngenerate\n prints out some more usefull info\n\n\nuaa.yml generation wont overwrite, just instruct to move existing file (like docker-compose.yml generation)\n\n\nCommand \ninit\n hint fixed on linux.\n\n\nCommand \ninit\n advise to run \ngenerate\n if it finds a Profile\n\n\nCommand \ninit\n set PRIVATE_IP the same as PUBLIC_IP for boot2docker\n\n\nCommand \nmigrate\n is introduced for db migration see \nMigrate the databases\n section of README\n\n\nCommand \nstartdb\n starts the cbdb and pcdb database containers only\n\n\nDatabases are not deleted after boot2docker restart\n\n\nImport ULU_HOST_ADDRESS and ULU_SULTANS_ADDRESS from Profile\n\n\n\n\n[v0.1.0] - 2015-04-16\n\n\nFixed\n\n\n\n\nSelfupdate updates the actual running binary intead of the fixed /us/local/bin/cbd\n\n\nSMTP default port is 25, to fix number conversion exception\n\n\n\n\nAdded\n\n\n\n\nCommand \ninit\n creates Profile\n\n\nInstall cbd to a directory which is available on $PATH\n\n\nDocker based test for the one-liner install from README.md: \nmake install-test\n\n\n\n\nRemoved\n\n\n\n\nupdate-snap\n command removed, replaced by parametrized \nupdate\n\n\n\n\nChanged\n\n\n\n\nCloudbreak/Persicope/Uluwatu/Sultans Dcoker images upgraded to 0.4.x\n\n\nUse the built in 'checksum' function instead of the external 'shasum' to generate secrets\n\n\nCommand \nupdate\n by default updates from latest Github release, parameter can point to branch on CircleCI\n\n\nDOCKER_XXX env varibles are inherited, so they not needed in Profile\n\n\ngenerate\n and compose specific commands are only available when \nProfile\n exists\n\n\ngenerate\n command genertes docker-compose.yml \nand\n uaa.yml\n\n\nPRIVATE_IP\n env var defaults to bridge IP (only PUBLC_IP is required in Profile)\n\n\nuse \nsulans-bin\n docker image istead of sultans\n\n\n\n\n[v0.0.9] - 2015-04-14\n\n\nFixed\n\n\n\n\nBash 4.3 is included in the binary, extracted into .deps/bin upon start\n\n\n\n\n[v0.0.8] - 2015-04-13\n\n\nFixed\n\n\n\n\nFixing deps module, golang fn: checksum added\n\n\nCircleCI mdule defines required jq\n\n\nFixing PATH issue for binary deps\n\n\n\n\nAdded\n\n\n\n\nuaadb start added\n\n\nidentity server start added\n\n\nmake dev\n added to mac based development\n\n\npull\n command added\n\n\nlogs\n command added\n\n\n\n\nChanged\n\n\n\n\nDocker containers are managed by \ndocker-compose\n\n\n\n\n[v0.0.7] - 2015-03-26\n\n\nAdded\n\n\n\n\nmake tests\n runs unit tests\n\n\ndocker unit tests are added\n\n\nstart command added: WIP consul, registrator starts\n\n\nkill command addd: stops and removes cloudbreak specific containers\n\n\nSKIP_XXX skips the container start\n\n\n\n\nChanged\n\n\n\n\nenv command namespace is always exported, not only in DEBUG mode\n\n\nenv export: machine friendly config list\n\n\nenv show: human readable config list\n\n\ncircle runs unit tests\n\n\nsnapshot binaries include branch name in version string\n\n\n\n\n[v0.0.6] - 2015-03-25\n\n\nFixed\n\n\n\n\nremoved dos2unix dependency for the update command\n\n\n\n\nAdded\n\n\n\n\ndoctor command added\n\n\ndocker-check-version command added\n\n\ncci-latest accepts branch as parameter, needed for PR testing\n\n\nexport fn command in DEBUG mode\n\n\nexport env command in DEBUG mode\n\n\ndoctor: add instruction about setting DOCKER_XXX env vars in Profile\n\n\ninfo() function added to print green text to STDOUT\n\n\n\n\nChanged\n\n\n\n\nHOME env var is also inherited (boot2docker version failed)\n\n\nrelease process fully automatized\n\n\n\n\n[v0.0.5] - 2015-03-23\n\n\n\n\nupdate\n command works without dos2unix\n\n\n\n\n[v0.0.4] - 2015-03-23\n\n\nFixed\n\n\n\n\ndebug function fixed\n\n\nDEBUG, TRACE and CBD_DEFAULT_PROFILE env vars are inherited\n\n\n\n\nAdded\n\n\n\n\nProfile handling added with docs\n\n\nOne-liner install added\n\n\nDocs: install and update process described\n\n\nDocs: release process described with sample git commands\n\n\nPrint version number in debug mode\n\n\nupdate-snap\n downloads binary from latest os specific CircleCI binary artifact.\n\n\n\n\nChanged\n\n\n\n\nTool specific library renamed from cloudbreak.bash to deployer.bash\n\n\n\n\n[v0.0.3] - 2015-03-19\n\n\nFixed\n\n\n\n\nmake release\n creates binary with X.X.X version when on release branch otherwise X.X.X-gitrev\n\n\n\n\nAdded\n\n\n\n\nDocs: release process described\n\n\n\n\n[v0.0.2] - 2015-03-19\n\n\nAdded\n\n\nAdded\n- selfupdate command\n- gray debug to stderr\n\n\n[v0.0.1] - 2015-03-18\n\n\nAdded\n\n\n\n\nhelp command added\n\n\nversion command added\n\n\nAdded --version\n\n\nCircleCI build\n\n\nLinux/Darwin binary releases on github", 
+            "text": "Change Log\n\n\nThe Change Log summarizes the changes in Cloudbreak.\n\n\n[v.1.16.5]\n\n\nChanged\n\n\n\n\nUpdate Ambari and HDP 2.6 default versions\n\n\nMove to centos 7.3 base to be able to encrypt os disk\n\n\nDisable ssh key verification on Openstack\n\n\nSupport more than one hostgroup for one Azure Availability Set\n\n\nHandling expressions that's generated by Ambari in exported blueprints\n\n\nKdc-type default value is mit-kdc insteadof null\n\n\nInclude ADLS tracking tags in Azure\n\n\nMove HSI configs to hive-interactive-site\n\n\nRemove grafana (not used for anything atm)\n\n\n\n\nAdded\n\n\n\n\nSupport Azure multiple subnet\n\n\nAzure premium managed disk support\n\n\nAdded azure storage account encryption\n\n\nAdd new default configs for hive and tez\n\n\n\n\nFixed\n\n\n\n\nFix public in account, disappeared from Templates and SecurityGroups\n\n\nFix credential creation ui, scrambled if select yarn after azure selected\n\n\nFix cannot downscale in Azure if using managed disks\n\n\nFix cannot create cluster with GCS fs, hadoop-classpath.sh does not run properly, GCS connector missing from HADOOP_CLASSPATH\n\n\nFix upscale issue\n\n\nFix \"Availability set cannot be found\" error\n\n\n\n\n[v1.16.1]\n\n\nChanged\n\n\n\n\nupdate HDP version (2.6.0.3 -\n 2.6.1.0)\n\n\nupdate Ambari version (2.5.0.3 -\n 2.5.1.0)\n\n\ndisable Knox from CB if blueprint contains Knox\n\n\n\n\n[v1.16.0]\n\n\nAdded\n\n\n\n\nAdded SmartSense and Flex subscription integration\n\n\n\n\n[v1.15.0]\n\n\nAdded\n\n\n\n\nAzure custom role support for credential creation\n\n\n\n\nChanged\n\n\n\n\nability to query more information about the stack by queryparameters\n\n\n\n\n[v1.14.4]\n\n\nFixed\n\n\n\n\nfix settings generation\n\n\nfix unable to create Azure cluster with WASB\n\n\npreserve Knox settings when switching credentials\n\n\nautomatically create /var/run/knox after restart\n\n\n\n\nAdded\n\n\n\n\nAzure Private IP support\n\n\nadd missing settings block for etl-edw blueprint\n\n\nshow all instance metadata information on shell \"stack metadata\"\n\n\nadd proper error handling for repair flow\n\n\n\n\nChanged\n\n\n\n\nupdate HDP version (2.2.0.1 -\n 2.5.5.0 and 2.6.0.0 -\n 2.6.0.3)\n\n\nupdate Ambari version (2.5.0.0 -\n 2.5.0.3)\n\n\ndisable Hive credential provider\n\n\nAzure static IP allocation method instead of dynamic\n\n\nAzure deallocate VM-s instead of just stopping them on cluster stop\n\n\nconform to more strict Salt-api calls (since 2016.11.4)\n\n\nuse redhat6 repo on amazonlinux\n\n\n\n\n[v1.14.0]\n\n\nAdded\n\n\n\n\nnew Azure connector based on Azure Java SDK\n\n\nAzure interactive credential creation\n\n\nnew alerting system implemented based on prometheus\n\n\n\n\nChanged\n\n\n\n\nability to specify multiple rdsconfig-s per cluster\n\n\n\n\n[v1.6.3]\n\n\nChanged\n\n\n\n\nUpgraded a dependent component in order to address a network configuration issue.\n\n\nUpdated traefik to v1.1.2\n\n\nUpdated Google Cloud SDK to 1.22.0\n\n\n\n\n[v1.6.2]\n\n\nFixed\n\n\n\n\nreturn login error if user has multiple accounts in LDAP/AD\n\n\nextra logging when creating the Ambari client\n\n\navoid deploy failures, due to concurrency in Salt highstate\n\n\nincorrect error message collection from nodes during Salt highstate\n\n\nreduce host name length on Azure in order to be sure that the fully qualified hostname is under 64 chars\n\n\ndo not overwrite manually changed kerberos config\n\n\n'securitygroup create' shell command caused a validation error due to missing provider value\n\n\nautocreate default security groups for every provider\n\n\nfix bower retry in web dockerfile to avoid UI build fails\n\n\nCloudbreak does not work with CentOS on AWS\n\n\nShiro config of Zepplein is always overwritten by Cloudbreak\n\n\nfix cluster sync when a new service is added to Ambari through the wizard\n\n\nrename all open port security group to denote unsecure\n\n\nremove all port open security group as default\n\n\n\n\nAdded\n\n\n\n\nAzure VMs supporting private deployments (when VMs have private ip only)\n\n\ndo not use the same host names for every cluster on Azure\n\n\nconfigurable stack name prefix length in Azure host names\n\n\nset up default HDP version\n\n\nimplement existing MIT KDC\n\n\nexisting AD support\n\n\nsupport exsisting security group on AWS\n\n\nseparate security groups per provider\n\n\nability to specify image id on API to launch a cluster from that base AMI\n\n\n\n\nChanged\n\n\n\n\nOS parameter is optional when providing the HDP repo\n\n\nmodularize integration test Makefile to sh scripts\n\n\n\n\n[v1.6.1]\n\n\nFixed\n\n\n\n\ncannot send invite e-mails from Auth (aka Sultans) when smtp authentictaion is not enabled\n\n\nrecipe shell commands was not aligned with UI and with the implementation\n\n\navoid duplicated privateids for instances (they must be unique)\n\n\nreserve ports on OS for well known Hadoop services\n\n\ndo not fail when there is no default VPC on AWS\n\n\nreserve TCP/UDP ports on OS for well-known Hadoop services\n\n\ninvalid hostmetadata count after sync when a node from master hostgroup died\n\n\nshell fix to avoid error when creating cluster using templates with encrypted EBS\n\n\nfix concurrent removal of alerts in Autoscale (aka Periscope)\n\n\nensure that the gcs-connector.sh recipe runs only one time\n\n\nfix multiple salt-minion start\n\n\nshort names for OpenStack VMs to avoid MySQL / Hive failures\n\n\nfix uluwatu missing template volume type in some cases\n\n\navoid timeouts when IPV6 is disabled https://github.com/saltstack/salt/issues/32719\n\n\ndo not allow cluster reset when external DB is used for Ambari\n\n\nfix smtp related indentations in application.yml\n\n\nintroducing resource definiton cache, to avoid read the same definition from disk multiple times\n\n\ninvalid hdp repo config (update to 2.5 and support cnetos6 on AWS)\n\n\ndisplay AWS autoscaling group errors\n\n\nsporadic ssh connectivity issue from on gcp\n\n\nno transaction for cluster update\n\n\nrenamed s3role to instanceprofile on UI\n\n\navoid alphabetical order of recipes by filename\n\n\nstop cluster is not possible due to invalid spot price check\n\n\nsporadic classpath issue, since StackServiceComponentDescriptorMapFactory returns wrong object type\n\n\n\n\nAdded\n\n\n\n\nOpenStack Liberty and Mitaka support\n\n\nimplement Availibility Zones for OpenStack\n\n\ndynamic load of custom provider definitions\n\n\nlog every recipe by default (/var/log/recipses)\n\n\neventlog about recipe execution\n\n\nability to restart cluster installation in case of failed recipe\n\n\n\n\nChanged\n\n\n\n\nambari client with sources and extra logging\n\n\nremove unnecessary admin user\n\n\nremove cloudbreak log highlighting\n\n\nremove unused timeout value from recipes\n\n\nimproved logging for saltbootstrap\n\n\nevery recipe runs only once by default\n\n\n\n\n[v1.6.0]\n\n\nFixed\n\n\n\n\nproper handling of upstart config to avoid concurrency between sysv and upstart during ambari agent / server start\n\n\nuse m3 for dry-run check because it can be started in ec2-classic\n\n\nconsider auto scaling activity history in auto scaling group status checker\n\n\neliminate criticals reported by Sonar\n\n\nability to create bigger than 999 GB size volumes on Azure\n\n\nfixed javascript test for nodecount\n\n\nregion is not a required field when posting a new stack\n\n\n\n\nAdded\n\n\n\n\nARM template JSON validation\n\n\nadded property to set static shared volume(s) in BYOS clusters\n\n\ngenerate salt password per stack\n\n\nadded Hibernate field encryptor to encryt sensitive data in DB\n\n\nability to start GCP clusterts in a NATed environment without public IP address\n\n\nAmbari and HDP versions are added to the /stack API call's response\n\n\nwhen deploying a new subnet in an existing VPC on AWS, the CIDR range is automatically calculated when not specified explicitly on the API\n\n\n\n\nChanged\n\n\n\n\nCloudbreak dev version uses latest image from image catalog\n\n\ncleanup unnecessary pillar matchers\n\n\nupdate default blueprints to add hive clients to worker nodes\n\n\nAPI cleanup, remove invalid required fields from swagger\n\n\nupdated Ambari version to 2.4.1.0\n\n\n\n\n[v1.5.0]\n\n\nFixed\n\n\n\n\nClusterBootstrapperTest randomly fails\n\n\nslider does not work with ssl on python 2.7.9+\n\n\nfix Ambari address on UI for clusters that provisioned by an older version of Cloudbreak\n\n\ncredential visibility on cluster details view\n\n\n\"Keystone Version\" dropdown layouts\n\n\n\n\nAdded\n\n\n\n\nadded HDP version field to RDS config\n\n\nability to configure remote database for Ambari\n\n\nstacks/clusters are associated with Cloudbreak version\n\n\nnew resource to configure LDAP service for Knox\n\n\nsupport of Google's spot instances\n\n\nsupport for c4 instance types in AWS\n\n\nenable auto recovery for HDP services on failure via blueprint\n\n\nability to specify multiple subnets for the same VPC on AWS\n\n\nability to configure default regions\n\n\n\n\nChanged\n\n\n\n\nreinstate recipes on Uluwatu UI\n\n\nincrease Ambari password length and fix error message\n\n\nautomatic blueprint update during startup\n\n\non OpenStack stack name contains stack ID\n\n\ndisable upgrade of saltstack\n\n\nremove unecessary \nrequire\n flags from API documentation\n\n\nimprove security of salt communication\n\n\n\n\n[v1.4.0] - 2016-08-12\n\n\nFixed\n\n\n\n\nremove invalid auto scaling group history check\n\n\nfix sync to avoid node count corruption of instance groups\n\n\nHDP on AWS can return 502 Bad Gateway while accessing Ambari\n\n\nfix Ambari server ip selection on AWS\n\n\nfix enable auto scaling with different user\n\n\n\n\nAdded\n\n\n\n\nnew RDS config resource\n\n\nshell commands for RDS config operations\n\n\nconfigurable image catalog\n\n\nallow dynamically change Ambari version\n\n\nadded \ncanada\n region to Azure\n\n\nadd basic auth to Zeppelin, Zeppelin is secured with the same password like Ambari\n\n\nability to configure a custom domain for the clusters with the CB_HOST_DISCOVERY_CUSTOM_DOMAIN env variable\n\n\n\n\nChanged\n\n\n\n\nupdate images for on-the-fly ambari update\n\n\nincrease poll timeout for ARM\n\n\ndisable automated map/reduce smoke test\n\n\nparallel command execution in Ambari\n\n\nupdate to Smartsense 1.3.0\n\n\nadd admin user to \nhadoop\n and \nhdfs\n groups after Ambari install\n\n\nuse only Cloudbreak address to connect Cloudbreak\n\n\n\n\n[v1.3.2]\n\n\nFixed\n\n\n\n\nAmbari restart\n\n\navoid duplicated alarmas\n\n\nbefore upscale the sync won't change the stack state\n\n\nupscale / downscale fix with Ambari 2.4\n\n\n\n\nAdded\n\n\n\n\nreverse proxy for UI components\n\n\nnew supported volume type on aws: ST1\n\n\nSpark reverse proxy settings\n\n\nSpark jobhistory server reverse proxy settings\n\n\ncreate admin user for Ambari views\n\n\nadded group name to AWS instance Name tags\n\n\nadd etl-edw default blueprint\n\n\nconfigure Hive RDS through Cloudbreak\n\n\nconfigurable default SmartSense configuration and installation\n\n\nadd SmartSense server to a single noded hostgroup if possible\n\n\ngenerate SmartSense id as credential attribute\n\n\nset SmartSense capture schedule on hosts by recipe\n\n\n\n\nChanged\n\n\n\n\nupdate to Ambari 2.4.0.0\n\n\nuse OpenJDK instead of Oracle JDK\n\n\nuse Ambari password as default service password\n\n\nmake Sultans base path configurable with '/sl' as default value\n\n\ncreate individual root path for Cloudbreak and Periscope\n\n\nset DNS TTL for AWS clients to \n= 60s\n\n\nrewrite url if ambari sessionid appears in cookies\n\n\nremove MYSQL_SERVER component from blueprint if there is rds config present\n\n\nhandle AWS account id as String during SmartSense id generation\n\n\nupdate proxy users hosts to avoid unauthorized connection for super-user in Oozie\n\n\nset ONLY_STACK_DEFAULTS_APPLY as default since the new recommendation strategy does not work for Falcon and Ozzie\n\n\nshow blueprint name on review panel and hide hostroup panel by default\n\n\nshow only the previously selected network on the review panel\n\n\n\n\nRemoved\n\n\n\n\nSpark and Zeppelin nginx proxy settings\n\n\n\n\n[v1.3.0] - 2016-06-06\n\n\nFixed\n\n\n\n\ndelete cluster containers only if orchestrator type is container\n\n\nshow reason of failed commands when using the shell\n\n\nlogin when password contains special characters\n\n\ntextarea placeholder on Internet Explorer 11\n\n\nHDP repo verification on Uluwatu\n\n\nwrong instance metadata status during cluster sync\n\n\nmanage platforms close button on UI\n\n\nnull pointer during router creation on non existing Openstack network\n\n\n\n\nAdded\n\n\n\n\nuse salt bootstrap instead of cloudbreak bootstrap\n\n\nmissing gateway port to stack response\n\n\nenable spot price instances\n\n\nAWS cluster creation with existing key pair\n\n\nAWS existing SSH key pair could be configured by credential command\n\n\nnew description and output for CFN stack\n\n\nadd ssh port into instance metadata\n\n\nseamless s3 connection\n\n\ncustom CIDR validator for subnet\n\n\ncustom tag to CloudFormation stack created by Cloudbreak\n\n\nstart termination flow stops other running flows on the same stack\n\n\nOpenstack API facing option\n\n\n\n\nChanged\n\n\n\n\nopenstack network shell command improvement for the new network types\n\n\nability to select where to put ambari server\n\n\nreorganize kerberos setup in Salt\n\n\nusing private address if only private address is available\n\n\nalways use ports on Openstack even there is no floating ip assigned\n\n\nfloating IP shall not be mandatory, and do not create separate ports\n\n\nfollow HBase port changes\n\n\nmove variant from advanced option to the basic options page\n\n\nSpring update\n\n\nelastic ips are managed by CloudFormation\n\n\nsync starts automatically at startup\n\n\nread nginx SSL port from parameter instead of static 443\n\n\nsync to handle instances that are stopped on the provider side\n\n\nOpenstack metadata collection handles manually terminated instances\n\n\ncleaned up Openstack resources in case of existing subnet\n\n\n\n\nRemoved\n\n\n\n\nrecipe and ssd config were removed\n\n\ndocker properties removed from UI\n\n\n\n\n[v1.2.6] - 2016-05-19\n\n\nChanged\n\n\n\n\nuse lates cloud images with ambari-agent:2.2.1-v20\n\n\nmap public ips to vms in case of existing vpc\n\n\n\n\n[v1.2.5] - 2016-04-07\n\n\nFixed\n\n\n\n\nslow lazy format on Azure\n\n\nmounted disks are not visible in containers\n\n\n\n\nAdded\n\n\n\n\nassume role without adding the keys into cbd Profile\n\n\nability to create cluster without public ip\n\n\nhigh availability blueprint validator\n\n\nsupport for older gcp projectids\n\n\n\n\n[v1.2.4] - 2016-03-22\n\n\nFixed\n\n\n\n\nazure storage location\n\n\nopenstack create network form\n\n\nazure create network form\n\n\ngcp disk type\n\n\n\n\nAdded\n\n\n\n\nGCP subnetsupport  to shell\n\n\n\n\nChanged\n\n\n\n\nuse the provided public network id for allocation floating ips\n\n\nallow 24 attached volumes for aws\n\n\ncleaned up openstack resources in case of existing subnet\n\n\n\n\n[v1.2.3] - 2016-03-22\n\n\nFixed\n\n\n\n\nsudo right of CB user\n\n\n\n\nAdded\n\n\n\n\nAzure default network\n\n\n\n\n[v1.2.2] - 2016-03-21\n\n\nFixed\n\n\n\n\ncredential validation in case of Mesos/Marathon\n\n\n\n\n[v1.2.1] - 2016-03-21\n\n\nFixed\n\n\n\n\nlive migration operations\n\n\n\n\n[v1.2.0] - 2016-03-18\n\n\nFixed\n\n\n\n\nconsul recursor now exculdes both docker ip and bridge ip to avoid recursive dns recursor chain\n\n\ndocs fixed about getting default credentials (cbd login)\n\n\nupdates cb-shell to 0.5.37 to fix ssl issues\n\n\n\n\nAdded\n\n\n\n\nCommand \ncbd azure configure-arm\n will create your arm application which can used by cloudbreak\n\n\nCommand \ncbd azure deploy-dash\n will deploy a dash application in your Azure account\n\n\nCommand \ncbd start\n will execute the migration by default. If SKIP_DB_MIGRATION_ON_START envvar set to true in Profile, the migration will be skipped\n\n\nUsing Dns SRV record in our services instead of ambassador\n\n\nUsing docker linking system in third party services instead of ambassador\n\n\nIntegration tests are added, where cbd binary is called, not only sourced functions\n\n\nDocker based CentOS integration test make target added\n\n\nUaa db migration\n\n\nSMTP default parameters added: \nCLOUDBREAK_SMTP_AUTH\n and \nCLOUDBREAK_SMTP_STARTTLS_ENABLE\n and \nCLOUDBREAK_SMTP_TYPE\n\n\nLocal development Uluwatu configuration by ULUWATU_VOLUME_HOST environment variable\n\n\nLocal development Sultans configuration by SULTANS_VOLUME_HOST environment variable\n\n\ninstall script for fixed version and install-latest for latest release added\n\n\nEach snapshot artifact is uploaded as http://public-repo-1.hortonworks.com/HDP/cloudbreak/cbd-snapshot-$(uname).tgz\n\n\nConfiguration ability to enable or disable ssh fingerprint verification of virtual machines on GCP and AWS\n\n\n\n\nRemoved\n\n\n\n\nFull removal of ambassador\n\n\n\n\nChanged\n\n\n\n\ncbd start\n doesnt start if compose yaml regeneration is needed\n\n\ncbd generate\n is less verbose, diff doesnt shown\n\n\ncbd doctor\n shows diff if generate would change\n\n\ncbd regenerate\n creates backup files if changes detected\n\n\nsequenceiq/uaadb:1.0.1 is used instead of postgres:9.4.1\n\n\n\n\n[v1.0.3] - 2015-09-03\n\n\nFixed\n\n\n\n\nAuthentication error with \ncloudbreak-shell\n and \ncloudbreak-shell-quiet\n is fixed\n\n\nCommand \ncbd update \nbranch\n checks for artifact\n\n\n\n\nAdded\n\n\n\n\nbinary version of gnu-sed 4.2.2 is now included, to solve lot of osx/busybox issues\n\n\nconsul recursor test are added\n\n\n\n\nChanged\n\n\n\n\n\n\nsequenceiq/cloudbreak image updated to 1.0.3\n\n\n\n\n\n\ndebug() function made multiline capable. Use \\n in messages\n\n\n\n\nrefactor bridge ip discovery to run helper docker command only once\n\n\nconsul recursor handling refactored to be more robust\n\n\n\n\n[v1.0.2] - 2015-08-25\n\n\nAdded\n\n\n\n\nDOCKER_CONSUL_OPTIONS\n config option to provide arbitrary consul option\n\n\n\n\nChanged\n\n\n\n\nFixed docker version checker to be 1.8.1 compatible. (docker added --format option)\n\n\nsequenceiq/cloudbreak image updated to 1.0.2\n\n\nconsul image changed from sequenceiq/consul to gliderlabs/consul\n\n\nconsul image updated to 0.5.2 (from 0.5.0)\n\n\nconsul discovers host dns settings, and uses the configured nameserver as recursor\n\n\n\n\n[v1.0.0] - 2015-07-23\n\n\nFixed\n\n\n\n\nGA Release\n\n\n\n\n[v0.5.8] - 2015-07-23\n\n\nFixed\n\n\n\n\nFix CircleCI release. CircleCI doesnt allow --rm on docker run\n\n\n\n\n[v0.5.7] - 2015-07-23\n\n\nFixed\n\n\n\n\nFix make release dependency\n\n\nFix CHANGELOG generation at \nmake release-next-ver\n avoid inserting extra -e\n\n\n\n\n[v0.5.6] - 2015-07-23\n\n\nAdded\n\n\n\n\nRelease artifacts are published at public-repo-1.hortonworks.com/HDP/cloudbreak/\n\n\n\n\n[v0.5.5] - 2015-07-10\n\n\nAdded\n\n\n\n\nCommand \npull-parallel\n added for quicker/simultaneous image pull\n\n\nRelease process includes upload to public-repo s3 bucket\n\n\n\n\nChanged\n\n\n\n\nLicense changed from MIT to Apache v2\n\n\nrelease artifact includes additional files: license/readme/notes\n\n\n\n\n[v0.5.4] - 2015-07-03\n\n\nAdded\n\n\n\n\nNew \ncbd-cleanup\n command for removing old images or exited containers\n\n\nBaywatch default parameters added: \nCB_BAYWATCH_ENABLED\n and\nCB_BAYWATCH_EXTERN_LOCATION\n\n\nLogs are saved via lospout\n\n\nTLS client certificate needed by Cloudbreak is generated with \ncbd generate\n\n\nCommand \naws delete-role\n added\n\n\nCommand \naws generate-role\n added\n\n\nCommand \naws show-role\n added\n\n\nCommand \ncloudbreak-shell\n added\n\n\nCommand \ncloudbreak-shell-quiet\n added\n\n\nCommand \nlocal-dev\n added\n\n\nCommand \ntoken\n added\n\n\n\n\nChanged\n\n\n\n\nAWS authentication env varibale is fixed to use the correct AWS_SECRET_ACCESS_KEY (instead the old AWS_SECRET_KEY)\n\n\nUsing sequenceiq/ambassadord:0.5.0 docker image instead of progrium/ambassadord:latest\n\n\n\n\n[v0.5.3] - 2015-06-03\n\n\nFixed\n\n\n\n\nOne-liner installer fixed, to work if previous cbd exists on path.\n\n\ncbd update\n upstream changes on go-bahser broke the selfupdate functionality\n\n\nIn some environment cloudbreak starts really slow. See: \ndetails\n, see: \ncommit\n\n\n\n\nAdded\n\n\n\n\nNew release proposal can be done by \nmake release-next-ver\n\n\n\n\n[v0.5.2] - 2015-05-21\n\n\nChanged\n\n\n\n\nCommand \ndoctor\n hints to run boot2docker shellinit if env is unset\n\n\nCommand \ninit\n in case of OSX, DOCKER_XXX envs are initialized in local profile (Profile)\n\n\nDefault docker images are updated to:\n\n\nsequenceiq/cloudbreak:0.5.93\n\n\nsequenceiq/cbdb:0.5.92\n\n\nsequenceiq/uluwatu:0.5.28\n\n\nsequenceiq/sultans:0.5.3\n\n\nsequenceiq/periscope:0.5.5\n\n\n\n\n\n\n\n\n[v0.5.1] - 2015-05-18\n\n\nFixed\n\n\n\n\nIssue #55: Sed handles more robust the issue with: curl includes an extra CR char in header fields.\n\n\n\n\nRemoved\n\n\n\n\ndeployer doesnt specify cloud specific image defaults. If left empty, they fall back\n  to defaults specified in \njava code\n\n\nCB_AZURE_IMAGE_URI\n\n\nCB_AWS_AMI_MAP\n\n\nCB_OPENSTACK_IMAGE\n\n\nCB_GCP_SOURCE_IMAGE_PATH\n\n\n\n\n\n\n\n\nChanged\n\n\n\n\nCommand \nlogs\n got usage example for specifying services as filter\n\n\nDefault docker images are updated to:\n\n\nsequenceiq/cloudbreak:0.5.49\n\n\nsequenceiq/uluwatu:0.5.16\n\n\nsequenceiq/sutans:0.5.2\n\n\n\n\n\n\n\n\n[v0.5.0] - 2015-05-08\n\n\nFixed\n\n\n\n\nCommand \npull\n generates yaml files in case they are missing #31\n\n\n\n\nAdded\n\n\n\n\nCommand \nlogin\n Shows Uluwatu login url and credentials\n\n\nCommand \nregenerate\n deletes and generates docker-compose.yml and uaa.yml\n\n\nCommand \ndelete\n added: deletes yamls and dbs\n\n\nCommand \ncloudbreak-shell\n added, right now it internale use DEBUG=1 fn fn-call\n\n\nCommand \nversion\n does correct \nSemantic Versioning\n check to advise an upgrade\n\n\nCommand \ngenerate\n checks and shows if Profile change would result in yaml change.\n\n\nCommand \nstart\n: prints uluwatu url and credential hint\n\n\nCommand \ndoctor\n: fixes boot2docker date/time if not the same as on the host\n\n\nInternal command: \nbrowse\n added to be able to automatically open a browser to a specified url.\n\n\nMini Getting Started guide added into README\n\n\nmake dev-debug\n installs a special cbd on local OSX, which doesnt includes *.bash scrips, only refers them\n   by path. No need to \nmake dev\n to test small changes in bash scripts.\n\n\nLoad AWS key and AWS id from Profile\n\n\nCommand \ninit\n helps to guess the PUBLIC_IP in public clouds: google, amazon\n\n\n\n\nChanged\n\n\n\n\nCommand \ncbd env export\n adds export to the begining of each line\n\n\ncbd logs accepts optional [services] parameter\n\n\ndocker-compose uses \ncbreak_\n prefix for container naming instead of the directory name\n\n\nCommand \ngenerate\n prints out some more usefull info\n\n\nuaa.yml generation wont overwrite, just instruct to move existing file (like docker-compose.yml generation)\n\n\nCommand \ninit\n hint fixed on linux.\n\n\nCommand \ninit\n advise to run \ngenerate\n if it finds a Profile\n\n\nCommand \ninit\n set PRIVATE_IP the same as PUBLIC_IP for boot2docker\n\n\nCommand \nmigrate\n is introduced for db migration see \nMigrate the databases\n section of README\n\n\nCommand \nstartdb\n starts the cbdb and pcdb database containers only\n\n\nDatabases are not deleted after boot2docker restart\n\n\nImport ULU_HOST_ADDRESS and ULU_SULTANS_ADDRESS from Profile\n\n\n\n\n[v0.1.0] - 2015-04-16\n\n\nFixed\n\n\n\n\nSelfupdate updates the actual running binary intead of the fixed /us/local/bin/cbd\n\n\nSMTP default port is 25, to fix number conversion exception\n\n\n\n\nAdded\n\n\n\n\nCommand \ninit\n creates Profile\n\n\nInstall cbd to a directory which is available on $PATH\n\n\nDocker based test for the one-liner install from README.md: \nmake install-test\n\n\n\n\nRemoved\n\n\n\n\nupdate-snap\n command removed, replaced by parametrized \nupdate\n\n\n\n\nChanged\n\n\n\n\nCloudbreak/Persicope/Uluwatu/Sultans Dcoker images upgraded to 0.4.x\n\n\nUse the built in 'checksum' function instead of the external 'shasum' to generate secrets\n\n\nCommand \nupdate\n by default updates from latest Github release, parameter can point to branch on CircleCI\n\n\nDOCKER_XXX env varibles are inherited, so they not needed in Profile\n\n\ngenerate\n and compose specific commands are only available when \nProfile\n exists\n\n\ngenerate\n command genertes docker-compose.yml \nand\n uaa.yml\n\n\nPRIVATE_IP\n env var defaults to bridge IP (only PUBLC_IP is required in Profile)\n\n\nuse \nsulans-bin\n docker image istead of sultans\n\n\n\n\n[v0.0.9] - 2015-04-14\n\n\nFixed\n\n\n\n\nBash 4.3 is included in the binary, extracted into .deps/bin upon start\n\n\n\n\n[v0.0.8] - 2015-04-13\n\n\nFixed\n\n\n\n\nFixing deps module, golang fn: checksum added\n\n\nCircleCI mdule defines required jq\n\n\nFixing PATH issue for binary deps\n\n\n\n\nAdded\n\n\n\n\nuaadb start added\n\n\nidentity server start added\n\n\nmake dev\n added to mac based development\n\n\npull\n command added\n\n\nlogs\n command added\n\n\n\n\nChanged\n\n\n\n\nDocker containers are managed by \ndocker-compose\n\n\n\n\n[v0.0.7] - 2015-03-26\n\n\nAdded\n\n\n\n\nmake tests\n runs unit tests\n\n\ndocker unit tests are added\n\n\nstart command added: WIP consul, registrator starts\n\n\nkill command addd: stops and removes cloudbreak specific containers\n\n\nSKIP_XXX skips the container start\n\n\n\n\nChanged\n\n\n\n\nenv command namespace is always exported, not only in DEBUG mode\n\n\nenv export: machine friendly config list\n\n\nenv show: human readable config list\n\n\ncircle runs unit tests\n\n\nsnapshot binaries include branch name in version string\n\n\n\n\n[v0.0.6] - 2015-03-25\n\n\nFixed\n\n\n\n\nremoved dos2unix dependency for the update command\n\n\n\n\nAdded\n\n\n\n\ndoctor command added\n\n\ndocker-check-version command added\n\n\ncci-latest accepts branch as parameter, needed for PR testing\n\n\nexport fn command in DEBUG mode\n\n\nexport env command in DEBUG mode\n\n\ndoctor: add instruction about setting DOCKER_XXX env vars in Profile\n\n\ninfo() function added to print green text to STDOUT\n\n\n\n\nChanged\n\n\n\n\nHOME env var is also inherited (boot2docker version failed)\n\n\nrelease process fully automatized\n\n\n\n\n[v0.0.5] - 2015-03-23\n\n\n\n\nupdate\n command works without dos2unix\n\n\n\n\n[v0.0.4] - 2015-03-23\n\n\nFixed\n\n\n\n\ndebug function fixed\n\n\nDEBUG, TRACE and CBD_DEFAULT_PROFILE env vars are inherited\n\n\n\n\nAdded\n\n\n\n\nProfile handling added with docs\n\n\nOne-liner install added\n\n\nDocs: install and update process described\n\n\nDocs: release process described with sample git commands\n\n\nPrint version number in debug mode\n\n\nupdate-snap\n downloads binary from latest os specific CircleCI binary artifact.\n\n\n\n\nChanged\n\n\n\n\nTool specific library renamed from cloudbreak.bash to deployer.bash\n\n\n\n\n[v0.0.3] - 2015-03-19\n\n\nFixed\n\n\n\n\nmake release\n creates binary with X.X.X version when on release branch otherwise X.X.X-gitrev\n\n\n\n\nAdded\n\n\n\n\nDocs: release process described\n\n\n\n\n[v0.0.2] - 2015-03-19\n\n\nAdded\n\n\nAdded\n- selfupdate command\n- gray debug to stderr\n\n\n[v0.0.1] - 2015-03-18\n\n\nAdded\n\n\n\n\nhelp command added\n\n\nversion command added\n\n\nAdded --version\n\n\nCircleCI build\n\n\nLinux/Darwin binary releases on github", 
             "title": "Change Log"
         }, 
         {
@@ -211,12 +211,32 @@
             "title": "Change Log"
         }, 
         {
+            "location": "/changelog/#v1165", 
+            "text": "", 
+            "title": "[v.1.16.5]"
+        }, 
+        {
+            "location": "/changelog/#changed", 
+            "text": "Update Ambari and HDP 2.6 default versions  Move to centos 7.3 base to be able to encrypt os disk  Disable ssh key verification on Openstack  Support more than one hostgroup for one Azure Availability Set  Handling expressions that's generated by Ambari in exported blueprints  Kdc-type default value is mit-kdc insteadof null  Include ADLS tracking tags in Azure  Move HSI configs to hive-interactive-site  Remove grafana (not used for anything atm)", 
+            "title": "Changed"
+        }, 
+        {
+            "location": "/changelog/#added", 
+            "text": "Support Azure multiple subnet  Azure premium managed disk support  Added azure storage account encryption  Add new default configs for hive and tez", 
+            "title": "Added"
+        }, 
+        {
+            "location": "/changelog/#fixed", 
+            "text": "Fix public in account, disappeared from Templates and SecurityGroups  Fix credential creation ui, scrambled if select yarn after azure selected  Fix cannot downscale in Azure if using managed disks  Fix cannot create cluster with GCS fs, hadoop-classpath.sh does not run properly, GCS connector missing from HADOOP_CLASSPATH  Fix upscale issue  Fix \"Availability set cannot be found\" error", 
+            "title": "Fixed"
+        }, 
+        {
             "location": "/changelog/#v1161", 
             "text": "", 
             "title": "[v1.16.1]"
         }, 
         {
-            "location": "/changelog/#changed", 
+            "location": "/changelog/#changed_1", 
             "text": "update HDP version (2.6.0.3 -  2.6.1.0)  update Ambari version (2.5.0.3 -  2.5.1.0)  disable Knox from CB if blueprint contains Knox", 
             "title": "Changed"
         }, 
@@ -226,7 +246,7 @@
             "title": "[v1.16.0]"
         }, 
         {
-            "location": "/changelog/#added", 
+            "location": "/changelog/#added_1", 
             "text": "Added SmartSense and Flex subscription integration", 
             "title": "Added"
         }, 
@@ -236,12 +256,12 @@
             "title": "[v1.15.0]"
         }, 
         {
-            "location": "/changelog/#added_1", 
+            "location": "/changelog/#added_2", 
             "text": "Azure custom role support for credential creation", 
             "title": "Added"
         }, 
         {
-            "location": "/changelog/#changed_1", 
+            "location": "/changelog/#changed_2", 
             "text": "ability to query more information about the stack by queryparameters", 
             "title": "Changed"
         }, 
@@ -251,17 +271,17 @@
             "title": "[v1.14.4]"
         }, 
         {
-            "location": "/changelog/#fixed", 
+            "location": "/changelog/#fixed_1", 
             "text": "fix settings generation  fix unable to create Azure cluster with WASB  preserve Knox settings when switching credentials  automatically create /var/run/knox after restart", 
             "title": "Fixed"
         }, 
         {
-            "location": "/changelog/#added_2", 
+            "location": "/changelog/#added_3", 
             "text": "Azure Private IP support  add missing settings block for etl-edw blueprint  show all instance metadata information on shell \"stack metadata\"  add proper error handling for repair flow", 
             "title": "Added"
         }, 
         {
-            "location": "/changelog/#changed_2", 
+            "location": "/changelog/#changed_3", 
             "text": "update HDP version (2.2.0.1 -  2.5.5.0 and 2.6.0.0 -  2.6.0.3)  update Ambari version (2.5.0.0 -  2.5.0.3)  disable Hive credential provider  Azure static IP allocation method instead of dynamic  Azure deallocate VM-s instead of just stopping them on cluster stop  conform to more strict Salt-api calls (since 2016.11.4)  use redhat6 repo on amazonlinux", 
             "title": "Changed"
         }, 
@@ -271,12 +291,12 @@
             "title": "[v1.14.0]"
         }, 
         {
-            "location": "/changelog/#added_3", 
+            "location": "/changelog/#added_4", 
             "text": "new Azure connector based on Azure Java SDK  Azure interactive credential creation  new alerting system implemented based on prometheus", 
             "title": "Added"
         }, 
         {
-            "location": "/changelog/#changed_3", 
+            "location": "/changelog/#changed_4", 
             "text": "ability to specify multiple rdsconfig-s per cluster", 
             "title": "Changed"
         }, 
@@ -286,7 +306,7 @@
             "title": "[v1.6.3]"
         }, 
         {
-            "location": "/changelog/#changed_4", 
+            "location": "/changelog/#changed_5", 
             "text": "Upgraded a dependent component in order to address a network configuration issue.  Updated traefik to v1.1.2  Updated Google Cloud SDK to 1.22.0", 
             "title": "Changed"
         }, 
@@ -296,17 +316,17 @@
             "title": "[v1.6.2]"
         }, 
         {
-            "location": "/changelog/#fixed_1", 
+            "location": "/changelog/#fixed_2", 
             "text": "return login error if user has multiple accounts in LDAP/AD  extra logging when creating the Ambari client  avoid deploy failures, due to concurrency in Salt highstate  incorrect error message collection from nodes during Salt highstate  reduce host name length on Azure in order to be sure that the fully qualified hostname is under 64 chars  do not overwrite manually changed kerberos config  'securitygroup create' shell command caused a validation error due to missing provider value  autocreate default security groups for every provider  fix bower retry in web dockerfile to avoid UI build fails  Cloudbreak does not work with CentOS on AWS  Shiro config of Zepplein is always overwritten by Cloudbreak  fix cluster sync when a new service is added to Ambari through the wizard  rename all open port security group to denote unsecure  remove all port open security group as default", 
             "title": "Fixed"
         }, 
         {
-            "location": "/changelog/#added_4", 
+            "location": "/changelog/#added_5", 
             "text": "Azure VMs supporting private deployments (when VMs have private ip only)  do not use the same host names for every cluster on Azure  configurable stack name prefix length in Azure host names  set up default HDP version  implement existing MIT KDC  existing AD support  support exsisting security group on AWS  separate security groups per provider  ability to specify image id on API to launch a cluster from that base AMI", 
             "title": "Added"
         }, 
         {
-            "location": "/changelog/#changed_5", 
+            "location": "/changelog/#changed_6", 
             "text": "OS parameter is optional when providing the HDP repo  modularize integration test Makefile to sh scripts", 
             "title": "Changed"
         }, 
@@ -316,17 +336,17 @@
             "title": "[v1.6.1]"
         }, 
         {
-            "location": "/changelog/#fixed_2", 
+            "location": "/changelog/#fixed_3", 
             "text": "cannot send invite e-mails from Auth (aka Sultans) when smtp authentictaion is not enabled  recipe shell commands was not aligned with UI and with the implementation  avoid duplicated privateids for instances (they must be unique)  reserve ports on OS for well known Hadoop services  do not fail when there is no default VPC on AWS  reserve TCP/UDP ports on OS for well-known Hadoop services  invalid hostmetadata count after sync when a node from master hostgroup died  shell fix to avoid error when creating cluster using templates with encrypted EBS  fix concurrent removal of alerts in Autoscale (aka Periscope)  ensure that the gcs-connector.sh recipe runs only one time  fix multiple salt-minion start  short names for OpenStack VMs to avoid MySQL / Hive failures  fix uluwatu missing template volume type in some cases  avoid timeouts when IPV6 is disabled https://github.com/saltstack/salt/issues/32719  do not allow cluster reset when external DB is used for Ambari  fix smtp related indentations in application.yml  introducing resource definiton cache, to avoid read the same definition from disk multiple times  invalid hdp repo config (update to 2.5 and support cnetos6 on AWS)  display AWS autoscaling group errors  sporadic ssh connectivity issue from on gcp  no transaction for cluster update  renamed s3role to instanceprofile on UI  avoid alphabetical order of recipes by filename  stop cluster is not possible due to invalid spot price check  sporadic classpath issue, since StackServiceComponentDescriptorMapFactory returns wrong object type", 
             "title": "Fixed"
         }, 
         {
-            "location": "/changelog/#added_5", 
+            "location": "/changelog/#added_6", 
             "text": "OpenStack Liberty and Mitaka support  implement Availibility Zones for OpenStack  dynamic load of custom provider definitions  log every recipe by default (/var/log/recipses)  eventlog about recipe execution  ability to restart cluster installation in case of failed recipe", 
             "title": "Added"
         }, 
         {
-            "location": "/changelog/#changed_6", 
+            "location": "/changelog/#changed_7", 
             "text": "ambari client with sources and extra logging  remove unnecessary admin user  remove cloudbreak log highlighting  remove unused timeout value from recipes  improved logging for saltbootstrap  every recipe runs only once by default", 
             "title": "Changed"
         }, 
@@ -336,17 +356,17 @@
             "title": "[v1.6.0]"
         }, 
         {
-            "location": "/changelog/#fixed_3", 
+            "location": "/changelog/#fixed_4", 
             "text": "proper handling of upstart config to avoid concurrency between sysv and upstart during ambari agent / server start  use m3 for dry-run check because it can be started in ec2-classic  consider auto scaling activity history in auto scaling group status checker  eliminate criticals reported by Sonar  ability to create bigger than 999 GB size volumes on Azure  fixed javascript test for nodecount  region is not a required field when posting a new stack", 
             "title": "Fixed"
         }, 
         {
-            "location": "/changelog/#added_6", 
+            "location": "/changelog/#added_7", 
             "text": "ARM template JSON validation  added property to set static shared volume(s) in BYOS clusters  generate salt password per stack  added Hibernate field encryptor to encryt sensitive data in DB  ability to start GCP clusterts in a NATed environment without public IP address  Ambari and HDP versions are added to the /stack API call's response  when deploying a new subnet in an existing VPC on AWS, the CIDR range is automatically calculated when not specified explicitly on the API", 
             "title": "Added"
         }, 
         {
-            "location": "/changelog/#changed_7", 
+            "location": "/changelog/#changed_8", 
             "text": "Cloudbreak dev version uses latest image from image catalog  cleanup unnecessary pillar matchers  update default blueprints to add hive clients to worker nodes  API cleanup, remove invalid required fields from swagger  updated Ambari version to 2.4.1.0", 
             "title": "Changed"
         }, 
@@ -356,17 +376,17 @@
             "title": "[v1.5.0]"
         }, 
         {
-            "location": "/changelog/#fixed_4", 
+            "location": "/changelog/#fixed_5", 
             "text": "ClusterBootstrapperTest randomly fails  slider does not work with ssl on python 2.7.9+  fix Ambari address on UI for clusters that provisioned by an older version of Cloudbreak  credential visibility on cluster details view  \"Keystone Version\" dropdown layouts", 
             "title": "Fixed"
         }, 
         {
-            "location": "/changelog/#added_7", 
+            "location": "/changelog/#added_8", 
             "text": "added HDP version field to RDS config  ability to configure remote database for Ambari  stacks/clusters are associated with Cloudbreak version  new resource to configure LDAP service for Knox  support of Google's spot instances  support for c4 instance types in AWS  enable auto recovery for HDP services on failure via blueprint  ability to specify multiple subnets for the same VPC on AWS  ability to configure default regions", 
             "title": "Added"
         }, 
         {
-            "location": "/changelog/#changed_8", 
+            "location": "/changelog/#changed_9", 
             "text": "reinstate recipes on Uluwatu UI  increase Ambari password length and fix error message  automatic blueprint update during startup  on OpenStack stack name contains stack ID  disable upgrade of saltstack  remove unecessary  require  flags from API documentation  improve security of salt communication", 
             "title": "Changed"
         }, 
@@ -376,17 +396,17 @@
             "title": "[v1.4.0] - 2016-08-12"
         }, 
         {
-            "location": "/changelog/#fixed_5", 
+            "location": "/changelog/#fixed_6", 
             "text": "remove invalid auto scaling group history check  fix sync to avoid node count corruption of instance groups  HDP on AWS can return 502 Bad Gateway while accessing Ambari  fix Ambari server ip selection on AWS  fix enable auto scaling with different user", 
             "title": "Fixed"
         }, 
         {
-            "location": "/changelog/#added_8", 
+            "location": "/changelog/#added_9", 
             "text": "new RDS config resource  shell commands for RDS config operations  configurable image catalog  allow dynamically change Ambari version  added  canada  region to Azure  add basic auth to Zeppelin, Zeppelin is secured with the same password like Ambari  ability to configure a custom domain for the clusters with the CB_HOST_DISCOVERY_CUSTOM_DOMAIN env variable", 
             "title": "Added"
         }, 
         {
-            "location": "/changelog/#changed_9", 
+            "location": "/changelog/#changed_10", 
             "text": "update images for on-the-fly ambari update  increase poll timeout for ARM  disable automated map/reduce smoke test  parallel command execution in Ambari  update to Smartsense 1.3.0  add admin user to  hadoop  and  hdfs  groups after Ambari install  use only Cloudbreak address to connect Cloudbreak", 
             "title": "Changed"
         }, 
@@ -396,17 +416,17 @@
             "title": "[v1.3.2]"
         }, 
         {
-            "location": "/changelog/#fixed_6", 
+            "location": "/changelog/#fixed_7", 
             "text": "Ambari restart  avoid duplicated alarmas  before upscale the sync won't change the stack state  upscale / downscale fix with Ambari 2.4", 
             "title": "Fixed"
         }, 
         {
-            "location": "/changelog/#added_9", 
+            "location": "/changelog/#added_10", 
             "text": "reverse proxy for UI components  new supported volume type on aws: ST1  Spark reverse proxy settings  Spark jobhistory server reverse proxy settings  create admin user for Ambari views  added group name to AWS instance Name tags  add etl-edw default blueprint  configure Hive RDS through Cloudbreak  configurable default SmartSense configuration and installation  add SmartSense server to a single noded hostgroup if possible  generate SmartSense id as credential attribute  set SmartSense capture schedule on hosts by recipe", 
             "title": "Added"
         }, 
         {
-            "location": "/changelog/#changed_10", 
+            "location": "/changelog/#changed_11", 
             "text": "update to Ambari 2.4.0.0  use OpenJDK instead of Oracle JDK  use Ambari password as default service password  make Sultans base path configurable with '/sl' as default value  create individual root path for Cloudbreak and Periscope  set DNS TTL for AWS clients to  = 60s  rewrite url if ambari sessionid appears in cookies  remove MYSQL_SERVER component from blueprint if there is rds config present  handle AWS account id as String during SmartSense id generation  update proxy users hosts to avoid unauthorized connection for super-user in Oozie  set ONLY_STACK_DEFAULTS_APPLY as default since the new recommendation strategy does not work for Falcon and Ozzie  show blueprint name on review panel and hide hostroup panel by default  show only the previously selected network on the review panel", 
             "title": "Changed"
         }, 
@@ -421,17 +441,17 @@
             "title": "[v1.3.0] - 2016-06-06"
         }, 
         {
-            "location": "/changelog/#fixed_7", 
+            "location": "/changelog/#fixed_8", 
             "text": "delete cluster containers only if orchestrator type is container  show reason of failed commands when using the shell  login when password contains special characters  textarea placeholder on Internet Explorer 11  HDP repo verification on Uluwatu  wrong instance metadata status during cluster sync  manage platforms close button on UI  null pointer during router creation on non existing Openstack network", 
             "title": "Fixed"
         }, 
         {
-            "location": "/changelog/#added_10", 
+            "location": "/changelog/#added_11", 
             "text": "use salt bootstrap instead of cloudbreak bootstrap  missing gateway port to stack response  enable spot price instances  AWS cluster creation with existing key pair  AWS existing SSH key pair could be configured by credential command  new description and output for CFN stack  add ssh port into instance metadata  seamless s3 connection  custom CIDR validator for subnet  custom tag to CloudFormation stack created by Cloudbreak  start termination flow stops other running flows on the same stack  Openstack API facing option", 
             "title": "Added"
         }, 
         {
-            "location": "/changelog/#changed_11", 
+            "location": "/changelog/#changed_12", 
             "text": "openstack network shell command improvement for the new network types  ability to select where to put ambari server  reorganize kerberos setup in Salt  using private address if only private address is available  always use ports on Openstack even there is no floating ip assigned  floating IP shall not be mandatory, and do not create separate ports  follow HBase port changes  move variant from advanced option to the basic options page  Spring update  elastic ips are managed by CloudFormation  sync starts automatically at startup  read nginx SSL port from parameter instead of static 443  sync to handle instances that are stopped on the provider side  Openstack metadata collection handles manually terminated instances  cleaned up Openstack resources in case of existing subnet", 
             "title": "Changed"
         }, 
@@ -446,7 +466,7 @@
             "title": "[v1.2.6] - 2016-05-19"
         }, 
         {
-            "location": "/changelog/#changed_12", 
+            "location": "/changelog/#changed_13", 
             "text": "use lates cloud images with ambari-agent:2.2.1-v20  map public ips to vms in case of existing vpc", 
             "title": "Changed"
         }, 
@@ -456,12 +476,12 @@
             "title": "[v1.2.5] - 2016-04-07"
         }, 
         {
-            "location": "/changelog/#fixed_8", 
+            "location": "/changelog/#fixed_9", 
             "text": "slow lazy format on Azure  mounted disks are not visible in containers", 
             "title": "Fixed"
         }, 
         {
-            "location": "/changelog/#added_11", 
+            "location": "/changelog/#added_12", 
             "text": "assume role without adding the keys into cbd Profile  ability to create cluster without public ip  high availability blueprint validator  support for older gcp projectids", 
             "title": "Added"
         }, 
@@ -471,17 +491,17 @@
             "title": "[v1.2.4] - 2016-03-22"
         }, 
         {
-            "location": "/changelog/#fixed_9", 
+            "location": "/changelog/#fixed_10", 
             "text": "azure storage location  openstack create network form  azure create network form  gcp disk type", 
             "title": "Fixed"
         }, 
         {
-            "location": "/changelog/#added_12", 
+            "location": "/changelog/#added_13", 
             "text": "GCP subnetsupport  to shell", 
             "title": "Added"
         }, 
         {
-            "location": "/changelog/#changed_13", 
+            "location": "/changelog/#changed_14", 
             "text": "use the provided public network id for allocation floating ips  allow 24 attached volumes for aws  cleaned up openstack resources in case of existing subnet", 
             "title": "Changed"
         }, 
@@ -491,12 +511,12 @@
             "title": "[v1.2.3] - 2016-03-22"
         }, 
         {
-            "location": "/changelog/#fixed_10", 
+            "location": "/changelog/#fixed_11", 
             "text": "sudo right of CB user", 
             "title": "Fixed"
         }, 
         {
-            "location": "/changelog/#added_13", 
+            "location": "/changelog/#added_14", 
             "text": "Azure default network", 
             "title": "Added"
         }, 
@@ -506,7 +526,7 @@
             "title": "[v1.2.2] - 2016-03-21"
         }, 
         {
-            "location": "/changelog/#fixed_11", 
+            "location": "/changelog/#fixed_12", 
             "text": "credential validation in case of Mesos/Marathon", 
             "title": "Fixed"
         }, 
@@ -516,7 +536,7 @@
             "title": "[v1.2.1] - 2016-03-21"
         }, 
         {
-            "location": "/changelog/#fixed_12", 
+            "location": "/changelog/#fixed_13", 
             "text": "live migration operations", 
             "title": "Fixed"
         }, 
@@ -526,12 +546,12 @@
             "title": "[v1.2.0] - 2016-03-18"
         }, 
         {
-            "location": "/changelog/#fixed_13", 
+            "location": "/changelog/#fixed_14", 
             "text": "consul recursor now exculdes both docker ip and bridge ip to avoid recursive dns recursor chain  docs fixed about getting default credentials (cbd login)  updates cb-shell to 0.5.37 to fix ssl issues", 
             "title": "Fixed"
         }, 
         {
-            "location": "/changelog/#added_14", 
+            "location": "/changelog/#added_15", 
             "text": "Command  cbd azure configure-arm  will create your arm application which can used by cloudbreak  Command  cbd azure deploy-dash  will deploy a dash application in your Azure account  Command  cbd start  will execute the migration by default. If SKIP_DB_MIGRATION_ON_START envvar set to true in Profile, the migration will be skipped  Using Dns SRV record in our services instead of ambassador  Using docker linking system in third party services instead of ambassador  Integration tests are added, where cbd binary is called, not only sourced functions  Docker based CentOS integration test make target added  Uaa db migration  SMTP default parameters added:  CLOUDBREAK_SMTP_AUTH  and  CLOUDBREAK_SMTP_STARTTLS_ENABLE  and  CLOUDBREAK_SMTP_TYPE  Local development Uluwatu configuration by ULUWATU_VOLUME_HOST environment variable  Local development Sultans configuration by SULTANS_VOLUME_HOST environment variable  install script for fixed version and install-latest for latest release added  Each snapshot artifact is uploaded as http://public-repo-1.hortonworks.com/HDP/cloudbreak/cbd-snapshot-$(uname).tgz  Configuration ability to enable or disable ssh fingerprint verification of virtual machines on GCP and AWS", 
             "title": "Added"
         }, 
@@ -541,7 +561,7 @@
             "title": "Removed"
         }, 
         {
-            "location": "/changelog/#changed_14", 
+            "location": "/changelog/#changed_15", 
             "text": "cbd start  doesnt start if compose yaml regeneration is needed  cbd generate  is less verbose, diff doesnt shown  cbd doctor  shows diff if generate would change  cbd regenerate  creates backup files if changes detected  sequenceiq/uaadb:1.0.1 is used instead of postgres:9.4.1", 
             "title": "Changed"
         }, 
@@ -551,17 +571,17 @@
             "title": "[v1.0.3] - 2015-09-03"
         }, 
         {
-            "location": "/changelog/#fixed_14", 
+            "location": "/changelog/#fixed_15", 
             "text": "Authentication error with  cloudbreak-shell  and  cloudbreak-shell-quiet  is fixed  Command  cbd update  branch  checks for artifact", 
             "title": "Fixed"
         }, 
         {
-            "location": "/changelog/#added_15", 
+            "location": "/changelog/#added_16", 
             "text": "binary version of gnu-sed 4.2.2 is now included, to solve lot of osx/busybox issues  consul recursor test are added", 
             "title": "Added"
         }, 
         {
-            "location": "/changelog/#changed_15", 
+            "location": "/changelog/#changed_16", 
             "text": "sequenceiq/cloudbreak image updated to 1.0.3    debug() function made multiline capable. Use \\n in messages   refactor bridge ip discovery to run helper docker command only once  consul recursor handling refactored to be more robust", 
             "title": "Changed"
         }, 
@@ -571,12 +591,12 @@
             "title": "[v1.0.2] - 2015-08-25"
         }, 
         {
-            "location": "/changelog/#added_16", 
+            "location": "/changelog/#added_17", 
             "text": "DOCKER_CONSUL_OPTIONS  config option to provide arbitrary consul option", 
             "title": "Added"
         }, 
         {
-            "location": "/changelog/#changed_16", 
+            "location": "/changelog/#changed_17", 
             "text": "Fixed docker version checker to be 1.8.1 compatible. (docker added --format option)  sequenceiq/cloudbreak image updated to 1.0.2  consul image changed from sequenceiq/consul to gliderlabs/consul  consul image updated to 0.5.2 (from 0.5.0)  consul discovers host dns settings, and uses the configured nameserver as recursor", 
             "title": "Changed"
         }, 
@@ -586,7 +606,7 @@
             "title": "[v1.0.0] - 2015-07-23"
         }, 
         {
-            "location": "/changelog/#fixed_15", 
+            "location": "/changelog/#fixed_16", 
             "text": "GA Release", 
             "title": "Fixed"
         }, 
@@ -596,7 +616,7 @@
             "title": "[v0.5.8] - 2015-07-23"
         }, 
         {
-            "location": "/changelog/#fixed_16", 
+            "location": "/changelog/#fixed_17", 
             "text": "Fix CircleCI release. CircleCI doesnt allow --rm on docker run", 
             "title": "Fixed"
         }, 
@@ -606,7 +626,7 @@
             "title": "[v0.5.7] - 2015-07-23"
         }, 
         {
-            "location": "/changelog/#fixed_17", 
+            "location": "/changelog/#fixed_18", 
             "text": "Fix make release dependency  Fix CHANGELOG generation at  make release-next-ver  avoid inserting extra -e", 
             "title": "Fixed"
         }, 
@@ -616,7 +636,7 @@
             "title": "[v0.5.6] - 2015-07-23"
         }, 
         {
-            "location": "/changelog/#added_17", 
+            "location": "/changelog/#added_18", 
             "text": "Release artifacts are published at public-repo-1.hortonworks.com/HDP/cloudbreak/", 
             "title": "Added"
         }, 
@@ -626,12 +646,12 @@
             "title": "[v0.5.5] - 2015-07-10"
         }, 
         {
-            "location": "/changelog/#added_18", 
+            "location": "/changelog/#added_19", 
             "text": "Command  pull-parallel  added for quicker/simultaneous image pull  Release process includes upload to public-repo s3 bucket", 
             "title": "Added"
         }, 
         {
-            "location": "/changelog/#changed_17", 
+            "location": "/changelog/#changed_18", 
             "text": "License changed from MIT to Apache v2  release artifact includes additional files: license/readme/notes", 
             "title": "Changed"
         }, 
@@ -641,12 +661,12 @@
             "title": "[v0.5.4] - 2015-07-03"
         }, 
         {
-            "location": "/changelog/#added_19", 
+            "location": "/changelog/#added_20", 
             "text": "New  cbd-cleanup  command for removing old images or exited containers  Baywatch default parameters added:  CB_BAYWATCH_ENABLED  and CB_BAYWATCH_EXTERN_LOCATION  Logs are saved via lospout  TLS client certificate needed by Cloudbreak is generated with  cbd generate  Command  aws delete-role  added  Command  aws generate-role  added  Command  aws show-role  added  Command  cloudbreak-shell  added  Command  cloudbreak-shell-quiet  added  Command  local-dev  added  Command  token  added", 
             "title": "Added"
         }, 
         {
-            "location": "/changelog/#changed_18", 
+            "location": "/changelog/#changed_19", 
             "text": "AWS authentication env varibale is fixed to use the correct AWS_SECRET_ACCESS_KEY (instead the old AWS_SECRET_KEY)  Using sequenceiq/ambassadord:0.5.0 docker image instead of progrium/ambassadord:latest", 
             "title": "Changed"
         }, 
@@ -656,12 +676,12 @@
             "title": "[v0.5.3] - 2015-06-03"
         }, 
         {
-            "location": "/changelog/#fixed_18", 
+            "location": "/changelog/#fixed_19", 
             "text": "One-liner installer fixed, to work if previous cbd exists on path.  cbd update  upstream changes on go-bahser broke the selfupdate functionality  In some environment cloudbreak starts really slow. See:  details , see:  commit", 
             "title": "Fixed"
         }, 
         {
-            "location": "/changelog/#added_20", 
+            "location": "/changelog/#added_21", 
             "text": "New release proposal can be done by  make release-next-ver", 
             "title": "Added"
         }, 
@@ -671,7 +691,7 @@
             "title": "[v0.5.2] - 2015-05-21"
         }, 
         {
-            "location": "/changelog/#changed_19", 
+            "location": "/changelog/#changed_20", 
             "text": "Command  doctor  hints to run boot2docker shellinit if env is unset  Command  init  in case of OSX, DOCKER_XXX envs are initialized in local profile (Profile)  Default docker images are updated to:  sequenceiq/cloudbreak:0.5.93  sequenceiq/cbdb:0.5.92  sequenceiq/uluwatu:0.5.28  sequenceiq/sultans:0.5.3  sequenceiq/periscope:0.5.5", 
             "title": "Changed"
         }, 
@@ -681,7 +701,7 @@
             "title": "[v0.5.1] - 2015-05-18"
         }, 
         {
-            "location": "/changelog/#fixed_19", 
+            "location": "/changelog/#fixed_20", 
             "text": "Issue #55: Sed handles more robust the issue with: curl includes an extra CR char in header fields.", 
             "title": "Fixed"
         }, 
@@ -691,7 +711,7 @@
             "title": "Removed"
         }, 
         {
-            "location": "/changelog/#changed_20", 
+            "location": "/changelog/#changed_21", 
             "text": "Command  logs  got usage example for specifying services as filter  Default docker images are updated to:  sequenceiq/cloudbreak:0.5.49  sequenceiq/uluwatu:0.5.16  sequenceiq/sutans:0.5.2", 
             "title": "Changed"
         }, 
@@ -701,17 +721,17 @@
             "title": "[v0.5.0] - 2015-05-08"
         }, 
         {
-            "location": "/changelog/#fixed_20", 
+            "location": "/changelog/#fixed_21", 
             "text": "Command  pull  generates yaml files in case they are missing #31", 
             "title": "Fixed"
         }, 
         {
-            "location": "/changelog/#added_21", 
+            "location": "/changelog/#added_22", 
             "text": "Command  login  Shows Uluwatu login url and credentials  Command  regenerate  deletes and generates docker-compose.yml and uaa.yml  Command  delete  added: deletes yamls and dbs  Command  cloudbreak-shell  added, right now it internale use DEBUG=1 fn fn-call  Command  version  does correct  Semantic Versioning  check to advise an upgrade  Command  generate  checks and shows if Profile change would result in yaml change.  Command  start : prints uluwatu url and credential hint  Command  doctor : fixes boot2docker date/time if not the same as on the host  Internal command:  browse  added to be able to automatically open a browser to a specified url.  Mini Getting Started guide added into README  make dev-debug  installs a special cbd on local OSX, which doesnt includes *.bash scrips, only refers them\n   by path. No need to  make dev  to test small changes in bash scripts.  Load AWS key and AWS id from Profile  Command  init  helps to guess the PUBLIC_IP in public clouds: google, amazon", 
             "title": "Added"
         }, 
         {
-            "location": "/changelog/#changed_21", 
+            "location": "/changelog/#changed_22", 
             "text": "Command  cbd env export  adds export to the begining of each line  cbd logs accepts optional [services] parameter  docker-compose uses  cbreak_  prefix for container naming instead of the directory name  Command  generate  prints out some more usefull info  uaa.yml generation wont overwrite, just instruct to move existing file (like docker-compose.yml generation)  Command  init  hint fixed on linux.  Command  init  advise to run  generate  if it finds a Profile  Command  init  set PRIVATE_IP the same as PUBLIC_IP for boot2docker  Command  migrate  is introduced for db migration see  Migrate the databases  section of README  Command  startdb  starts the cbdb and pcdb database containers only  Databases are not deleted after boot2docker restart  Import ULU_HOST_ADDRESS and ULU_SULTANS_ADDRESS from Profile", 
             "title": "Changed"
         }, 
@@ -721,12 +741,12 @@
             "title": "[v0.1.0] - 2015-04-16"
         }, 
         {
-            "location": "/changelog/#fixed_21", 
+            "location": "/changelog/#fixed_22", 
             "text": "Selfupdate updates the actual running binary intead of the fixed /us/local/bin/cbd  SMTP default port is 25, to fix number conversion exception", 
             "title": "Fixed"
         }, 
         {
-            "location": "/changelog/#added_22", 
+            "location": "/changelog/#added_23", 
             "text": "Command  init  creates Profile  Install cbd to a directory which is available on $PATH  Docker based test for the one-liner install from README.md:  make install-test", 
             "title": "Added"
         }, 
@@ -736,7 +756,7 @@
             "title": "Removed"
         }, 
         {
-            "location": "/changelog/#changed_22", 
+            "location": "/changelog/#changed_23", 
             "text": "Cloudbreak/Persicope/Uluwatu/Sultans Dcoker images upgraded to 0.4.x  Use the built in 'checksum' function instead of the external 'shasum' to generate secrets  Command  update  by default updates from latest Github release, parameter can point to branch on CircleCI  DOCKER_XXX env varibles are inherited, so they not needed in Profile  generate  and compose specific commands are only available when  Profile  exists  generate  command genertes docker-compose.yml  and  uaa.yml  PRIVATE_IP  env var defaults to bridge IP (only PUBLC_IP is required in Profile)  use  sulans-bin  docker image istead of sultans", 
             "title": "Changed"
         }, 
@@ -746,7 +766,7 @@
             "title": "[v0.0.9] - 2015-04-14"
         }, 
         {
-            "location": "/changelog/#fixed_22", 
+            "location": "/changelog/#fixed_23", 
             "text": "Bash 4.3 is included in the binary, extracted into .deps/bin upon start", 
             "title": "Fixed"
         }, 
@@ -756,17 +776,17 @@
             "title": "[v0.0.8] - 2015-04-13"
         }, 
         {
-            "location": "/changelog/#fixed_23", 
+            "location": "/changelog/#fixed_24", 
             "text": "Fixing deps module, golang fn: checksum added  CircleCI mdule defines required jq  Fixing PATH issue for binary deps", 
             "title": "Fixed"
         }, 
         {
-            "location": "/changelog/#added_23", 
+            "location": "/changelog/#added_24", 
             "text": "uaadb start added  identity server start added  make dev  added to mac based development  pull  command added  logs  command added", 
             "title": "Added"
         }, 
         {
-            "location": "/changelog/#changed_23", 
+            "location": "/changelog/#changed_24", 
             "text": "Docker containers are managed by  docker-compose", 
             "title": "Changed"
         }, 
@@ -776,12 +796,12 @@
             "title": "[v0.0.7] - 2015-03-26"
         }, 
         {
-            "location": "/changelog/#added_24", 
+            "location": "/changelog/#added_25", 
             "text": "make tests  runs unit tests  docker unit tests are added  start command added: WIP consul, registrator starts  kill command addd: stops and removes cloudbreak specific containers  SKIP_XXX skips the container start", 
             "title": "Added"
         }, 
         {
-            "location": "/changelog/#changed_24", 
+            "location": "/changelog/#changed_25", 
             "text": "env command namespace is always exported, not only in DEBUG mode  env export: machine friendly config list  env show: human readable config list  circle runs unit tests  snapshot binaries include branch name in version string", 
             "title": "Changed"
         }, 
@@ -791,17 +811,17 @@
             "title": "[v0.0.6] - 2015-03-25"
         }, 
         {
-            "location": "/changelog/#fixed_24", 
+            "location": "/changelog/#fixed_25", 
             "text": "removed dos2unix dependency for the update command", 
             "title": "Fixed"
         }, 
         {
-            "location": "/changelog/#added_25", 
+            "location": "/changelog/#added_26", 
             "text": "doctor command added  docker-check-version command added  cci-latest accepts branch as parameter, needed for PR testing  export fn command in DEBUG mode  export env command in DEBUG mode  doctor: add instruction about setting DOCKER_XXX env vars in Profile  info() function added to print green text to STDOUT", 
             "title": "Added"
         }, 
         {
-            "location": "/changelog/#changed_25", 
+            "location": "/changelog/#changed_26", 
             "text": "HOME env var is also inherited (boot2docker version failed)  release process fully automatized", 
             "title": "Changed"
         }, 
@@ -816,17 +836,17 @@
             "title": "[v0.0.4] - 2015-03-23"
         }, 
         {
-            "location": "/changelog/#fixed_25", 
+            "location": "/changelog/#fixed_26", 
             "text": "debug function fixed  DEBUG, TRACE and CBD_DEFAULT_PROFILE env vars are inherited", 
             "title": "Fixed"
         }, 
         {
-            "location": "/changelog/#added_26", 
+            "location": "/changelog/#added_27", 
             "text": "Profile handling added with docs  One-liner install added  Docs: install and update process described  Docs: release process described with sample git commands  Print version number in debug mode  update-snap  downloads binary from latest os specific CircleCI binary artifact.", 
             "title": "Added"
         }, 
         {
-            "location": "/changelog/#changed_26", 
+            "location": "/changelog/#changed_27", 
             "text": "Tool specific library renamed from cloudbreak.bash to deployer.bash", 
             "title": "Changed"
         }, 
@@ -836,12 +856,12 @@
             "title": "[v0.0.3] - 2015-03-19"
         }, 
         {
-            "location": "/changelog/#fixed_26", 
+            "location": "/changelog/#fixed_27", 
             "text": "make release  creates binary with X.X.X version when on release branch otherwise X.X.X-gitrev", 
             "title": "Fixed"
         }, 
         {
-            "location": "/changelog/#added_27", 
+            "location": "/changelog/#added_28", 
             "text": "Docs: release process described", 
             "title": "Added"
         }, 
@@ -851,7 +871,7 @@
             "title": "[v0.0.2] - 2015-03-19"
         }, 
         {
-            "location": "/changelog/#added_28", 
+            "location": "/changelog/#added_29", 
             "text": "Added\n- selfupdate command\n- gray debug to stderr", 
             "title": "Added"
         }, 
@@ -861,7 +881,7 @@
             "title": "[v0.0.1] - 2015-03-18"
         }, 
         {
-            "location": "/changelog/#added_29", 
+            "location": "/changelog/#added_30", 
             "text": "help command added  version command added  Added --version  CircleCI build  Linux/Darwin binary releases on github", 
             "title": "Added"
         }, 
