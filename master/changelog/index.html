@@ -331,6 +331,8 @@
     
         <li class="main active"><a href="#change-log">Change Log</a></li>
         
+            <li><a href="#v1161">[v1.16.1]</a></li>
+        
             <li><a href="#v1160">[v1.16.0]</a></li>
         
             <li><a href="#v1150">[v1.15.0]</a></li>
@@ -423,6 +425,13 @@
 
 <h1 id="change-log">Change Log</h1>
 <p>The Change Log summarizes the changes in Cloudbreak.</p>
+<h2 id="v1161">[v1.16.1]</h2>
+<h3 id="changed">Changed</h3>
+<ul>
+<li>update HDP version (2.6.0.3 -&gt; 2.6.1.0)</li>
+<li>update Ambari version (2.5.0.3 -&gt; 2.5.1.0)</li>
+<li>disable Knox from CB if blueprint contains Knox</li>
+</ul>
 <h2 id="v1160">[v1.16.0]</h2>
 <h3 id="added">Added</h3>
 <ul>
@@ -433,7 +442,7 @@
 <ul>
 <li>Azure custom role support for credential creation</li>
 </ul>
-<h3 id="changed">Changed</h3>
+<h3 id="changed_1">Changed</h3>
 <ul>
 <li>ability to query more information about the stack by queryparameters</li>
 </ul>
@@ -452,7 +461,7 @@
 <li>show all instance metadata information on shell "stack metadata"</li>
 <li>add proper error handling for repair flow</li>
 </ul>
-<h3 id="changed_1">Changed</h3>
+<h3 id="changed_2">Changed</h3>
 <ul>
 <li>update HDP version (2.2.0.1 -&gt; 2.5.5.0 and 2.6.0.0 -&gt; 2.6.0.3)</li>
 <li>update Ambari version (2.5.0.0 -&gt; 2.5.0.3)</li>
@@ -469,12 +478,12 @@
 <li>Azure interactive credential creation</li>
 <li>new alerting system implemented based on prometheus</li>
 </ul>
-<h3 id="changed_2">Changed</h3>
+<h3 id="changed_3">Changed</h3>
 <ul>
 <li>ability to specify multiple rdsconfig-s per cluster</li>
 </ul>
 <h2 id="v163">[v1.6.3]</h2>
-<h3 id="changed_3">Changed</h3>
+<h3 id="changed_4">Changed</h3>
 <ul>
 <li>Upgraded a dependent component in order to address a network configuration issue.</li>
 <li>Updated traefik to v1.1.2</li>
@@ -510,7 +519,7 @@
 <li>separate security groups per provider</li>
 <li>ability to specify image id on API to launch a cluster from that base AMI</li>
 </ul>
-<h3 id="changed_4">Changed</h3>
+<h3 id="changed_5">Changed</h3>
 <ul>
 <li>OS parameter is optional when providing the HDP repo</li>
 <li>modularize integration test Makefile to sh scripts</li>
@@ -553,7 +562,7 @@
 <li>eventlog about recipe execution</li>
 <li>ability to restart cluster installation in case of failed recipe</li>
 </ul>
-<h3 id="changed_5">Changed</h3>
+<h3 id="changed_6">Changed</h3>
 <ul>
 <li>ambari client with sources and extra logging</li>
 <li>remove unnecessary admin user</li>
@@ -583,7 +592,7 @@
 <li>Ambari and HDP versions are added to the /stack API call's response</li>
 <li>when deploying a new subnet in an existing VPC on AWS, the CIDR range is automatically calculated when not specified explicitly on the API</li>
 </ul>
-<h3 id="changed_6">Changed</h3>
+<h3 id="changed_7">Changed</h3>
 <ul>
 <li>Cloudbreak dev version uses latest image from image catalog</li>
 <li>cleanup unnecessary pillar matchers</li>
@@ -612,7 +621,7 @@
 <li>ability to specify multiple subnets for the same VPC on AWS</li>
 <li>ability to configure default regions</li>
 </ul>
-<h3 id="changed_7">Changed</h3>
+<h3 id="changed_8">Changed</h3>
 <ul>
 <li>reinstate recipes on Uluwatu UI</li>
 <li>increase Ambari password length and fix error message</li>
@@ -641,7 +650,7 @@
 <li>add basic auth to Zeppelin, Zeppelin is secured with the same password like Ambari</li>
 <li>ability to configure a custom domain for the clusters with the CB_HOST_DISCOVERY_CUSTOM_DOMAIN env variable</li>
 </ul>
-<h3 id="changed_8">Changed</h3>
+<h3 id="changed_9">Changed</h3>
 <ul>
 <li>update images for on-the-fly ambari update</li>
 <li>increase poll timeout for ARM</li>
@@ -674,7 +683,7 @@
 <li>generate SmartSense id as credential attribute</li>
 <li>set SmartSense capture schedule on hosts by recipe</li>
 </ul>
-<h3 id="changed_9">Changed</h3>
+<h3 id="changed_10">Changed</h3>
 <ul>
 <li>update to Ambari 2.4.0.0</li>
 <li>use OpenJDK instead of Oracle JDK</li>
@@ -721,7 +730,7 @@
 <li>start termination flow stops other running flows on the same stack</li>
 <li>Openstack API facing option</li>
 </ul>
-<h3 id="changed_10">Changed</h3>
+<h3 id="changed_11">Changed</h3>
 <ul>
 <li>openstack network shell command improvement for the new network types</li>
 <li>ability to select where to put ambari server</li>
@@ -745,7 +754,7 @@
 <li>docker properties removed from UI</li>
 </ul>
 <h2 id="v126-2016-05-19">[v1.2.6] - 2016-05-19</h2>
-<h3 id="changed_11">Changed</h3>
+<h3 id="changed_12">Changed</h3>
 <ul>
 <li>use lates cloud images with ambari-agent:2.2.1-v20</li>
 <li>map public ips to vms in case of existing vpc</li>
@@ -775,7 +784,7 @@
 <ul>
 <li>GCP subnetsupport  to shell</li>
 </ul>
-<h3 id="changed_12">Changed</h3>
+<h3 id="changed_13">Changed</h3>
 <ul>
 <li>use the provided public network id for allocation floating ips</li>
 <li>allow 24 attached volumes for aws</li>
@@ -828,7 +837,7 @@
 <ul>
 <li>Full removal of ambassador</li>
 </ul>
-<h3 id="changed_13">Changed</h3>
+<h3 id="changed_14">Changed</h3>
 <ul>
 <li><code>cbd start</code> doesnt start if compose yaml regeneration is needed</li>
 <li><code>cbd generate</code> is less verbose, diff doesnt shown</li>
@@ -847,7 +856,7 @@
 <li>binary version of gnu-sed 4.2.2 is now included, to solve lot of osx/busybox issues</li>
 <li>consul recursor test are added</li>
 </ul>
-<h3 id="changed_14">Changed</h3>
+<h3 id="changed_15">Changed</h3>
 <ul>
 <li>
 <p>sequenceiq/cloudbreak image updated to 1.0.3</p>
@@ -863,7 +872,7 @@
 <ul>
 <li><code>DOCKER_CONSUL_OPTIONS</code> config option to provide arbitrary consul option</li>
 </ul>
-<h3 id="changed_15">Changed</h3>
+<h3 id="changed_16">Changed</h3>
 <ul>
 <li>Fixed docker version checker to be 1.8.1 compatible. (docker added --format option)</li>
 <li>sequenceiq/cloudbreak image updated to 1.0.2</li>
@@ -898,7 +907,7 @@
 <li>Command <code>pull-parallel</code> added for quicker/simultaneous image pull</li>
 <li>Release process includes upload to public-repo s3 bucket</li>
 </ul>
-<h3 id="changed_16">Changed</h3>
+<h3 id="changed_17">Changed</h3>
 <ul>
 <li>License changed from MIT to Apache v2</li>
 <li>release artifact includes additional files: license/readme/notes</li>
@@ -918,7 +927,7 @@
 <li>Command <code>local-dev</code> added</li>
 <li>Command <code>token</code> added</li>
 </ul>
-<h3 id="changed_17">Changed</h3>
+<h3 id="changed_18">Changed</h3>
 <ul>
 <li>AWS authentication env varibale is fixed to use the correct AWS_SECRET_ACCESS_KEY (instead the old AWS_SECRET_KEY)</li>
 <li>Using sequenceiq/ambassadord:0.5.0 docker image instead of progrium/ambassadord:latest</li>
@@ -935,7 +944,7 @@
 <li>New release proposal can be done by <code>make release-next-ver</code></li>
 </ul>
 <h2 id="v052-2015-05-21">[v0.5.2] - 2015-05-21</h2>
-<h3 id="changed_18">Changed</h3>
+<h3 id="changed_19">Changed</h3>
 <ul>
 <li>Command <code>doctor</code> hints to run boot2docker shellinit if env is unset</li>
 <li>Command <code>init</code> in case of OSX, DOCKER_XXX envs are initialized in local profile (Profile)</li>
@@ -964,7 +973,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="changed_19">Changed</h3>
+<h3 id="changed_20">Changed</h3>
 <ul>
 <li>Command <code>logs</code> got usage example for specifying services as filter</li>
 <li>Default docker images are updated to:<ul>
@@ -996,7 +1005,7 @@
 <li>Load AWS key and AWS id from Profile</li>
 <li>Command <code>init</code> helps to guess the PUBLIC_IP in public clouds: google, amazon</li>
 </ul>
-<h3 id="changed_20">Changed</h3>
+<h3 id="changed_21">Changed</h3>
 <ul>
 <li>Command <code>cbd env export</code> adds export to the begining of each line</li>
 <li>cbd logs accepts optional [services] parameter</li>
@@ -1027,7 +1036,7 @@
 <ul>
 <li><code>update-snap</code> command removed, replaced by parametrized <code>update</code></li>
 </ul>
-<h3 id="changed_21">Changed</h3>
+<h3 id="changed_22">Changed</h3>
 <ul>
 <li>Cloudbreak/Persicope/Uluwatu/Sultans Dcoker images upgraded to 0.4.x</li>
 <li>Use the built in 'checksum' function instead of the external 'shasum' to generate secrets</li>
@@ -1058,7 +1067,7 @@
 <li><code>pull</code> command added</li>
 <li><code>logs</code> command added</li>
 </ul>
-<h3 id="changed_22">Changed</h3>
+<h3 id="changed_23">Changed</h3>
 <ul>
 <li>Docker containers are managed by <strong>docker-compose</strong></li>
 </ul>
@@ -1071,7 +1080,7 @@
 <li>kill command addd: stops and removes cloudbreak specific containers</li>
 <li>SKIP_XXX skips the container start</li>
 </ul>
-<h3 id="changed_23">Changed</h3>
+<h3 id="changed_24">Changed</h3>
 <ul>
 <li>env command namespace is always exported, not only in DEBUG mode</li>
 <li>env export: machine friendly config list</li>
@@ -1094,7 +1103,7 @@
 <li>doctor: add instruction about setting DOCKER_XXX env vars in Profile</li>
 <li>info() function added to print green text to STDOUT</li>
 </ul>
-<h3 id="changed_24">Changed</h3>
+<h3 id="changed_25">Changed</h3>
 <ul>
 <li>HOME env var is also inherited (boot2docker version failed)</li>
 <li>release process fully automatized</li>
@@ -1118,7 +1127,7 @@
 <li>Print version number in debug mode</li>
 <li><code>update-snap</code> downloads binary from latest os specific CircleCI binary artifact.</li>
 </ul>
-<h3 id="changed_25">Changed</h3>
+<h3 id="changed_26">Changed</h3>
 <ul>
 <li>Tool specific library renamed from cloudbreak.bash to deployer.bash</li>
 </ul>
