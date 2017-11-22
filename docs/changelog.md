@@ -1,1 +1,1 @@
-{!https://raw.githubusercontent.com/hortonworks/cloudbreak/1.16.5/CHANGELOG.md!}
+{!https://raw.githubusercontent.com/hortonworks/cloudbreak/1.16.6-rc.2/CHANGELOG.md!}
