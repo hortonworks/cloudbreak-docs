@@ -38,9 +38,9 @@ The `PUBLIC_IP` is mandatory, because it is used to access the Cloudbreak UI.
 Make sure that the [VM image used by Cloudbreak is imported on your OpenStack](openstack.md#cloudbreak-import).
 
 ## Using Self-signed Certificates
-If your OpenStack is secured with a self-signed certificate, you need to import that certificate into Cloudbreak, 
-or else Cloudbreak won't be able to communicate with your OpenStack. To import the certificate, place the certificate 
-file in the generated certs directory `/certs/trusted/`. The trusted directory does not exist by default, so you need to create it.
+If your OpenStack is secured with a self-signed certificate, you need to import that certificate into Cloudbreak,
+or else Cloudbreak won't be able to communicate with your OpenStack. To import the certificate, place the certificate
+file in the generated trusted certs `./certs/trusted/` directory of Cloudbreak deployment (e.g. `/var/lib/cloudbreak-deployment/certs/trusted`). The trusted directory does not exist by default, so you need to create it.
 Cloudbreak will automatically pick up these certificates and import them into its truststore upon start.
 
 ## Availability Zones and Region config
@@ -62,7 +62,7 @@ You can find an example of `openstack-zone.json` containing two regions and four
 }
 ```
 
-If the `etc` directory does not exist under Cloudbreak deployment directory, then please create it. Restart is needed to pick up the changes done in `openstack-zone.json` file. 
+If the `etc` directory does not exist under Cloudbreak deployment directory, then please create it. Restart is needed to pick up the changes done in `openstack-zone.json` file.
 
 ## Start Cloudbreak Deployer
 
