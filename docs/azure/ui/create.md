@@ -44,7 +44,7 @@ be Kerberized. See more about it in the [Kerberos](kerberos.md) section of this 
     - `Storage Account Name`
     - `Storage Account Access Key`
  - If you've selected `ADLS`, you should specify your preconfigured ADLS account name.   
- - If you would like to have your disks encrypted, check *Encrypt Azure Disks*. For more information, refer to [Azure documentation](https://docs.microsoft.com/en-us/azure/security/azure-security-disk-encryption).
+ - If you would like to have your disks encrypted, check *Encrypt Azure Disks*. For more information, refer to [Azure documentation](https://docs.microsoft.com/en-us/azure/security/azure-security-disk-encryption).  
  - Click on the `Review and Launch` button
 >`File system` is a mandatory configuration for Azure. You can read more about WASB and ADLS in the [File System Configuration section](azure.md#file-system-configuration).
 
