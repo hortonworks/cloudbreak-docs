@@ -1,34 +1,36 @@
 # Update Cloudbreak Deployer
 
-To update Cloudbreak Deployer to the newest version, run the following commands on the console where your `Profile` is located:
+To update Cloudbreak Deployer to the newest version, run the following commands on the console where your `Profile` is located.
 
-**Step 1:** Stop all of the running Cloudbreak components:
-```
-cbd kill
-```
-**Step 2:** Update Cloudbreak Deployer:
-```
-cbd update
-```
-**Step 3:** Update the `docker-compose.yml` file with new Docker containers needed for the `cbd`:
-```
-cbd regenerate
-```
-**Step 4:** If there are no other Cloudbreak instances that still use old Cloudbreak versions, remove the obsolete containers:
-```
-cbd util cleanup
-```
-**Step 5:** Check the health and version of the updated `cbd`: 
-```
-cbd doctor
-```
-**Step 6:** Start the new version of the `cbd`:
-```
-cbd start
-```
-> Cloudbreak needs to download updated docker images for the new version, so this step may take a while.
+We recommend that you back up the Cloudbreak databases before upgrading. Refer to [Dump and Restore Database](cloudbreak_database.md/#dump-and-restore-database).
 
-# Update existing clusters
+1. Stop all of the running Cloudbreak components:
+    <pre>cbd kill</pre>
+    
+2. Update Cloudbreak Deployer:
+
+    <pre>cbd update<pre>
+
+3. Update the `docker-compose.yml` file with new Docker containers needed for the `cbd`:
+
+    <pre>cbd regenerate</pre>
+
+4. If there are no other Cloudbreak instances that still use old Cloudbreak versions, remove the obsolete containers:
+
+    <pre>cbd util cleanup</pre>
+
+5. Check the health and version of the updated `cbd`: 
+
+    <pre>cbd doctor</pre>
+
+6. Start the new version of the `cbd`:
+
+    <pre>cbd start</pre>
+
+    > Cloudbreak needs to download updated docker images for the new version, so this step may take a while.
+    
+
+# Update Existing Clusters
 
 Upgrading from version `1.4.0` to newer versions (`1.5.0` or `1.6.0`) doesn't require any manual modification from the users.
 
