@@ -6,10 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="http://hortonworks.github.io/cloudbreak-docs/architecture/">
+        <link rel="canonical" href="http://hortonworks.github.io/cloudbreak-docs/help/">
         <link rel="shortcut icon" href="../img/favicon.ico">
 
-	<title>Architecture - Cloudbreak 1.16.1</title>
+	<title>Get Help - Cloudbreak 1.16.1</title>
 
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -55,7 +55,7 @@
                 <ul class="nav navbar-nav">
                 
                 
-                    <li class="dropdown active">
+                    <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Home <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                         
@@ -66,8 +66,8 @@
 
                         
                             
-<li class="active">
-    <a href="./">Architecture</a>
+<li >
+    <a href="../architecture/">Architecture</a>
 </li>
 
                         
@@ -124,7 +124,7 @@
                 
                 
                 
-                    <li class="dropdown">
+                    <li class="dropdown active">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reference <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                         
@@ -261,8 +261,8 @@
 
                         
                             
-<li >
-    <a href="../help/">Get Help</a>
+<li class="active">
+    <a href="./">Get Help</a>
 </li>
 
                         
@@ -287,12 +287,12 @@
                 </li>
                 
                     <li >
-                        <a rel="next" href="..">
+                        <a rel="next" href="../flow/">
                             <i class="fa fa-arrow-left"></i> Previous
                         </a>
                     </li>
-                    <li >
-                        <a rel="prev" href="../onprem/">
+                    <li class="disabled">
+                        <a rel="prev" >
                             Next <i class="fa fa-arrow-right"></i>
                         </a>
                     </li>
@@ -317,11 +317,13 @@
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#architecture">Architecture</a></li>
+        <li class="main active"><a href="#get-help">Get Help</a></li>
         
-            <li><a href="#cloudbreak-deployer-architecture">Cloudbreak Deployer Architecture</a></li>
+            <li><a href="#options-for-getting-help">Options for Getting Help</a></li>
         
-            <li><a href="#cloudbreak-application-architecture">Cloudbreak Application Architecture</a></li>
+            <li><a href="#hcc">HCC</a></li>
+        
+            <li><a href="#flex-subscription">Flex Subscription</a></li>
         
     
     </ul>
@@ -329,49 +331,124 @@
                 <div class="col-md-9" role="main">
                     
 
-<h1 id="architecture">Architecture</h1>
-<h2 id="cloudbreak-deployer-architecture">Cloudbreak Deployer Architecture</h2>
-<p>Cloudbreak Deployer includes the following components:<br />
-- <strong>UAA</strong>: OAuth identity server implementation<br />
-- <strong>Cloudbreak</strong>: the Cloudbreak application<br />
-- <strong>Periscope</strong>: the Periscope application<br />
-- <strong>Uluwatu</strong>: Cloudbreak web UI<br />
-- <strong>Sultans</strong>: Cloudbreak user management</p>
-<h3 id="system-level-containers">System Level Containers</h3>
-<p>Cloudbreak Deployer includes the following system-level containers:<br />
-- <strong>Consul</strong>: Cloudbreak service registry<br />
-- <strong>Registrator</strong>: automatically registers/unregisters containers with consul  </p>
-<h2 id="cloudbreak-application-architecture">Cloudbreak Application Architecture</h2>
-<p>Cloudbreak is built on the foundation of cloud provider APIs and Apache Ambari.</p>
-<h3 id="apache-ambari">Apache Ambari</h3>
-<p>The goal of the Apache Ambari project is to simplify Hadoop management by developing software for provisioning, managing, and monitoring Apache Hadoop clusters. Ambari provides an intuitive, easy-to-use Hadoop management web UI backed by its RESTful APIs.</p>
-<p><img alt="" src="https://raw.githubusercontent.com/hortonworks/cloudbreak-docs/master/docs/diagrams/ambari-overview.png" /></p>
-<p>Ambari enables System Administrators to: </p>
+<h1 id="get-help">Get Help</h1>
+<h2 id="options-for-getting-help">Options for Getting Help</h2>
+<p>If you need help with Cloudbreak, you have two options:</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hortonworks Community Connection</td>
+<td>This is free optional support via Hortonworks Community Connection (HCC).</td>
+</tr>
+<tr>
+<td>Hortonworks Flex Support Subscription</td>
+<td>This is paid Hortonworks enterprise support.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="hcc">HCC</h2>
+<p>You can optionally register for optional free community support at <a href="https://community.hortonworks.com/answers/index.html">Hortonworks Community Connection</a> where you can browse articles and previously answered questions, and ask questions of your own. When posting questions related to Cloudbreak, make sure to use the "Cloudbreak" tag.</p>
+<h2 id="flex-subscription">Flex Subscription</h2>
+<p>You can optionally use your existing Hortonworks <a href="https://hortonworks.com/services/support/enterprise/">Flex subscription(s)</a> to cover the Cloudbreak node and all clusters created. </p>
+<p><strong>Prerequisites</strong>: You must have an existing SmartSense ID and a Flex subscription. For general information about the Hortonworks Flex Support Subscription, visit the Hortonworks Support page at <a href="https://hortonworks.com/services/support/enterprise/">https://hortonworks.com/services/support/enterprise/</a>.</p>
+<p>The general steps are:</p>
 <ol>
-<li><strong>Provision a Hadoop Cluster</strong>:  <ul>
-<li>Ambari provides a step-by-step wizard for installing Hadoop services across any number of hosts.</li>
-<li>Ambari handles configuration of Hadoop services for the cluster.</li>
+<li>Configure Smart Sense in your <code>Profile</code> file.   </li>
+<li>Register your Flex subscription in the Cloudbreak web UI in the the <strong>manage flex subscriptions</strong> pane. You can register and manage multiple Flex subscriptions.  </li>
+</ol>
+<p>Once you've performed these steps: </p>
+<ul>
+<li>In the the <strong>manage flex subscriptions</strong> pane, you can assign your registered Flex subscription to the Cloudbreak node and set it as default for newly created clusters.  </li>
+<li>When creating a cluster using the advanced options, you can select the Flex subscription that you want to use.<br />
+This option is available in the <strong>CONFIGURE CLUSTER</strong> &gt; <strong>Flex Subscriptions</strong> section of the create cluster form.  </li>
 </ul>
+<p>Alternatively, you can perform these steps using the Cloudbreak Shell. </p>
+<h3 id="configuring-smartsense">Configuring SmartSense</h3>
+<p>To configure SmartSense in Cloudbreak, enable SmartSense and add your SmartSense ID to the <code>Profile</code> by adding the following variables:</p>
+<pre>export CB_SMARTSENSE_CONFIGURE=true
+export CB_SMARTSENSE_ID=YOUR-SMARTSENSE-ID</pre>
+
+<p>For example:</p>
+<pre>export CB_SMARTSENSE_CONFIGURE=true
+export CB_SMARTSENSE_ID=A-00000000-C-00000000</pre>
+
+<p>You can do this in one of the two ways:</p>
+<ul>
+<li>When initiating Cloudbreak Deployer  </li>
+<li>After you've already initiated Cloudbreak Deployer. If you choose this option, you must restart Cloudbreak using <code>cbd restart</code>.</li>
+</ul>
+<blockquote>
+<p>SmartSense ID defined in the <code>Profile</code> file always overrides the ID registered via Cloudbreak Shell.</p>
+</blockquote>
+<h3 id="managing-flex-subscriptions">Managing Flex Subscriptions</h3>
+<p>Once you log in to the Cloudbreak web UI, you can manage your Flex subscriptions from the <strong>manage flex subscriptions</strong> pane. You can:</p>
+<ul>
+<li>Register a new Flex subscription.  </li>
+<li>Set a default Flex subscription.  </li>
+<li>Select a Flex subscription to be used for cloud controller.  </li>
+<li>Delete a Flex subscription.  </li>
+<li>Check which clusters are connected to a specific subscription.  </li>
+</ul>
+<p>When creating a cluster using the advanced options, in the <strong>CONFIGURE CLUSTER</strong> &gt; <strong>Flex Subscriptions</strong>, you can select the Flex subscription that you want to use.</p>
+<h3 id="managing-smartsense-and-flex-subscriptions-via-cloudbreak-shell">Managing SmartSense and Flex Subscriptions via Cloudbreak Shell</h3>
+<h4 id="configuring-smartsense-via-cloudbreak-shell">Configuring SmartSense via Cloudbreak Shell</h4>
+<ol>
+<li>
+<p>Enable SmartSense in the <code>Profile</code> by adding the following variable: </p>
+<p><pre>export CB_SMARTSENSE_CONFIGURE=true</pre></p>
 </li>
-<li><strong>Manage a Hadoop Cluster</strong>:  <ul>
-<li>Ambari provides central management for starting, stopping, and reconfiguring Hadoop services across the entire.
-   cluster.</li>
-</ul>
-</li>
-<li><strong>Monitor a Hadoop Cluster</strong>:  <ul>
-<li>Ambari provides a dashboard for monitoring health and status of the Hadoop cluster.</li>
-<li>Ambari lets you set predefined alerts or add custom alerts.</li>
-</ul>
+<li>
+<p>You can use Cloudbreak Shell to configure SmartSense subscription on the fly. For example, to register a SmartSense ID <code>A-00000000-C-00000000</code> use:</p>
+<p><code>smartsense register --subscriptionId A-00000000-C-00000000</code></p>
+<blockquote>
+<p>SmartSense ID defined in the <code>Profile</code> file always overrides the ID registered via Cloudbreak Shell.</p>
+</blockquote>
 </li>
 </ol>
-<h4 id="ambari-blueprints">Ambari Blueprints</h4>
-<p>Ambari blueprints are a declarative definition of a cluster. With a blueprint, you can specify stack, component
- layout, and configurations to materialise a Hadoop cluster instance (via a REST API) without having to use the Ambari
-  Cluster Install Wizard.</p>
-<p><img alt="" src="https://raw.githubusercontent.com/hortonworks/cloudbreak/master/docs/images/ambari-create-cluster.png" /></p>
-<h4 id="salt">Salt</h4>
-<p>Salt manages complex systems at scale. Salt can be used for data-driven orchestration, remote execution for any infrastructure, configuration management for any app stack, and much more.</p>
-                    <a href="https://github.com/hortonworks/cloudbreak-docs/blob/master/docs/architecture.md" ><i class="fa fa-github"></i> Edit on GitHub </a>
+<h4 id="managing-smartsense-via-cloudbreak-shell">Managing SmartSense via Cloudbreak Shell</h4>
+<p>Register SmartSense subscription:</p>
+<pre><code>smartsense register --subscriptionId A-00000000-C-00000000
+</code></pre>
+
+<p>Describe already registered SmartSense subscription:</p>
+<pre><code>smartsense describe
+</code></pre>
+
+<p>Delete SmartSense subscription:</p>
+<pre><code>smartsense delete --subscriptionId A-00000000-C-00000000
+</code></pre>
+
+<h4 id="managing-flex-subscriptions-via-cloudbreak-shell">Managing Flex Subscriptions via Cloudbreak Shell</h4>
+<p>Register Flex subscription:</p>
+<pre><code>flex register --name my-flex-subscription --subscriptionId FLEX-0123456789
+</code></pre>
+
+<p>List already registered Flex subscriptions:</p>
+<pre><code>flex list
+</code></pre>
+
+<p>Describe an existing Flex subscription:</p>
+<pre><code>flex show --name my-flex-subscription
+</code></pre>
+
+<p>Set Flex subscription as default:</p>
+<pre><code>flex set-default --name my-flex-subscription
+</code></pre>
+
+<p>Use Flex subscription for Cloudbreak instance:</p>
+<pre><code>flex use-for-controller --name my-flex-subscription
+</code></pre>
+
+<p>Delete Flex subscription:</p>
+<pre><code>flex delete --name my-flex-subscription
+</code></pre>
+                    <a href="https://github.com/hortonworks/cloudbreak-docs/blob/master/docs/help.md" ><i class="fa fa-github"></i> Edit on GitHub </a>
                 </div>
             
         </div>

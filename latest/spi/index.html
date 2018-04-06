@@ -6,10 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="http://sequenceiq.com/cloudbreak-docs/spi/">
+        <link rel="canonical" href="http://hortonworks.github.io/cloudbreak-docs/spi/">
         <link rel="shortcut icon" href="../img/favicon.ico">
 
-	<title>SPI - Cloudbreak 1.14.4</title>
+	<title>SPI - Cloudbreak 1.16.1</title>
 
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -45,7 +45,7 @@
             <!-- Main title -->
             <img class="navbar-logo" src="../img/HWX-RGB-full-no-tagline_500pxh.png" alt="Hortonworks Documentation"
                  width="132" height="52">
-            <a class="navbar-brand" href="..">Cloudbreak 1.14.4</a>
+            <a class="navbar-brand" href="..">Cloudbreak 1.16.1</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -184,12 +184,6 @@
                         
                             
 <li >
-    <a href="../database/">Ambari Database (TP)</a>
-</li>
-
-                        
-                            
-<li >
     <a href="../topologies/">Platforms (TP)</a>
 </li>
 
@@ -232,6 +226,27 @@
                         
                             
   <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Database configuration</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../cloudbreak_database/">Cloudbreak Database</a>
+</li>
+
+        
+            
+<li >
+    <a href="../ambari_database/">Ambari Database (TP)</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
     <a tabindex="-1" href="">Development</a>
     <ul class="dropdown-menu">
         
@@ -243,6 +258,12 @@
         
     </ul>
   </li>
+
+                        
+                            
+<li >
+    <a href="../help/">Get Help</a>
+</li>
 
                         
                         </ul>
@@ -278,7 +299,7 @@
                 
                 
                     <li>
-                        <a href="https://github.com/sequenceiq/cloudbreak-docs/blob/master/docs/" >
+                        <a href="https://github.com/hortonworks/cloudbreak-docs/blob/master/docs/" >
                             
                                 <i class="fa fa-github"></i>
                             
@@ -311,12 +332,12 @@
                     
 
 <h1 id="service-provider-interface-spi">Service Provider Interface (SPI)</h1>
-<p>Cloudbreak already supports multiple cloud platforms and provides an easy way to integrate a new provider trough <a href="https://github.com/sequenceiq/cloudbreak/tree/master/cloud-api">Cloudbreak's Service Provider Interface (SPI)</a>, a plugin mechanism that enables seamless integration of any cloud provider. The SPI plugin mechanism has been used to integrate all currently supported providers with Cloudbreak. Consequently, if you use SPI to integrate a new provider, the integration will be seamless.</p>
+<p>Cloudbreak already supports multiple cloud platforms and provides an easy way to integrate a new provider trough <a href="https://github.com/hortonworks/cloudbreak/tree/master/cloud-api">Cloudbreak's Service Provider Interface (SPI)</a>, a plugin mechanism that enables seamless integration of any cloud provider. The SPI plugin mechanism has been used to integrate all currently supported providers with Cloudbreak. Consequently, if you use SPI to integrate a new provider, the integration will be seamless.</p>
 <ul>
-<li>The <a href="https://github.com/sequenceiq/cloudbreak/tree/master/cloud-aws">cloud-aws</a> module integrates Amazon Web Services</li>
-<li>The <a href="https://github.com/sequenceiq/cloudbreak/tree/master/cloud-gcp">cloud-gcp</a> module integrates Google Cloud Platform</li>
-<li>The <a href="https://github.com/sequenceiq/cloudbreak/tree/master/cloud-arm">cloud-arm</a> module integrates Microsoft Azure</li>
-<li>The <a href="https://github.com/sequenceiq/cloudbreak/tree/master/cloud-openstack">cloud-openstack</a> module integrates OpenStack</li>
+<li>The <a href="https://github.com/hortonworks/cloudbreak/tree/master/cloud-aws">cloud-aws</a> module integrates Amazon Web Services</li>
+<li>The <a href="https://github.com/hortonworks/cloudbreak/tree/master/cloud-gcp">cloud-gcp</a> module integrates Google Cloud Platform</li>
+<li>The <a href="https://github.com/hortonworks/cloudbreak/tree/master/cloud-arm">cloud-arm</a> module integrates Microsoft Azure</li>
+<li>The <a href="https://github.com/hortonworks/cloudbreak/tree/master/cloud-openstack">cloud-openstack</a> module integrates OpenStack</li>
 </ul>
 <p>The SPI interface is event-based, it scales well, and is decoupled from Cloudbreak. The core of Cloudbreak uses <a href="http://projectreactor.io/">EventBus</a> to communicate with the providers, but the complexity of event handling is hidden from the provider implementation.</p>
 <h2 id="resource-management">Resource Management</h2>
@@ -329,7 +350,7 @@
 <h3 id="template-based-deployments">Template Based Deployments</h3>
 <p>Providers with template-based deployments like <a href="https://aws.amazon.com/cloudformation/">AWS CloudFormation</a>, <a href="https://azure.microsoft.com/en-us/documentation/articles/resource-group-overview/#">Azure ARM</a> or <a href="https://wiki.openstack.org/wiki/Heat">OpenStack Heat</a> have the ability to create and manage a collection of related cloud resources, provisioning and updating them in an orderly and predictable fashion. </p>
 <p>In such scenario, Cloudbreak needs a reference to the template itself because every change in the infrastructure (for example, creating new instance or deleting one) is managed through this templating mechanism.</p>
-<p>If a provider has templating support, then the provider's <a href="http://gradle.org/">gradle</a> module depends on the <a href="https://github.com/sequenceiq/cloudbreak/tree/master/cloud-api">cloud-api</a> module:</p>
+<p>If a provider has templating support, then the provider's <a href="http://gradle.org/">gradle</a> module depends on the <a href="https://github.com/hortonworks/cloudbreak/tree/master/cloud-api">cloud-api</a> module:</p>
 <pre><code>apply plugin: 'java'
 
 sourceCompatibility = 1.7
@@ -349,11 +370,11 @@ dependencies {
 }
 </code></pre>
 
-<p>The entry point for the provider is the  <a href="https://github.com/sequenceiq/cloudbreak/blob/master/cloud-api/src/main/java/com/sequenceiq/cloudbreak/cloud/CloudConnector.java">CloudConnector</a> interface and every interface that needs to be implemented is reachable trough this interface.</p>
+<p>The entry point for the provider is the  <a href="https://github.com/hortonworks/cloudbreak/blob/master/cloud-api/src/main/java/com/hortonworks/cloudbreak/cloud/CloudConnector.java">CloudConnector</a> interface and every interface that needs to be implemented is reachable trough this interface.</p>
 <h3 id="individual-resource-based-deployments">Individual Resource Based Deployments</h3>
 <p>There are providers such as GCP that do not support suitable templating mechanism, and customisable providers such as OpenStack where the Heat Orchestration (templating) component is optional and individual resources need to be handled separately. </p>
 <p>In such scenarios, resources such as networks, discs, and compute instances need to be created and managed with an ordered sequence of API calls, and Cloudbreak needs to provide a solution to manage the collection of related cloud resources as a whole.</p>
-<p>If the provider has no templating support, then the provider's <a href="http://gradle.org/">gradle</a> module typically depends on the <a href="https://github.com/sequenceiq/cloudbreak/tree/master/cloud-template">cloud-template</a> module, which includes Cloudbreak defined abstract template. This template is a set of abstract and utility classes to support provisioning and updating related resources in an orderly and predictable manner trough ordered sequences of cloud API calls:</p>
+<p>If the provider has no templating support, then the provider's <a href="http://gradle.org/">gradle</a> module typically depends on the <a href="https://github.com/hortonworks/cloudbreak/tree/master/cloud-template">cloud-template</a> module, which includes Cloudbreak defined abstract template. This template is a set of abstract and utility classes to support provisioning and updating related resources in an orderly and predictable manner trough ordered sequences of cloud API calls:</p>
 <pre><code>apply plugin: 'java'
 
 sourceCompatibility = 1.7
@@ -376,10 +397,10 @@ dependencies {
 <h2 id="variants">Variants</h2>
 <p>OpenStack is highly modular. It allows you to install different components, for example for volume storage or networking (Nova networking, Neutron, etc.). Or, in some scenarios, some components such as Heat may not installed at all.</p>
 <p>Cloudbreak's SPI interface reflects this flexibility using so called variants. This means that if some part of cloud provider (typically OpenStack) is using different component, you don't need re-implement the complete stack but just use a different variant and re-implement the part that is different.</p>
-<p>The reference implementation for this feature can be found in  <a href="https://github.com/sequenceiq/cloudbreak/tree/master/cloud-openstack">cloud-openstack</a> module which support a HEAT and NATIVE variants. The HEAT variant utilizes the Heat templating to launch a stack, but the NATIVE variant starts the cluster by using a sequence of API calls without Heat to achieve the same result, although both of them are using the same authentication and credential management.</p>
+<p>The reference implementation for this feature can be found in  <a href="https://github.com/hortonworks/cloudbreak/tree/master/cloud-openstack">cloud-openstack</a> module which support a HEAT and NATIVE variants. The HEAT variant utilizes the Heat templating to launch a stack, but the NATIVE variant starts the cluster by using a sequence of API calls without Heat to achieve the same result, although both of them are using the same authentication and credential management.</p>
 <h2 id="development">Development</h2>
-<p>For instructions to set up your development environment, see <a href="https://github.com/sequenceiq/cloudbreak/blob/master/docs/dev/development.md">Local Development Setup</a>.</p>
-                    <a href="https://github.com/sequenceiq/cloudbreak-docs/blob/master/docs/spi.md" ><i class="fa fa-github"></i> Edit on GitHub </a>
+<p>For instructions to set up your development environment, see <a href="https://github.com/hortonworks/cloudbreak/blob/master/docs/dev/development.md">Local Development Setup</a>.</p>
+                    <a href="https://github.com/hortonworks/cloudbreak-docs/blob/master/docs/spi.md" ><i class="fa fa-github"></i> Edit on GitHub </a>
                 </div>
             
         </div>
@@ -424,10 +445,10 @@ dependencies {
 
          <script>
            $( document ).ready(function() {
-               $.getJSON("http://sequenceiq.com/cloudbreak-docs/versions.json", function(data) {
-               $("#versions-dropdown").append('<li><a href="http://sequenceiq.com/cloudbreak-docs/latest">latest ('+data.latest+')</a></li>');
+               $.getJSON("http://hortonworks.github.io/cloudbreak-docs//versions.json", function(data) {
+               $("#versions-dropdown").append('<li><a href="http://hortonworks.github.io/cloudbreak-docs//latest">latest ('+data.latest+')</a></li>');
                 $.each(data.versions, function( index, value ) {
-                  $("#versions-dropdown").append('<li><a href="http://sequenceiq.com/cloudbreak-docs/'+value+'">'+value+'</a></li>');
+                  $("#versions-dropdown").append('<li><a href="http://hortonworks.github.io/cloudbreak-docs//'+value+'">'+value+'</a></li>');
                 });
                });
 

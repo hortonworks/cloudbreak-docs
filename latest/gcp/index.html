@@ -6,10 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="http://sequenceiq.com/cloudbreak-docs/gcp/">
+        <link rel="canonical" href="http://hortonworks.github.io/cloudbreak-docs/gcp/">
         <link rel="shortcut icon" href="../img/favicon.ico">
 
-	<title>GCP - Cloudbreak 1.14.4</title>
+	<title>GCP - Cloudbreak 1.16.1</title>
 
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -45,7 +45,7 @@
             <!-- Main title -->
             <img class="navbar-logo" src="../img/HWX-RGB-full-no-tagline_500pxh.png" alt="Hortonworks Documentation"
                  width="132" height="52">
-            <a class="navbar-brand" href="..">Cloudbreak 1.14.4</a>
+            <a class="navbar-brand" href="..">Cloudbreak 1.16.1</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -184,12 +184,6 @@
                         
                             
 <li >
-    <a href="../database/">Ambari Database (TP)</a>
-</li>
-
-                        
-                            
-<li >
     <a href="../topologies/">Platforms (TP)</a>
 </li>
 
@@ -232,6 +226,27 @@
                         
                             
   <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Database configuration</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../cloudbreak_database/">Cloudbreak Database</a>
+</li>
+
+        
+            
+<li >
+    <a href="../ambari_database/">Ambari Database (TP)</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
     <a tabindex="-1" href="">Development</a>
     <ul class="dropdown-menu">
         
@@ -243,6 +258,12 @@
         
     </ul>
   </li>
+
+                        
+                            
+<li >
+    <a href="../help/">Get Help</a>
+</li>
 
                         
                         </ul>
@@ -278,7 +299,7 @@
                 
                 
                     <li>
-                        <a href="https://github.com/sequenceiq/cloudbreak-docs/blob/master/docs/" >
+                        <a href="https://github.com/hortonworks/cloudbreak-docs/blob/master/docs/" >
                             
                                 <i class="fa fa-github"></i>
                             
@@ -415,7 +436,7 @@
 
 <p>This directory contains configuration files and the supporting binaries for Cloudbreak Deployer.</p>
 <h2 id="initialize-your-profile">Initialize Your Profile</h2>
-<p>First, initialize <code>cbd init</code> by creating a <code>Profile</code> file with the following content:</p>
+<p>First, initialize deployer by creating a <code>Profile</code> file with the following content:</p>
 <pre><code>export UAA_DEFAULT_SECRET='[SECRET]'
 export UAA_DEFAULT_USER_PW='[PASSWORD]'
 </code></pre>
@@ -925,7 +946,7 @@ network template.</p>
 <h4 id="blueprints_1">Blueprints</h4>
 <p>Blueprints are your declarative definition of a Hadoop cluster. These are the same blueprints that are <a href="https://cwiki.apache.org/confluence/display/AMBARI/Blueprints">used by Ambari</a>.</p>
 <p>You can use the 3 default blueprints pre-defined in Cloudbreak or you can create your own ones.
-Blueprints can be added from file or URL (an <a href="https://raw.githubusercontent.com/sequenceiq/cloudbreak/master/integration-test/src/main/resources/blueprint/multi-node-hdfs-yarn.bp">example blueprint</a>).</p>
+Blueprints can be added from file or URL (an <a href="https://raw.githubusercontent.com/hortonworks/cloudbreak/master/integration-test/src/main/resources/blueprint/multi-node-hdfs-yarn.bp">example blueprint</a>).</p>
 <p>The host groups in the JSON will be mapped to a set of instances when starting the cluster. Besides this the services and
  components will also be installed on the corresponding nodes. Blueprints can be modified later from the Ambari UI.</p>
 <blockquote>
@@ -1126,7 +1147,7 @@ cluster create --description &quot;My first cluster&quot; --wait true
 
 <p><strong>Congratulations!</strong> Your cluster should now be up and running on this way as well. To learn more about Cloudbreak and 
 provisioning, we have some <a href="../operations/">interesting insights</a> for you.</p>
-                    <a href="https://github.com/sequenceiq/cloudbreak-docs/blob/master/docs/gcp.md" ><i class="fa fa-github"></i> Edit on GitHub </a>
+                    <a href="https://github.com/hortonworks/cloudbreak-docs/blob/master/docs/gcp.md" ><i class="fa fa-github"></i> Edit on GitHub </a>
                 </div>
             
         </div>
@@ -1171,10 +1192,10 @@ provisioning, we have some <a href="../operations/">interesting insights</a> for
 
          <script>
            $( document ).ready(function() {
-               $.getJSON("http://sequenceiq.com/cloudbreak-docs/versions.json", function(data) {
-               $("#versions-dropdown").append('<li><a href="http://sequenceiq.com/cloudbreak-docs/latest">latest ('+data.latest+')</a></li>');
+               $.getJSON("http://hortonworks.github.io/cloudbreak-docs//versions.json", function(data) {
+               $("#versions-dropdown").append('<li><a href="http://hortonworks.github.io/cloudbreak-docs//latest">latest ('+data.latest+')</a></li>');
                 $.each(data.versions, function( index, value ) {
-                  $("#versions-dropdown").append('<li><a href="http://sequenceiq.com/cloudbreak-docs/'+value+'">'+value+'</a></li>');
+                  $("#versions-dropdown").append('<li><a href="http://hortonworks.github.io/cloudbreak-docs//'+value+'">'+value+'</a></li>');
                 });
                });
 

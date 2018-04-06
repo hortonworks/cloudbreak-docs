@@ -6,10 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="http://hortonworks.github.io/cloudbreak-docs/architecture/">
+        <link rel="canonical" href="http://hortonworks.github.io/cloudbreak-docs/ambari_database/">
         <link rel="shortcut icon" href="../img/favicon.ico">
 
-	<title>Architecture - Cloudbreak 1.16.1</title>
+	<title>Ambari Database (TP) - Cloudbreak 1.16.1</title>
 
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -55,7 +55,7 @@
                 <ul class="nav navbar-nav">
                 
                 
-                    <li class="dropdown active">
+                    <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Home <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                         
@@ -66,8 +66,8 @@
 
                         
                             
-<li class="active">
-    <a href="./">Architecture</a>
+<li >
+    <a href="../architecture/">Architecture</a>
 </li>
 
                         
@@ -124,7 +124,7 @@
                 
                 
                 
-                    <li class="dropdown">
+                    <li class="dropdown active">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reference <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                         
@@ -236,8 +236,8 @@
 
         
             
-<li >
-    <a href="../ambari_database/">Ambari Database (TP)</a>
+<li class="active">
+    <a href="./">Ambari Database (TP)</a>
 </li>
 
         
@@ -287,12 +287,12 @@
                 </li>
                 
                     <li >
-                        <a rel="next" href="..">
+                        <a rel="next" href="../cloudbreak_database/">
                             <i class="fa fa-arrow-left"></i> Previous
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../onprem/">
+                        <a rel="prev" href="../flow/">
                             Next <i class="fa fa-arrow-right"></i>
                         </a>
                     </li>
@@ -317,11 +317,13 @@
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#architecture">Architecture</a></li>
+        <li class="main active"><a href="#ambari-database">Ambari Database</a></li>
         
-            <li><a href="#cloudbreak-deployer-architecture">Cloudbreak Deployer Architecture</a></li>
+            <li><a href="#important-considerations">Important Considerations</a></li>
         
-            <li><a href="#cloudbreak-application-architecture">Cloudbreak Application Architecture</a></li>
+            <li><a href="#configure-database-with-the-web-ui">Configure Database with the Web UI</a></li>
+        
+            <li><a href="#configure-database-with-the-shell">Configure Database with the Shell</a></li>
         
     
     </ul>
@@ -329,49 +331,52 @@
                 <div class="col-md-9" role="main">
                     
 
-<h1 id="architecture">Architecture</h1>
-<h2 id="cloudbreak-deployer-architecture">Cloudbreak Deployer Architecture</h2>
-<p>Cloudbreak Deployer includes the following components:<br />
-- <strong>UAA</strong>: OAuth identity server implementation<br />
-- <strong>Cloudbreak</strong>: the Cloudbreak application<br />
-- <strong>Periscope</strong>: the Periscope application<br />
-- <strong>Uluwatu</strong>: Cloudbreak web UI<br />
-- <strong>Sultans</strong>: Cloudbreak user management</p>
-<h3 id="system-level-containers">System Level Containers</h3>
-<p>Cloudbreak Deployer includes the following system-level containers:<br />
-- <strong>Consul</strong>: Cloudbreak service registry<br />
-- <strong>Registrator</strong>: automatically registers/unregisters containers with consul  </p>
-<h2 id="cloudbreak-application-architecture">Cloudbreak Application Architecture</h2>
-<p>Cloudbreak is built on the foundation of cloud provider APIs and Apache Ambari.</p>
-<h3 id="apache-ambari">Apache Ambari</h3>
-<p>The goal of the Apache Ambari project is to simplify Hadoop management by developing software for provisioning, managing, and monitoring Apache Hadoop clusters. Ambari provides an intuitive, easy-to-use Hadoop management web UI backed by its RESTful APIs.</p>
-<p><img alt="" src="https://raw.githubusercontent.com/hortonworks/cloudbreak-docs/master/docs/diagrams/ambari-overview.png" /></p>
-<p>Ambari enables System Administrators to: </p>
+<h1 id="ambari-database">Ambari Database</h1>
+<blockquote>
+<p>Ambari Database support is part of <code>TECHNICAL PREVIEW</code>. It may not be suitable for production use.</p>
+</blockquote>
+<p>By default, Ambari uses an embedded database to store data. However, Ambari and Cloudbreak don't perform backups of this database, so although this database is sufficient for ephemeral or test clusters, it is not be sufficient for long-running production clusters. Therefore, you may need to configure a remote database for Ambari in Cloudbreak.  </p>
+<p>You have two options for configuring a remote database: you can set up a supported database on your own or use a cloud provider's database service. Next, you need to pass the details to Cloudbreak during cluster creation, and Cloudbreak will configure Ambari to connect to that remote database. </p>
+<p>Cloudbreak supports out of the box PostgreSQL, MariaDB and MySQL. This means that if you are using any of these databases, you only need to create the database itself and configure user permissions to create the cluster. Cloudbreak will initialize database tables, relations, default values, and will download JDBC driver for Ambari. For other databases, you have to execute create SQL on your database and deliver JDBC driver to <code>/opt/jdbc-drivers</code> directory on Ambari server node.</p>
+<h2 id="important-considerations">Important Considerations</h2>
+<p>Consider these constraints when setting up your remote datatabse:   </p>
+<ul>
+<li>Cloudbreak doesn't validate the database connection, so wrong connection parameters will cause the cluster installation to fail.</li>
+<li>Your database must be available to the Ambari server. Note that:<ul>
+<li>The database must be located in the same region as the Ambari cluster. Slow database connection will cause cluster installation fail.</li>
+<li>The database could be on a public server with firewall protection, but for security reasons we suggest that you use a private virtual network with subnet, and configure the Cloudbreak network to use existing resources.</li>
+</ul>
+</li>
+<li>For the supported out of the box databases, Cloudbreak creates the tables and upgrades Ambari if neccessary, but performing any other operations on the database is your responsibility.</li>
+<li>If you selected PostgreSQL, Ambari must use the <code>public</code> schema. It is not possible to configure a different schema.</li>
+<li>Database name, username, and password should not contain the <code>'</code> character. Other special characters are allowed.</li>
+</ul>
+<h2 id="configure-database-with-the-web-ui">Configure Database with the Web UI</h2>
+<p>You can find database configuration in the <strong><em>Configure Ambari Database</em></strong> tab, under <strong><em>Advanced options</em></strong>:</p>
+<p><img alt="" src="../images/ambari-database.png" />
+<sub><em>Full size <a href="../images/ambari-database.png">here</a>.</em></sub></p>
+<h2 id="configure-database-with-the-shell">Configure Database with the Shell</h2>
+<p>To configure a remote database for Ambari with Cloudbreak shell, use <code>database configure</code> command before <code>cluster create</code> command. The syntax is:</p>
+<pre><code>database configure --vendor [vendor] --host [host-or-ip] --port [port] --name [database-name] --username [user-name] --password [password]
+</code></pre>
+
+<p>Accepted <code>vendor</code> values are:</p>
+<ul>
+<li>MARIADB</li>
+<li>MSSQL</li>
+<li>MYSQL</li>
+<li>ORACLE</li>
+<li>POSTGRES</li>
+<li>SQLANYWHERE</li>
+</ul>
+<h3 id="upgrade-the-jdbc-driver">Upgrade the JDBC Driver</h3>
+<p>During installation, Cloudbreak distributes the JDBC driver for Ambari to different locations. If you want to upgrade the driver or use a different one, you have to perform these steps:</p>
 <ol>
-<li><strong>Provision a Hadoop Cluster</strong>:  <ul>
-<li>Ambari provides a step-by-step wizard for installing Hadoop services across any number of hosts.</li>
-<li>Ambari handles configuration of Hadoop services for the cluster.</li>
-</ul>
-</li>
-<li><strong>Manage a Hadoop Cluster</strong>:  <ul>
-<li>Ambari provides central management for starting, stopping, and reconfiguring Hadoop services across the entire.
-   cluster.</li>
-</ul>
-</li>
-<li><strong>Monitor a Hadoop Cluster</strong>:  <ul>
-<li>Ambari provides a dashboard for monitoring health and status of the Hadoop cluster.</li>
-<li>Ambari lets you set predefined alerts or add custom alerts.</li>
-</ul>
-</li>
+<li>Copy the driver to the <code>/var/lib/ambari-server/jdbc-drivers</code> directory.</li>
+<li>Symlink the driver to <code>/usr/share/java</code>, <code>/usr/lib/jvm/java/jre/lib/ext</code> directories.</li>
+<li>Reconfigure Ambari by executing the <code>ambari-server setup --jdbc-db=[db-vendor] --jdbc-driver=[driver-location]</code> command.</li>
 </ol>
-<h4 id="ambari-blueprints">Ambari Blueprints</h4>
-<p>Ambari blueprints are a declarative definition of a cluster. With a blueprint, you can specify stack, component
- layout, and configurations to materialise a Hadoop cluster instance (via a REST API) without having to use the Ambari
-  Cluster Install Wizard.</p>
-<p><img alt="" src="https://raw.githubusercontent.com/hortonworks/cloudbreak/master/docs/images/ambari-create-cluster.png" /></p>
-<h4 id="salt">Salt</h4>
-<p>Salt manages complex systems at scale. Salt can be used for data-driven orchestration, remote execution for any infrastructure, configuration management for any app stack, and much more.</p>
-                    <a href="https://github.com/hortonworks/cloudbreak-docs/blob/master/docs/architecture.md" ><i class="fa fa-github"></i> Edit on GitHub </a>
+                    <a href="https://github.com/hortonworks/cloudbreak-docs/blob/master/docs/ambari_database.md" ><i class="fa fa-github"></i> Edit on GitHub </a>
                 </div>
             
         </div>

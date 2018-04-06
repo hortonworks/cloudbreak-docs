@@ -6,10 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="http://sequenceiq.com/cloudbreak-docs/database/">
+        <link rel="canonical" href="http://hortonworks.github.io/cloudbreak-docs/cloudbreak_database/">
         <link rel="shortcut icon" href="../img/favicon.ico">
 
-	<title>Ambari Database (TP) - Cloudbreak 1.14.4</title>
+	<title>Cloudbreak Database - Cloudbreak 1.16.1</title>
 
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -45,7 +45,7 @@
             <!-- Main title -->
             <img class="navbar-logo" src="../img/HWX-RGB-full-no-tagline_500pxh.png" alt="Hortonworks Documentation"
                  width="132" height="52">
-            <a class="navbar-brand" href="..">Cloudbreak 1.14.4</a>
+            <a class="navbar-brand" href="..">Cloudbreak 1.16.1</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -183,12 +183,6 @@
 
                         
                             
-<li class="active">
-    <a href="./">Ambari Database (TP)</a>
-</li>
-
-                        
-                            
 <li >
     <a href="../topologies/">Platforms (TP)</a>
 </li>
@@ -232,6 +226,27 @@
                         
                             
   <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Database configuration</a>
+    <ul class="dropdown-menu">
+        
+            
+<li class="active">
+    <a href="./">Cloudbreak Database</a>
+</li>
+
+        
+            
+<li >
+    <a href="../ambari_database/">Ambari Database (TP)</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
     <a tabindex="-1" href="">Development</a>
     <ul class="dropdown-menu">
         
@@ -243,6 +258,12 @@
         
     </ul>
   </li>
+
+                        
+                            
+<li >
+    <a href="../help/">Get Help</a>
+</li>
 
                         
                         </ul>
@@ -266,19 +287,19 @@
                 </li>
                 
                     <li >
-                        <a rel="next" href="../images/">
+                        <a rel="next" href="../configuration/">
                             <i class="fa fa-arrow-left"></i> Previous
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../topologies/">
+                        <a rel="prev" href="../ambari_database/">
                             Next <i class="fa fa-arrow-right"></i>
                         </a>
                     </li>
                 
                 
                     <li>
-                        <a href="https://github.com/sequenceiq/cloudbreak-docs/blob/master/docs/" >
+                        <a href="https://github.com/hortonworks/cloudbreak-docs/blob/master/docs/" >
                             
                                 <i class="fa fa-github"></i>
                             
@@ -296,13 +317,9 @@
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#ambari-database">Ambari Database</a></li>
+        <li class="main active"><a href="#cloudbreak-database">Cloudbreak Database</a></li>
         
-            <li><a href="#important-considerations">Important Considerations</a></li>
-        
-            <li><a href="#configure-database-with-the-web-ui">Configure Database with the Web UI</a></li>
-        
-            <li><a href="#configure-database-with-the-shell">Configure Database with the Shell</a></li>
+            <li><a href="#dump-and-restore-database">Dump and Restore Database</a></li>
         
     
     </ul>
@@ -310,52 +327,53 @@
                 <div class="col-md-9" role="main">
                     
 
-<h1 id="ambari-database">Ambari Database</h1>
+<h1 id="cloudbreak-database">Cloudbreak Database</h1>
+<p>By default, Cloudbreak uses a built-in PostgreSQL database to persist data. </p>
 <blockquote>
-<p>Ambari Database support is part of <code>TECHNICAL PREVIEW</code>. It may not be suitable for production use.</p>
+<p>For production environments, we suggest that you use an external database, an RDS served by your cloud provider.</p>
 </blockquote>
-<p>By default, Ambari uses an embedded database to store data. However, Ambari and Cloudbreak don't perform backups of this database, so although this database is sufficient for ephemeral or test clusters, it is not be sufficient for long-running production clusters. Therefore, you may need to configure a remote database for Ambari in Cloudbreak.  </p>
-<p>You have two options for configuring a remote database: you can set up a supported database on your own or use a cloud provider's database service. Next, you need to pass the details to Cloudbreak during cluster creation, and Cloudbreak will configure Ambari to connect to that remote database. </p>
-<p>Cloudbreak supports out of the box PostgreSQL, MariaDB and MySQL. This means that if you are using any of these databases, you only need to create the database itself and configure user permissions to create the cluster. Cloudbreak will initialize database tables, relations, default values, and will download JDBC driver for Ambari. For other databases, you have to execute create SQL on your database and deliver JDBC driver to <code>/opt/jdbc-drivers</code> directory on Ambari server node.</p>
-<h2 id="important-considerations">Important Considerations</h2>
-<p>Consider these constraints when setting up your remote datatabse:   </p>
+<p>If you choose to use the default database, you should know that Cloudbreak deployer includes features for dumping and restoring built-in databases.</p>
+<h2 id="dump-and-restore-database">Dump and Restore Database</h2>
+<p>Cloudbreak deployer uses Docker for the underlying infrastructure and uses Docker volume for storing data. There are two separate volumes: </p>
 <ul>
-<li>Cloudbreak doesn't validate the database connection, so wrong connection parameters will cause the cluster installation to fail.</li>
-<li>Your database must be available to the Ambari server. Note that:<ul>
-<li>The database must be located in the same region as the Ambari cluster. Slow database connection will cause cluster installation fail.</li>
-<li>The database could be on a public server with firewall protection, but for security reasons we suggest that you use a private virtual network with subnet, and configure the Cloudbreak network to use existing resources.</li>
+<li>a volume called <code>common</code> for storing live data  </li>
+<li>a volume called <code>cbreak_dump</code> for database dumps </li>
 </ul>
-</li>
-<li>For the supported out of the box databases, Cloudbreak creates the tables and upgrades Ambari if neccessary, but performing any other operations on the database is your responsibility.</li>
-<li>If you selected PostgreSQL, Ambari must use the <code>public</code> schema. It is not possible to configure a different schema.</li>
-<li>Database name, username, and password should not contain the <code>'</code> character. Other special characters are allowed.</li>
-</ul>
-<h2 id="configure-database-with-the-web-ui">Configure Database with the Web UI</h2>
-<p>You can find database configuration in the <strong><em>Configure Ambari Database</em></strong> tab, under <strong><em>Advanced options</em></strong>:</p>
-<p><img alt="" src="../images/ambari-database.png" />
-<sub><em>Full size <a href="../images/ambari-database.png">here</a>.</em></sub></p>
-<h2 id="configure-database-with-the-shell">Configure Database with the Shell</h2>
-<p>To configure a remote database for Ambari with Cloudbreak shell, use <code>database configure</code> command before <code>cluster create</code> command. The syntax is:</p>
-<pre><code>database configure --vendor [vendor] --host [host-or-ip] --port [port] --name [database-name] --username [user-name] --password [password]
+<p>You can override default live data volume any time by extending your <code>Profile</code> with the following variable:</p>
+<pre><code>export COMMON_DB_VOL=&quot;my-live-data-volume&quot;
 </code></pre>
 
-<p>Accepted <code>vendor</code> values are:</p>
-<ul>
-<li>MARIADB</li>
-<li>MSSQL</li>
-<li>MYSQL</li>
-<li>ORACLE</li>
-<li>POSTGRES</li>
-<li>SQLANYWHERE</li>
-</ul>
-<h3 id="upgrade-the-jdbc-driver">Upgrade the JDBC Driver</h3>
-<p>During installation, Cloudbreak distributes the JDBC driver for Ambari to different locations. If you want to upgrade the driver or use a different one, you have to perform these steps:</p>
-<ol>
-<li>Copy the driver to the <code>/var/lib/ambari-server/jdbc-drivers</code> directory.</li>
-<li>Symlink the driver to <code>/usr/share/java</code>, <code>/usr/lib/jvm/java/jre/lib/ext</code> directories.</li>
-<li>Reconfigure Ambari by executing the <code>ambari-server setup --jdbc-db=[db-vendor] --jdbc-driver=[driver-location]</code> command.</li>
-</ol>
-                    <a href="https://github.com/sequenceiq/cloudbreak-docs/blob/master/docs/database.md" ><i class="fa fa-github"></i> Edit on GitHub </a>
+<p>To create database dumps by executing the following commands:</p>
+<pre><code>cbd db dump common cbdb
+cbd db dump common uaadb
+cbd db dump common periscopedb
+</code></pre>
+
+<p>To list existing dumps, execute the <code>cbd db list-dumps</code> command.</p>
+<p>Each kind of database dump (cbdb, uaadb, periscopedb) has a link to the latest dump on the <code>cbreak_dump</code> volume. During the restore process, Cloudbreak deployer restores from latest dump. </p>
+<p>To check which dump is the latest, execute:</p>
+<pre><code>docker run --rm -v cbreak_dump:/dump -it alpine ls -lsa /dump/cbdb/latest
+</code></pre>
+
+<blockquote>
+<p>If you want to restore an older dump, you have to link it as the latest.</p>
+</blockquote>
+<p>To remove the existing <code>common</code> volume, stop all the related Cloudbreak containers with <code>cbd kill</code> command, and then remove the volume:</p>
+<pre><code>docker volume rm common
+</code></pre>
+
+<p>To restore databases from dumps, execute:</p>
+<pre><code>cbd db restore-volume-from-dump common cbdb
+cbd db restore-volume-from-dump common uaadb
+cbd db restore-volume-from-dump common periscopedb
+</code></pre>
+
+<p>You can easily save your dumps to the host machine by using the following commands:</p>
+<pre><code>docker run --rm -v cbreak_dump:/dump -it alpine cat /dump/cbdb/latest/dump.sql &gt; cbdb.sql
+docker run --rm -v cbreak_dump:/dump -it alpine cat /dump/uaadb/latest/dump.sql &gt; uaadb.sql
+docker run --rm -v cbreak_dump:/dump -it alpine cat /dump/periscopedb/latest/dump.sql &gt; periscopedb.sql
+</code></pre>
+                    <a href="https://github.com/hortonworks/cloudbreak-docs/blob/master/docs/cloudbreak_database.md" ><i class="fa fa-github"></i> Edit on GitHub </a>
                 </div>
             
         </div>
@@ -400,10 +418,10 @@
 
          <script>
            $( document ).ready(function() {
-               $.getJSON("http://sequenceiq.com/cloudbreak-docs/versions.json", function(data) {
-               $("#versions-dropdown").append('<li><a href="http://sequenceiq.com/cloudbreak-docs/latest">latest ('+data.latest+')</a></li>');
+               $.getJSON("http://hortonworks.github.io/cloudbreak-docs//versions.json", function(data) {
+               $("#versions-dropdown").append('<li><a href="http://hortonworks.github.io/cloudbreak-docs//latest">latest ('+data.latest+')</a></li>');
                 $.each(data.versions, function( index, value ) {
-                  $("#versions-dropdown").append('<li><a href="http://sequenceiq.com/cloudbreak-docs/'+value+'">'+value+'</a></li>');
+                  $("#versions-dropdown").append('<li><a href="http://hortonworks.github.io/cloudbreak-docs//'+value+'">'+value+'</a></li>');
                 });
                });
 
