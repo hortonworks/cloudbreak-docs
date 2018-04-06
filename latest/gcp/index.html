@@ -6,10 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="http://sequenceiq.com/cloudbreak-docs/gcp/">
+        <link rel="canonical" href="http://hortonworks.github.io/cloudbreak-docs/gcp/">
         <link rel="shortcut icon" href="../img/favicon.ico">
 
-	<title>GCP - Cloudbreak 1.2.1</title>
+	<title>GCP - Cloudbreak 1.16.5</title>
 
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -45,7 +45,7 @@
             <!-- Main title -->
             <img class="navbar-logo" src="../img/HWX-RGB-full-no-tagline_500pxh.png" alt="Hortonworks Documentation"
                  width="132" height="52">
-            <a class="navbar-brand" href="..">Cloudbreak 1.2.1</a>
+            <a class="navbar-brand" href="..">Cloudbreak 1.16.5</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -80,6 +80,12 @@
                             
 <li >
     <a href="../releasenotes/">Release Notes</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../issues/">Known Issues</a>
 </li>
 
                         
@@ -136,6 +142,30 @@
                         
                             
 <li >
+    <a href="../customizations/">Customizations</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../development/">Local Development</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../security/">Cloudbreak Security</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../update/">Update Cloudbreak</a>
+</li>
+
+                        
+                            
+<li >
     <a href="../ui_account/">Account Management</a>
 </li>
 
@@ -143,12 +173,6 @@
                             
 <li >
     <a href="../periscope/">Auto-Scaling</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../sssd/">SSSD Configuration</a>
 </li>
 
                         
@@ -166,19 +190,31 @@
                         
                             
 <li >
-    <a href="../topologies/">Platforms</a>
+    <a href="../images/">Custom Images (TP)</a>
 </li>
 
                         
                             
 <li >
-    <a href="../kerberos/">Kerberos</a>
+    <a href="../topologies/">Platforms (TP)</a>
 </li>
 
                         
                             
 <li >
-    <a href="../mesos/">Mesos</a>
+    <a href="../kerberos/">Kerberos (TP)</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../ldap/">LDAP/AD (TP)</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../mesos/">Mesos (TP)</a>
 </li>
 
                         
@@ -190,13 +226,7 @@
                         
                             
 <li >
-    <a href="../operations/">Operations</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../database/">Migration</a>
+    <a href="../operations/">Basic Operations</a>
 </li>
 
                         
@@ -207,14 +237,44 @@
 
                         
                             
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Database configuration</a>
+    <ul class="dropdown-menu">
+        
+            
 <li >
-    <a href="../development/">Development</a>
+    <a href="../cloudbreak_database/">Cloudbreak Database</a>
 </li>
+
+        
+            
+<li >
+    <a href="../ambari_database/">Ambari Database (TP)</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Development</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../flow/">Flows</a>
+</li>
+
+        
+    </ul>
+  </li>
 
                         
                             
 <li >
-    <a href="../issues/">Known issues</a>
+    <a href="../help/">Get Help</a>
 </li>
 
                         
@@ -251,7 +311,7 @@
                 
                 
                     <li>
-                        <a href="https://github.com/sequenceiq/cloudbreak-docs/blob/master/docs/" >
+                        <a href="https://github.com/hortonworks/cloudbreak-docs/blob/master/docs/" >
                             
                                 <i class="fa fa-github"></i>
                             
@@ -271,60 +331,68 @@
     
         <li class="main active"><a href="#google-cloud-images">Google Cloud Images</a></li>
         
+            <li><a href="#prerequisites">Prerequisites</a></li>
+        
             <li><a href="#cloudbreak-deployer-gcp-image-details">Cloudbreak Deployer GCP Image Details</a></li>
         
-    
-        <li class="main "><a href="#google-setup">Google Setup</a></li>
+            <li><a href="#import-cloudbreak-deployer-image">Import Cloudbreak Deployer Image</a></li>
         
-            <li><a href="#setup-cloudbreak-deployer">Setup Cloudbreak Deployer</a></li>
+            <li><a href="#vm-requirements">VM Requirements</a></li>
+        
+    
+        <li class="main "><a href="#cloudbreak-deployer-setup-on-google">Cloudbreak Deployer Setup on Google</a></li>
+        
+            <li><a href="#cloudbreak-deployment-directory">Cloudbreak Deployment Directory</a></li>
+        
+            <li><a href="#initialize-your-profile">Initialize Your Profile</a></li>
         
             <li><a href="#start-cloudbreak-deployer">Start Cloudbreak Deployer</a></li>
         
-            <li><a href="#validate-the-started-cloudbreak-deployer">Validate the started Cloudbreak Deployer</a></li>
+            <li><a href="#validate-that-cloudbreak-deployer-has-started">Validate that Cloudbreak Deployer Has Started</a></li>
         
     
-        <li class="main "><a href="#provisioning-prerequisites">Provisioning Prerequisites</a></li>
+        <li class="main "><a href="#cluster-provisioning-prerequisites">Cluster Provisioning Prerequisites</a></li>
         
             <li><a href="#creating-a-google-cloud-service-account">Creating a Google Cloud Service Account</a></li>
         
-            <li><a href="#generate-a-new-ssh-key">Generate a new SSH key</a></li>
+            <li><a href="#generate-a-new-ssh-key">Generate a New SSH Key</a></li>
         
     
-        <li class="main "><a href="#provisioning-via-browser">Provisioning via Browser</a></li>
+        <li class="main "><a href="#cluster-provisioning-via-browser">Cluster Provisioning via Browser</a></li>
         
-            <li><a href="#setting-up-gcp-credentials">Setting up GCP credentials</a></li>
+            <li><a href="#setting-up-gcp-credentials">Setting up GCP Credentials</a></li>
         
-            <li><a href="#infrastructure-templates">Infrastructure templates</a></li>
+            <li><a href="#infrastructure-templates">Infrastructure Templates</a></li>
         
-            <li><a href="#defining-cluster-services">Defining cluster services</a></li>
+            <li><a href="#defining-cluster-services">Defining Cluster Services</a></li>
         
-            <li><a href="#cluster-deployment">Cluster deployment</a></li>
+            <li><a href="#cluster-deployment">Cluster Deployment</a></li>
         
-            <li><a href="#cluster-termination">Cluster termination</a></li>
+            <li><a href="#cluster-termination">Cluster Termination</a></li>
         
     
         <li class="main "><a href="#interactive-mode-cloudbreak-shell">Interactive mode / Cloudbreak Shell</a></li>
         
             <li><a href="#start-cloudbreak-shell">Start Cloudbreak Shell</a></li>
         
-            <li><a href="#autocomplete-and-hints">Autocomplete and hints</a></li>
+            <li><a href="#autocomplete-and-hints">Autocomplete and Hints</a></li>
         
     
-        <li class="main "><a href="#provisioning-via-cli">Provisioning via CLI</a></li>
+        <li class="main "><a href="#cluster-provisioning-via-cli">Cluster Provisioning via CLI</a></li>
         
-            <li><a href="#setting-up-gcp-credential">Setting up GCP credential</a></li>
+            <li><a href="#setting-up-gcp-credential">Setting up GCP Credential</a></li>
         
-            <li><a href="#infrastructure-templates_1">Infrastructure templates</a></li>
+            <li><a href="#infrastructure-templates_1">Infrastructure Templates</a></li>
         
-            <li><a href="#defining-cluster-services_1">Defining cluster services</a></li>
+            <li><a href="#defining-cluster-services_1">Defining Cluster Services</a></li>
         
-            <li><a href="#metadata-show">Metadata show</a></li>
+            <li><a href="#metadata-show">Metadata Show</a></li>
         
-            <li><a href="#cluster-deployment_1">Cluster deployment</a></li>
+            <li><a href="#cluster-deployment_1">Cluster Deployment</a></li>
         
-            <li><a href="#cluster-termination_1">Cluster termination</a></li>
+            <li><a href="#cluster-termination_1">Cluster Termination</a></li>
         
-            <li><a href="#silent-mode">Silent mode</a></li>
+            <li><a href="#silent-mode">Silent Mode</a></li>
         
     
     </ul>
@@ -333,100 +401,94 @@
                     
 
 <h1 id="google-cloud-images">Google Cloud Images</h1>
-<p>We have pre-built Cloudbreak Deployer cloud image for Google Cloud Platform (GCP). You can launch the latest 
-Cloudbreak Deployer image at the <a href="https://console.developers.google.com/">Google Developers Console</a>.</p>
+<p>We have pre-built Cloudbreak Deployer cloud image for Google Cloud Platform (GCP). You can launch the latest Cloudbreak Deployer image at the <a href="https://console.developers.google.com/">Google Developers Console</a>.</p>
 <blockquote>
-<p>Alternatively, instead of using the pre-built cloud images for GCP, you can install Cloudbreak Deployer on your own
- VM. See <a href="../onprem/">installation page</a> for more information.</p>
+<p>As an alternative to using the pre-built cloud images for GCP, you can install Cloudbreak Deployer on your own VM. For more information, see the <a href="../onprem/">installation instructions</a>.</p>
 </blockquote>
-<p>Please make sure you added the following ports to your firewall rules:</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<h4 id="ports">Ports</h4>
+<p>Make sure that you have opened the following ports on your <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html">Security Group</a>:</p>
 <ul>
 <li>SSH (22)</li>
-<li>Cloudbreak API (8080)</li>
-<li>Identity server (8089)</li>
-<li>Cloudbreak GUI (3000)</li>
-<li>User authentication (3001)</li>
+<li>Cloudbreak (443)</li>
 </ul>
 <h2 id="cloudbreak-deployer-gcp-image-details">Cloudbreak Deployer GCP Image Details</h2>
-<h3 id="import-cloudbreak-deployer-image">Import Cloudbreak Deployer Image</h3>
-<p>You can import the latest Cloudbreak Deployer image on the <a href="https://console.developers.google.com/">Google Developers Console</a> with the help
+<h2 id="import-cloudbreak-deployer-image">Import Cloudbreak Deployer Image</h2>
+<p>Import the latest Cloudbreak Deployer image on the <a href="https://console.developers.google.com/">Google Developers Console</a> with the help
  of the <a href="https://cloud.google.com/cloud-shell/docs/">Google Cloud Shell</a>.</p>
-<p>Just click on the <code>Activate Google Cloud Shell</code> icon in the top right corner of the page:</p>
+<p>To open the Google Cloud Shell, click on the <code>Activate Google Cloud Shell</code> icon in the top right corner of the page:</p>
 <p><img alt="" src="../gcp/images/google-cloud-shell-button.png" />
 <sub><em>Full size <a href="../gcp/images/google-cloud-shell-button.png">here</a>.</em></sub></p>
-<p><strong>Images are global resources, so you can use these across zones and projects.</strong>
-<img alt="" src="../gcp/images/google-cloud-shell_v2.png" />
+<p><img alt="" src="../gcp/images/google-cloud-shell_v2.png" />
 <sub><em>Full size <a href="../gcp/images/google-cloud-shell_v2.png">here</a>.</em></sub></p>
-<p>You can <strong>create your own Cloudbreak Deployer (cbd) instance from the imported image</strong> on the Google Developers Console.</p>
+<p>Next, create your own Cloudbreak Deployer instance from the imported image on the Google Developers Console.</p>
 <blockquote>
-<p><strong><a href="../onprem/#minimum-and-recommended-system-requirements">Minimum and Recommended VM requirements</a>:</strong> 4GB RAM, 10GB disk, 2 core</p>
+<p>Images are global resources, so you can use them across zones and projects.</p>
 </blockquote>
-<h1 id="google-setup">Google Setup</h1>
-<p><strong>Cloudbreak Deployer Highlights</strong></p>
+<h2 id="vm-requirements">VM Requirements</h2>
+<p>When selecting an instance type, consider these minimum and recomended requirements:  </p>
+<ul>
+<li>4GB RAM, 10GB disk, 2 cores</li>
+<li>The minimum instance type suitable for Cloudbreak is <strong>n1-standard-2</strong></li>
+</ul>
+<p>To learn about all requirements, see <a href="../onprem/#system-requirements">System Requirements</a></p>
+<h1 id="cloudbreak-deployer-setup-on-google">Cloudbreak Deployer Setup on Google</h1>
+<p>Before getting started with Cloudbreak Deployer, you should know that:</p>
 <ul>
 <li>The default SSH username for the GCP instances is <code>cloudbreak</code>.</li>
-<li>Cloudbreak Deployer location is <code>/var/lib/cloudbreak-deployment</code> on the launched <code>cbd</code> VM. This is the 
-      <code>cbd</code> root folder there.</li>
-<li>All <code>cbd</code> actions must be executed from the <code>cbd</code> root folder.</li>
+<li>Cloudbreak Deployer location on your VM is <code>/var/lib/cloudbreak-deployment</code>. This is the <code>cbd</code> root folder.</li>
+<li>You must execute all <code>cbd</code> actions from the <code>cbd</code> root folder.</li>
 </ul>
-<h2 id="setup-cloudbreak-deployer">Setup Cloudbreak Deployer</h2>
-<p>You should already have the Cloudbreak Deployer either by <a href="./">using the GCP Cloud Images</a> or by <a href="../onprem/">installing the 
-Cloudbreak Deployer</a> manually on your own VM. (The minimum instance type which is fit for cloudbreak is <strong>n1-standard-2</strong>)</p>
-<p>If you have your own installed VM, you should check the <a href="./#initialize-your-profile">Initialize your Profile</a> 
-section here before starting the provisioning.</p>
-<p>You have several opportunities to <a href="https://cloud.google.com/compute/docs/instances/connecting-to-instance">connect to the previously created <code>cbd</code> VM</a>.</p>
-<ul>
-<li>Cloudbreak Deployer location is <code>/var/lib/cloudbreak-deployment</code>.</li>
-<li>All <code>cbd</code> actions must be executed from the <code>cbd</code> folder.</li>
-</ul>
-<p>Open the <code>cloudbreak-deployment</code> directory:</p>
+<p>In the previous step, you should have already set up a VM with Cloudbreak Doployer either <a href="./">the GCP Cloud Images</a> or by <a href="../onprem/">installing the Cloudbreak Deployer</a> manually on your own VM.</p>
+<p>There are several ways to <a href="https://cloud.google.com/compute/docs/instances/connecting-to-instance">connect to the previously created <code>cbd</code> VM</a>.</p>
+<h2 id="cloudbreak-deployment-directory">Cloudbreak Deployment Directory</h2>
+<p>To navigate to the <code>cloudbreak-deployment</code> directory, use:</p>
 <pre><code>cd /var/lib/cloudbreak-deployment
 </code></pre>
 
-<p>This is the directory of the configuration files and the supporting binaries for Cloudbreak Deployer.</p>
-<h3 id="initialize-your-profile">Initialize your Profile</h3>
-<p>First initialize <code>cbd</code> by creating a <code>Profile</code> file:</p>
-<pre><code>cbd init
+<p>This directory contains configuration files and the supporting binaries for Cloudbreak Deployer.</p>
+<h2 id="initialize-your-profile">Initialize Your Profile</h2>
+<p>First, initialize deployer by creating a <code>Profile</code> file with the following content:</p>
+<pre><code>export UAA_DEFAULT_SECRET='[SECRET]'
+export UAA_DEFAULT_USER_PW='[PASSWORD]'
 </code></pre>
 
-<p>It will create a <code>Profile</code> file in the current directory. Please open the <code>Profile</code> file then check the <code>PUBLIC_IP</code>. 
-This is mandatory, because of to can access the Cloudbreak UI (called Uluwatu). In some cases the <code>cbd</code> tool tries to 
-guess it. If <code>cbd</code> cannot get the IP address during the initialization, please set the appropriate value.</p>
+<p>By default the <code>cbd</code> tool tries to guess <code>PUBLIC_IP</code> to bind Cloudbreak UI to it. But if <code>cbd</code> cannot get the IP address during the initialization, set the appropriate value also in your <code>Profile</code>.</p>
 <h2 id="start-cloudbreak-deployer">Start Cloudbreak Deployer</h2>
-<p>To start the Cloudbreak application use the following command.
-This will start all the Docker containers and initialize the application.</p>
+<p>To start the Cloudbreak application, use the following command:</p>
 <pre><code>cbd start
 </code></pre>
 
+<p>This will start all the Docker containers and initialize the application.</p>
 <blockquote>
-<p>At the very first time it will take for a while, because of need to download all the necessary docker images.</p>
+<p>The first time you start the Coudbreak app, the process will take longer than usual due to the download of all the necessary docker images.</p>
 </blockquote>
 <p>The <code>cbd start</code> command includes the <code>cbd generate</code> command which applies the following steps:</p>
 <ul>
 <li>creates the <strong>docker-compose.yml</strong> file that describes the configuration of all the Docker containers needed for the Cloudbreak deployment.</li>
 <li>creates the <strong>uaa.yml</strong> file that holds the configuration of the identity server used to authenticate users to Cloudbreak.</li>
 </ul>
-<h2 id="validate-the-started-cloudbreak-deployer">Validate the started Cloudbreak Deployer</h2>
-<p>After the <code>cbd start</code> command finishes followings are worthy to check:</p>
+<h2 id="validate-that-cloudbreak-deployer-has-started">Validate that Cloudbreak Deployer Has Started</h2>
+<p>After the <code>cbd start</code> command finishes, check the following:</p>
 <ul>
-<li>Pre-installed Cloudbreak Deployer version and health.</li>
+<li>Pre-installed Cloudbreak Deployer version and health:</li>
 </ul>
 <pre><code>   cbd doctor
 </code></pre>
 
 <blockquote>
-<p>In case of <code>cbd update</code> is needed, please check the related documentation for <a href="../operations/#update-cloudbreak-deployer">Cloudbreak Deployer Update</a>. Most of the <code>cbd</code> commands require <code>root</code> permissions.</p>
+<p>If you need to run <code>cbd update</code>, refer to <a href="../update/#update-cloudbreak-deployer">Cloudbreak Deployer Update</a>. Most of the <code>cbd</code> commands require <code>root</code> permissions.</p>
 </blockquote>
 <ul>
-<li>Started Cloudbreak Application logs.</li>
+<li>Started Cloudbreak Application logs:</li>
 </ul>
 <pre><code>   cbd logs cloudbreak
 </code></pre>
 
 <blockquote>
-<p>Cloudbreak should start within a minute - you should see a line like this: `Started CloudbreakApplication in 36.823 seconds</p>
+<p>You should see a line like this in the log: <code>Started CloudbreakApplication in 36.823 seconds</code>. Cloudbreak normally takes less than a minute to start.</p>
 </blockquote>
-<h1 id="provisioning-prerequisites">Provisioning Prerequisites</h1>
+<h1 id="cluster-provisioning-prerequisites">Cluster Provisioning Prerequisites</h1>
 <h2 id="creating-a-google-cloud-service-account">Creating a Google Cloud Service Account</h2>
 <p>Follow the <a href="https://cloud.google.com/storage/docs/authentication#service_accounts">instructions</a> in Google Cloud's documentation to create a <code>Service account</code> and <code>Generate a new P12 key</code>.</p>
 <p>Make sure that at API level (<strong>APIs and auth</strong> menu) you have enabled:</p>
@@ -448,7 +510,7 @@ This will start all the Docker containers and initialize the application.</p>
 (from the Service accounts page of your Google Cloud Platform Permissions) and the <code>Project ID</code> (from the Dashboard 
 of your Google Cloud Platform Home) where the service account is created.</strong> You'll also have to <strong>upload the 
 generated P12 file and provide an OpenSSH formatted public key</strong> that will be used as an SSH key.</p>
-<h2 id="generate-a-new-ssh-key">Generate a new SSH key</h2>
+<h2 id="generate-a-new-ssh-key">Generate a New SSH Key</h2>
 <p>All the instances created by Cloudbreak are configured to allow key-based SSH,
 so you'll need to provide an SSH public key that can be used later to SSH onto the instances in the clusters you'll create with Cloudbreak.
 You can use one of your existing keys or you can generate a new one.</p>
@@ -465,7 +527,7 @@ You'll be asked to enter a passphrase, but you can leave it empty.
 # Enter same passphrase again: [Type passphrase again]
 </code></pre>
 
-<p>After you enter a passphrase the keypair is generated. The output should look something like below.</p>
+<p>After you enter a passphrase the keypair is generated. The output should look something like below. </p>
 <pre><code># Your identification has been saved in /Users/you/.ssh/id_rsa.
 # Your public key has been saved in /Users/you/.ssh/id_rsa.pub.
 # The key fingerprint is:
@@ -473,21 +535,21 @@ You'll be asked to enter a passphrase, but you can leave it empty.
 </code></pre>
 
 <p>Later you'll need to pass the <code>.pub</code> file's contents to Cloudbreak and use the private part to SSH to the instances</p>
-<h1 id="provisioning-via-browser">Provisioning via Browser</h1>
-<p>You can log into the Cloudbreak application at <code>http://&lt;PUBLIC_IP&gt;:3000</code>.</p>
+<h1 id="cluster-provisioning-via-browser">Cluster Provisioning via Browser</h1>
+<p>You can log into the Cloudbreak application at <code>https://&lt;PUBLIC_IP&gt;</code>.</p>
 <p>The main goal of the Cloudbreak UI is to easily create clusters on your own cloud provider account.
 This description details the GCP setup - if you'd like to use a different cloud provider check out its manual.</p>
 <p>This document explains the four steps that need to be followed to create Cloudbreak clusters from the UI:</p>
 <ul>
 <li>connect your GCP account with Cloudbreak</li>
 <li>create some template resources on the UI that describe the infrastructure of your clusters</li>
-<li>create a blueprint that describes the HDP services in your clusters and add some recipes for customization</li>
+<li>create a blueprint that describes the HDP services in your clusters</li>
 <li>launch the cluster itself based on these template resources</li>
 </ul>
 <blockquote>
-<p><strong>IMPORTANT</strong> Make sure that you have sufficient qouta (CPU, network, etc) for the requested cluster size.</p>
+<p><strong>IMPORTANT:</strong> Make sure that you have sufficient qouta (CPU, network, etc) for the requested cluster size.</p>
 </blockquote>
-<h2 id="setting-up-gcp-credentials">Setting up GCP credentials</h2>
+<h2 id="setting-up-gcp-credentials">Setting up GCP Credentials</h2>
 <p>Cloudbreak works by connecting your GCP account through so called <em>Credentials</em>, and then uses these credentials to 
 create resources on your behalf. The credentials can be configured on the <strong>manage credentials</strong> panel on the 
 Cloudbreak Dashboard.</p>
@@ -513,24 +575,25 @@ clusters, but cannot delete it.</p>
 </blockquote>
 <p><img alt="" src="../gcp/images/gcp-credential.png" />
 <sub><em>Full size <a href="../gcp/images/gcp-credential.png">here</a>.</em></sub></p>
-<h2 id="infrastructure-templates">Infrastructure templates</h2>
-<p>After your GCP account is linked to Cloudbreak you can start creating resource templates that describe your clusters' 
+<h2 id="infrastructure-templates">Infrastructure Templates</h2>
+<p>After your GCP account is linked to Cloudbreak you can start creating resource templates that describe your clusters'
 infrastructure:</p>
 <ul>
 <li>templates</li>
 <li>networks</li>
 <li>security groups</li>
 </ul>
-<p>When you create one of the above resource, <strong>Cloudbreak does not make any requests to GCP. Resources are only created 
-on GCP after the <code>create cluster</code> button has pushed.</strong> These templates are saved to Cloudbreak's database and can be 
+<p>When you create one of the above resources, <strong>Cloudbreak does not make any requests to GCP. Resources are only created
+on GCP after the <code>create cluster</code> button has pushed.</strong> These templates are saved to Cloudbreak's database and can be
 reused with multiple clusters to describe the infrastructure.</p>
-<p><strong>Templates</strong></p>
+<h4 id="templates">Templates</h4>
 <p>Templates describe the <strong>instances of your cluster</strong> - the instance type and the attached volumes. A typical setup is
  to combine multiple templates in a cluster for the different types of nodes. For example you may want to attach multiple
  large disks to the datanodes or have memory optimized instances for Spark nodes.</p>
 <p>The instance templates can be configured on the <strong>manage templates</strong> panel on the Cloudbreak Dashboard.</p>
-<p>If <code>Public in account</code> is checked all the users belonging to your account will be able to use this resource to create clusters, but cannot delete it</p>
-<p><strong>Networks</strong></p>
+<p>If <code>Preemptible</code> is checked then the template will be <a href="https://cloud.google.com/compute/docs/instances/preemptible">preemptible</a></p>
+<p>If <code>Public in account</code> is checked all the users belonging to your account will be able to use this resource to create clusters, but cannot delete it.</p>
+<h4 id="networks">Networks</h4>
 <p>Your clusters can be created in their own <strong>networks</strong> or in one of your already existing one. If you choose an 
 existing network, it is possible to create a new subnet within the network. The subnet's IP range must be defined in 
 the <code>Subnet (CIDR)</code> field using the general CIDR notation. You can read more about <a href="https://cloud.google.com/compute/docs/networking#networks">GCP Networks</a> and <a href="https://cloud.google.com/compute/docs/networking#subnet_network">Subnet 
@@ -545,24 +608,28 @@ networks</strong> panel.</p>
 <ul>
 <li><strong>Create a new virtual network and a new subnet</strong>: Every time a cluster is created with this kind of network setup a new virtual network and a new subnet with the specified IP range will be created for the instances on Google Cloud.</li>
 <li><strong>Create a new subnet in an existing virtual network</strong>: Use this kind of network setup if you already have a virtual network on Google Cloud where you'd like to put the Cloudbreak created cluster but you'd like to have a separate subnet for it.</li>
-<li><strong>Use an existing subnet in an existing virtual network</strong>: Use this kind of network setup if you have an existing virtual network with one or more subnets on Google Cloud and you'd like to start the instances of a cluster in one of those subnets.</li>
+<li><strong>Use an existing subnet in an existing virtual network</strong>: Use this kind of network setup if you have an existing virtual network with one or more subnets on Google Cloud and you'd like to start the instances of a cluster in one of those subnets. <strong><em>Important constraints of the following parameters:</em></strong><ul>
+<li><code>Don't create public IPs</code>: Please make sure that Cloudbreak can access the launched instances and the instances can reach the internet</li>
+<li><code>Don't create new firewall rules</code>: Please make sure that the created instances in the subnet can reach each other (open every port in the subnet)</li>
+</ul>
+</li>
 <li><strong>Use a legacy network without subnets</strong>: Use this kind of network setup if you have a legacy virtual network on Google Cloud that doesn't have subnet support and you'd like to start instances in that virtual network directly.</li>
 </ul>
 <blockquote>
-<p><strong>IMPORTANT</strong> Please make sure the defined subnet here doesn't overlap with any of your already deployed subnet in the
- network, because of the validation only happens after the cluster creation starts.</p>
+<p><strong>IMPORTANT:</strong> Please make sure the defined subnet here doesn't overlap with any of your already deployed subnet in the
+ network, because the validation only happens after the cluster creation starts.</p>
 <p>In case of existing subnet make sure you have enough room within your network space for the new instances. The 
 provided subnet CIDR will be ignored, but a proper CIDR range will be used.</p>
 </blockquote>
 <p>If <code>Public in account</code> is checked all the users belonging to your account will be able to use this network template 
 to create clusters, but cannot delete it.</p>
 <blockquote>
-<p><strong>NOTE</strong> The new networks are created on GCP only after the the cluster provisioning starts with the selected 
+<p><strong>NOTE:</strong> The new networks are created on GCP only after the the cluster provisioning starts with the selected 
 network template.</p>
 </blockquote>
 <p><img alt="" src="../gcp/images/gcp-network_v2.png" />
 <sub><em>Full size <a href="../gcp/images/gcp-network_v2.png">here</a>.</em></sub></p>
-<p><strong>Security groups</strong></p>
+<h4 id="security-groups">Security Groups</h4>
 <p>Security group templates are very similar to the <a href="https://cloud.google
 .com/compute/docs/networks-and-firewalls#firewalls">Firewalls on GCP</a>. <strong>They describe the allowed inbound traffic 
 to the instances in the cluster.</strong> Currently only one security group template can be selected for a Cloudbreak cluster 
@@ -570,71 +637,66 @@ and all the instances have a public IP address so all the instances in the clust
 group. This may change in a later release.</p>
 <p><em>Default Security Group</em></p>
 <p>You can also use the two pre-defined security groups in Cloudbreak.</p>
-<p><code>only-ssh-and-ssl:</code> all ports are locked down except for SSH and gateway HTTPS (you can't access Hadoop services 
+<p><code>only-ssh-and-ssl:</code> all ports are locked down except for SSH and the selected Ambari Server HTTPS (you can't access Hadoop services 
 outside of the virtual network):</p>
 <ul>
 <li>SSH (22)</li>
 <li>HTTPS (443)</li>
 </ul>
-<p><code>all-services-port:</code> all Hadoop services and SSH, gateway HTTPS are accessible by default:</p>
-<ul>
-<li>SSH (22)</li>
-<li>HTTPS (443)</li>
-<li>Ambari (8080)</li>
-<li>Consul (8500)</li>
-<li>NN (50070)</li>
-<li>RM Web (8088)</li>
-<li>Scheduler (8030RM)</li>
-<li>IPC (8050RM)</li>
-<li>Job history server (19888)</li>
-<li>HBase master (60000)</li>
-<li>HBase master web (60010)</li>
-<li>HBase RS (16020)</li>
-<li>HBase RS info (60030)</li>
-<li>Falcon (15000)</li>
-<li>Storm (8744)</li>
-<li>Hive metastore (9083)</li>
-<li>Hive server (10000)</li>
-<li>Hive server HTTP (10001)</li>
-<li>Accumulo master (9999)</li>
-<li>Accumulo Tserver (9997)</li>
-<li>Atlas (21000)</li>
-<li>KNOX (8443)</li>
-<li>Oozie (11000)</li>
-<li>Spark HS (18080)</li>
-<li>NM Web (8042)</li>
-<li>Zeppelin WebSocket (9996)</li>
-<li>Zeppelin UI (9995)</li>
-<li>Kibana (3080)</li>
-<li>Elasticsearch (9200)</li>
-</ul>
 <p><em>Custom Security Group</em></p>
 <p>You can define your own security group by adding all the ports, protocols and CIDR range you'd like to use. The rules
  defined here doesn't need to contain the internal rules, those are automatically added by Cloudbreak to the security
   group on GCP.</p>
+<p>Hadoop services :
+<em> Ambari (8080)
+</em> Consul (8500)
+<em> NN (50070)
+</em> RM Web (8088)
+<em> Scheduler (8030RM)
+</em> IPC (8050RM)
+<em> Job history server (19888)
+</em> HBase master (60000)
+<em> HBase master web (60010)
+</em> HBase RS (16020)
+<em> HBase RS info (60030)
+</em> Falcon (15000)
+<em> Storm (8744)
+</em> Hive metastore (9083)
+<em> Hive server (10000)
+</em> Hive server HTTP (10001)
+<em> Accumulo master (9999)
+</em> Accumulo Tserver (9997)
+<em> Atlas (21000)
+</em> KNOX (8443)
+<em> Oozie (11000)
+</em> Spark HS (18080)
+<em> NM Web (8042)
+</em> Zeppelin WebSocket (9996)
+<em> Zeppelin UI (9995)
+</em> Kibana (3080)
+* Elasticsearch (9200)</p>
 <blockquote>
-<p><strong>IMPORTANT</strong> 443 and 22 ports needs to be there in every security group otherwise Cloudbreak won't be able to communicate with the 
-provisioned cluster</p>
+<p><strong>IMPORTANT</strong> 443, 9443, and 22 ports needs to be there in every security group otherwise Cloudbreak won't be able to communicate with the provisioned cluster.</p>
 </blockquote>
 <p>If <code>Public in account</code> is checked all the users belonging to your account will be able to use this security group 
 template to create clusters, but cannot delete it.</p>
 <blockquote>
-<p><strong>NOTE</strong> The security groups are created on GCP only after the cluster provisioning starts with the selected 
+<p><strong>NOTE:</strong> The security groups are created on GCP only after the cluster provisioning starts with the selected 
 security group template.</p>
 </blockquote>
 <p><img alt="" src="../images/ui-secgroup_v3.png" />
 <sub><em>Full size <a href="../images/ui-secgroup_v3.png">here</a>.</em></sub></p>
-<h2 id="defining-cluster-services">Defining cluster services</h2>
-<p><strong>Blueprints</strong></p>
+<h2 id="defining-cluster-services">Defining Cluster Services</h2>
+<h4 id="blueprints">Blueprints</h4>
 <p>Blueprints are your declarative definition of a Hadoop cluster. These are the same blueprints that are <a href="https://cwiki.apache.org/confluence/display/AMBARI/Blueprints">used by Ambari</a>.</p>
 <p>You can use the 3 default blueprints pre-defined in Cloudbreak or you can create your own ones.
 Blueprints can be added from file, URL (an <a href="https://raw.githubusercontent
-.com/sequenceiq/cloudbreak/master/integration-test/src/main/resources/blueprint/multi-node-hdfs-yarn.bp">example blueprint</a>) or the 
+.com/hortonworks/cloudbreak/master/integration-test/src/main/resources/blueprint/multi-node-hdfs-yarn.bp">example blueprint</a>) or the 
 whole JSON can be written in the <code>JSON text</code> box.</p>
 <p>The host groups in the JSON will be mapped to a set of instances when starting the cluster. Besides this the services and
  components will also be installed on the corresponding nodes. Blueprints can be modified later from the Ambari UI.</p>
 <blockquote>
-<p><strong>NOTE</strong> Not necessary to define all the configuration in the blueprint. If a configuration is missing, Ambari will 
+<p><strong>NOTE:</strong> It is not necessary to define all the configuration in the blueprint. If a configuration is missing, Ambari will 
 fill that with a default value.</p>
 </blockquote>
 <p>If <code>Public in account</code> is checked all the users belonging to your account will be able to use this blueprint to 
@@ -646,26 +708,11 @@ modifications.</strong>
 There is no automatic way to modify an exported blueprint and make it instantly usable in Cloudbreak, the 
 modifications have to be done manually.
 When the blueprint is exported some configurations are hardcoded for example domain names, memory configurations...etc. that won't be applicable to the Cloudbreak cluster</p>
-<p><strong>Cluster customization</strong></p>
-<p>Sometimes it can be useful to <strong>define some custom scripts so called Recipes in Cloudbreak</strong> that run during cluster 
-creation and add some additional functionality.</p>
-<p>For example it can be a service you'd like to install but it's not supported by Ambari or some script that 
-automatically downloads some data to the necessary nodes.
-The most <strong>notable example is Ranger setup</strong>:</p>
-<ul>
-<li>It has a prerequisite of a running database when Ranger Admin is installing.</li>
-<li>A PostgreSQL database can be easily started and configured with a recipe before the blueprint installation starts.</li>
-</ul>
-<p>To learn more about these and check the Ranger recipe out, take a look at the <a href="../recipes/">Cluster customization</a></p>
-<h2 id="cluster-deployment">Cluster deployment</h2>
+<h2 id="cluster-deployment">Cluster Deployment</h2>
 <p>After all the cluster resources are configured you can deploy a new HDP cluster.</p>
 <p>Here is a <strong>basic flow for cluster creation on Cloudbreak Web UI</strong>:</p>
 <ul>
 <li>Start by selecting a previously created GCP credential in the header.</li>
-</ul>
-<p><img alt="" src="../images/ui-credentials_v2.png" />
-<sub><em>Full size <a href="../images/ui-credentials_v2.png">here</a>.</em></sub></p>
-<ul>
 <li>Open <code>create cluster</code></li>
 </ul>
 <p><code>Configure Cluster</code> tab</p>
@@ -684,7 +731,6 @@ The most <strong>notable example is Ranger setup</strong>:</p>
 </ul>
 <p><code>Setup Network and Security</code> tab</p>
 <ul>
-<li>Select one of the networks</li>
 <li>Select one of the security groups</li>
 <li>Click on the <code>Choose Blueprint</code> button<blockquote>
 <p>If <code>Enable security</code> is checked as well, Cloudbreak will install Key Distribution Center (KDC) and the cluster will 
@@ -697,10 +743,14 @@ be Kerberized. See more about it in the <a href="../kerberos/">Kerberos</a> sect
 <li>Select one of the blueprint</li>
 <li>After you've selected a <code>Blueprint</code>, you should be able to configure:<ul>
 <li>the templates</li>
+<li>the securitygroups</li>
 <li>the number of nodes for all of the host groups in the blueprint</li>
-<li>the recipes for nodes</li>
 </ul>
 </li>
+<li>You need to select where you want to install the Ambari server to. Only 1 host group can be selected.
+   If you want to install the Ambari server to a separate node, you need to extend your blueprint with a new host group
+   which contains only 1 service: HDFS_CLIENT and select this host group for the Ambari server. Note: this host group cannot be scaled so 
+   it is not advised to select a 'slave' host group for this purpose.</li>
 <li>Click on the <code>Add File System</code> button</li>
 </ul>
 <p><code>Add File System</code> tab</p>
@@ -728,29 +778,30 @@ Documentation.</p>
 <p>Besides these you can check the progress on the Cloudbreak Web UI itself if you open the new cluster's <code>Event History</code>.
 <img alt="" src="../gcp/images/gcp-eventhistory.png" />
 <sub><em>Full size <a href="../gcp/images/gcp-eventhistory.png">here</a>.</em></sub></p>
-<p><strong>Advanced options</strong></p>
+<h3 id="advanced-options">Advanced Options</h3>
 <p>There are some advanced features when deploying a new cluster, these are the following:</p>
+<p><code>Ambari Username</code> This user will be used as admin user in Ambari. You can log in using this username on the Ambari UI.</p>
+<p><code>Ambari Password</code> The password associated with the Ambari username. This password will be also the default password for all required passwords which are not specified in the blueprint. E.g: hive DB password.</p>
 <p><code>Availability Zone</code> You can restrict the instances to a <a href="https://cloud.google.com/compute/docs/zones">specific availability zone</a>. It may be useful if you're using
  reserved instances.</p>
-<p><code>Minimum cluster size</code> The provisioning strategy in case of the cloud provider cannot allocate all the requested nodes.</p>
+<p><code>Minimum cluster size</code> The provisioning strategy in case the cloud provider cannot allocate all the requested nodes.</p>
 <p><code>Validate blueprint</code> This is selected by default. Cloudbreak validates the Ambari blueprint in this case.</p>
-<p><code>Shipyard enabled cluster</code> This is selected by default. Cloudbreak will start a <a href="https://shipyard-project.com/">Shipyard</a> container which helps you to manage your containers.</p>
-<p><code>Config recommendation strategy</code> Strategy for configuration recommendations how will be applied. Recommended 
+<p><code>Custom Image</code> If you enable this, you can override the default image for provision.</p>
+<p><code>Config recommendation strategy</code> Strategy for how configuration recommendations will be applied. Recommended 
 configurations gathered by the response of the stack advisor. </p>
 <ul>
 <li><code>NEVER_APPLY</code>               Configuration recommendations are ignored with this option.</li>
 <li><code>ONLY_STACK_DEFAULTS_APPLY</code> Applies only on the default configurations for all included services.</li>
 <li><code>ALWAYS_APPLY</code>              Applies on all configuration properties.</li>
 </ul>
-<p><code>Start LDAP and configure SSSD</code> Enables the <a href="../sssd/">System Security Services Daemon</a> configuration.</p>
-<h2 id="cluster-termination">Cluster termination</h2>
+<h2 id="cluster-termination">Cluster Termination</h2>
 <p>You can terminate running or stopped clusters with the <code>terminate</code> button in the cluster details.</p>
 <blockquote>
-<p><strong>IMPORTANT</strong> Always use Cloudbreak to terminate the cluster. If that fails for some reason, try to delete the 
+<p><strong>IMPORTANT:</strong> Always use Cloudbreak to terminate the cluster. If that fails for some reason, try to delete the 
 GCP instances first. Instances are started in an Auto Scaling Group so they may be restarted if you terminate an 
 instance manually!</p>
 </blockquote>
-<p>Sometimes Cloudbreak cannot synchronize it's state with the cluster state at the cloud provider and the cluster can't
+<p>Sometimes Cloudbreak cannot synchronize its state with the cluster state at the cloud provider and the cluster can't
  be terminated. In this case the <code>Forced termination</code> option can help to terminate the cluster at the Cloudbreak 
  side. <strong>If it has happened:</strong></p>
 <ol>
@@ -800,10 +851,10 @@ instance manually!</p>
 example if your <code>cbd</code> working directory is <code>~/cloudbreak-deployment</code> then copy your <strong>blueprint JSON, public ssh key 
 file...etc.</strong> to here. You can refer to these files with their names from the shell.</p>
 </blockquote>
-<h2 id="autocomplete-and-hints">Autocomplete and hints</h2>
-<p>Cloudbreak Shell helps to you with <strong>hint messages</strong> from the very beginning, for example:</p>
+<h2 id="autocomplete-and-hints">Autocomplete and Hints</h2>
+<p>Cloudbreak Shell helps you with <strong>hint messages</strong> from the very beginning, for example:</p>
 <pre><code>cloudbreak-shell&gt;hint
-Hint: Add a blueprint with the 'blueprint add' command or select an existing one with 'blueprint select'
+Hint: Add a blueprint with the 'blueprint create' command or select an existing one with 'blueprint select'
 cloudbreak-shell&gt;
 </code></pre>
 
@@ -812,8 +863,8 @@ cloudbreak-shell&gt;
 credential create --AWS          credential create --AZURE        credential create --EC2          credential create --GCP          credential create --OPENSTACK
 </code></pre>
 
-<h1 id="provisioning-via-cli">Provisioning via CLI</h1>
-<h2 id="setting-up-gcp-credential">Setting up GCP credential</h2>
+<h1 id="cluster-provisioning-via-cli">Cluster Provisioning via CLI</h1>
+<h2 id="setting-up-gcp-credential">Setting up GCP Credential</h2>
 <p>Cloudbreak works by connecting your GCP account through so called Credentials, and then uses these credentials to 
 create resources on your behalf. Credentials can be configured with the following command for example:</p>
 <pre><code>credential create --GCP --description &quot;sample description&quot; --name my-gcp-credential --projectId &lt;your gcp projectid&gt; 
@@ -822,7 +873,7 @@ create resources on your behalf. Credentials can be configured with the followin
 </code></pre>
 
 <blockquote>
-<p><strong>NOTE</strong> that Cloudbreak <strong>does not set your cloud user details</strong> - we work around the concept of GCP Service 
+<p><strong>NOTE:</strong> Cloudbreak <strong>does not set your cloud user details</strong> - we work around the concept of GCP Service 
 Account Credentials. You should have already a valid GCP service account. You can find further details <a href="./#provisioning-prerequisites">here</a>.</p>
 </blockquote>
 <p>Alternatives to provide <code>SSH Key</code>:</p>
@@ -838,36 +889,37 @@ Account Credentials. You should have already a valid GCP service account. You ca
 <pre><code>credential select --name my-gcp-credential
 </code></pre>
 
-<h2 id="infrastructure-templates_1">Infrastructure templates</h2>
-<p>After your GCP account is linked to Cloudbreak you can start creating resource templates that describe your clusters' 
+<h2 id="infrastructure-templates_1">Infrastructure Templates</h2>
+<p>After your GCP account is linked to Cloudbreak you can start creating resource templates that describe your clusters'
 infrastructure:</p>
 <ul>
 <li>security groups</li>
 <li>networks</li>
 <li>templates</li>
 </ul>
-<p>When you create one of the above resource, <strong>Cloudbreak does not make any requests to GCP. Resources are only created
- on GCP after the <code>cluster create</code> has applied.</strong> These templates are saved to Cloudbreak's database and can be 
+<p>When you create one of the above resources, <strong>Cloudbreak does not make any requests to GCP. Resources are only created
+ on GCP after the <code>cluster create</code> has applied.</strong> These templates are saved to Cloudbreak's database and can be
  reused with multiple clusters to describe the infrastructure.</p>
-<p><strong>Templates</strong></p>
+<h4 id="templates_1">Templates</h4>
 <p>Templates describe the <strong>instances of your cluster</strong> - the instance type and the attached volumes. A typical setup is
  to combine multiple templates in a cluster for the different types of nodes. For example you may want to attach multiple
  large disks to the datanodes or have memory optimized instances for Spark nodes.</p>
-<p>A template can be used repeatedly to create identical copies of the same stack (or to use as a foundation to start a 
+<p>A template can be used repeatedly to create identical copies of the same stack (or to use as a foundation to start a
 new stack). Templates can be configured with the following command for example:</p>
 <pre><code>template create --GCP --name my-gcp-template --instanceType n1-standard-2 --volumeCount 2 --volumeSize 100
 </code></pre>
 
 <p>Other available options here:</p>
-<p><code>--volumeType</code> The default is <code>pd-standard</code> (HDD), other allowed value is <code>pd-ssd</code> 
+<p><code>--volumeType</code> The default is <code>pd-standard</code> (HDD), other allowed value is <code>pd-ssd</code>
 (SSD).</p>
-<p><code>--publicInAccount</code> is true, all the users belonging to your account will be able to use this template 
+<p><code>--preemptible</code> is true, the template will be <a href="https://cloud.google.com/compute/docs/instances/preemptible">preemptible</a></p>
+<p><code>--publicInAccount</code> is true, all the users belonging to your account will be able to use this template
 to create clusters, but cannot delete it.</p>
 <p>You can check whether the template was created successfully</p>
 <pre><code>template list
 </code></pre>
 
-<p><strong>Networks</strong></p>
+<h4 id="networks_1">Networks</h4>
 <p>Your clusters can be created in their own <strong>networks</strong> or in one of your already existing one. If you choose an 
 existing network, it is possible to create a new subnet within the network. The subnet's IP range must be defined in 
 the <code>Subnet (CIDR)</code> field using the general CIDR notation. You can read more about <a href="https://cloud.google.com/compute/docs/networking#networks">GCP Networks</a> and <a href="https://cloud.google.com/compute/docs/networking#subnet_network">Subnet networks</a>.</p>
@@ -888,8 +940,8 @@ to create clusters, but cannot delete it.</p>
 <p><code>--subnet</code> specified subnet which will be used by the cluster (will be created under the provisioning).</p>
 <p><code>--subnetId</code> if you have an existing subnet in the network then you can specify the id here and the cluster will use that existing subnet.</p>
 <blockquote>
-<p><strong>IMPORTANT</strong> Please make sure the defined subnet here doesn't overlap with any of your 
-already deployed subnet in the network, because of the validation only happens after the cluster creation starts.</p>
+<p><strong>IMPORTANT:</strong> Make sure the defined subnet here doesn't overlap with any of your 
+already deployed subnet in the network, because the validation only happens after the cluster creation starts.</p>
 <p>In case of existing subnet make sure you have enough room within your network space for the new instances. The 
 provided subnet CIDR will be ignored, but a proper CIDR range will be used.</p>
 </blockquote>
@@ -898,20 +950,20 @@ provided subnet CIDR will be ignored, but a proper CIDR range will be used.</p>
 </code></pre>
 
 <blockquote>
-<p><strong>NOTE</strong> The new networks are created on GCP only after the the cluster provisioning starts with the selected 
+<p><strong>NOTE:</strong> The new networks are created on GCP only after the the cluster provisioning starts with the selected 
 network template.</p>
 </blockquote>
-<h2 id="defining-cluster-services_1">Defining cluster services</h2>
-<p><strong>Blueprints</strong></p>
+<h2 id="defining-cluster-services_1">Defining Cluster Services</h2>
+<h4 id="blueprints_1">Blueprints</h4>
 <p>Blueprints are your declarative definition of a Hadoop cluster. These are the same blueprints that are <a href="https://cwiki.apache.org/confluence/display/AMBARI/Blueprints">used by Ambari</a>.</p>
 <p>You can use the 3 default blueprints pre-defined in Cloudbreak or you can create your own ones.
-Blueprints can be added from file or URL (an <a href="https://raw.githubusercontent.com/sequenceiq/cloudbreak/master/integration-test/src/main/resources/blueprint/multi-node-hdfs-yarn.bp">example blueprint</a>).</p>
+Blueprints can be added from file or URL (an <a href="https://raw.githubusercontent.com/hortonworks/cloudbreak/master/integration-test/src/main/resources/blueprint/multi-node-hdfs-yarn.bp">example blueprint</a>).</p>
 <p>The host groups in the JSON will be mapped to a set of instances when starting the cluster. Besides this the services and
  components will also be installed on the corresponding nodes. Blueprints can be modified later from the Ambari UI.</p>
 <blockquote>
-<p><strong>NOTE</strong> Not necessary to define all the configuration in the blueprint. If a configuration is missing, Ambari will fill that with a default value.</p>
+<p><strong>NOTE:</strong> It is not necessary to define all the configuration in the blueprint. If a configuration is missing, Ambari will fill that with a default value.</p>
 </blockquote>
-<pre><code>blueprint add --name my-blueprint --description &quot;sample description&quot; --file &lt;the path of the blueprint&gt;
+<pre><code>blueprint create --name my-blueprint --description &quot;sample description&quot; --file &lt;the path of the blueprint&gt;
 </code></pre>
 
 <p>Other available options:</p>
@@ -927,18 +979,7 @@ modifications.</strong>
 There is no automatic way to modify an exported blueprint and make it instantly usable in Cloudbreak, the 
 modifications have to be done manually.
 When the blueprint is exported some configurations are hardcoded for example domain names, memory configurations..etc. that won't be applicable to the Cloudbreak cluster.</p>
-<p><strong>Cluster customization</strong></p>
-<p>Sometimes it can be useful to <strong>define some custom scripts so called Recipes in Cloudbreak</strong> that run during cluster 
-creation and add some additional functionality.</p>
-<p>For example it can be a service you'd like to install but it's not supported by Ambari or some script that 
-automatically downloads some data to the necessary nodes.
-The most <strong>notable example is Ranger setup</strong>:</p>
-<ul>
-<li>It has a prerequisite of a running database when Ranger Admin is installing.</li>
-<li>A PostgreSQL database can be easily started and configured with a recipe before the blueprint installation starts.</li>
-</ul>
-<p>To learn more about these and check the Ranger recipe out, take a look at the <a href="../recipes/">Cluster customization</a></p>
-<h2 id="metadata-show">Metadata show</h2>
+<h2 id="metadata-show">Metadata Show</h2>
 <p>You can check the stack metadata with</p>
 <pre><code>stack metadata --name myawsstack --instancegroup master
 </code></pre>
@@ -946,52 +987,49 @@ The most <strong>notable example is Ranger setup</strong>:</p>
 <p>Other available options:</p>
 <p><code>--id</code> In this case you can select a stack with id.</p>
 <p><code>--outputType</code> In this case you can modify the outputformat of the command (RAW or JSON). </p>
-<h2 id="cluster-deployment_1">Cluster deployment</h2>
+<h2 id="cluster-deployment_1">Cluster Deployment</h2>
 <p>After all the cluster resources are configured you can deploy a new HDP cluster. The following sub-sections show 
 you a <strong>basic flow for cluster creation with Cloudbreak Shell</strong>.</p>
-<p><strong>Select credential</strong></p>
+<h4 id="select-credential">Select Credential</h4>
 <p>Select one of your previously created GCP credential:</p>
 <pre><code>credential select --name my-gcp-credential
 </code></pre>
 
-<p><strong>Select blueprint</strong></p>
+<h4 id="select-blueprint">Select Blueprint</h4>
 <p>Select one of your previously created blueprint which fits your needs:</p>
 <pre><code>blueprint select --name multi-node-hdfs-yarn
 </code></pre>
 
-<p><strong>Configure instance groups</strong></p>
+<h4 id="configure-instance-groups">Configure Instance Groups</h4>
 <p>You must configure instance groups before provisioning. An instance group define a group of nodes with a specified 
-template. Usually we create instance groups for host groups in the blueprint.</p>
-<pre><code>instancegroup configure --instanceGroup cbgateway --nodecount 1 --templateName minviable-gcp
-instancegroup configure --instanceGroup master --nodecount 1 --templateName minviable-gcp
-instancegroup configure --instanceGroup slave_1 --nodecount 1 --templateName minviable-gcp
+template. Usually we create instance groups for host groups in the blueprint. For Ambari server only 1 host group can be specified.
+If you want to install the Ambari server to a separate node, you need to extend your blueprint with a new host group
+which contains only 1 service: HDFS_CLIENT and select this host group for the Ambari server. Note: this host group cannot be scaled so 
+it is not advised to select a 'slave' host group for this purpose.</p>
+<pre><code>instancegroup configure --instanceGroup master --nodecount 1 --templateName minviable-aws --securityGroupName all-services-port --ambariServer true
+instancegroup configure --instanceGroup slave_1 --nodecount 1 --templateName minviable-aws --securityGroupName all-services-port --ambariServer false
 </code></pre>
 
 <p>Other available option:</p>
 <p><code>--templateId</code> Id of the template</p>
-<p><strong>Select network</strong></p>
+<h4 id="select-network">Select Network</h4>
 <p>Select one of your previously created network which fits your needs or a default one:</p>
 <pre><code>network select --name default-gcp-network
 </code></pre>
 
-<p><strong>Select security group</strong></p>
-<p>Select one of your previously created security which fits your needs or a default one:</p>
-<pre><code>securitygroup select --name all-services-port
-</code></pre>
-
-<p><strong>Create stack / Create cloud infrastructure</strong></p>
+<h4 id="create-stack-create-cloud-infrastructure">Create Stack / Create Cloud Infrastructure</h4>
 <p>Stack means the running cloud infrastructure that is created based on the instance groups configured earlier 
 (<code>credential</code>, <code>instancegroups</code>, <code>network</code>, <code>securitygroup</code>). Same as in case of the API or UI the new cluster will 
 use your templates and by using GCP will launch your cloud stack. Use the following command to create a 
 stack to be used with your Hadoop cluster:</p>
-<pre><code>stack create --name mygcpstack --region us-central1
+<pre><code>stack create --GCP --name mygcpstack --region us-central1
 </code></pre>
 
 <p>The infrastructure is created asynchronously, the state of the stack can be checked with the stack <code>show command</code>. If 
 it reports AVAILABLE, it means that the virtual machines and the corresponding infrastructure is running at the cloud provider.</p>
 <p>Other available option is:</p>
 <p><code>--wait</code> - in this case the create command will return only after the process has finished. </p>
-<p><strong>Create a Hadoop cluster / Cloud provisioning</strong></p>
+<h4 id="create-a-hadoop-cluster-cloud-provisioning">Create a Hadoop cluster / Cloud Provisioning</h4>
 <p><strong>You are almost done! One more command and your Hadoop cluster is starting!</strong> Cloud provisioning is done once the 
 cluster is up and running. The new cluster will use your selected blueprint and install your custom Hadoop cluster 
 with the selected components and services.</p>
@@ -1025,7 +1063,7 @@ new cluster's <code>details</code> and its <code>Event History</code> here.</li>
 </ul>
 <p><img alt="" src="../gcp/images/gcp-eventhistory_2.png" />
 <sub><em>Full size <a href="../gcp/images/gcp-eventhistory_2.png">here</a>.</em></sub></p>
-<p><strong>Stop cluster</strong></p>
+<h4 id="stop-cluster">Stop Cluster</h4>
 <p>You have the ability to <strong>stop your existing stack then its cluster</strong> if you want to suspend the work on it.</p>
 <p>Select a stack for example with its name:</p>
 <pre><code>stack select --name my-stack
@@ -1038,7 +1076,7 @@ selected stack:</p>
 stack stop
 </code></pre>
 
-<p><strong>Restart cluster</strong></p>
+<h4 id="restart-cluster">Restart Cluster</h4>
 <p><strong>Select your stack that you would like to restart</strong> after this you can apply:</p>
 <pre><code>stack start
 </code></pre>
@@ -1047,7 +1085,7 @@ stack stop
 <pre><code>cluster start
 </code></pre>
 
-<p><strong>Upscale cluster</strong></p>
+<h4 id="upscale-cluster">Upscale Cluster</h4>
 <p>If you need more instances to your infrastructure, you can <strong>upscale your selected stack</strong>:</p>
 <pre><code>stack node --ADD --instanceGroup host_group_slave_1 --adjustment 6
 </code></pre>
@@ -1057,7 +1095,7 @@ stack stop
 <pre><code>cluster node --ADD --hostgroup host_group_slave_1 --adjustment 6
 </code></pre>
 
-<p><strong>Downscale cluster</strong></p>
+<h4 id="downscale-cluster">Downscale Cluster</h4>
 <p>You also can reduce the number of instances in your infrastructure. <strong>After you selected your stack</strong>:</p>
 <pre><code>cluster node --REMOVE  --hostgroup host_group_slave_1 --adjustment -2
 </code></pre>
@@ -1067,24 +1105,24 @@ stack stop
 <pre><code>stack node --REMOVE  --instanceGroup host_group_slave_1 --adjustment -2
 </code></pre>
 
-<h2 id="cluster-termination_1">Cluster termination</h2>
+<h2 id="cluster-termination_1">Cluster Termination</h2>
 <p>You can terminate running or stopped clusters with</p>
-<pre><code>stack terminate --name myawsstack
+<pre><code>stack delete --name myawsstack
 </code></pre>
 
 <p>Other available option is <code>--wait</code> - in this case the terminate command will return only after the process has finished. </p>
 <blockquote>
-<p><strong>IMPORTANT</strong> Always use Cloudbreak to terminate the cluster. If that fails for some reason, try to delete the 
+<p><strong>IMPORTANT:</strong> Always use Cloudbreak to terminate the cluster. If that fails for some reason, try to delete the 
 CloudFormation stack first. Instances are started in an Auto Scaling Group so they may be restarted if you terminate an instance manually!</p>
 </blockquote>
-<p>Sometimes Cloudbreak cannot synchronize it's state with the cluster state at the cloud provider and the cluster can't
+<p>Sometimes Cloudbreak cannot synchronize its state with the cluster state at the cloud provider and the cluster can't
  be terminated. In this case the <code>Forced termination</code> option on the Cloudbreak Web UI can help to terminate the cluster
   at the Cloudbreak side. <strong>If it has happened:</strong></p>
 <ol>
 <li>You should check the related resources at the AWS CloudFormation</li>
-<li>If it is needed you need to manually remove resources from ther</li>
+<li>If it is needed you need to manually remove resources from there</li>
 </ol>
-<h2 id="silent-mode">Silent mode</h2>
+<h2 id="silent-mode">Silent Mode</h2>
 <p>With Cloudbreak Shell you can execute script files as well. A script file contains shell commands and can 
 be executed with the <code>script</code> cloudbreak shell command</p>
 <pre><code>script &lt;your script file&gt;
@@ -1095,7 +1133,7 @@ be executed with the <code>script</code> cloudbreak shell command</p>
 </code></pre>
 
 <blockquote>
-<p><strong>IMPORTANT</strong> You have to copy all your files into the <code>cbd</code> working directory, what you would like to use in shell.
+<p><strong>IMPORTANT:</strong> You have to copy all your files into the <code>cbd</code> working directory, what you would like to use in shell.
  For example if your <code>cbd</code> working directory is ~/cloudbreak-deployment then copy your script file to here.</p>
 </blockquote>
 <h3 id="example">Example</h3>
@@ -1108,21 +1146,19 @@ credential select --name my-gcp-credential
 template create --GCP --name gcptemplate --description gcp-template --instanceType n1-standard-4 --volumeSize 100 
 --volumeCount 2
 blueprint select --name hdp-small-default
-instancegroup configure --instanceGroup cbgateway --nodecount 1 --templateName gcptemplate
-instancegroup configure --instanceGroup host_group_master_1 --nodecount 1 --templateName gcptemplate
-instancegroup configure --instanceGroup host_group_master_2 --nodecount 1 --templateName gcptemplate
-instancegroup configure --instanceGroup host_group_master_3 --nodecount 1 --templateName gcptemplate
-instancegroup configure --instanceGroup host_group_client_1  --nodecount 1 --templateName gcptemplate
-instancegroup configure --instanceGroup host_group_slave_1 --nodecount 3 --templateName gcptemplate
+instancegroup configure --instanceGroup host_group_master_1 --nodecount 1 --templateName gcptemplate --securityGroupName all-services-port --ambariServer true
+instancegroup configure --instanceGroup host_group_master_2 --nodecount 1 --templateName gcptemplate --securityGroupName all-services-port --ambariServer false
+instancegroup configure --instanceGroup host_group_master_3 --nodecount 1 --templateName gcptemplate --securityGroupName all-services-port --ambariServer false
+instancegroup configure --instanceGroup host_group_client_1  --nodecount 1 --templateName gcptemplate --securityGroupName all-services-port --ambariServer false
+instancegroup configure --instanceGroup host_group_slave_1 --nodecount 3 --templateName gcptemplate --securityGroupName all-services-port --ambariServer false
 network select --name default-gcp-network
-securitygroup select --name all-services-port
-stack create --name my-first-stack --region us-central1
-cluster create --description &quot;My first cluster&quot;
+stack create --GCP --name my-first-stack --region us-central1 --wait true
+cluster create --description &quot;My first cluster&quot; --wait true
 </code></pre>
 
 <p><strong>Congratulations!</strong> Your cluster should now be up and running on this way as well. To learn more about Cloudbreak and 
-provisioning, we have some <a href="../operations/">interesting insights</a> for you</p>
-                    <a href="https://github.com/sequenceiq/cloudbreak-docs/blob/master/docs/gcp.md" ><i class="fa fa-github"></i> Edit on GitHub </a>
+provisioning, we have some <a href="../operations/">interesting insights</a> for you.</p>
+                    <a href="https://github.com/hortonworks/cloudbreak-docs/blob/master/docs/gcp.md" ><i class="fa fa-github"></i> Edit on GitHub </a>
                 </div>
             
         </div>
@@ -1167,10 +1203,10 @@ provisioning, we have some <a href="../operations/">interesting insights</a> for
 
          <script>
            $( document ).ready(function() {
-               $.getJSON("http://sequenceiq.com/cloudbreak-docs/versions.json", function(data) {
-               $("#versions-dropdown").append('<li><a href="http://sequenceiq.com/cloudbreak-docs/latest">latest ('+data.latest+')</a></li>');
+               $.getJSON("http://hortonworks.github.io/cloudbreak-docs//versions.json", function(data) {
+               $("#versions-dropdown").append('<li><a href="http://hortonworks.github.io/cloudbreak-docs//latest">latest ('+data.latest+')</a></li>');
                 $.each(data.versions, function( index, value ) {
-                  $("#versions-dropdown").append('<li><a href="http://sequenceiq.com/cloudbreak-docs/'+value+'">'+value+'</a></li>');
+                  $("#versions-dropdown").append('<li><a href="http://hortonworks.github.io/cloudbreak-docs//'+value+'">'+value+'</a></li>');
                 });
                });
 
@@ -1206,11 +1242,11 @@ provisioning, we have some <a href="../operations/">interesting insights</a> for
                $("#cloudbreak-deployer-image").append('<br>');
                $("#cloudbreak-deployer-image").append('<br>');
                $("#cloudbreak-deployer-image").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">Download the latest Cloudbreak Deployer image to your local machine:</p>');
-               $("#cloudbreak-deployer-image").append('<pre><code style="font-size: 12pt;color:#333333">curl -O -k https://public-repo-1.hortonworks.com/HDP/cloudbreak/' + data.id + '</code></pre>');
+               $("#cloudbreak-deployer-image").append('<pre><code style="font-size: 12pt;color:#333333">curl -O https://public-repo-1.hortonworks.com/HDP/cloudbreak/' + data.metadata.image_name + '.img</code></pre>');
                $("#cloudbreak-deployer-import").append('<br>');
                $("#cloudbreak-deployer-import").append('<br>');
                $("#cloudbreak-deployer-import").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">Set the following environment variables for the OpenStack image import:</p>');
-               $("#cloudbreak-deployer-import").append('<pre><code style="font-size: 12px;color:#333333">export CBD_LATEST_IMAGE=</code>' + data.id + '</code></p>');
+               $("#cloudbreak-deployer-import").append('<pre><code style="font-size: 12px;color:#333333">export CBD_LATEST_IMAGE=</code>' + data.metadata.image_name + '.img</code></p>');
                });
 
                <!--OpenStack CB-->
@@ -1218,18 +1254,19 @@ provisioning, we have some <a href="../operations/">interesting insights</a> for
                $("#cloudbreak-image").append('<br>');
                $("#cloudbreak-image").append('<br>');
                $("#cloudbreak-image").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">Download the latest Cloudbreak image to your local machine:</p>');
-               $("#cloudbreak-image").append('<pre><code style="font-size: 12pt;color:#333333">curl -O -k https://public-repo-1.hortonworks.com/HDP/cloudbreak/' + data.id + '</code></pre>');
+               $("#cloudbreak-image").append('<pre><code style="font-size: 12pt;color:#333333">curl -O https://public-repo-1.hortonworks.com/HDP/cloudbreak/' + data.metadata.image_name + '.img</code></pre>');
                $("#cloudbreak-import").append('<br>');
                $("#cloudbreak-import").append('<br>');
-               $("#cloudbreak-import").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">This is very similar to the Cloudbrek Deployer. Set the following environment variables for the OpenStack image import:</p>');
-               $("#cloudbreak-import").append('<pre><code style="font-size: 12px;color:#333333">export CB_LATEST_IMAGE=</code>' + data.id + '</code></p>');
+               $("#cloudbreak-import").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">This is very similar to the Cloudbreak Deployer. Set the following environment variables for the OpenStack image import:</p>');
+               $("#cloudbreak-import").append('<pre><code style="font-size: 12px;color:#333333">export CB_LATEST_IMAGE=</code>' + data.metadata.image_name + '.img</code></p>');
                });
 
                <!--GCP-->
                $.getJSON("../providers/gcp.json", function(data) {
                $("#cloudbreak-deployer-gcp-image-details").append('<br>');
                $("#cloudbreak-deployer-gcp-image-details").append('<br>');
-               $("#cloudbreak-deployer-gcp-image-details").append('<pre><code style="font-size: 12pt;color:#333333">' + data.gcp.import_script + '</code></pre>');
+               $("#cloudbreak-deployer-gcp-image-details").append('<pre><code style="font-size: 12pt;color:#333333"> gcloud compute images create '
+                   + data.id + ' --source-uri gs://sequenceiqimage/' + data.id + '.tar.gz' + '</code></pre>');
                });
            });
          </script>

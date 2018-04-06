@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="http://hortonworks.github.io/cloudbreak-docs/security/">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+
+	<title>Cloudbreak Security - Cloudbreak 1.16.5</title>
+
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="../css/highlight.css">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation" background="red">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+            <img class="navbar-logo" src="../img/HWX-RGB-full-no-tagline_500pxh.png" alt="Hortonworks Documentation"
+                 width="132" height="52">
+            <a class="navbar-brand" href="..">Cloudbreak 1.16.5</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Home <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="..">Introduction</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../architecture/">Architecture</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../onprem/">Installation</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../releasenotes/">Release Notes</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../issues/">Known Issues</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../changelog/">Change Log</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../aws/">AWS</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../azure/">Azure</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../gcp/">GCP</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../openstack/">OpenStack</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reference <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../api/">API</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../shell/">CLI/Shell</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../customizations/">Customizations</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../development/">Local Development</a>
+</li>
+
+                        
+                            
+<li class="active">
+    <a href="./">Cloudbreak Security</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../update/">Update Cloudbreak</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../ui_account/">Account Management</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../periscope/">Auto-Scaling</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../recipes/">Recipes</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../blueprints/">Blueprints</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../images/">Custom Images (TP)</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../topologies/">Platforms (TP)</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../kerberos/">Kerberos (TP)</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../ldap/">LDAP/AD (TP)</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../mesos/">Mesos (TP)</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../spi/">SPI</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../operations/">Basic Operations</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../configuration/">Advanced Configuration</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Database configuration</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../cloudbreak_database/">Cloudbreak Database</a>
+</li>
+
+        
+            
+<li >
+    <a href="../ambari_database/">Ambari Database (TP)</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Development</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../flow/">Flows</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../help/">Get Help</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+            
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Versions <b class="caret"></b></a>
+                    <ul class="dropdown-menu" id="versions-dropdown">
+                    </ul>
+                </li>
+                
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                
+                    <li >
+                        <a rel="next" href="../development/">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../update/">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a href="https://github.com/hortonworks/cloudbreak-docs/blob/master/docs/" >
+                            
+                                <i class="fa fa-github"></i>
+                            
+                            GitHub
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+            
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#cloudbreak-security">Cloudbreak Security</a></li>
+        
+    
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+                    
+
+<h1 id="cloudbreak-security">Cloudbreak Security</h1>
+<p>Security is very important in general, but it is the most important in production environments. Cloudbreak comes with default settings, but those settings are aiming for easy first dating, not strict security. So first of all you can block all communication ports except 443 on the firewall / security group / whatever you use. It is strongly recommended to open SSH port (usually 22) if you have to log in to the Cloudbreak host remotely.</p>
+<p>The second step is to configure the Profile file before starting Cloudbreak for the first time. As a starting point, execute the following command in the directory where you want to store Cloudbreak related files:</p>
+<pre><code>echo export PUBLIC_IP=[the ip or hostname to bind] &gt; Profile
+</code></pre>
+
+<p>After you have a base Profile you should add custom properties to the Profile file:</p>
+<pre><code>export UAA_DEFAULT_SECRET='[custom secret]'
+export UAA_DEFAULT_USER_EMAIL='[default admin email address]'
+export UAA_DEFAULT_USER_PW='[default admin password]'
+export UAA_DEFAULT_USER_FIRSTNAME='[default admin first name]'
+export UAA_DEFAULT_USER_LASTNAME='[default admin last name]'
+</code></pre>
+
+<p>Cloudbreak has more additional secrets which by default inherits their values from <code>UAA_DEFAULT_SECRET</code>, but you should also define different ones in the Profile for each of the service clients:</p>
+<pre><code>export UAA_CLOUDBREAK_SECRET='[cloudbreak secret]'
+export UAA_PERISCOPE_SECRET='[auto scaling secret]'
+export UAA_ULUWATU_SECRET='[web ui secret]'
+export UAA_SULTANS_SECRET='[authenticator secret]'
+</code></pre>
+
+<p>You can change secrets any time except <code>UAA_CLOUDBREAK_SECRET</code>, because it is used to encrypt sensitive information at database level. Client secret changes are applied during startup so a restart is required after a change.</p>
+<p>As you see <code>UAA_DEFAULT_USER_PW</code> is stored in plain text format, but if <code>UAA_DEFAULT_USER_PW</code> is missing from the Profile, it gets a default value. Because default password is not an option if you set an empty password explicitly in the Profile, Cloudbreak deployer will ask for password all the time when it is needed for the operation.</p>
+<pre><code>export UAA_DEFAULT_USER_PW=''
+</code></pre>
+
+<p>In this case Cloudbreak deployer wouldn't be able to add the default user, so you have to do it manually by executing the following command:</p>
+<pre><code>cbd util add-default-user
+</code></pre>
+                    <a href="https://github.com/hortonworks/cloudbreak-docs/blob/master/docs/security.md" ><i class="fa fa-github"></i> Edit on GitHub </a>
+                </div>
+            
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            
+            <center>Documentation built with <a href="https://gliderlabs.com/pagebuilder">Pagebuilder</a>.</center>
+        </footer>
+
+        <script src="../js/jquery-1.10.2.min.js"></script>
+        <script src="../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../js/highlight.pack.js"></script>
+        <script>var base_url = '..';</script>
+        <script data-main="../mkdocs/js/search.js" src="../mkdocs/js/require.js"></script>
+        <script src="../js/base.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            From here you can search these documents. Enter
+                            your search terms below.
+                        </p>
+                        <form role="form">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                            </div>
+                        </form>
+                        <div id="mkdocs-search-results"></div>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+         <script>
+           $( document ).ready(function() {
+               $.getJSON("http://hortonworks.github.io/cloudbreak-docs//versions.json", function(data) {
+               $("#versions-dropdown").append('<li><a href="http://hortonworks.github.io/cloudbreak-docs//latest">latest ('+data.latest+')</a></li>');
+                $.each(data.versions, function( index, value ) {
+                  $("#versions-dropdown").append('<li><a href="http://hortonworks.github.io/cloudbreak-docs//'+value+'">'+value+'</a></li>');
+                });
+               });
+
+               <!--AWS Table-->
+               $.getJSON("../providers/aws.json", function(data) {
+               $("#cloudbreak-deployer-aws-image-details").append('<br>');
+               $("#cloudbreak-deployer-aws-image-details").append('<br>');
+               $("#cloudbreak-deployer-aws-image-details").append('<table>');
+                 $("#cloudbreak-deployer-aws-image-details").append('<col width="290">');
+                 $("#cloudbreak-deployer-aws-image-details").append('<col width="290">');
+                 $("#cloudbreak-deployer-aws-image-details").append('<thead>');
+                  $("#cloudbreak-deployer-aws-image-details").append('<tr>');
+                   $("#cloudbreak-deployer-aws-image-details").append('<th halign="center" style="font-size: 14pt;border:none;border-bottom:solid #DDDDDD 1.5pt;padding:6.0pt 6.0pt 6.0pt 6.0pt">' + "Region" + '</th>');
+                   $("#cloudbreak-deployer-aws-image-details").append('<th halign="center" style="font-size: 14pt;border:none;border-bottom:solid #DDDDDD 1.5pt;padding:6.0pt 6.0pt 6.0pt 6.0pt">' + "Image Name" + '</th>');
+                  $("#cloudbreak-deployer-aws-image-details").append('</tr>');
+                 $("#cloudbreak-deployer-aws-image-details").append('</thead>');
+                $("#cloudbreak-deployer-aws-image-details").append('<tbody>');
+                 $.each(data.metadata, function( index, value ) {
+                 if (index.indexOf("region.") === 0) {
+                   shortIndex = index.substring(7)
+                  $("#cloudbreak-deployer-aws-image-details").append('<tr>');
+                   $("#cloudbreak-deployer-aws-image-details").append('<td halign="center" valign="center" text-align="left" style="font-size: 12pt;border:none;border-bottom:solid #DDDDDD 1.5pt;padding:6.0pt 6.0pt 6.0pt 6.0pt">' + shortIndex + '</td>');
+                   $("#cloudbreak-deployer-aws-image-details").append('<td halign="center" valign="center" text-align="right" style="font-size: 12pt;border:none;border-bottom:solid #DDDDDD 1.5pt;padding:6.0pt 6.0pt 6.0pt 6.0pt">' + value + '</td>');
+                  $("#cloudbreak-deployer-aws-image-details").append('</tr>');
+                  }
+                 });
+                $("#cloudbreak-deployer-aws-image-details").append('</tbody>');
+               $("#cloudbreak-deployer-aws-image-details").append('</table>');
+               });
+
+               <!--OpenStack CBD-->
+               $.getJSON("../providers/openstack.json", function(data) {
+               $("#cloudbreak-deployer-image").append('<br>');
+               $("#cloudbreak-deployer-image").append('<br>');
+               $("#cloudbreak-deployer-image").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">Download the latest Cloudbreak Deployer image to your local machine:</p>');
+               $("#cloudbreak-deployer-image").append('<pre><code style="font-size: 12pt;color:#333333">curl -O https://public-repo-1.hortonworks.com/HDP/cloudbreak/' + data.metadata.image_name + '.img</code></pre>');
+               $("#cloudbreak-deployer-import").append('<br>');
+               $("#cloudbreak-deployer-import").append('<br>');
+               $("#cloudbreak-deployer-import").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">Set the following environment variables for the OpenStack image import:</p>');
+               $("#cloudbreak-deployer-import").append('<pre><code style="font-size: 12px;color:#333333">export CBD_LATEST_IMAGE=</code>' + data.metadata.image_name + '.img</code></p>');
+               });
+
+               <!--OpenStack CB-->
+               $.getJSON("../providers/openstack_cloudbreak.json", function(data) {
+               $("#cloudbreak-image").append('<br>');
+               $("#cloudbreak-image").append('<br>');
+               $("#cloudbreak-image").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">Download the latest Cloudbreak image to your local machine:</p>');
+               $("#cloudbreak-image").append('<pre><code style="font-size: 12pt;color:#333333">curl -O https://public-repo-1.hortonworks.com/HDP/cloudbreak/' + data.metadata.image_name + '.img</code></pre>');
+               $("#cloudbreak-import").append('<br>');
+               $("#cloudbreak-import").append('<br>');
+               $("#cloudbreak-import").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">This is very similar to the Cloudbreak Deployer. Set the following environment variables for the OpenStack image import:</p>');
+               $("#cloudbreak-import").append('<pre><code style="font-size: 12px;color:#333333">export CB_LATEST_IMAGE=</code>' + data.metadata.image_name + '.img</code></p>');
+               });
+
+               <!--GCP-->
+               $.getJSON("../providers/gcp.json", function(data) {
+               $("#cloudbreak-deployer-gcp-image-details").append('<br>');
+               $("#cloudbreak-deployer-gcp-image-details").append('<br>');
+               $("#cloudbreak-deployer-gcp-image-details").append('<pre><code style="font-size: 12pt;color:#333333"> gcloud compute images create '
+                   + data.id + ' --source-uri gs://sequenceiqimage/' + data.id + '.tar.gz' + '</code></pre>');
+               });
+           });
+         </script>
+    </body>
+</html>

@@ -1,20 +1,19 @@
 {
-  "username": "sequenceiq",
+  "username": "hortonworks",
   "name": "cbd",
-  "Tag": "sequenceiq/cbd",
+  "tag": "hortonworks/cbd",
+  "slug": "hortonworks/cbd/openstack.image/93",
   "artifact_type": "openstack.image",
-  "id": "cloudbreak-deployer-121-2016-04-08.img",
-  "version": 9,
+  "id": "c1f91ed6-0415-4f8b-af86-8994a3a88688",
+  "version": 93,
   "metadata": {
-    "cbd_version": "1.2.1",
-    "created": "2016-04-07 13:33:52 +0000",
-    "created_at": "1458653632",
-    "image_name": "cloudbreak-deployer-121-2016-04-08",
+    "created": "2017-08-25 13:03:50 +0000",
     "os_user": "cloudbreak",
-    "yum_version_docker": "1.9.1"
+    "created_at": "1503666230",
+    "image_name": "cloudbreak-deployer-1165-2017-11-17.img",
+    "cbd_version": "1.16.5",
+    "yum_version_docker": "1.9.1",
+    "cbd_version_without_pre_release": "1.16.5"
   },
-  "file": true,
-  "slug": "sequenceiq/cbd/openstack.image/9",
-  "upload_path": "",
-  "upload_token": ""
+  "file": false
 }
