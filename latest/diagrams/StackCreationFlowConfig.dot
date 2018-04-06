@@ -1,11 +1,9 @@
 digraph {
 INIT_STATE [label="StackCreationFlowConfig" shape=ellipse color=green];
-INIT_STATE -> VALIDATION_STATE [label="START_CREATION_EVENT" color=black style=solid];
-VALIDATION_STATE -> SETUP_STATE [label="VALIDATION_FINISHED_EVENT" color=black style=solid];
-VALIDATION_STATE -> STACK_CREATION_FAILED_STATE [label="VALIDATION_FAILED_EVENT" color=red style=dashed];
-STACK_CREATION_FAILED_STATE -> FINAL_STATE [label="STACKCREATION_FAILURE_HANDLED_EVENT" color=red style=dashed];
+INIT_STATE -> SETUP_STATE [label="START_CREATION_EVENT" color=black style=solid];
 SETUP_STATE -> IMAGESETUP_STATE [label="SETUP_FINISHED_EVENT" color=black style=solid];
 SETUP_STATE -> STACK_CREATION_FAILED_STATE [label="SETUP_FAILED_EVENT" color=red style=dashed];
+STACK_CREATION_FAILED_STATE -> FINAL_STATE [label="STACKCREATION_FAILURE_HANDLED_EVENT" color=red style=dashed];
 IMAGE_CHECK_STATE [label="IMAGE_CHECK_STATE\nCheckImageAction" shape=rect color=black];
 IMAGESETUP_STATE -> IMAGE_CHECK_STATE [label="IMAGE_PREPARATION_FINISHED_EVENT" color=black style=solid];
 IMAGESETUP_STATE -> STACK_CREATION_FAILED_STATE [label="IMAGE_PREPARATION_FAILED_EVENT" color=red style=dashed];
