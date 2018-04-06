@@ -9,7 +9,7 @@
         <link rel="canonical" href="http://sequenceiq.com/cloudbreak-docs/azure/">
         <link rel="shortcut icon" href="../img/favicon.ico">
 
-	<title>Azure - Cloudbreak 1.14.0 (TP)</title>
+	<title>Azure - Cloudbreak 1.14.4</title>
 
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -45,7 +45,7 @@
             <!-- Main title -->
             <img class="navbar-logo" src="../img/HWX-RGB-full-no-tagline_500pxh.png" alt="Hortonworks Documentation"
                  width="132" height="52">
-            <a class="navbar-brand" href="..">Cloudbreak 1.14.0 (TP)</a>
+            <a class="navbar-brand" href="..">Cloudbreak 1.14.4</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -361,7 +361,7 @@
 <h1 id="azure-setup">Azure Setup</h1>
 <p>Setting up Cloudbreak on Azure is different than on other cloud providers for which we provide pre-built public images with Cloudbreak Deployer pre-installed. On Azure, you launch Cloudbreak Deployer using the <a href="https://github.com/Azure/azure-quickstart-templates">Azure Resource Manager Templates</a>.</p>
 <h2 id="deploy-using-the-azure-portal">Deploy Using the Azure Portal</h2>
-<p>To get started with Cloudbreak installation using the Azure Resource Manager template, click here: <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fsequenceiq%2Fazure-cbd-quickstart%2F1.14.0%2Fazuredeploy.json">  <img alt="deploy on azure" src="http://azuredeploy.net/deploybutton.png" /> </a></p>
+<p>To get started with Cloudbreak installation using the Azure Resource Manager template, click here: <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fsequenceiq%2Fazure-cbd-quickstart%2F1.14.4%2Fazuredeploy.json">  <img alt="deploy on azure" src="http://azuredeploy.net/deploybutton.png" /> </a></p>
 <h3 id="vm-requirements">VM Requirements</h3>
 <p>When selecting an instance type, consider these minimum and recomended requirements:<br />
 - 8GB RAM, 10GB disk, 2 cores 
@@ -803,6 +803,33 @@ capability to attach multiple security groups to an existing subnet. If you'd li
 </blockquote>
 <p><img alt="" src="../images/ui-secgroup_v3.png" />
 <sub><em>Full size <a href="../images/ui-secgroup_v3.png">here</a>.</em>&lt;/sub</p>
+<h4 id="availability-sets-and-rack-awareness">Availability sets and rack awareness</h4>
+<p><em>Availability sets</em></p>
+<p>Azure implements the concept of <a href="https://docs.microsoft.com/en-us/azure/virtual-machines/virtual-machines-linux-manage-availability">“Availability Sets”</a> to support fault tolerance for VM's. This feature allows two or more VM's to be mapped to multiple fault domains. Fault domains define the group of virtual machines that share a common power source and network switch. VM's with different fault domains are guaranteed an SLA. This SLA includes guarantees that during OS Patching in Azure or during maintenance operations, at least one VM belonging to a different fault domain will be available.</p>
+<p>Availability sets have either two or three Fault Domains, each sharing a common power source and network switch. When adding VM-s to an availability set, Azure automatically assigns each VM a Fault Domain.</p>
+<p>In Cloudbreak UI, availability sets can be configured during cluster creation. First, you have to enable availability sets with the checkbox under <code>Configure Cluster</code> tab. Then you can add the desired availability sets by providing a name and the desired fault domain count (2 or 3). </p>
+<p><img alt="" src="../azure/images/azure-availabilitysets-create.png" />
+<sub><em>Full size <a href="../azure/images/azure-availabilitysets-create.png">here</a>.</em></sub></p>
+<p>The sets defined here can be assigned to the hostgroups in <code>Choose Blueprint</code> tab. An availability set can be assigned to only one hostgroup so you should define as much availability set in advance as needed for your hostgroups. By default, there is no availability set selected. The assignment of fault domains is automated by Azure so there is no option in Cloudbreak.</p>
+<blockquote>
+<p><strong>IMPORTANT:</strong> Single instances placed in an Availability Set are not subject to Azure’s SLA, and you won’t receive warnings of planned maintenance events, so Availability Groups should only be used when there’s a group of two or more application tier VMs.</p>
+</blockquote>
+<p><img alt="" src="../azure/images/azure-availabilitysets-assign.png" />
+<sub><em>Full size <a href="../azure/images/azure-availabilitysets-assign.png">here</a>.</em></sub></p>
+<p>After the deployment is finished, the layout of the VM-s inside an availability set can be checked in Azure Portal. There are "Availability set" resources corresponding to the hostgroups inside the deployments's resource group.  </p>
+<p><img alt="" src="../azure/images/azure-availabilitysets-portal.png" />
+<sub><em>Full size <a href="../azure/images/azure-availabilitysets-portal.png">here</a>.</em></sub></p>
+<p><em>Rack awareness</em></p>
+<p>Rack awareness is having the knowledge of Cluster topology or more specifically how the different data nodes are distributed across the racks of a Hadoop cluster. The importance of this knowledge relies on this assumption that co-located data nodes inside a specific rack will have more bandwidth and less latency whereas two data nodes in separate racks will have comparatively less bandwidth and higher latency.</p>
+<p>The main purpose of Rack awareness are:</p>
+<ul>
+<li>Increasing the availability of data block</li>
+<li>Better cluster performance</li>
+</ul>
+<p>HDFS replicates a data block into 3 replicas by default. In this configuration, 2 blocks stay rack local and one block is placed in a different rack. When building a Hadoop cluster on Azure there is no notion of a physical rack. However the fault domains are similar in the failure characteristics of a physical rack. Since electrical events affect a fault domain as an unit, it is important to assign the rack topology based on fault domain allocation.</p>
+<p>You can view the rack assignment in Ambari, clicking on the Hosts menu item. If there was no availability set selected for the given host's hostgroup, it's rack remains set to "default rack".</p>
+<p><img alt="" src="../azure/images/azure-availabilitysets-rackawareness.png" />
+<sub><em>Full size <a href="../azure/images/azure-availabilitysets-rackawareness.png">here</a>.</em>&lt;/sub</p>
 <h2 id="defining-cluster-services">Defining Cluster Services</h2>
 <h4 id="blueprints">Blueprints</h4>
 <p>Blueprints are your declarative definition of a Hadoop cluster. These are the same blueprints that are <a href="https://cwiki.apache.org/confluence/display/AMBARI/Blueprints">used by Ambari</a>.</p>
@@ -904,6 +931,7 @@ the <code>Azure Portal Resource groups</code> page.
 <p><code>Minimum cluster size</code> The provisioning strategy in case the cloud provider cannot allocate all the requested nodes.</p>
 <p><code>Validate blueprint</code> This is selected by default. Cloudbreak validates the Ambari blueprint in this case.</p>
 <p><code>Custom Image</code> If you enable this, you can override the default image for provision.</p>
+<p><code>Enable Availability sets</code> You can set up availability set support if enabled.</p>
 <p><code>Shipyard enabled cluster</code> This is selected by default. Cloudbreak will start a <a href="https://shipyard-project.com/">Shipyard</a> container which helps you to manage your containers.</p>
 <p><code>Persistent Storage Name</code> This is <code>cbstore</code> by default. Cloudbreak will copy the image into a storage which is not deleting under the termination. When you starting a new cluster then the provisioning will be much faster because of the existing image.</p>
 <p><code>Attached Storage Type</code> This is <code>single storage for all vm</code> by default. If are you using the default option then your whole cluster will by in one storage which could be a bottleneck in case of <a href="https://azure.microsoft.com/hu-hu/documentation/articles/azure-subscription-service-limits/#storage-limits">Azure</a>. If you are using the <code>separated storage for every vm</code> then we will deploy as much storage account as many node you have and in this case IOPS limit concern just for one node.</p>

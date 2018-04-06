@@ -9,7 +9,7 @@
         <link rel="canonical" href="http://sequenceiq.com/cloudbreak-docs/configuration/">
         <link rel="shortcut icon" href="../img/favicon.ico">
 
-	<title>Advanced Configuration - Cloudbreak 1.14.0 (TP)</title>
+	<title>Advanced Configuration - Cloudbreak 1.14.4</title>
 
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -45,7 +45,7 @@
             <!-- Main title -->
             <img class="navbar-logo" src="../img/HWX-RGB-full-no-tagline_500pxh.png" alt="Hortonworks Documentation"
                  width="132" height="52">
-            <a class="navbar-brand" href="..">Cloudbreak 1.14.0 (TP)</a>
+            <a class="navbar-brand" href="..">Cloudbreak 1.14.4</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -345,6 +345,24 @@ export OTHER_VAR=another_value
 
 <p>To permanently use the  <code>prod</code> profile, set <code>export CBD_DEFAULT_PROFILE=prod</code> in your <code>.bash_profile</code>.</p>
 <h2 id="available-configurations">Available Configurations</h2>
+<h3 id="using-your-own-ssl-certificate">Using Your Own SSL Certificate</h3>
+<p>By default Cloudbreak is available only via HTTPS and it generates its own self-signed certificate. For most use cases such as testing or staging instances this is secure enough. However, if you want to use your own trusted certificate, you must manually configure it on the Cloudbreak host by replacing the existing certificate with your own certificate.</p>
+<h4 id="prerequisites">Prerequisites</h4>
+<ul>
+<li>Resolvable domain name for the Cloudbreak hosts' IP addresses</li>
+<li>Generated valid certificate for the domain</li>
+</ul>
+<h4 id="steps">Steps</h4>
+<ol>
+<li>First copy your private key and certificate to the host</li>
+<li>Log in to the host machine via ssh, usually <code>ssh cloudbreak@[IP-ADDRESS]</code></li>
+<li>Make sure the domain name is resolvable for the host: <code>host [HOST-NAME]</code></li>
+<li>Change the host name of the machine using steps specific for your operating system</li>
+<li>Identify your Cloudbreak location, which usually is <code>/var/lib/cloudbreak-deployer</code> and navigate there</li>
+<li>Edit your <code>Profile</code> by adding or replacing <code>PUBLIC_IP</code> with <code>export PUBLIC_IP=[HOST-NAME]</code> where <code>[HOST-NAME]</code> is your actual Cloudbreak host</li>
+<li>Configure TLS details in your <code>Profile</code> by adding the following line <code>export CBD_TRAEFIK_TLS="[CERT-LOCATION],[PRIV-KEY-LOCATION]"</code></li>
+<li>Restart Cloudbreak using the <code>cbd restart</code> command</li>
+</ol>
 <h3 id="smtp">SMTP</h3>
 <p>If you want to change SMTP parameters, add them your <code>Profile</code>.  </p>
 <p>The default values of the SMTP parameters are:</p>

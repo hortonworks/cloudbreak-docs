@@ -9,7 +9,7 @@
         <link rel="canonical" href="http://sequenceiq.com/cloudbreak-docs/issues/">
         <link rel="shortcut icon" href="../img/favicon.ico">
 
-	<title>Known Issues - Cloudbreak 1.14.0 (TP)</title>
+	<title>Known Issues - Cloudbreak 1.14.4</title>
 
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -45,7 +45,7 @@
             <!-- Main title -->
             <img class="navbar-logo" src="../img/HWX-RGB-full-no-tagline_500pxh.png" alt="Hortonworks Documentation"
                  width="132" height="52">
-            <a class="navbar-brand" href="..">Cloudbreak 1.14.0 (TP)</a>
+            <a class="navbar-brand" href="..">Cloudbreak 1.14.4</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -300,6 +300,8 @@
         
             <li><a href="#decommission">Decommission</a></li>
         
+            <li><a href="#cloudbreak-shell">Cloudbreak Shell</a></li>
+        
     
     </ul>
 </div></div>
@@ -311,6 +313,25 @@
 <ul>
 <li><a href="https://issues.apache.org/jira/browse/AMBARI-15294">AMBARI-15294</a> In case of downscaling if the selected host group contains an HBase RegionServer it's not guaranteed that all regions will be safely moved to another RegionServer which will remain as part of the cluster. If you choose to scale down such a host group Cloudbreak won't track the region movement process. It is recommended to put the RegionServers in a different host group in your blueprint than the ones you'll be scaling.</li>
 </ul>
+<h2 id="cloudbreak-shell">Cloudbreak Shell</h2>
+<ul>
+<li><a href="https://hortonworks.jira.com/browse/EAR-5997">EAR-5997</a> NullPointerException will be thrown from CloudbreakShell during execution of <code>stack create</code> command if the template creation commands are executed after credential selection.<br></li>
+</ul>
+<p>Example:</p>
+<pre><code>credential select --name my-aws-credential
+...
+template create --AWS --name my-aws-template --description aws-template --instanceType m3.large --volumeType ephemeral --volumeCount 1 --volumeSize 32 --topologyId 1 --encrypted false
+...
+stack create --AWS --name my-aws-cluster --region eu-west-1
+</code></pre>
+
+<p>Workaround: template creation commands should be executed before the credential selection command</p>
+<pre><code>template create --AWS --name my-aws-template --description aws-template --instanceType m3.large --volumeType ephemeral --volumeCount 1 --volumeSize 32 --topologyId 1 --encrypted false
+...
+credential select --name my-aws-credential
+...
+stack create --AWS --name my-aws-cluster --region eu-west-1
+</code></pre>
                     <a href="https://github.com/sequenceiq/cloudbreak-docs/blob/master/docs/issues.md" ><i class="fa fa-github"></i> Edit on GitHub </a>
                 </div>
             
