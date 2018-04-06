@@ -333,6 +333,8 @@
         
             <li><a href="#deploy-using-the-azure-portal">Deploy Using the Azure Portal</a></li>
         
+            <li><a href="#please-upgrade-your-cloudbreak-deployer">Please upgrade your Cloudbreak Deployer</a></li>
+        
     
         <li class="main "><a href="#provisioning-prerequisites">Provisioning Prerequisites</a></li>
         
@@ -395,6 +397,13 @@
 <p>Setting up Cloudbreak on Azure is different than on other cloud providers for which we provide pre-built public images with Cloudbreak Deployer pre-installed. On Azure, you launch Cloudbreak Deployer using the <a href="https://github.com/Azure/azure-quickstart-templates">Azure Resource Manager Templates</a>.</p>
 <h2 id="deploy-using-the-azure-portal">Deploy Using the Azure Portal</h2>
 <p>To get started with Cloudbreak installation using the Azure Resource Manager template, click here: <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fsequenceiq%2Fazure-cbd-quickstart%2F1.16.6%2FmainTemplate.json">  <img alt="deploy on azure" src="http://azuredeploy.net/deploybutton.png" /> </a></p>
+<h2 id="please-upgrade-your-cloudbreak-deployer">Please upgrade your Cloudbreak Deployer</h2>
+<p>Install the Cloudbreak Deployer and unzip the platform-specific single binary to your PATH. For example:</p>
+<pre><code>yum -y install unzip tar
+curl -Ls s3.amazonaws.com/public-repo-1.hortonworks.com/HDP/cloudbreak/cloudbreak-deployer_1.16.6_$(uname)_x86_64.tgz | sudo tar -xz -C /bin cbd
+cbd --version
+</code></pre>
+
 <h3 id="vm-requirements">VM Requirements</h3>
 <p>When selecting an instance type, consider these minimum and recomended requirements:<br />
 - 8GB RAM, 10GB disk, 2 cores 
