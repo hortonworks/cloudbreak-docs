@@ -419,7 +419,7 @@
 <h2 id="cloudbreak-deployer-aws-image-details">Cloudbreak Deployer AWS Image Details</h2>
 <h2 id="please-upgrade-your-cloudbreak-deployer">Please upgrade your Cloudbreak Deployer</h2>
 <p>Install the Cloudbreak Deployer and unzip the platform-specific single binary to your PATH. For example:</p>
-<pre><code>cd /var/lib/cloudbreak-deployment/
+<pre><code>yum -y install unzip tar
 curl -Ls s3.amazonaws.com/public-repo-1.hortonworks.com/HDP/cloudbreak/cloudbreak-deployer_1.16.6_$(uname)_x86_64.tgz | sudo tar -xz -C /bin cbd
 cbd --version
 </code></pre>
