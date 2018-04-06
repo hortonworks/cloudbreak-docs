@@ -6,10 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="http://sequenceiq.com/cloudbreak-docs/environments/">
+        <link rel="canonical" href="http://sequenceiq.com/cloudbreak-docs/sssd/">
         <link rel="shortcut icon" href="../img/favicon.ico">
 
-	<title>Environments - Cloudbreak 1.3.0</title>
+	<title>SSSD Configuration - Cloudbreak 1.2.3</title>
 
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -45,7 +45,7 @@
             <!-- Main title -->
             <img class="navbar-logo" src="../img/HWX-RGB-full-no-tagline_500pxh.png" alt="Hortonworks Documentation"
                  width="132" height="52">
-            <a class="navbar-brand" href="..">Cloudbreak 1.3.0</a>
+            <a class="navbar-brand" href="..">Cloudbreak 1.2.3</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -147,6 +147,18 @@
 
                         
                             
+<li class="active">
+    <a href="./">SSSD Configuration</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../recipes/">Recipes</a>
+</li>
+
+                        
+                            
 <li >
     <a href="../blueprints/">Blueprints</a>
 </li>
@@ -154,19 +166,19 @@
                         
                             
 <li >
-    <a href="../topologies/">Platforms (TP)</a>
+    <a href="../topologies/">Platforms</a>
 </li>
 
                         
                             
 <li >
-    <a href="../kerberos/">Kerberos (TP)</a>
+    <a href="../kerberos/">Kerberos</a>
 </li>
 
                         
                             
 <li >
-    <a href="../mesos/">Mesos (TP)</a>
+    <a href="../mesos/">Mesos</a>
 </li>
 
                         
@@ -195,24 +207,9 @@
 
                         
                             
-  <li class="dropdown-submenu">
-    <a tabindex="-1" href="">Development</a>
-    <ul class="dropdown-menu">
-        
-            
-<li class="active">
-    <a href="./">Environments</a>
-</li>
-
-        
-            
 <li >
-    <a href="../flow/">Flows</a>
+    <a href="../development/">Development</a>
 </li>
-
-        
-    </ul>
-  </li>
 
                         
                             
@@ -242,12 +239,12 @@
                 </li>
                 
                     <li >
-                        <a rel="next" href="../configuration/">
+                        <a rel="next" href="../periscope/">
                             <i class="fa fa-arrow-left"></i> Previous
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../flow/">
+                        <a rel="prev" href="../recipes/">
                             Next <i class="fa fa-arrow-right"></i>
                         </a>
                     </li>
@@ -272,11 +269,15 @@
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#environments">Environments</a></li>
+        <li class="main active"><a href="#system-security-services-daemon">System Security Services Daemon</a></li>
         
-            <li><a href="#cloudbreak-application">Cloudbreak application</a></li>
+            <li><a href="#manage-sssd-configurations">Manage SSSD configurations</a></li>
         
-            <li><a href="#cloudbreak-deployer">Cloudbreak deployer</a></li>
+            <li><a href="#enable-sssd-configuration">Enable SSSD configuration</a></li>
+        
+            <li><a href="#embedded-ldap-support">Embedded LDAP support</a></li>
+        
+            <li><a href="#throubleshooting">Throubleshooting</a></li>
         
     
     </ul>
@@ -284,172 +285,78 @@
                 <div class="col-md-9" role="main">
                     
 
-<h1 id="environments">Environments</h1>
-<h2 id="cloudbreak-application">Cloudbreak application</h2>
-<h4 id="local-development-setup">Local Development Setup</h4>
-<p>To use this development environment on OSX, you need to have Docker and Boot2docker installed.</p>
-<p>Simplest way to prepare the working environment is to start the Cloudbreak on your local machine is to use the <a href="https://github.com/sequenceiq/cloudbreak-deployer">Cloudbreak Deployer</a>.</p>
-<p>First you need to create a <em>sandbox</em> directory which will store the necessary  configuration files and dependencies of <a href="https://github.com/sequenceiq/cloudbreak-deployer">Cloudbreak Deployer</a>. This directory must be created outside of the cloned Cloudbreak git repository:</p>
-<pre><code>mkdir cbd-local
+<h1 id="system-security-services-daemon">System Security Services Daemon</h1>
+<blockquote>
+<p>This feature is currently <code>TECHNICAL PREVIEW</code>.</p>
+</blockquote>
+<p>By default Cloudbreak installs Hadoop with a few default users. Most of the time, default users do not give great freedom, to manage permissions in the ecosystem.
+Other big problem around the user management is that created users must be consistent on the whole cluster, otherwise operations will fail.</p>
+<p>That's where <em>System Security Services Daemon</em> (SSSD) comes in picture. SSSD is a system daemon. Its primary function is to provide access to remote identity and authentication resources through a common framework that can provide caching and offline support to the system. Cloudbreak helps to install and configure SSSD, and sets up an SSH server on Ambari hosts, to allow log in with external users on the host's 2022 port.</p>
+<pre><code>ssh [external-user]@[ambari-host] -p 2022
 </code></pre>
 
-<p>To start the complete Cloudbreak ecosystem on your machine just execute the following sequence of commands:</p>
-<pre><code>cd cbd-local
-curl https://raw.githubusercontent.com/sequenceiq/cloudbreak-deployer/master/install | sh &amp;&amp; cbd --version
-cbd update master
-cbd init
-cbd start
-</code></pre>
-
-<p>If everything went well then the Cloudbreak will be available on http://192.168.59.103:3000. For more details and config parameters please check the documentation of <a href="https://github.com/sequenceiq/cloudbreak-deployer">Cloudbreak Deployer</a>.</p>
-<p>The deployer has generated a <code>certs</code> directory under <code>cbd-local</code> directory which will be needed later on to set up the IDEA properly.</p>
-<p>The next step is to edit the <code>cbd-local/Profile</code> file with any editor and add the CB_SCHEMA_SCRIPTS_LOCATION environment variable which configures the location of SQL scripts that are in the 'core/src/main/resources/schema' directory in the cloned Cloudbreak git repository. Please note that the full path needs to be configured and env variables like $USER cannot be used.</p>
-<pre><code>export CB_SCHEMA_SCRIPTS_LOCATION=/Users/myusername/prj/cloudbreak/core/src/main/resources/schema
-</code></pre>
-
-<p>In order to kill Cloudbreak container running inside the boot2docker and redirect the Cloudbreak related traffic to the Cloudbreak running in IDEA use the followig command:</p>
-<pre><code>cbd util local-dev
-</code></pre>
-
-<h4 id="idea">IDEA</h4>
-<p>Cloudbreak can be imported into IDEA as gradle project. Once it is done, you need to import the proper code formatter by using the <strong>File -&gt; Import Settings...</strong> menu and selecting the <code>idea_settings.jar</code> located in the <code>config</code> directory in Cloudbreak git repository.</p>
-<p>To launch the Cloudbreak application execute the <code>com.sequenceiq.cloudbreak.CloudbreakApplication</code> class with VM options:</p>
-<pre><code>-XX:MaxPermSize=1024m
--Dcb.cert.dir=FULL_PATH_OF_THE_CERTS_DIR_GENERATED_BY_CBD
--Dcb.client.id=cloudbreak
--Dcb.client.secret=cbsecret2015
--Dcb.db.port.5432.tcp.addr=192.168.59.103
--Dcb.db.port.5432.tcp.port=5432
--Dspring.cloud.consul.host=192.168.59.103
--Dcb.identity.server.url=http://192.168.59.103:8089
--Dserver.port=9091
-</code></pre>
-
-<p>The <code>-Dcb.cert.dir=FULL_PATH_OF_THE_CERTS_DIR_GENERATED_BY_CBD</code> value above needs to be replaced with the full path of <code>certs</code> directory generated by Cloudbreak Deployer e.g. <code>-Dcb.cert.dir=/Users/myusername/prj/cbd-local/certs</code></p>
-<h4 id="command-line">Command line</h4>
-<p>To run Cloudbreak from command line you have to create a property file, for example <code>application.properties</code>, with the content below, and execute <code>java -jar -XX:MaxPermSize=1024m -Dspring.config.location=file:///path/of/property/application.properties core/build/libs/cloudbreak.jar</code> command at project root. Important that the path of <code>application.properties</code> must be an absolute path.</p>
-<pre><code>cb.cert.dir=FULL_PATH_OF_THE_CERTS_DIR_GENERATED_BY_CBD
-cb.client.id=cloudbreak
-cb.client.secret=cbsecret2015
-cb.db.port.5432.tcp.addr=192.168.59.103
-cb.db.port.5432.tcp.port=5432
-spring.cloud.consul.host=192.168.59.103
-cb.identity.server.url=http://192.168.59.103:8089
-server.port=9091
-</code></pre>
-
-<h4 id="database-development">Database development</h4>
-<p>If schema change is required in Cloudbreak database (cbdb), then the developer needs to write SQL scripts to migrate the database accordingly. In Cloudbreak the schema migration is managed by <a href="https://github.com/mybatis/migrations">MYBATIS Migrations</a> and the cbd tool provides an easy-to-use wrapper for it. The syntax for using the migration commands is <code>cbd migrate &lt;database name&gt; &lt;command&gt; [parameters]</code> e.g. <code>cbd migrate migrate status</code>.</p>
-<p>Create a SQL template for schema changes:</p>
-<pre><code>cbd migrate cbdb new &quot;CLOUD-123 schema change for new feature&quot;
-</code></pre>
-
-<p>As as result of the above command an SQL file template is generated under the path specified in <code>CB_SCHEMA_SCRIPTS_LOCATION</code> environment variable, which is defined in Profile. The structure of the generated SQL template looks like the following:</p>
-<pre><code>-- // CLOUD-123 schema change for new feature
--- Migration SQL that makes the change goes here.
-
-
-
--- //@UNDO
--- SQL to undo the change goes here.
-</code></pre>
-
-<p>Once you have implemented your SQLs then you can execute them with:</p>
-<pre><code>cbd migrate cbdb up
-</code></pre>
-
-<p>If you would like to rollback the last SQL file, then just use the down command:</p>
-<pre><code>cbd migrate cbdb down
-</code></pre>
-
-<p>On order to check the status of database</p>
-<pre><code>cbd migrate cbdb status
-
-#Every script that has not been executed will be marked as ...pending... in the output of status command:
-
-------------------------------------------------------------------------
--- MyBatis Migrations - status
-------------------------------------------------------------------------
-ID             Applied At          Description
-================================================================================
-20150421140021 2015-07-08 10:04:28 create changelog
-20150421150000 2015-07-08 10:04:28 CLOUD-607 create baseline schema
-20150507121756 2015-07-08 10:04:28 CLOUD-576 change instancegrouptype hostgroup to core
-20151008090632    ...pending...    CLOUD-123 schema change for new feature
-
-------------------------------------------------------------------------
-</code></pre>
-
-<h4 id="building">Building</h4>
-<p>Gradle is used for build and dependency management. Gradle wrapper is added to Cloudbreak git repository, therefore building can be done with:</p>
-<pre><code>./gradlew clean build
-</code></pre>
-
-<h2 id="cloudbreak-deployer">Cloudbreak deployer</h2>
-<h4 id="contribution">Contribution</h4>
-<p>Development process should happen on separate branches. Then a pull-request should be opened as usual.</p>
-<p>To build the project</p>
-<pre><code># make deps needed only once
-make deps
-
-make install
-</code></pre>
-
-<p>To run the unit tests:</p>
-<pre><code>make tests
-</code></pre>
-
-<p>If you want to test the binary CircleCI build from your branch named <code>fix-something</code>, to validate the PR binary <code>cbd</code> tool will be tested. It is built by CircleCI for each branch.</p>
-<pre><code>cbd update fix-something
-</code></pre>
-
-<h4 id="snapshots">Snapshots</h4>
-<p>We recommend to always use the latest release, but you might want to check new features or bugfixes.
-All successful builds from the <code>master</code> branch are uploaded to the public S3 bucket. You can download it:</p>
-<pre><code>curl -L s3.amazonaws.com/public-repo-1.hortonworks.com/HDP/cloudbreak/cloudbreak-deployer_snapshot_$(uname)_x86_64.tgz | tar -xz
-</code></pre>
-
-<p>Instead of overwriting the released version, download it to a <strong>local directory</strong> and useit by refering as <code>./cbd</code></p>
-<pre><code>./cbd --version
-</code></pre>
-
-<h4 id="testing">Testing</h4>
-<p>Shell scripts shouldn’t raise exceptions when it comes to unit testing. <a href="https://github.com/progrium/basht">basht</a> is
- used for testing. See the reasoning: <a href="https://github.com/progrium/basht#why-not-bats-or-shunit2">why not bats or shunit2</a>.</p>
-<p>Please cover your bash functions with unit tests and run test with:</p>
-<pre><code>make tests
-</code></pre>
-
-<h4 id="release-process-of-the-clodbreak-deployer-tool">Release Process of the Clodbreak Deployer tool</h4>
-<p>The master branch is always built on <a href="https://circleci.com/gh/sequenceiq/cloudbreak-deployer">CircleCI</a>.
-When you wan’t a new release, all you have to do:</p>
-<pre><code>make release-next-ver
-</code></pre>
-
-<p><code>make release-next-ver</code> performs the following steps:</p>
+<h2 id="manage-sssd-configurations">Manage SSSD configurations</h2>
+<p>You can add new configuration on the web UI. Go to <strong>manage security configurations</strong> section and select <strong>create configuration</strong>. There are 3 types of configuration:</p>
 <ul>
-<li>On the <code>master</code> branch:<ul>
-<li>Updates the <code>VERSION</code> file by increasing the <strong>patch</strong> version number (for example from 0.5.2 to 0.5.3)</li>
-<li>Updates <code>CHANGELOG.md</code> with the release date</li>
-<li>Creates a new <strong>Unreleased</strong> section in top of <code>CHANGELOG.md</code></li>
+<li>PARAMETERS, Cloudbreak will generate configuration by the given parameters</li>
+<li>FILE, upload your configuration</li>
+<li>TEXT, simply type or paste your configuration</li>
 </ul>
-</li>
-<li>Creates a PullRequest for the release branch:<ul>
-<li>create a new branch with a name like <code>release-0.5.x</code></li>
-<li>this branch should be the same as <code>origin/master</code></li>
-<li>create a pull request into <code>release</code> branch</li>
-</ul>
-</li>
-</ul>
-<h4 id="acceptance">Acceptance</h4>
-<p>Now you should test this release. You can get it by <code>cbd update release-x.y.z</code>. Comment with LGTM (Looking Good To Me).</p>
-<p>Once the PR is merged, CircleCI will:</p>
+<p>In the shell you have two options <code>add</code> and <code>upload</code>.</p>
+<pre><code>sssdconfig add --name [config-name] --providerType [LDAP|ACTIVE_DIRECTORY|IPA] --url [provider-url] --schema [AD|IPA|RFC2307|RFC2307BIS] --baseSearch [search-base-of-posix-entities] --tlsReqcert [NEVER|ALLOW|TRY|DEMAND|HARD]
+</code></pre>
+
+<p>This command has optional parameters:</p>
+<p><code>--description</code> "string" description of the configuration</p>
+<p><code>--adServer</code> "string" comma-separated list of IP addresses or hostnames of the AD servers</p>
+<p><code>--kerberosServer</code> "string" comma-separated list of IP addresses or hostnames of the Kerberos servers</p>
+<p><code>--kerberosRealm</code> "string" name of the Kerberos realm</p>
+<p><code>--publicInAccount</code> "flag" flags if the configuration is public in the account</p>
+<p>To upload configuration please use <code>upload</code> command:</p>
+<pre><code>sssdconfig upload --name [config-name] --file [configuration-path]
+</code></pre>
+
+<p>This command also has optional parameters:</p>
+<p><code>--description</code> "string" description of the configuration</p>
+<p><code>--publicInAccount</code> "flag" flags if the configuration is public in the account</p>
+<h2 id="enable-sssd-configuration">Enable SSSD configuration</h2>
+<p>There are two ways to enable SSSD configuration on a Cloudbreak cluster.</p>
 <ul>
-<li>create a new release on <a href="https://github.com/sequenceiq/cloudbreak-deployer/releases">GitHub releases tab</a>, with the
- help of <a href="https://github.com/progrium/gh-release">gh-release</a>.</li>
-<li>it will create the git tag with <code>v</code> prefix like: <code>v0.0.3</code></li>
+<li>On UI in the <strong>Create cluster</strong> wizard, on the <strong>Setup Network and Security</strong> tab, check the <strong>Use pre configured SSSD</strong> option and select an existing configuration at <strong>Select configuration</strong>.</li>
+<li>In CLoudbreak shell before <code>cluster create</code> command select a configuration by name <code>sssdconfig select --name [config-name]</code> or by id <code>sssdconfig select --id [config-id]</code></li>
 </ul>
-                    <a href="https://github.com/sequenceiq/cloudbreak-docs/blob/master/docs/environments.md" ><i class="fa fa-github"></i> Edit on GitHub </a>
+<h2 id="embedded-ldap-support">Embedded LDAP support</h2>
+<p>In Cloudbreak there is a built in but optionally LDAP service,</p>
+<ul>
+<li>On UI in the <strong>Create cluster</strong> wizard, on the <strong>Setup Network and Security</strong> tab, check the <strong>Start LDAP and configure SSSD</strong> option.</li>
+</ul>
+<p>or</p>
+<ul>
+<li>In Cloudbreak shell place <code>ldapRequired</code> flag in <code>cluster create</code> command: <code>cluster create --ldapRequired</code>.</li>
+</ul>
+<p>That's it. In the background Cloudbreak creates a default SSSD configuration named <code>cloudbreak-default-ldap</code> if there is no other selected configuration, starts LDAP service and integrate them together. If you want to connect to an Ambari node (except Ambari server), just use <code>ambari-qa</code> user with <code>cloudbreak</code> password to login: <code>ssh ambari-qa@[ambari-host] -p 2022</code>.</p>
+<h3 id="test-configuration">Test configuration</h3>
+<p>User and group ids are starting at 10000 in the LDAP database, so after login you have to see this results:</p>
+<pre><code>[ambari-qa@host ~]$ id ambari-qa
+uid=10000(ambari-qa) gid=10000(hadoop) groups=10000(hadoop),100(users)
+[ambari-qa@host ~]$ getent passwd ambari-qa
+ambari-qa:*:10000:10000:ambari-qa:/home/ambari-qa:/bin/bash
+</code></pre>
+
+<h2 id="throubleshooting">Throubleshooting</h2>
+<p>In Cloudbreak the SSSD service starts in very verbose mode. To read log files first login to the host as <code>centos</code> user.</p>
+<pre><code>ssh centos@[ambari-host] -i [cluster-credential]
+</code></pre>
+
+<p>Next you have jump into Ambari agent Docker container.</p>
+<pre><code>sudo docker exec -it $(docker ps --format=&quot;{{.Names}}&quot; | grep ambari-agent) bash
+</code></pre>
+
+<p>Logs are found at <code>/var/log/sssd</code> directory in file per service format.</p>
+<pre><code>[root@docker-ambari /]# ls /var/log/sssd
+ldap_child.log  sssd_LDAP.log  sssd.log  sssd_nss.log  sssd_pam.log
+</code></pre>
+                    <a href="https://github.com/sequenceiq/cloudbreak-docs/blob/master/docs/sssd.md" ><i class="fa fa-github"></i> Edit on GitHub </a>
                 </div>
             
         </div>
@@ -533,11 +440,11 @@ When you wan’t a new release, all you have to do:</p>
                $("#cloudbreak-deployer-image").append('<br>');
                $("#cloudbreak-deployer-image").append('<br>');
                $("#cloudbreak-deployer-image").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">Download the latest Cloudbreak Deployer image to your local machine:</p>');
-               $("#cloudbreak-deployer-image").append('<pre><code style="font-size: 12pt;color:#333333">curl -O -k https://public-repo-1.hortonworks.com/HDP/cloudbreak/' + data.metadata.image_name + '.img</code></pre>');
+               $("#cloudbreak-deployer-image").append('<pre><code style="font-size: 12pt;color:#333333">curl -O -k https://public-repo-1.hortonworks.com/HDP/cloudbreak/' + data.id + '</code></pre>');
                $("#cloudbreak-deployer-import").append('<br>');
                $("#cloudbreak-deployer-import").append('<br>');
                $("#cloudbreak-deployer-import").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">Set the following environment variables for the OpenStack image import:</p>');
-               $("#cloudbreak-deployer-import").append('<pre><code style="font-size: 12px;color:#333333">export CBD_LATEST_IMAGE=</code>' + data.metadata.image_name + '.img</code></p>');
+               $("#cloudbreak-deployer-import").append('<pre><code style="font-size: 12px;color:#333333">export CBD_LATEST_IMAGE=</code>' + data.id + '</code></p>');
                });
 
                <!--OpenStack CB-->
@@ -545,18 +452,18 @@ When you wan’t a new release, all you have to do:</p>
                $("#cloudbreak-image").append('<br>');
                $("#cloudbreak-image").append('<br>');
                $("#cloudbreak-image").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">Download the latest Cloudbreak image to your local machine:</p>');
-               $("#cloudbreak-image").append('<pre><code style="font-size: 12pt;color:#333333">curl -O -k https://public-repo-1.hortonworks.com/HDP/cloudbreak/' + data.metadata.image_name + '.img</code></pre>');
+               $("#cloudbreak-image").append('<pre><code style="font-size: 12pt;color:#333333">curl -O -k https://public-repo-1.hortonworks.com/HDP/cloudbreak/' + data.id + '</code></pre>');
                $("#cloudbreak-import").append('<br>');
                $("#cloudbreak-import").append('<br>');
                $("#cloudbreak-import").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">This is very similar to the Cloudbrek Deployer. Set the following environment variables for the OpenStack image import:</p>');
-               $("#cloudbreak-import").append('<pre><code style="font-size: 12px;color:#333333">export CB_LATEST_IMAGE=</code>' + data.metadata.image_name + '.img</code></p>');
+               $("#cloudbreak-import").append('<pre><code style="font-size: 12px;color:#333333">export CB_LATEST_IMAGE=</code>' + data.id + '</code></p>');
                });
 
                <!--GCP-->
                $.getJSON("../providers/gcp.json", function(data) {
                $("#cloudbreak-deployer-gcp-image-details").append('<br>');
                $("#cloudbreak-deployer-gcp-image-details").append('<br>');
-               $("#cloudbreak-deployer-gcp-image-details").append('<pre><code style="font-size: 12pt;color:#333333"> gcloud compute images create '
+               $("#cloudbreak-deployer-gcp-image-details").append('<pre><code style="font-size: 12pt;color:#333333"> [HACK] gcloud compute images create '
                    + data.id + ' --source-uri gs://sequenceiqimage/' + data.id + '.tar.gz' + '</code></pre>');
                });
            });

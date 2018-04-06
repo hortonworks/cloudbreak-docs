@@ -9,7 +9,7 @@
         <link rel="canonical" href="http://sequenceiq.com/cloudbreak-docs/architecture/">
         <link rel="shortcut icon" href="../img/favicon.ico">
 
-	<title>Architecture - Cloudbreak 1.3.0</title>
+	<title>Architecture - Cloudbreak 1.2.3</title>
 
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -45,7 +45,7 @@
             <!-- Main title -->
             <img class="navbar-logo" src="../img/HWX-RGB-full-no-tagline_500pxh.png" alt="Hortonworks Documentation"
                  width="132" height="52">
-            <a class="navbar-brand" href="..">Cloudbreak 1.3.0</a>
+            <a class="navbar-brand" href="..">Cloudbreak 1.2.3</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -148,25 +148,37 @@
                         
                             
 <li >
+    <a href="../sssd/">SSSD Configuration</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../recipes/">Recipes</a>
+</li>
+
+                        
+                            
+<li >
     <a href="../blueprints/">Blueprints</a>
 </li>
 
                         
                             
 <li >
-    <a href="../topologies/">Platforms (TP)</a>
+    <a href="../topologies/">Platforms</a>
 </li>
 
                         
                             
 <li >
-    <a href="../kerberos/">Kerberos (TP)</a>
+    <a href="../kerberos/">Kerberos</a>
 </li>
 
                         
                             
 <li >
-    <a href="../mesos/">Mesos (TP)</a>
+    <a href="../mesos/">Mesos</a>
 </li>
 
                         
@@ -195,24 +207,9 @@
 
                         
                             
-  <li class="dropdown-submenu">
-    <a tabindex="-1" href="">Development</a>
-    <ul class="dropdown-menu">
-        
-            
 <li >
-    <a href="../environments/">Environments</a>
+    <a href="../development/">Development</a>
 </li>
-
-        
-            
-<li >
-    <a href="../flow/">Flows</a>
-</li>
-
-        
-    </ul>
-  </li>
 
                         
                             
@@ -286,46 +283,99 @@
 
 <h1 id="architecture">Architecture</h1>
 <h2 id="cloudbreak-deployer-architecture">Cloudbreak Deployer Architecture</h2>
-<p>Cloudbreak Deployer includes the following components:<br />
-- <strong>UAA</strong>: OAuth identity server implementation
-- <strong>Cloudbreak</strong>: the Cloudbreak application
-- <strong>Periscope</strong>: the Periscope application
-- <strong>Uluwatu</strong>: Cloudbreak web UI
-- <strong>Sultans</strong>: Cloudbreak user management</p>
+<ul>
+<li><strong>uaa</strong>: OAuth Identity Server</li>
+<li><strong>cloudbreak</strong>: the Cloudbreak app</li>
+<li><strong>periscope</strong>: the Periscope app</li>
+<li><strong>uluwatu</strong>: Cloudbreak UI</li>
+<li><strong>sultans</strong>: user management</li>
+</ul>
 <h3 id="system-level-containers">System Level Containers</h3>
-<p>Cloudbreak Deployer includes the following system-level containers:
-- <strong>Consul</strong>: Cloudbreak service registry
-- <strong>Registrator</strong>: automatically registers/unregisters containers with consul</p>
+<ul>
+<li><strong>consul</strong>: Service Registry</li>
+<li><strong>registrator</strong>: automatically registers/unregisters containers with consul</li>
+</ul>
 <h2 id="cloudbreak-application-architecture">Cloudbreak Application Architecture</h2>
-<p>Cloudbreak is built on the foundation of cloud provider APIs and Apache Ambari.</p>
+<p>Cloudbreak is built on the foundation of cloud providers APIs, Apache Ambari, Docker containers, Swarm and Consul.</p>
 <h3 id="apache-ambari">Apache Ambari</h3>
-<p>The goal of the Apache Ambari project is to simplify Hadoop management by developing software for provisioning, managing, and monitoring Apache Hadoop clusters. Ambari provides an intuitive, easy-to-use Hadoop management web UI backed by its RESTful APIs.</p>
+<p>The Apache Ambari project is aimed at making Hadoop management simpler by developing software for provisioning, managing, and monitoring Apache Hadoop clusters. Ambari provides an intuitive, easy-to-use Hadoop management web UI backed by its RESTful APIs.</p>
 <p><img alt="" src="https://raw.githubusercontent.com/sequenceiq/cloudbreak/master/docs/images/ambari-overview.png" /></p>
-<p>Ambari enables System Administrators to: </p>
+<h4 id="system-administrators">System Administrators</h4>
+<p>Ambari enables to integrate Hadoop provisioning, management and monitoring capabilities into applications with the Ambari REST APIs.</p>
 <ol>
-<li><strong>Provision a Hadoop Cluster</strong>:  <ul>
+<li><strong>Provision a Hadoop Cluster</strong>:<ul>
 <li>Ambari provides a step-by-step wizard for installing Hadoop services across any number of hosts.</li>
 <li>Ambari handles configuration of Hadoop services for the cluster.</li>
 </ul>
 </li>
-<li><strong>Manage a Hadoop Cluster</strong>:  <ul>
+<li><strong>Manage a Hadoop Cluster</strong>:<ul>
 <li>Ambari provides central management for starting, stopping, and reconfiguring Hadoop services across the entire.
    cluster.</li>
 </ul>
 </li>
-<li><strong>Monitor a Hadoop Cluster</strong>:  <ul>
+<li><strong>Monitor a Hadoop Cluster</strong>:<ul>
 <li>Ambari provides a dashboard for monitoring health and status of the Hadoop cluster.</li>
-<li>Ambari lets you set predefined alerts or add custom alerts.</li>
+<li>Ambari allows to choose between predefined alerts or add your custom ones.</li>
 </ul>
 </li>
 </ol>
 <h4 id="ambari-blueprint">Ambari Blueprint</h4>
 <p>Ambari blueprints are a declarative definition of a cluster. With a blueprint, you can specify stack, component
- layout, and configurations to materialise a Hadoop cluster instance (via a REST API) without having to use the Ambari
+ layout and configurations to materialise a Hadoop cluster instance (via a REST API) without having to use the Ambari
   Cluster Install Wizard.</p>
 <p><img alt="" src="https://raw.githubusercontent.com/sequenceiq/cloudbreak/master/docs/images/ambari-create-cluster.png" /></p>
-<h4 id="salt">Salt</h4>
-<p>Salt manages complex systems at scale. Salt can be used for data-driven orchestration, remote execution for any infrastructure, configuration management for any app stack, and much more.</p>
+<h3 id="docker">Docker</h3>
+<p>Docker is an open platform for developers and sysadmins to build, ship and run distributed applications. Consisting 
+of Docker Engine, a portable, lightweight runtime and packaging tool and hub. Docker Hub is a cloud service for sharing 
+applications and automating the workflow.</p>
+<p>Docker enables apps to be quickly assembled from components and eliminates the
+ friction between development, QA and production environments. As a result, IT can ship faster and run the same app, 
+ unchanged, on laptops, data center VMs and any cloud.</p>
+<h4 id="the-main-features-of-docker">The main features of Docker</h4>
+<ol>
+<li>Lightweight</li>
+<li>Portable</li>
+<li>Build once</li>
+<li>Run anywhere</li>
+<li>
+<p>VM - without the overhead of a VM</p>
+<ul>
+<li>Each virtualised application includes not only the application and the necessary binaries and libraries, but 
+   also an entire guest operating system</li>
+<li>The Docker Engine container comprises just the application and its dependencies. It runs as an isolated process 
+   in userspace on the host operating system, sharing the kernel with other containers.
+<img alt="" src="https://raw.githubusercontent.com/sequenceiq/cloudbreak/master/docs/images/vm.png" /></li>
+</ul>
+</li>
+<li>
+<p>Containers are isolated</p>
+</li>
+<li>It can be automated and scripted</li>
+</ol>
+<h3 id="swarm">Swarm</h3>
+<p>Docker Swarm is native clustering for Docker. It turns a pool of Docker hosts into a single, virtual host. Swarm serves the standard Docker API.</p>
+<ul>
+<li><strong>Distributed container orchestration</strong>: Allows to remotely orchestrate Docker containers on different hosts.
+    <img alt="" src="https://raw.githubusercontent.com/sequenceiq/cloudbreak/master/docs/images/swarm.png" /></li>
+<li><strong>Discovery services</strong>: Supports different discovery backends to provide service discovery, as such: token (hosted) 
+  and file based, etcd, Consul, Zookeeper.</li>
+<li><strong>Advanced scheduling</strong>: Swarm will schedule containers on hosts based on different filters and strategies.</li>
+</ul>
+<h3 id="consul">Consul</h3>
+<p>Consul it is a tool for discovering and configuring services in your infrastructure.</p>
+<h4 id="key-features">Key features</h4>
+<ul>
+<li><strong>Service Discovery</strong>: Clients of Consul can provide a service, such as api or mysql and other clients can use 
+  Consul to discover providers of a given service. Using either DNS or HTTP. Applications can easily find the services 
+  they depend upon.</li>
+<li><strong>Health Checking</strong>: Consul clients can provide any number of health checks, either associated with a given service ("is the webserver returning 200 OK"), or with the local node ("is memory utilization below 90%"). This information can be used by an operator to monitor cluster health, and it is used by the service discovery components to route traffic away from unhealthy hosts.</li>
+<li><strong>Key/Value Store</strong>: Applications can make use of Consul's hierarchical key/value store for any number of 
+  purposes, including dynamic configuration, feature flagging, coordination, leader election and more. The simple HTTP API makes it easy to use.</li>
+<li>
+<p><strong>Multi Datacenter</strong>: Consul supports multiple datacenters out of the box. This means users of Consul do not have to worry about building additional layers of abstraction to grow to multiple regions.</p>
+<p><img alt="" src="https://raw.githubusercontent.com/sequenceiq/cloudbreak/master/docs/images/consul.png" /></p>
+</li>
+</ul>
                     <a href="https://github.com/sequenceiq/cloudbreak-docs/blob/master/docs/architecture.md" ><i class="fa fa-github"></i> Edit on GitHub </a>
                 </div>
             
@@ -410,11 +460,11 @@
                $("#cloudbreak-deployer-image").append('<br>');
                $("#cloudbreak-deployer-image").append('<br>');
                $("#cloudbreak-deployer-image").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">Download the latest Cloudbreak Deployer image to your local machine:</p>');
-               $("#cloudbreak-deployer-image").append('<pre><code style="font-size: 12pt;color:#333333">curl -O -k https://public-repo-1.hortonworks.com/HDP/cloudbreak/' + data.metadata.image_name + '.img</code></pre>');
+               $("#cloudbreak-deployer-image").append('<pre><code style="font-size: 12pt;color:#333333">curl -O -k https://public-repo-1.hortonworks.com/HDP/cloudbreak/' + data.id + '</code></pre>');
                $("#cloudbreak-deployer-import").append('<br>');
                $("#cloudbreak-deployer-import").append('<br>');
                $("#cloudbreak-deployer-import").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">Set the following environment variables for the OpenStack image import:</p>');
-               $("#cloudbreak-deployer-import").append('<pre><code style="font-size: 12px;color:#333333">export CBD_LATEST_IMAGE=</code>' + data.metadata.image_name + '.img</code></p>');
+               $("#cloudbreak-deployer-import").append('<pre><code style="font-size: 12px;color:#333333">export CBD_LATEST_IMAGE=</code>' + data.id + '</code></p>');
                });
 
                <!--OpenStack CB-->
@@ -422,18 +472,18 @@
                $("#cloudbreak-image").append('<br>');
                $("#cloudbreak-image").append('<br>');
                $("#cloudbreak-image").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">Download the latest Cloudbreak image to your local machine:</p>');
-               $("#cloudbreak-image").append('<pre><code style="font-size: 12pt;color:#333333">curl -O -k https://public-repo-1.hortonworks.com/HDP/cloudbreak/' + data.metadata.image_name + '.img</code></pre>');
+               $("#cloudbreak-image").append('<pre><code style="font-size: 12pt;color:#333333">curl -O -k https://public-repo-1.hortonworks.com/HDP/cloudbreak/' + data.id + '</code></pre>');
                $("#cloudbreak-import").append('<br>');
                $("#cloudbreak-import").append('<br>');
                $("#cloudbreak-import").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">This is very similar to the Cloudbrek Deployer. Set the following environment variables for the OpenStack image import:</p>');
-               $("#cloudbreak-import").append('<pre><code style="font-size: 12px;color:#333333">export CB_LATEST_IMAGE=</code>' + data.metadata.image_name + '.img</code></p>');
+               $("#cloudbreak-import").append('<pre><code style="font-size: 12px;color:#333333">export CB_LATEST_IMAGE=</code>' + data.id + '</code></p>');
                });
 
                <!--GCP-->
                $.getJSON("../providers/gcp.json", function(data) {
                $("#cloudbreak-deployer-gcp-image-details").append('<br>');
                $("#cloudbreak-deployer-gcp-image-details").append('<br>');
-               $("#cloudbreak-deployer-gcp-image-details").append('<pre><code style="font-size: 12pt;color:#333333"> gcloud compute images create '
+               $("#cloudbreak-deployer-gcp-image-details").append('<pre><code style="font-size: 12pt;color:#333333"> [HACK] gcloud compute images create '
                    + data.id + ' --source-uri gs://sequenceiqimage/' + data.id + '.tar.gz' + '</code></pre>');
                });
            });

@@ -9,7 +9,7 @@
         <link rel="canonical" href="http://sequenceiq.com/cloudbreak-docs/topologies/">
         <link rel="shortcut icon" href="../img/favicon.ico">
 
-	<title>Platforms (TP) - Cloudbreak 1.3.0</title>
+	<title>Platforms - Cloudbreak 1.2.3</title>
 
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -45,7 +45,7 @@
             <!-- Main title -->
             <img class="navbar-logo" src="../img/HWX-RGB-full-no-tagline_500pxh.png" alt="Hortonworks Documentation"
                  width="132" height="52">
-            <a class="navbar-brand" href="..">Cloudbreak 1.3.0</a>
+            <a class="navbar-brand" href="..">Cloudbreak 1.2.3</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -148,25 +148,37 @@
                         
                             
 <li >
+    <a href="../sssd/">SSSD Configuration</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../recipes/">Recipes</a>
+</li>
+
+                        
+                            
+<li >
     <a href="../blueprints/">Blueprints</a>
 </li>
 
                         
                             
 <li class="active">
-    <a href="./">Platforms (TP)</a>
+    <a href="./">Platforms</a>
 </li>
 
                         
                             
 <li >
-    <a href="../kerberos/">Kerberos (TP)</a>
+    <a href="../kerberos/">Kerberos</a>
 </li>
 
                         
                             
 <li >
-    <a href="../mesos/">Mesos (TP)</a>
+    <a href="../mesos/">Mesos</a>
 </li>
 
                         
@@ -195,24 +207,9 @@
 
                         
                             
-  <li class="dropdown-submenu">
-    <a tabindex="-1" href="">Development</a>
-    <ul class="dropdown-menu">
-        
-            
 <li >
-    <a href="../environments/">Environments</a>
+    <a href="../development/">Development</a>
 </li>
-
-        
-            
-<li >
-    <a href="../flow/">Flows</a>
-</li>
-
-        
-    </ul>
-  </li>
 
                         
                             
@@ -276,19 +273,11 @@
         
             <li><a href="#data-locality-and-topologies">Data locality and topologies</a></li>
         
-    
-        <li class="main "><a href="#platform-configuration-via-browser">Platform configuration via Browser</a></li>
+            <li><a href="#managing-platforms">Managing Platforms</a></li>
         
-            <li><a href="#manage-platform-configurations">Manage Platform configurations</a></li>
+            <li><a href="#credential-network-and-template-creation">Credential, Network and Template Creation</a></li>
         
-            <li><a href="#enable-platform-configuration">Enable Platform configuration</a></li>
-        
-    
-        <li class="main "><a href="#platform-configuration-via-cli">Platform configuration via CLI</a></li>
-        
-            <li><a href="#manage-platform-configurations_1">Manage Platform configurations</a></li>
-        
-            <li><a href="#enable-platform-configuration_1">Enable Platform configuration</a></li>
+            <li><a href="#cluster-creation-on-ui">Cluster Creation on UI</a></li>
         
     
     </ul>
@@ -303,12 +292,10 @@
 <p>With this feature you can define platform tag that can be attached to Credentials, Networks and Templates. This way you 
 can bundle together different configurations.</p>
 <h2 id="data-locality-and-topologies">Data locality and topologies</h2>
+<p>The <a href="http://docs.openstack.org/developer/sahara/icehouse/userdoc/features.html#data-locality">OpenStack documentation</a> about data locality:</p>
 <blockquote>
-<p>The <a href="http://docs.openstack.org/developer/sahara/icehouse/userdoc/features
- .html#data-locality">OpenStack documentation</a> says about data locality: "It is extremely important for data processing to do locally (on the
- same rack, OpenStack compute node or even VM) as much work as possible. Hadoop supports data-locality feature and
- can schedule jobs to task tracker nodes that are local for input stream. In this case task tracker could communicate
-  directly with local data node."</p>
+<p>It is extremely important for data processing to do locally (on the same rack, OpenStack compute node or even VM) 
+as much work as possible. Hadoop supports data-locality feature and can schedule jobs to tasktracker nodes that are local for input stream. In this case tasktracker could communicate directly with local data node.</p>
 </blockquote>
 <h3 id="openstack-topology-mapping">OpenStack Topology Mapping</h3>
 <p>Topology mapping can be attached to the Platform definition, that associates the hypervisors with racks. 
@@ -318,12 +305,11 @@ You can set the mapping on the Cloudbreak Web UI by defining this line by line o
 hypervisor2 /rack2
 hypervisor3 /rack2
 </code></pre>
-<p>Based on this mapping the Cloudbreak application could ensure that the rack information of the started VMs will be
-passed to Hadoop services via Ambari.</p>
-<h1 id="platform-configuration-via-browser">Platform configuration via Browser</h1>
-<h2 id="manage-platform-configurations">Manage Platform configurations</h2>
+<p>Based on this mapping the Cloudbreak application could ensure that the rack information of the started VMs will be passed to Hadoop services via Ambari.</p>
+<h2 id="managing-platforms">Managing Platforms</h2>
+<h3 id="cloudbreak-ui">Cloudbreak UI</h3>
 <blockquote>
-<p>You can log into the Cloudbreak application at http://PUBLIC_IP:3000. You can find the provider specific
+<p>You can log into the Cloudbreak application at http://PUBLIC_IP:3000. You can find the provider specific 
 documentations here:</p>
 <ul>
 <li><a href="../aws/">AWS</a></li>
@@ -332,104 +318,39 @@ documentations here:</p>
 <li><a href="../openstack/">OpenStack</a></li>
 </ul>
 </blockquote>
-<p>Platforms can be configured on the <strong>manage platforms</strong> panel on the Cloudbreak Dashboard.</p>
-<p>To create a new platform configuration follow these steps:</p>
-<ol>
-<li>Select <code>OpenStack</code> from cloud provider tabs</li>
-<li>Fill out the new configuration <code>Name</code></li>
-<li>Fill out the <code>Topology Mapping</code> section based on the above examples<ul>
-<li>Add mapping line by line</li>
-</ul>
-</li>
-</ol>
-<p><img alt="" src="../images/platform-create.png" />
-<sub><em>Full size <a href="../images/platform-create.png">here</a>.</em></sub></p>
-<p>Explanation of the parameters:</p>
-<ul>
-<li><code>Name</code> the name of the new configuration<ul>
-<li>Starts with a lowercase alphabetic</li>
-<li>Can contain lowercase alphanumeric and hyphens only</li>
-<li>Number of characters should be between 5 and 100</li>
-</ul>
-</li>
-<li><code>Topology Mapping</code>:<ul>
-<li><code>Hypervisor</code> you can provide your hypervisor name</li>
-<li><code>Rack</code> you can provide the rack name for hypervisor</li>
-</ul>
-</li>
-</ul>
-<p>Optional parameters and theirs explanation:</p>
-<ul>
-<li><code>Description</code> a maximum 1000 character long description for the new configuration</li>
-<li><code>Upload Mapping File</code> mapping definition can be uploaded in a file<ul>
-<li>further details in the <a href="#openstack-topology-mapping">Openstack Topology Mapping section</a></li>
-</ul>
-</li>
-<li><code>Topology Mapping</code>:<ul>
-<li><code>Hypervisor</code> you can provide your hypervisor name</li>
-<li><code>Rack</code> you can provide the rack name for hypervisor</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p><strong>NOTE</strong> Platform name is the only one required parameter.</p>
-</blockquote>
-<h2 id="enable-platform-configuration">Enable Platform configuration</h2>
-<p>Your Cloudbreak platform configuration can be applied on the following panels:</p>
-<ul>
-<li><code>create network</code></li>
-<li><code>create credential</code></li>
-<li><code>create template</code></li>
-</ul>
-<p>To create a new network with a previously created configuration for instance; follow these steps on the <strong>create
-network</strong> panel:</p>
-<ol>
-<li>Select <code>OpenStack</code> from cloud provider tabs</li>
-<li>Fill out the new network <code>Name</code></li>
-<li>Fill out your network <code>Subnet (CIDR)</code></li>
-<li>Fill out your <code>Public Network ID</code></li>
-<li>Select your previously created platform from <code>Select Platform</code></li>
-</ol>
-<p><img alt="" src="../images/platform-select_v2.png" />
-<sub><em>Full size <a href="../images/platform-select_v2.png">here</a>.</em></sub></p>
-<blockquote>
-<p><strong>IMOPRTANT</strong> If platform has assigned to the selected credential, then only the associated networks and templates can
- be selected during cluster creation.</p>
-</blockquote>
-<h1 id="platform-configuration-via-cli">Platform configuration via CLI</h1>
-<h2 id="manage-platform-configurations_1">Manage Platform configurations</h2>
+<p>You can find the <code>manage platforms</code> expandable section on the Cloudbreak Dashboard. With the help of <code>create 
+platform</code> button you can open the platform creation form. <strong>Platform name is the only one 
+required parameter.</strong>
+<img alt="" src="../images/platform-simple.png" /></p>
+<p><a href="#openstack-topology-mapping">OpenStack Topology Mapping</a> is optional on the <code>manage platforms</code>.
+<img alt="" src="../images/platform-form-filled.png" /></p>
+<h3 id="cloudbreak-shell">Cloudbreak Shell</h3>
 <blockquote>
 <p>Start the shell with <code>cbd util cloudbreak-shell</code> on a console. This will launch the Cloudbreak shell inside a Docker
  container and you are ready to start using it. You can find more details at the <a href="../shell/">Cloudbreak Shell</a> page.</p>
 </blockquote>
-<p>You can find two examples here
-for <code>AWS</code>:</p>
 <pre><code># Creating a Platform
 platform create --AWS --name platform-name --description 'description of the platform'
-</code></pre>
 
-<p>or for <code>OPENSTACK</code>:</p>
-<pre><code># Creating OpenStack Platform with topology mapping
+# Creating OpenStack Platform with topology mapping
 platform create --OPENSTACK --name platform-name --description 'openstack platform' --file file_path
 platform create --OPENSTACK --name platform-name --description 'openstack platform' --url url_to_file
 </code></pre>
 
-<h2 id="enable-platform-configuration_1">Enable Platform configuration</h2>
-<p>Your Cloudbreak platform configuration can be applied for the following shell commands as option to set a platform
-for the resource:</p>
-<ul>
-<li><code>network create</code></li>
-<li><code>credential create</code></li>
-<li><code>template create</code></li>
-</ul>
-<p>You can find an example shell command to create a new network with a connected platform:</p>
-<pre><code>network create --AWS --name aws-network --subnet 10.10.10.0/24 --description 'example network' --platformId 26
+<h2 id="credential-network-and-template-creation">Credential, Network and Template Creation</h2>
+<p>Credential, Network and Template creation forms and the related shell commands have option to set a platform for 
+the resource.</p>
+<h3 id="cloudbreak-ui_1">Cloudbreak UI</h3>
+<p>Example network resource creation an the UI with the option of selecting a Platform:
+<img alt="" src="../images/platform-select.png" /></p>
+<h3 id="cloudbreak-shell_1">Cloudbreak Shell</h3>
+<pre><code># Example shell command to create Network resource with a connected Platform
+network create --AWS --name aws-network --subnet 10.10.10.0/24 --description 'example network' --platformId 26
 </code></pre>
 
-<blockquote>
-<p><strong>IMOPRTANT</strong> If platform has assigned to the selected credential, then only the associated networks and templates can
- be selected during cluster creation.</p>
-</blockquote>
+<h2 id="cluster-creation-on-ui">Cluster Creation on UI</h2>
+<p>If platform has assigned to the selected credential, then only the associated networks and templates can be selected 
+during cluster creation.</p>
                     <a href="https://github.com/sequenceiq/cloudbreak-docs/blob/master/docs/topologies.md" ><i class="fa fa-github"></i> Edit on GitHub </a>
                 </div>
             
@@ -514,11 +435,11 @@ for the resource:</p>
                $("#cloudbreak-deployer-image").append('<br>');
                $("#cloudbreak-deployer-image").append('<br>');
                $("#cloudbreak-deployer-image").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">Download the latest Cloudbreak Deployer image to your local machine:</p>');
-               $("#cloudbreak-deployer-image").append('<pre><code style="font-size: 12pt;color:#333333">curl -O -k https://public-repo-1.hortonworks.com/HDP/cloudbreak/' + data.metadata.image_name + '.img</code></pre>');
+               $("#cloudbreak-deployer-image").append('<pre><code style="font-size: 12pt;color:#333333">curl -O -k https://public-repo-1.hortonworks.com/HDP/cloudbreak/' + data.id + '</code></pre>');
                $("#cloudbreak-deployer-import").append('<br>');
                $("#cloudbreak-deployer-import").append('<br>');
                $("#cloudbreak-deployer-import").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">Set the following environment variables for the OpenStack image import:</p>');
-               $("#cloudbreak-deployer-import").append('<pre><code style="font-size: 12px;color:#333333">export CBD_LATEST_IMAGE=</code>' + data.metadata.image_name + '.img</code></p>');
+               $("#cloudbreak-deployer-import").append('<pre><code style="font-size: 12px;color:#333333">export CBD_LATEST_IMAGE=</code>' + data.id + '</code></p>');
                });
 
                <!--OpenStack CB-->
@@ -526,18 +447,18 @@ for the resource:</p>
                $("#cloudbreak-image").append('<br>');
                $("#cloudbreak-image").append('<br>');
                $("#cloudbreak-image").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">Download the latest Cloudbreak image to your local machine:</p>');
-               $("#cloudbreak-image").append('<pre><code style="font-size: 12pt;color:#333333">curl -O -k https://public-repo-1.hortonworks.com/HDP/cloudbreak/' + data.metadata.image_name + '.img</code></pre>');
+               $("#cloudbreak-image").append('<pre><code style="font-size: 12pt;color:#333333">curl -O -k https://public-repo-1.hortonworks.com/HDP/cloudbreak/' + data.id + '</code></pre>');
                $("#cloudbreak-import").append('<br>');
                $("#cloudbreak-import").append('<br>');
                $("#cloudbreak-import").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">This is very similar to the Cloudbrek Deployer. Set the following environment variables for the OpenStack image import:</p>');
-               $("#cloudbreak-import").append('<pre><code style="font-size: 12px;color:#333333">export CB_LATEST_IMAGE=</code>' + data.metadata.image_name + '.img</code></p>');
+               $("#cloudbreak-import").append('<pre><code style="font-size: 12px;color:#333333">export CB_LATEST_IMAGE=</code>' + data.id + '</code></p>');
                });
 
                <!--GCP-->
                $.getJSON("../providers/gcp.json", function(data) {
                $("#cloudbreak-deployer-gcp-image-details").append('<br>');
                $("#cloudbreak-deployer-gcp-image-details").append('<br>');
-               $("#cloudbreak-deployer-gcp-image-details").append('<pre><code style="font-size: 12pt;color:#333333"> gcloud compute images create '
+               $("#cloudbreak-deployer-gcp-image-details").append('<pre><code style="font-size: 12pt;color:#333333"> [HACK] gcloud compute images create '
                    + data.id + ' --source-uri gs://sequenceiqimage/' + data.id + '.tar.gz' + '</code></pre>');
                });
            });
