@@ -4,6 +4,16 @@ Setting up Cloudbreak on Azure is different than on other cloud providers for wh
 
 To get started with Cloudbreak installation using the Azure Resource Manager template, click here: <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fsequenceiq%2Fazure-cbd-quickstart%2F1.16.6%2FmainTemplate.json">  ![deploy on azure](http://azuredeploy.net/deploybutton.png) </a>
 
+## Please upgrade your Cloudbreak Deployer
+
+Install the Cloudbreak Deployer and unzip the platform-specific single binary to your PATH. For example:
+
+```
+yum -y install unzip tar
+curl -Ls s3.amazonaws.com/public-repo-1.hortonworks.com/HDP/cloudbreak/cloudbreak-deployer_1.16.6_$(uname)_x86_64.tgz | sudo tar -xz -C /bin cbd
+cbd --version
+```
+
 ### VM Requirements
 
 When selecting an instance type, consider these minimum and recomended requirements:  
