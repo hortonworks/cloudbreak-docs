@@ -1,7 +1,8 @@
+<p><font color='red' size='6'>Repository moved under Hortonwors account. Please use <a href="https://docs.hortonworks.com/HDPDocuments/Cloudbreak/Cloudbreak-2.4.1/index.html">this</a> page.</font></br></p>  
 
 <font color='red'>
 <font color='red' size='5'>March 26, 2018 <font color='red' size='5'>Known issue related to Google Cloud</font></font></br>
-> Due to a recent change on Google Cloud Platform, all clusters created with Cloudbreak 1.16.5 on Google Cloud will fail. This issue will be fixed in Cloudbreak 1.16.6. If you are already using Cloudbreak 1.16.4 with Google Cloud, upgrade to Cloudbreak 1.16.6. If you were planning to install Cloudbreak 1.16.6, use Cloudbreak 1.16.6 instead. 
+> Due to a recent change on Google Cloud Platform, all clusters created with Cloudbreak before 1.16.6 on Google Cloud will fail. This issue will be fixed in Cloudbreak 1.16.6. If you are already using Cloudbreak 1.16.4 with Google Cloud, upgrade to Cloudbreak 1.16.6. If you were planning to install Cloudbreak 1.16.6, use Cloudbreak 1.16.6 instead. 
 </font>
 
 # Overview
