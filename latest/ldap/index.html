@@ -9,7 +9,7 @@
         <link rel="canonical" href="http://hortonworks.github.io/cloudbreak-docs/ldap/">
         <link rel="shortcut icon" href="../img/favicon.ico">
 
-	<title>LDAP/AD (TP) - Cloudbreak 1.16.5</title>
+	<title>LDAP/AD (TP) - Cloudbreak 1.16.4</title>
 
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -45,7 +45,7 @@
             <!-- Main title -->
             <img class="navbar-logo" src="../img/HWX-RGB-full-no-tagline_500pxh.png" alt="Hortonworks Documentation"
                  width="132" height="52">
-            <a class="navbar-brand" href="..">Cloudbreak 1.16.5</a>
+            <a class="navbar-brand" href="..">Cloudbreak 1.16.4</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -137,12 +137,6 @@
                             
 <li >
     <a href="../shell/">CLI/Shell</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../customizations/">Customizations</a>
 </li>
 
                         
@@ -383,17 +377,17 @@ cbd start
 <h2 id="mapping-oauth2-scopes-to-ldap-groups">Mapping Oauth2 scopes to LDAP groups</h2>
 <p>In order for the users to have access to Cloudbreak resources and to be able to create clusters the Oauth2 scopes must be mapped to LDAP groups. At the moment Cloudbreak only supports <code>one LDAP group per user</code> scenario.
 To see the Oauth2 scopes, execute the following command:</p>
-<pre><code>docker exec -it cbreak_commondb_1 psql -U postgres -d uaadb -c &quot;select displayname from groups where displayname like 'cloudbreak%' or displayname like 'sequenceiq.account%' or displayname='sequenceiq.cloudbreak.user';&quot;
+<pre><code>docker exec -it cbreak_commondb_1 psql -U postgres -d uaadb -c 'select displayname from groups;'
 </code></pre>
 
 <p>To save them to a <code>groups.txt</code> file:</p>
-<pre><code>docker exec cbreak_commondb_1 psql -U postgres -d uaadb -c &quot;select displayname from groups where displayname like 'cloudbreak%' or displayname like 'sequenceiq.account%' or displayname='sequenceiq.cloudbreak.user';&quot; | tail -n +3 | grep -v rows | xargs -I@ echo @ &gt;&gt; groups.txt
+<pre><code>docker exec cbreak_commondb_1 psql -U postgres -d uaadb -c 'select displayname from groups;' | tail -n +3 | grep -v rows | xargs -I@ echo @ &gt;&gt; groups.txt
 </code></pre>
 
 <p>To generate the SQL commands for the mapping we'll use <a href="https://github.com/gliderlabs/sigil">sigil</a>, which is a string interpolator and template processor. It is a single binary written in Golang and you can download it from the <a href="https://github.com/gliderlabs/sigil/releases">releases</a> page.
 Save the following in a file called: <code>template.sig</code> (cn=admin,ou=scopes,dc=ad,dc=hortonworks,dc=com depends on your LDAP group, it must be inside searchBase parameter configured in the first step in UAA.yml):</p>
-<pre><code>{{ range $k, $v := stdin|split &quot;\n&quot;}}INSERT INTO external_group_mapping (group_id, external_group, added, origin) VALUES ((select id from groups where displayname='{{$v}}'), 'cn=admin,ou=scopes,dc=ad,dc=hortonworks,dc=com', '2016-09-30 19:28:24.255', 'ldap');
-{{end}}
+<pre><code>{{ range $k, $v := stdin|split &quot;\n&quot;}}
+ INSERT INTO external_group_mapping (group_id, external_group, added, origin) VALUES ((select id from groups where displayname='{{$v}}'), 'cn=admin,ou=scopes,dc=ad,dc=hortonworks,dc=com', '2016-09-30 19:28:24.255', 'ldap');{{end}}
 </code></pre>
 
 <p>then generate the SQL commands into <code>mapping.sql</code>:</p>

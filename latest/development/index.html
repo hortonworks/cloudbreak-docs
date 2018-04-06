@@ -9,7 +9,7 @@
         <link rel="canonical" href="http://hortonworks.github.io/cloudbreak-docs/development/">
         <link rel="shortcut icon" href="../img/favicon.ico">
 
-	<title>Local Development - Cloudbreak 1.16.5</title>
+	<title>Local Development - Cloudbreak 1.16.4</title>
 
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -45,7 +45,7 @@
             <!-- Main title -->
             <img class="navbar-logo" src="../img/HWX-RGB-full-no-tagline_500pxh.png" alt="Hortonworks Documentation"
                  width="132" height="52">
-            <a class="navbar-brand" href="..">Cloudbreak 1.16.5</a>
+            <a class="navbar-brand" href="..">Cloudbreak 1.16.4</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -137,12 +137,6 @@
                             
 <li >
     <a href="../shell/">CLI/Shell</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../customizations/">Customizations</a>
 </li>
 
                         
@@ -299,7 +293,7 @@
                 </li>
                 
                     <li >
-                        <a rel="next" href="../customizations/">
+                        <a rel="next" href="../shell/">
                             <i class="fa fa-arrow-left"></i> Previous
                         </a>
                     </li>
@@ -352,7 +346,8 @@
 
 <p>To start the complete Cloudbreak ecosystem on your machine just execute the following sequence of commands:</p>
 <pre><code>cd cbd-local
-curl https://raw.githubusercontent.com/hortonworks/cloudbreak-deployer/master/install-dev | sh &amp;&amp; cbd --version
+curl https://raw.githubusercontent.com/hortonworks/cloudbreak-deployer/master/install | sh &amp;&amp; cbd --version
+cbd update master
 cbd init
 cbd start
 </code></pre>
