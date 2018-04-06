@@ -9,7 +9,7 @@
         <link rel="canonical" href="http://hortonworks.github.io/cloudbreak-docs/cloudbreak_database/">
         <link rel="shortcut icon" href="../img/favicon.ico">
 
-	<title>Cloudbreak Database - Cloudbreak 1.16.1</title>
+	<title>Cloudbreak Database - Cloudbreak 1.16.6</title>
 
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -45,7 +45,7 @@
             <!-- Main title -->
             <img class="navbar-logo" src="../img/HWX-RGB-full-no-tagline_500pxh.png" alt="Hortonworks Documentation"
                  width="132" height="52">
-            <a class="navbar-brand" href="..">Cloudbreak 1.16.1</a>
+            <a class="navbar-brand" href="..">Cloudbreak 1.16.6</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -142,6 +142,18 @@
                         
                             
 <li >
+    <a href="../customizations/">Customizations</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../development/">Local Development</a>
+</li>
+
+                        
+                            
+<li >
     <a href="../security/">Cloudbreak Security</a>
 </li>
 
@@ -178,7 +190,7 @@
                         
                             
 <li >
-    <a href="../images/">Cloud Images (TP)</a>
+    <a href="../images/">Custom Images (TP)</a>
 </li>
 
                         
@@ -343,10 +355,14 @@
 <pre><code>export COMMON_DB_VOL=&quot;my-live-data-volume&quot;
 </code></pre>
 
-<p>To create database dumps by executing the following commands:</p>
+<p>To create database dumps, execute the following commands:</p>
 <pre><code>cbd db dump common cbdb
 cbd db dump common uaadb
 cbd db dump common periscopedb
+</code></pre>
+
+<p>The dump command has an optional third parameter, the <code>name</code> of the dump. If you give your dump a name, Cloudbreak deployer will create a symbolic link which points to the SQL dump. For example: </p>
+<pre><code>cbd db dump common cbdb name-of-the-dump
 </code></pre>
 
 <p>To list existing dumps, execute the <code>cbd db list-dumps</code> command.</p>
@@ -355,9 +371,14 @@ cbd db dump common periscopedb
 <pre><code>docker run --rm -v cbreak_dump:/dump -it alpine ls -lsa /dump/cbdb/latest
 </code></pre>
 
-<blockquote>
-<p>If you want to restore an older dump, you have to link it as the latest.</p>
-</blockquote>
+<p>You can set any of the existing dumps as latest with <code>set-dump</code> command. You can set both regular or named dumps. For example: </p>
+<pre><code>cbd db set-dump cbdb 20170628_1805
+</code></pre>
+
+<p>or</p>
+<pre><code>cbd db set-dump cbdb name-of-the-dump
+</code></pre>
+
 <p>To remove the existing <code>common</code> volume, stop all the related Cloudbreak containers with <code>cbd kill</code> command, and then remove the volume:</p>
 <pre><code>docker volume rm common
 </code></pre>
