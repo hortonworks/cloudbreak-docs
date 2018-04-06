@@ -9,7 +9,7 @@
         <link rel="canonical" href="http://sequenceiq.com/cloudbreak-docs/configuration/">
         <link rel="shortcut icon" href="../img/favicon.ico">
 
-	<title>Advanced Configuration - Cloudbreak 1.14.0 (TP)</title>
+	<title>Advanced Configuration - Cloudbreak 1.6.3</title>
 
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -45,7 +45,7 @@
             <!-- Main title -->
             <img class="navbar-logo" src="../img/HWX-RGB-full-no-tagline_500pxh.png" alt="Hortonworks Documentation"
                  width="132" height="52">
-            <a class="navbar-brand" href="..">Cloudbreak 1.14.0 (TP)</a>
+            <a class="navbar-brand" href="..">Cloudbreak 1.6.3</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -137,12 +137,6 @@
                             
 <li >
     <a href="../shell/">CLI/Shell</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../security/">Cloudbreak Security</a>
 </li>
 
                         
@@ -379,14 +373,14 @@ certs/traefik/mydomain.com.key
 <p>As a best practice we recommend to replace <code>mydomain.com</code> with the actual domain what you want to use, but make sure that the actual file names and the values in <code>CBD_TRAEFIK_TLS</code> are identical.  </p>
 <p><em>Note: password protected private key files can't be used by Cloudbreak</em>  </p>
 <h3 id="access-from-custom-domains">Access from Custom Domains</h3>
-<p>Cloudbreak Deployer supports multitenancy and uses UAA as an identity provider. In UAA, multitenancy is managed through identity zones. An identity zone is accessed through a unique subdomain. For example, if the standard UAA responds to <a href="https://uaa.10.244.0.34.xip.io">https://uaa.10.244.0.34.xip.io</a>, a zone on this UAA can be accessed through a unique subdomain <a href="https://testzone1.uaa.10.244.0.34.xip.io">https://testzone1.uaa.10.244.0.34.xip.io</a>.</p>
+<p>Cloudbreak Deployer supports multitenancy and uses UAA as an identity provider. In UAA, multitenancy is managed through identity zones. An identity zone is accessed through a unique subdomain. For example, if the standard UAA responds to <a href="https://uaa.10.244.0.34.xip.io">https://uaa.10.244.0.34.xip.io</a>, a zone on this UAA can be accessed through a unique subdomain <a href="https://testzone1.uaa.10.244.0.34.xip.io">https://testzone1.uaa.10.244.0.34.xip.io</a>. </p>
 <p>If you want to use a custom domain for your identity or deployment, add the <code>UAA_ZONE_DOMAIN</code> line to your <code>Profile</code>:</p>
 <pre><code>export UAA_ZONE_DOMAIN=my-subdomain.example.com
 </code></pre>
 
 <p>For example, in our hosted deployment, the <code>identity.sequenceiq.com</code> domain refers to our identity server; therefore, the <code>UAA_ZONE_DOMAIN</code> variable has to be set to that domain. This variable is necessary for UAA to identify which zone provider should handle the requests that arrive to that domain.</p>
 <h3 id="consul">Consul</h3>
-<p>Cloudbreak uses <a href="http://consul.io">Consul</a> for DNS resolution. All Cloudbreak-related services are registered as <strong>someservice.service.consul</strong>.</p>
+<p>Cloudbreak uses <a href="http://consul.io">Consul</a> for DNS resolution. All Cloudbreak-related services are registered as <strong>someservice.service.consul</strong>. </p>
 <p>Consul’s built-in DNS server is able to fall back on another DNS server.
 This option is called <code>-recursor</code>. Clodbreak Deployer first tries to discover the DNS settings of the host by looking for <strong>nameserver</strong> entry in the <code>/etc/resolv.conf</code> file. If it finds one, consul will use it as a recursor. Otherwise, it will use <strong>8.8.8.8</strong> .</p>
 <p>For a full list of available consul config options, see Consul <a href="https://consul.io/docs/agent/options.html">documentation</a>.</p>
@@ -401,6 +395,7 @@ export CB_GCP_HOSTKEY_VERIFY=true
 <h3 id="azure-resource-manager-command">Azure Resource Manager Command</h3>
 <ul>
 <li><strong>cbd azure configure-arm</strong></li>
+<li><strong>cbd azure deploy-dash</strong></li>
 </ul>
 <p>For more information, see Azure <a href="../azure/#azure-application-setup-with-cloudbreak-deployer">documentation</a>.</p>
                     <a href="https://github.com/sequenceiq/cloudbreak-docs/blob/master/docs/configuration.md" ><i class="fa fa-github"></i> Edit on GitHub </a>

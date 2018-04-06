@@ -9,7 +9,7 @@
         <link rel="canonical" href="http://sequenceiq.com/cloudbreak-docs/onprem/">
         <link rel="shortcut icon" href="../img/favicon.ico">
 
-	<title>Installation - Cloudbreak 1.14.0 (TP)</title>
+	<title>Installation - Cloudbreak 1.6.3</title>
 
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -45,7 +45,7 @@
             <!-- Main title -->
             <img class="navbar-logo" src="../img/HWX-RGB-full-no-tagline_500pxh.png" alt="Hortonworks Documentation"
                  width="132" height="52">
-            <a class="navbar-brand" href="..">Cloudbreak 1.14.0 (TP)</a>
+            <a class="navbar-brand" href="..">Cloudbreak 1.6.3</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -137,12 +137,6 @@
                             
 <li >
     <a href="../shell/">CLI/Shell</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../security/">Cloudbreak Security</a>
 </li>
 
                         
@@ -386,7 +380,7 @@ systemctl enable docker
 <h4 id="install-cloudbreak-deployer_1">Install Cloudbreak Deployer</h4>
 <p>Install the Cloudbreak Deployer and unzip the platform-specific single binary to your PATH. For example:</p>
 <pre><code>yum -y install unzip tar
-curl -Ls s3.amazonaws.com/public-repo-1.hortonworks.com/HDP/cloudbreak/cloudbreak-deployer_1.14.0_$(uname)_x86_64.tgz | sudo tar -xz -C /bin cbd
+curl -Ls s3.amazonaws.com/public-repo-1.hortonworks.com/HDP/cloudbreak/cloudbreak-deployer_1.6.3_$(uname)_x86_64.tgz | sudo tar -xz -C /bin cbd
 cbd --version
 </code></pre>
 
@@ -395,14 +389,11 @@ cbd --version
 <p>Initialize <code>cbd</code> by using:</p>
 <pre><code>mkdir cloudbreak-deployment
 cd cloudbreak-deployment
+cbd init
 </code></pre>
 
-<p>First, initialize <code>cbd</code> by creating a <code>Profile</code> file with the following content:</p>
-<pre><code>export UAA_DEFAULT_SECRET='[SECRET]'
-export UAA_DEFAULT_USER_PW='[PASSWORD]'
-</code></pre>
-
-<p>By default the <code>cbd</code> tool tries to guess <code>PUBLIC_IP</code> to bind Cloudbreak UI to it. But if <code>cbd</code> cannot get the IP address during the initialization, set the appropriate value also in your <code>Profile</code>.</p>
+<p>This creates a <code>Profile</code> file in the current directory.   </p>
+<p>Open the <code>Profile</code> file and check the <code>PUBLIC_IP</code>. Cloudbreak UI uses the <code>PUBLIC_IP</code> to access the Cloudbreak UI. In some cases, the <code>cbd</code> tool tries to guess it. If <code>cbd</code> did not get the IP address during the initialization, set the appropriate value.</p>
 <h4 id="generate-your-profile">Generate Your Profile</h4>
 <p>Generate configurations by executing:</p>
 <pre><code>rm *.yml
