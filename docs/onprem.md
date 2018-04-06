@@ -157,7 +157,7 @@ If you face permission or connection issues, disable **SELinux**:
   3. Ensure the SELinux is not turned on afterwards:
 
 ```
-setenforce 0 && sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/ selinux/config
+setenforce 0 && sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
 ```
 
 ## Next Steps
