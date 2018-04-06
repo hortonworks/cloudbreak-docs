@@ -9,7 +9,7 @@
         <link rel="canonical" href="http://sequenceiq.com/cloudbreak-docs/configuration/">
         <link rel="shortcut icon" href="../img/favicon.ico">
 
-	<title>Advanced Configuration - Cloudbreak 1.2.0</title>
+	<title>Advanced Configuration - Cloudbreak 1.14.0 (TP)</title>
 
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -43,8 +43,9 @@
             
 
             <!-- Main title -->
-            <img class="navbar-logo" src="http://docs.hortonworks.com/HDPDocuments/Ambari-2.1.0.0/bk_Installing_HDP_AMB/common/images/hortonworks-logo.png" alt="Hortonworks Documentation" width="132" height="52">
-            <a class="navbar-brand" href="..">Cloudbreak 1.2.0</a>
+            <img class="navbar-logo" src="../img/HWX-RGB-full-no-tagline_500pxh.png" alt="Hortonworks Documentation"
+                 width="132" height="52">
+            <a class="navbar-brand" href="..">Cloudbreak 1.14.0 (TP)</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -79,6 +80,12 @@
                             
 <li >
     <a href="../releasenotes/">Release Notes</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../issues/">Known Issues</a>
 </li>
 
                         
@@ -135,6 +142,18 @@
                         
                             
 <li >
+    <a href="../security/">Cloudbreak Security</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../update/">Update Cloudbreak</a>
+</li>
+
+                        
+                            
+<li >
     <a href="../ui_account/">Account Management</a>
 </li>
 
@@ -142,12 +161,6 @@
                             
 <li >
     <a href="../periscope/">Auto-Scaling</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../sssd/">SSSD Configuration</a>
 </li>
 
                         
@@ -165,19 +178,37 @@
                         
                             
 <li >
-    <a href="../topologies/">Platforms</a>
+    <a href="../images/">Cloud Images (TP)</a>
 </li>
 
                         
                             
 <li >
-    <a href="../kerberos/">Kerberos</a>
+    <a href="../database/">Ambari Database (TP)</a>
 </li>
 
                         
                             
 <li >
-    <a href="../mesos/">Mesos</a>
+    <a href="../topologies/">Platforms (TP)</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../kerberos/">Kerberos (TP)</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../ldap/">LDAP/AD (TP)</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../mesos/">Mesos (TP)</a>
 </li>
 
                         
@@ -189,13 +220,7 @@
                         
                             
 <li >
-    <a href="../operations/">Operations</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../database/">Migration</a>
+    <a href="../operations/">Basic Operations</a>
 </li>
 
                         
@@ -206,15 +231,18 @@
 
                         
                             
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Development</a>
+    <ul class="dropdown-menu">
+        
+            
 <li >
-    <a href="../development/">Development</a>
+    <a href="../flow/">Flows</a>
 </li>
 
-                        
-                            
-<li >
-    <a href="../issues/">Known issues</a>
-</li>
+        
+    </ul>
+  </li>
 
                         
                         </ul>
@@ -238,12 +266,12 @@
                 </li>
                 
                     <li >
-                        <a rel="next" href="../database/">
+                        <a rel="next" href="../operations/">
                             <i class="fa fa-arrow-left"></i> Previous
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../development/">
+                        <a rel="prev" href="../flow/">
                             Next <i class="fa fa-arrow-right"></i>
                         </a>
                     </li>
@@ -268,17 +296,13 @@
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#configuration">Configuration</a></li>
+        <li class="main active"><a href="#advanced-configuration">Advanced Configuration</a></li>
         
-            <li><a href="#env-specific-profile">Env specific Profile</a></li>
+            <li><a href="#environment-specific-profiles">Environment Specific Profiles</a></li>
         
             <li><a href="#available-configurations">Available Configurations</a></li>
         
-            <li><a href="#azure-resource-manager-command">Azure Resource manager command</a></li>
-        
-            <li><a href="#caveats">Caveats</a></li>
-        
-            <li><a href="#ssh-fingerprint-verification">SSH fingerprint verification</a></li>
+            <li><a href="#provider-specific-configurations">Provider Specific Configurations</a></li>
         
     
     </ul>
@@ -286,39 +310,44 @@
                 <div class="col-md-9" role="main">
                     
 
-<h1 id="configuration">Configuration</h1>
-<p>Configuration is based on environment variables. Cloudbreak Deployer always forks a new bash subprocess <strong>without
-inheriting environment variables</strong>. The only way to set ENV vars relevant for Cloudbreak Deployer is to set them
-in a file called <code>Profile</code>.</p>
-<p>To see all available config variables with their default value:</p>
+<h1 id="advanced-configuration">Advanced Configuration</h1>
+<p>Cloudbreak Deployer configuration is based on environment variables. Cloudbreak Deployer always opens a new bash subprocess <strong>without inheriting environment variables</strong>. Only the following environment variables <em>are</em> inherited:</p>
+<ul>
+<li><code>HOME</code></li>
+<li><code>DEBUG</code></li>
+<li><code>TRACE</code></li>
+<li><code>CBD_DEFAULT_PROFILE</code></li>
+<li>all <code>DOCKER_XXX</code></li>
+</ul>
+<p>To set environment variables relevant for Cloudbreak Deployer, add them to a file called <code>Profile</code>.</p>
+<p>To see all available environment variables with their default values, run:</p>
 <pre><code>cbd env show
 </code></pre>
 
-<p>The <code>Profile</code> will be simple <strong>sourced</strong> in bash terms, so you can use the usual syntaxes to set config values:</p>
+<p>The <code>Profile</code> file is <strong>sourced</strong>, so you can use the usual syntax to set configuration values:</p>
 <pre><code>export MY_VAR=some_value
-export OTHER_VAR=dunno
+export OTHER_VAR=another_value
 </code></pre>
 
-<h2 id="env-specific-profile">Env specific Profile</h2>
-<p>Let’s say you want to use a different version of Cloudbreak for <strong>prod</strong> and <strong>qa</strong> profile.
-You can specify the Docker image tag via: <code>DOCKER_TAG_CLOUDBREAK</code>.
-<code>Profile</code> is always sourced, so you will have two env specific configurations:
-- <code>Profile.dev</code>
+<h2 id="environment-specific-profiles">Environment Specific Profiles</h2>
+<p>Let’s say that you want to use a different version of Cloudbreak for <strong>prod</strong> and <strong>qa</strong> profile. Since the <code>Profile</code> file is sourced, you will have to create two environment specific configurations that can be sourced:<br />
+- <code>Profile.prod</code><br />
 - <code>Profile.qa</code></p>
-<p>For prod you need:</p>
-<ul>
-<li>create a file called <code>Profile.prod</code></li>
-<li>write the env specific <code>export DOCKER_TAG_CLOUDBREAK=0.3.99</code> into <code>Profile.prod</code></li>
-<li>set the env variable: <code>CBD_DEFAULT_PROFILE=prod</code></li>
-</ul>
-<p>To use the <code>prod</code> specific profile once:</p>
+<p>For example, to create and use a <strong>prod</strong> profile, you need to:</p>
+<ol>
+<li>Create a file called <code>Profile.prod</code></li>
+<li>Write the environment-specific <code>export DOCKER_TAG_CLOUDBREAK=0.3.99</code> into <code>Profile.prod</code> to specify Docker image.</li>
+<li>Set the environment variable: <code>CBD_DEFAULT_PROFILE=prod</code></li>
+</ol>
+<p>To use the <code>prod</code> specific profile once, set:</p>
 <pre><code>CBD_DEFAULT_PROFILE=prod cbd some_commands
 </code></pre>
 
-<p>For permanent setting you can <code>export CBD_DEFAULT_PROFILE=prod</code> in your <code>.bash_profile</code>.</p>
+<p>To permanently use the  <code>prod</code> profile, set <code>export CBD_DEFAULT_PROFILE=prod</code> in your <code>.bash_profile</code>.</p>
 <h2 id="available-configurations">Available Configurations</h2>
 <h3 id="smtp">SMTP</h3>
-<p>If you want to change SMTP parameters, put the corresponding lines into your <code>Profile</code>. You can also see the default values of the parameters in the following box.</p>
+<p>If you want to change SMTP parameters, add them your <code>Profile</code>.  </p>
+<p>The default values of the SMTP parameters are:</p>
 <pre><code>export CLOUDBREAK_SMTP_SENDER_USERNAME=
 export CLOUDBREAK_SMTP_SENDER_PASSWORD=
 export CLOUDBREAK_SMTP_SENDER_HOST=
@@ -329,49 +358,51 @@ export CLOUDBREAK_SMTP_STARTTLS_ENABLE=true
 export CLOUDBREAK_SMTP_TYPE=smtp
 </code></pre>
 
-<p><em>Using SMTPS</em></p>
-<p>If your SMTP server uses SMTPS you should change the protocol in your Profile:</p>
+<h4 id="smtps">SMTPS</h4>
+<p>If your SMTP server uses SMTPS, you must set the protocol in your <code>Profile</code> to <code>smtps</code>:</p>
 <pre><code>export CLOUDBREAK_SMTP_TYPE=smtps
 </code></pre>
 
-<p>If the certificate used by the SMTP server is self-signed, or Java's default trust store doesn't contain it than you can add it to the trust store by copying it to <code>certs/trusted</code> inside the Cloudbreak deployer directory and start (or restart) the Cloudbreak container (with <code>cbd start</code>).The Cloudbreak container will automatically import the certificates in that directory to its trust store on startup.</p>
-<h3 id="access-from-custom-domains">Access from custom domains</h3>
-<p>Cloudbreak deployer uses UAA as an identity provider and supports multi tenancy. In UAA terminology this is referred as identity zones. An identity zone is accessed through a unique subdomain. If the standard UAA responds to <a href="https://uaa.10.244.0.34.xip.io">https://uaa.10.244.0.34.xip.io</a> a zone on this UAA would be accessed through <a href="https://testzone1.uaa.10.244.0.34.xip.io">https://testzone1.uaa.10.244.0.34.xip.io</a>.</p>
-<p>As an example in our hosted deployment the <code>identity.sequenceiq.com</code> domain refers to our identity server and the <code>UAA_ZONE_DOMAIN</code> variable has to be set to that domain. This variable is necessary for UAA to identify which zone provider should handle the requests that arrives to the given domain.</p>
-<p>If you want to use a custom domain for your identity or deployment, put the <code>UAA_ZONE_DOMAIN</code> line into your
-<code>Profile</code>. You can see an example in the following box:</p>
+<h3 id="certificates">Certificates</h3>
+<h4 id="trusted-certificates">Trusted Certificates</h4>
+<p>If the certificate used by the SMTP server is self-signed or the Java's default trust store doesn't contain it, you can add it to the trust store by copying it to <code>certs/trusted</code> inside the Cloudbreak Deployer directory, and start (or restart) the Cloudbreak container (with <code>cbd start</code>). On startup, the Cloudbreak container  automatically imports the certificates in that directory to its trust store.</p>
+<h4 id="cloudbreak-certificate">Cloudbreak Certificate</h4>
+<p>If you would like to replace Cloudbreak's self-signed certificate with your own certificate then copy your certificate and the related private key under cloudbreak-deployment directory:</p>
+<pre><code>certs/traefik/mydomain.com.crt
+certs/traefik/mydomain.com.key
+</code></pre>
+
+<p>If the traefik directory does not exsist then create it. After you have coped the cert and private key file, then add the following variable into the Profile file of cbd and restart cbd.</p>
+<pre><code>export CBD_TRAEFIK_TLS=&quot;/certs/traefik/mydomain.com.crt,/certs/traefik/mydomain.com.key&quot;
+</code></pre>
+
+<p>As a best practice we recommend to replace <code>mydomain.com</code> with the actual domain what you want to use, but make sure that the actual file names and the values in <code>CBD_TRAEFIK_TLS</code> are identical.  </p>
+<p><em>Note: password protected private key files can't be used by Cloudbreak</em>  </p>
+<h3 id="access-from-custom-domains">Access from Custom Domains</h3>
+<p>Cloudbreak Deployer supports multitenancy and uses UAA as an identity provider. In UAA, multitenancy is managed through identity zones. An identity zone is accessed through a unique subdomain. For example, if the standard UAA responds to <a href="https://uaa.10.244.0.34.xip.io">https://uaa.10.244.0.34.xip.io</a>, a zone on this UAA can be accessed through a unique subdomain <a href="https://testzone1.uaa.10.244.0.34.xip.io">https://testzone1.uaa.10.244.0.34.xip.io</a>.</p>
+<p>If you want to use a custom domain for your identity or deployment, add the <code>UAA_ZONE_DOMAIN</code> line to your <code>Profile</code>:</p>
 <pre><code>export UAA_ZONE_DOMAIN=my-subdomain.example.com
 </code></pre>
 
+<p>For example, in our hosted deployment, the <code>identity.sequenceiq.com</code> domain refers to our identity server; therefore, the <code>UAA_ZONE_DOMAIN</code> variable has to be set to that domain. This variable is necessary for UAA to identify which zone provider should handle the requests that arrive to that domain.</p>
 <h3 id="consul">Consul</h3>
-<p><a href="http://consul.io">Consul</a> is used for DNS resolution. All Cloudbreak related services are registered as
-<strong>someservice.service.consul</strong>. Consul’s built in DNS server is able to “fall-back” on an other DNS server.
-This option is called <code>-recursor</code>. Clodbreak Deployer first tries to discover the DNS settings of the host,
-by looking for <strong>nameserver</strong> entry in <code>/etc/resolv.conf</code>. If it finds one consul will use it as a recursor,
-otherwise <strong>8.8.8.8</strong> will be used.</p>
-<p>For a full list of available consul config options, see the <a href="https://consul.io/docs/agent/options.html">docs</a>.</p>
-<p>You can pass any additional consul configuration by defining a <code>DOCKER_CONSUL_OPTIONS</code> in <code>Profile</code>.</p>
-<h2 id="azure-resource-manager-command">Azure Resource manager command</h2>
-<ul>
-<li><strong>cbd azure configure-arm</strong></li>
-<li><strong>cbd azure deploy-dash</strong>
-See the documentation <a href="../azure/#azure-application-setup-with-cloudbreak-deployer">here</a>.</li>
-</ul>
-<h2 id="caveats">Caveats</h2>
-<p>The <strong>Cloudbreak Deployer</strong> tool opens a clean bash subshell, without inheriting environment variables.</p>
-<p>Only the following environment variables <em>are</em> inherited:</p>
-<ul>
-<li><code>HOME</code></li>
-<li><code>DEBUG</code></li>
-<li><code>TRACE</code></li>
-<li><code>CBD_DEFAULT_PROFILE</code></li>
-<li>all <code>DOCKER_XXX</code></li>
-</ul>
-<h2 id="ssh-fingerprint-verification">SSH fingerprint verification</h2>
-<p>Cloudbreak is able to verify the SSH fingerprints of the provisioned virtual machines. We disable this feature by default for AWS and GCP because we have experienced issues, since Cloud providers do not always print the SSH fingerprint into the provisioned machines console output. The fingerprint validation feature could be turned on by configuring the 'CB_AWS_HOSTKEY_VERIFY' and/or the CB_GCP_HOSTKEY_VERIFY variables in your cbd profile like in the following example:</p>
+<p>Cloudbreak uses <a href="http://consul.io">Consul</a> for DNS resolution. All Cloudbreak-related services are registered as <strong>someservice.service.consul</strong>.</p>
+<p>Consul’s built-in DNS server is able to fall back on another DNS server.
+This option is called <code>-recursor</code>. Clodbreak Deployer first tries to discover the DNS settings of the host by looking for <strong>nameserver</strong> entry in the <code>/etc/resolv.conf</code> file. If it finds one, consul will use it as a recursor. Otherwise, it will use <strong>8.8.8.8</strong> .</p>
+<p>For a full list of available consul config options, see Consul <a href="https://consul.io/docs/agent/options.html">documentation</a>.</p>
+<p>To pass any additional Consul configuration, define a <code>DOCKER_CONSUL_OPTIONS</code> in the <code>Profile</code> file.</p>
+<h3 id="ssh-fingerprint-verification">SSH Fingerprint Verification</h3>
+<p>Cloudbreak is able to verify the SSH fingerprints of the provisioned virtual machines. We disable this feature by default for AWS and GCP, because we have experienced issues caused by the fact that Ccoud providers do not always print the SSH fingerprint into the provisioned machines console output. The fingerprint validation feature can be turned on by configuring the <code>CB_AWS_HOSTKEY_VERIFY</code> and/or the <code>CB_GCP_HOSTKEY_VERIFY</code> variables in your <code>Profile</code>. For example:</p>
 <pre><code>export CB_AWS_HOSTKEY_VERIFY=true
 export CB_GCP_HOSTKEY_VERIFY=true
 </code></pre>
+
+<h2 id="provider-specific-configurations">Provider Specific Configurations</h2>
+<h3 id="azure-resource-manager-command">Azure Resource Manager Command</h3>
+<ul>
+<li><strong>cbd azure configure-arm</strong></li>
+</ul>
+<p>For more information, see Azure <a href="../azure/#azure-application-setup-with-cloudbreak-deployer">documentation</a>.</p>
                     <a href="https://github.com/sequenceiq/cloudbreak-docs/blob/master/docs/configuration.md" ><i class="fa fa-github"></i> Edit on GitHub </a>
                 </div>
             
@@ -456,11 +487,11 @@ export CB_GCP_HOSTKEY_VERIFY=true
                $("#cloudbreak-deployer-image").append('<br>');
                $("#cloudbreak-deployer-image").append('<br>');
                $("#cloudbreak-deployer-image").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">Download the latest Cloudbreak Deployer image to your local machine:</p>');
-               $("#cloudbreak-deployer-image").append('<pre><code style="font-size: 12pt;color:#333333">curl -O -k https://public-repo-1.hortonworks.com/HDP/cloudbreak/' + data.id + '</code></pre>');
+               $("#cloudbreak-deployer-image").append('<pre><code style="font-size: 12pt;color:#333333">curl -O https://public-repo-1.hortonworks.com/HDP/cloudbreak/' + data.metadata.image_name + '.img</code></pre>');
                $("#cloudbreak-deployer-import").append('<br>');
                $("#cloudbreak-deployer-import").append('<br>');
                $("#cloudbreak-deployer-import").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">Set the following environment variables for the OpenStack image import:</p>');
-               $("#cloudbreak-deployer-import").append('<pre><code style="font-size: 12px;color:#333333">export CBD_LATEST_IMAGE=</code>' + data.id + '</code></p>');
+               $("#cloudbreak-deployer-import").append('<pre><code style="font-size: 12px;color:#333333">export CBD_LATEST_IMAGE=</code>' + data.metadata.image_name + '.img</code></p>');
                });
 
                <!--OpenStack CB-->
@@ -468,18 +499,19 @@ export CB_GCP_HOSTKEY_VERIFY=true
                $("#cloudbreak-image").append('<br>');
                $("#cloudbreak-image").append('<br>');
                $("#cloudbreak-image").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">Download the latest Cloudbreak image to your local machine:</p>');
-               $("#cloudbreak-image").append('<pre><code style="font-size: 12pt;color:#333333">curl -O -k https://public-repo-1.hortonworks.com/HDP/cloudbreak/' + data.id + '</code></pre>');
+               $("#cloudbreak-image").append('<pre><code style="font-size: 12pt;color:#333333">curl -O https://public-repo-1.hortonworks.com/HDP/cloudbreak/' + data.metadata.image_name + '.img</code></pre>');
                $("#cloudbreak-import").append('<br>');
                $("#cloudbreak-import").append('<br>');
-               $("#cloudbreak-import").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">This is very similar to the Cloudbrek Deployer. Set the following environment variables for the OpenStack image import:</p>');
-               $("#cloudbreak-import").append('<pre><code style="font-size: 12px;color:#333333">export CB_LATEST_IMAGE=</code>' + data.id + '</code></p>');
+               $("#cloudbreak-import").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">This is very similar to the Cloudbreak Deployer. Set the following environment variables for the OpenStack image import:</p>');
+               $("#cloudbreak-import").append('<pre><code style="font-size: 12px;color:#333333">export CB_LATEST_IMAGE=</code>' + data.metadata.image_name + '.img</code></p>');
                });
 
                <!--GCP-->
                $.getJSON("../providers/gcp.json", function(data) {
                $("#cloudbreak-deployer-gcp-image-details").append('<br>');
                $("#cloudbreak-deployer-gcp-image-details").append('<br>');
-               $("#cloudbreak-deployer-gcp-image-details").append('<pre><code style="font-size: 12pt;color:#333333">' + data.gcp.import_script + '</code></pre>');
+               $("#cloudbreak-deployer-gcp-image-details").append('<pre><code style="font-size: 12pt;color:#333333"> gcloud compute images create '
+                   + data.id + ' --source-uri gs://sequenceiqimage/' + data.id + '.tar.gz' + '</code></pre>');
                });
            });
          </script>

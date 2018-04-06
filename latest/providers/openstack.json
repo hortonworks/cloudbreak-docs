@@ -1,20 +1,19 @@
 {
   "username": "sequenceiq",
   "name": "cbd",
-  "Tag": "sequenceiq/cbd",
+  "tag": "sequenceiq/cbd",
+  "slug": "sequenceiq/cbd/openstack.image/878",
   "artifact_type": "openstack.image",
-  "id": "cloudbreak-deployer-1_2_0-2016-03-22.img",
-  "version": 9,
+  "id": "7fd07d13-5217-4012-9a58-de91b00e3521",
+  "version": 878,
   "metadata": {
-    "cbd_version": "1.2.0",
-    "created": "2016-03-22 13:33:52 +0000",
-    "created_at": "1458653632",
-    "image_name": "cloudbreak-deployer-1_2_0-2016-03-22",
+    "created": "2017-03-22 09:04:57 +0000",
     "os_user": "cloudbreak",
-    "yum_version_docker": "1.9.1"
+    "created_at": "1490173497",
+    "image_name": "cloudbreak-deployer-1140-2017-03-22",
+    "cbd_version": "1.14.0",
+    "yum_version_docker": "1.9.1",
+    "cbd_version_without_pre_release": "1.14.0"
   },
-  "file": true,
-  "slug": "sequenceiq/cbd/openstack.image/9",
-  "upload_path": "",
-  "upload_token": ""
+  "file": false
 }

@@ -9,7 +9,7 @@
         <link rel="canonical" href="http://sequenceiq.com/cloudbreak-docs/mesos/">
         <link rel="shortcut icon" href="../img/favicon.ico">
 
-	<title>Mesos - Cloudbreak 1.2.0</title>
+	<title>Mesos (TP) - Cloudbreak 1.14.0 (TP)</title>
 
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -43,8 +43,9 @@
             
 
             <!-- Main title -->
-            <img class="navbar-logo" src="http://docs.hortonworks.com/HDPDocuments/Ambari-2.1.0.0/bk_Installing_HDP_AMB/common/images/hortonworks-logo.png" alt="Hortonworks Documentation" width="132" height="52">
-            <a class="navbar-brand" href="..">Cloudbreak 1.2.0</a>
+            <img class="navbar-logo" src="../img/HWX-RGB-full-no-tagline_500pxh.png" alt="Hortonworks Documentation"
+                 width="132" height="52">
+            <a class="navbar-brand" href="..">Cloudbreak 1.14.0 (TP)</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -79,6 +80,12 @@
                             
 <li >
     <a href="../releasenotes/">Release Notes</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../issues/">Known Issues</a>
 </li>
 
                         
@@ -135,6 +142,18 @@
                         
                             
 <li >
+    <a href="../security/">Cloudbreak Security</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../update/">Update Cloudbreak</a>
+</li>
+
+                        
+                            
+<li >
     <a href="../ui_account/">Account Management</a>
 </li>
 
@@ -142,12 +161,6 @@
                             
 <li >
     <a href="../periscope/">Auto-Scaling</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../sssd/">SSSD Configuration</a>
 </li>
 
                         
@@ -165,19 +178,37 @@
                         
                             
 <li >
-    <a href="../topologies/">Platforms</a>
+    <a href="../images/">Cloud Images (TP)</a>
 </li>
 
                         
                             
 <li >
-    <a href="../kerberos/">Kerberos</a>
+    <a href="../database/">Ambari Database (TP)</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../topologies/">Platforms (TP)</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../kerberos/">Kerberos (TP)</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../ldap/">LDAP/AD (TP)</a>
 </li>
 
                         
                             
 <li class="active">
-    <a href="./">Mesos</a>
+    <a href="./">Mesos (TP)</a>
 </li>
 
                         
@@ -189,13 +220,7 @@
                         
                             
 <li >
-    <a href="../operations/">Operations</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../database/">Migration</a>
+    <a href="../operations/">Basic Operations</a>
 </li>
 
                         
@@ -206,15 +231,18 @@
 
                         
                             
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Development</a>
+    <ul class="dropdown-menu">
+        
+            
 <li >
-    <a href="../development/">Development</a>
+    <a href="../flow/">Flows</a>
 </li>
 
-                        
-                            
-<li >
-    <a href="../issues/">Known issues</a>
-</li>
+        
+    </ul>
+  </li>
 
                         
                         </ul>
@@ -238,7 +266,7 @@
                 </li>
                 
                     <li >
-                        <a rel="next" href="../kerberos/">
+                        <a rel="next" href="../ldap/">
                             <i class="fa fa-arrow-left"></i> Previous
                         </a>
                     </li>
@@ -268,20 +296,16 @@
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#mesos-introduction">Mesos introduction</a></li>
+        <li class="main active"><a href="#mesos-introduction">Mesos Introduction</a></li>
         
-            <li><a href="#differences-with-the-cloud-provider-implementations">Differences with the cloud provider implementations</a></li>
+            <li><a href="#differences-with-other-cloud-provider-implementations">Differences with Other Cloud Provider Implementations</a></li>
         
-            <li><a href="#technical-preview-restrictions">Technical Preview Restrictions</a></li>
+            <li><a href="#limitations-of-the-technical-preview">Limitations of the Technical Preview</a></li>
         
     
-        <li class="main "><a href="#cloudbreak-deployer">Cloudbreak deployer</a></li>
+        <li class="main "><a href="#cloudbreak-deployer">Cloudbreak Deployer</a></li>
         
-            <li><a href="#setup-cloudbreak-deployer">Setup Cloudbreak Deployer</a></li>
-        
-            <li><a href="#start-cloudbreak-deployer">Start Cloudbreak Deployer</a></li>
-        
-            <li><a href="#validate-the-started-cloudbreak-deployer">Validate the started Cloudbreak Deployer</a></li>
+            <li><a href="#cloudbreak-deployer-installation">Cloudbreak Deployer Installation</a></li>
         
     
         <li class="main "><a href="#provisioning-prerequisites">Provisioning Prerequisites</a></li>
@@ -299,7 +323,7 @@
         
             <li><a href="#resource-constraints">Resource constraints</a></li>
         
-            <li><a href="#defining-cluster-services">Defining cluster services</a></li>
+            <li><a href="#defining-cluster-services">Defining Cluster Services</a></li>
         
             <li><a href="#cluster-deployment">Cluster deployment</a></li>
         
@@ -311,108 +335,102 @@
                 <div class="col-md-9" role="main">
                     
 
-<h1 id="mesos-introduction">Mesos introduction</h1>
+<h1 id="mesos-introduction">Mesos Introduction</h1>
 <blockquote>
-<p>Mesos support is currently <code>TECHNICAL PREVIEW</code>. It may not be suitable for production use.</p>
+<p>Mesos support is part of <code>TECHNICAL PREVIEW</code>. It may not be suitable for production use.</p>
 </blockquote>
-<p>The basic concepts of Cloudbreak's Mesos support are the same as the other other cloud provider implementations: HDP clusters will be provisioned through Ambari with the help of blueprints and Ambari server and agents run in Docker containers. But it has a lot of major differences, and to start working with Cloudbreak on Mesos these differences must be understood first.</p>
-<h2 id="differences-with-the-cloud-provider-implementations">Differences with the cloud provider implementations</h2>
-<h4 id="1-the-mesos-integration-doesnt-start-new-instances-and-doesnt-build-a-new-infrastructure-on-a-cloud-provider">1. The Mesos integration doesn't start new instances and doesn't build a new infrastructure on a cloud provider.</h4>
-<p>Cloudbreak's normal behavior is to build the infrastructure first where Hadoop components will be deployed later through Ambari. It involves creating or reusing the networking layer like virtual networks and subnets, provisioning new virtual machines in these networks from pre-existing cloud images and starting the Ambari docker containers on these nodes. Mesos integration was designed <em>not</em> to include these steps because in most cases users already have their own Mesos infrastructure and would like to deploy their cluster there, near their other components. That's why Cloudbreak expects to "bring your own Mesos infrastructure" and configure access to this Mesos deployment in Cloudbreak first.</p>
-<h4 id="2-a-mesos-credential-on-the-cloudbreak-ui-means-configuring-access-to-the-marathon-api">2. A Mesos credential on the Cloudbreak UI means configuring access to the Marathon API.</h4>
-<p>Cloudbreak needs a control system in Mesos through which it can communicate and start Ambari containers. The standard application scheduling framework for services in Mesos is Marathon so we've chosen it as the solution for Cloudbreak. It means that to be able to communicate with Mesos, Cloudbreak needs a Marathon deployment on the Mesos cluster. When setting up access in Cloudbreak a Marathon API endpoint must be specified. Basic authentication and TLS on the Marathon API is not yet supported in the tech preview.</p>
-<h4 id="3-a-mesos-template-on-the-cloudbreak-ui-means-constraints-instead-of-new-resources">3. A Mesos template on the Cloudbreak UI means constraints instead of new resources.</h4>
-<p>Cloudbreak templates describe the virtual machines in a cluster's hostgroup that will be provisioned through the cloud provider API. Templates can be created on the UI for Mesos and they can be linked to a hostgroup as well but these templates mean resource constraints that will be demanded through the Marathon API instead of resources that will created. 
-Example:</p>
-<ul>
-<li>An AWS template with an instance type of <code>m4.large</code> and 4 pieces of 50 GB attached magnetic volumes will create a VM with these specs when Cloudbreak is building the cluster infrastructure.</li>
-<li>A Mesos template with 2 CPU cores and 4 GB memory means that Cloudbreak will request the Marathon API to schedule the Ambari container on a node where these resources can be satisfied</li>
-</ul>
-<h4 id="4-cloudbreak-doesnt-start-a-gateway-instance">4. Cloudbreak doesn't start a gateway instance.</h4>
-<p>On the cloud providers there is a gateway VM that's deployed for every new cluster by Cloudbreak. It runs a few containers like Ambari server but most importantly runs an Nginx server. Every communication between a Cloudbreak deployment and a cluster deployed by Cloudbreak goes through this Nginx instance. This is done on a 2-way TLS channel where the Nginx server is responsible for the TLS termination. Communication inside the cluster, like between Ambari server and agents is not encrypted but every communication from outside is secure. It enables Cloudbreak to be deployed outside of the private network of the cluster. The Mesos integration doesn't have a solution like this, so every communication between Cloudbreak and the cluster goes through an unencrypted channel. This is one of the reasons that in this case Cloudbreak should be deployed inside the same private network (or in the same Mesos cluster) where the clusters will be deployed.</p>
-<h2 id="technical-preview-restrictions">Technical Preview Restrictions</h2>
-<h4 id="1-no-out-of-the-box-dns-solution-like-consul">1. No out-of-the-box dns solution like Consul.</h4>
-<p>In case of Mesos Cloudbreak does not provide a custom DNS solution like on other cloud providers, where Consul is used to provide addresses for every node and some services like Ambari server. In the Mesos tech preview containers are deployed with <code>net=host</code>, and Mesos nodes must be set up manually in a way to be able to resolve each other's hostnames to IP addresses and vice versa with reserve DNS. This is a requirement of Hadoop and it is usually accomplished by setting up the <code>/etc/hosts</code> file on each node in the cluster, but it can also be provided by some DNS servers like Amazon's default DNS server in a virtual network.
-Example:</p>
-<ul>
-<li>there are 5 nodes in the Mesos cluster: <code>node1, node2, node3, node4 and node5</code> with IP addresses of <code>10.0.0.1 to 10.0.0.5</code> respectively.</li>
-<li>the <code>/etc/hosts</code> file on <code>node1</code> should contain these entries:</li>
-</ul>
+<p>At a high level, Cloudbreak deployment on Mesos is similar to Cloudbreak implementations on other cloud providers: HDP clusters are provisioned through Ambari with the help of blueprints, and Ambari server and agents run in Docker containers. However, there are a few major differences that you should consider before you start working with Cloudbreak on Mesos.</p>
+<h2 id="differences-with-other-cloud-provider-implementations">Differences with Other Cloud Provider Implementations</h2>
+<h4 id="the-mesos-integration-doesnt-start-new-instances-and-doesnt-build-new-infrastructure-on-a-cloud-provider">The Mesos integration doesn't start new instances and doesn't build new infrastructure on a cloud provider.</h4>
+<p>Cloudbreak expects a "bring your own Mesos" infrastructure, which means that you have to deploy Mesos first and then configure access to the existing Mesos deployment in Cloudbreak. </p>
+<p>On other cloud providers, Cloudbreak first builds the infrastructure where Hadoop components are later deployed through Ambari. This involves creating or reusing the networking layer (virtual networks, subnets, and so on), provisioning new virtual machines in these networks from pre-existing cloud images, and starting docker containers on these VMs (nodes). However, the Mesos integration was designed <em>not</em> to include these steps, because in most cases users already have their own Mesos infrastructure on which they would like to deploy their cluster. </p>
+<h4 id="a-mesos-credential-in-the-cloudbreak-ui-provides-access-to-the-marathon-api">A Mesos credential in the Cloudbreak UI provides access to the Marathon API.</h4>
+<p>Marathon is a standard application scheduling framework for services in Mesos. Cloudbreak uses Marathon API to communicate with Mesos, so you need to deploy Marathon on the Mesos cluster and, when setting up access to Mesos in Cloudbreak, specify a Marathon API endpoint. Basic authentication and TLS on the Marathon API are not supported in the technical preview.</p>
+<h4 id="a-mesos-template-in-the-cloudbreak-ui-means-resource-constraints-instead-of-new-resources">A Mesos template in the Cloudbreak UI means resource constraints instead of new resources.</h4>
+<p>Through the Cloudbreak UI, you can create Cloudbreak templates that define the virtual machines in a cluster's hostgroup that will be provisioned through the cloud provider API. You can create such templates for Mesos and you can link the VMs to a hostgroup, but for Mesos these templates mean resource constraints that will be demanded through the Marathon API, not resources that will created. </p>
+<p>For example, consider these two scenarios:<br />
+- An AWS template with an instance type of <code>m4.large</code> and 4 pieces of 50 GB attached magnetic volumes will create a VM with these specs when Cloudbreak is building the cluster infrastructure.
+- A Mesos template with 2 CPU cores and 4 GB memory means that Cloudbreak will request the Marathon API to schedule the Ambari container on a node where these resources can be satisfied.</p>
+<h4 id="on-mesos-cloudbreak-doesnt-start-a-gateway-instance">On Mesos, Cloudbreak doesn't start a gateway instance.</h4>
+<p>On other cloud providers, Cloudbreak deploys a gateway VM for every new cluster. The gateway VM runs a few containers, such as Ambari server, and, most importantly, it runs an Nginx server. All communication between Cloudbreak Deployer and a cluster deployed by Cloudbreak hsppens through this Nginx instance. This is done through a two-way TLS channel where the Nginx server is responsible for the TLS termination. Communication inside the cluster (for example, between Ambari server and agents) is not encrypted, but all communication from outside is secure. This allows Cloudbreak to be deployed outside of the private network of the cluster. The Mesos integration doesn't have a solution like this, so all communication between Cloudbreak and the Mesos cluster happens through an unencrypted channel. For this reason, on Mesos, Cloudbreak should be deployed inside the same private network (or in the same Mesos cluster) where the clusters will be deployed.</p>
+<h2 id="limitations-of-the-technical-preview">Limitations of the Technical Preview</h2>
+<h4 id="no-support-for-consul-or-other-custom-dns-solution">No support for Consul or other custom DNS solution.</h4>
+<p>Unlike on other cloud providers where Cloudbreak uses Consul, on Mesos, Cloudbreak does not provide a custom DNS solution. In this technical preview, containers are deployed with <code>net=host</code>, so Mesos nodes must be set up manually in order to resolve hostnames to IP addresses and vice versa with reserve DNS. To manually resolve them, create the <code>/etc/hosts</code> file on each node in the cluster.</p>
+<p>For example, consider this scenario:<br />
+- There are five nodes in the Mesos cluster: <code>node1, node2, node3, node4 and node5</code> with IP addresses ranging from <code>10.0.0.1</code> to <code>10.0.0.5</code>.
+- The <code>/etc/hosts</code> file on <code>node1</code> should contain these entries that match IP addresses with hostnames:</p>
 <pre><code>    10.0.0.2 node2
     10.0.0.3 node3
     10.0.0.4 node4
     10.0.0.5 node5
 </code></pre>
 
-<h4 id="2-cloudbreak-must-be-able-to-resolve-the-addresses-of-the-mesos-slaves">2. Cloudbreak must be able to resolve the addresses of the Mesos slaves.</h4>
-<p>Cloudbreak must be able to communicate with the Ambari server that's deployed in the Mesos cluster to make the API requests needed for example to create a cluster. After Cloudbreak instructs Marathon to deploy the Ambari server container somewhere in the Mesos cluster it asks the address of the node where it was deployed and will try to communicate with the Ambari server through the address that was returned by Marathon. Take for example a Mesos cluster with 5 registered nodes: <code>node1, node2, node3, node4, node5</code>:</p>
+<h4 id="cloudbreak-must-be-able-to-resolve-the-addresses-of-the-mesos-slaves">Cloudbreak must be able to resolve the addresses of the Mesos slaves.</h4>
+<p>To make API requests (for example, to create a cluster), Cloudbreak must communicate with the Ambari server deployed in the Mesos cluster. After Cloudbreak instructs Marathon to deploy the Ambari server container somewhere in the Mesos cluster, it asks Marathon for the address of the node where the Ambari server was deployed and then tries to communicate with the Ambari server through that address. For example, consider the following scenario where Mesos cluster has 5 registered nodes: <code>node1, node2, node3, node4, node5</code>:</p>
 <ul>
 <li>Cloudbreak makes a <code>POST</code> request to the Marathon API to deploy the Ambari server container somewhere with enough resources.</li>
-<li>The Ambari server container is started on <code>node4</code>. The node address is returned to Cloudbreak.</li>
-<li>Cloudbreak tries to access <code>node4:8080</code> to check if Ambari is running.</li>
+<li>Marathon starts an Ambari server container on <code>node4</code>, then return the node address to Cloudbreak.</li>
+<li>Cloudbreak tries to access <code>node4:8080</code> to make sure that Ambari server is running.</li>
 </ul>
-<p>Because of the lack of a gateway node, communication is unencrypted between Cloudbreak and the clusters, so it is suggested that Cloudbreak should be deployed in the same private network. In that case the above scenario is probably not a problem.
-If Cloudbreak is not in the same network this can be solved by adding the addresses with a reachable IP in the <code>/etc/hosts</code> file of the machine where Cloudbreak is deployed.</p>
-<h4 id="3-storage-management-needs-to-be-improved">3. Storage management needs to be improved</h4>
-<p>This is one of the two biggest limitations of the current Mesos integration. There is no specific volume management in the current integration, which means that data is stored inside the Docker containers. This solution has a lot of problems that will be solved only in later releases:</p>
+<p>Considering that there is no gateway node and so the communication between Cloudbreak and the clusters is unencrypted, we suggest that you deploy Cloudbreak in the same private network as the clusters. If Cloudbreak is not in the same network as the clusters, add the addresses with a reachable IP to the <code>/etc/hosts</code> file on the machine where Cloudbreak is deployed.</p>
+<h4 id="storage-management-needs-to-be-improved">Storage management needs to be improved</h4>
+<p>This is one of the two biggest limitations of the current Mesos integration. The current integration doesn't offer volume management, which means that data is stored inside Docker containers. This solution has a few problems that will be addressed in future releases:</p>
 <ul>
-<li>Data will only be stored on those volumes where Docker is installed (probably the root volume), attached volumes are not used</li>
-<li>After the container is destroyed the data is destroyed as well</li>
-<li>No data locality</li>
+<li>Data can only be stored on the volumes where Docker is installed (typically the root volume), and not on attached volumes</li>
+<li>After the container is destroyed, the data is destroyed as well</li>
+<li>There is no data locality</li>
 </ul>
-<h4 id="4-ip-per-task-is-not-supported-yet">4. IP-per-task is not supported yet</h4>
-<p>The other big limitation of the current integration is the lack of IP-per-task support. Currently containers are deployed with <code>net=host</code> which means that only one container can be deployed per Mesos host because of possible port collisions, and that is the case even with multiple clusters.
-IP-per-task means that every task of an app (all the containers) deployed through Marathon will get their own network interface and an IP address.
-<a href="https://mesosphere.github.io/marathon/docs/ip-per-task.html">This feature</a> is already available in Mesos/Marathon but does not work in combination with Docker containers.</p>
-<h4 id="5-recipes-are-not-supported">5. Recipes are not supported</h4>
-<p><a href="../recipes/">Recipes</a> are script extensions to an HDP cluster installation supported by Cloudbreak, but it is not supported with the Mesos integration because of the lack of a Consul deployment as this feature is heavily dependent on Consul's HTTP API.</p>
-<h1 id="cloudbreak-deployer">Cloudbreak deployer</h1>
-<p><strong>Cloudbreak Deployer Highlights</strong></p>
+<h4 id="ip-per-task-is-not-supported-yet">IP-per-task is not supported yet</h4>
+<p>The second big limitation of the current Mesos integration is the lack of IP-per-task support. IP-per-task means that every task of an app (all the containers) deployed through Marathon will get their own network interface and an IP address. <a href="https://mesosphere.github.io/marathon/docs/ip-per-task.html">This feature</a> is already available in Marathon but does not work in combination with Docker containers. In our current Mesos integration, containers are deployed with <code>net=host</code>, which means that to avoid port collisions only one container can be deployed per Mesos host; this is the case even with multiple clusters.</p>
+<h4 id="recipes-are-not-supported">Recipes are not supported</h4>
+<p>Recipes (script extensions to an HDP cluster installation, supported by Cloudbreak) are not supported in the Mesos integration. Recipes are dependent on Consul's HTTP API, and the Mesos integration does not support Consul.</p>
+<h1 id="cloudbreak-deployer">Cloudbreak Deployer</h1>
+<p>Before configuring Cloudbreak Deployer, you should know that:</p>
 <ul>
 <li>All <code>cbd</code> actions must be executed from the <code>cbd</code> root folder.</li>
-<li>Most of the <code>cbd</code> commands require <code>root</code> permissions. So it would be worth if you apply <code>sudo su</code>.</li>
+<li>Most of the <code>cbd</code> commands require <code>root</code> permissions, so you may want to apply <code>sudo su</code>.</li>
 </ul>
-<h2 id="setup-cloudbreak-deployer">Setup Cloudbreak Deployer</h2>
-<p>First you should <a href="../onprem/">install the Cloudbreak Deployer</a> manually on a VM inside your Mesos cluster's private network.</p>
-<p>If you have your own installed VM, you should check the <a href="./#initialize-your-profile">Initialize your Profile</a> 
-section here before starting the provisioning.</p>
+<h2 id="cloudbreak-deployer-installation">Cloudbreak Deployer Installation</h2>
+<h4 id="install-cloudbreak-deployer">Install CLoudbreak Deployer</h4>
+<p>First, <a href="../onprem/">install the Cloudbreak Deployer</a> manually on a VM inside your Mesos cluster's private network.</p>
+<p>If you have your own installed VM, check the <a href="./#initialize-your-profile">Initialize your Profile</a> section here before starting the provisioning.</p>
 <p>Open the <code>cloudbreak-deployment</code> directory:</p>
 <pre><code>cd cloudbreak-deployment
 </code></pre>
 
-<p>This is the directory of the configuration files and the supporting binaries for Cloudbreak Deployer.</p>
-<h3 id="initialize-your-profile">Initialize your Profile</h3>
-<p>First initialize <code>cbd</code> by creating a <code>Profile</code> file:</p>
+<p>This directory contains configuration files and the supporting binaries for Cloudbreak Deployer.</p>
+<h4 id="initialize-your-profile">Initialize your Profile</h4>
+<p>First initialize <code>cbd</code>:  </p>
 <pre><code>cbd init
 </code></pre>
 
-<p>It will create a <code>Profile</code> file in the current directory. Please open the <code>Profile</code> file then check the <code>PUBLIC_IP</code>. 
-This is mandatory, because it is used to access the Cloudbreak UI. In some cases the <code>cbd</code> tool tries to 
-guess it. If <code>cbd</code> cannot get the IP address during the initialization, please set the appropriate value.</p>
-<h2 id="start-cloudbreak-deployer">Start Cloudbreak Deployer</h2>
-<p>To start the Cloudbreak application use the following command.
-This will start all the Docker containers and initialize the application.</p>
+<p>This creates a <code>Profile</code> file in the current directory. Open the <code>Profile</code> file and check the <code>PUBLIC_IP</code>. 
+The <code>PUBLIC_IP</code> is mandatory, because it is used to access the Cloudbreak UI. In some cases the <code>cbd</code> tool tries to 
+guess it. If <code>cbd</code> cannot get the IP address during the initialization, set the appropriate value.</p>
+<h4 id="start-cloudbreak-deployer">Start Cloudbreak Deployer</h4>
+<p>To start the Cloudbreak application use the following command:  </p>
 <pre><code>cbd start
 </code></pre>
 
+<p>This will start all the Docker containers and initialize the application. </p>
 <blockquote>
-<p>At the very first time it will take for a while, because it will need to download all the necessary docker images.</p>
+<p>The first time you start the Coudbreak app, the process will take longer than usual due to the download of all the necessary docker images.</p>
 </blockquote>
 <p>The <code>cbd start</code> command includes the <code>cbd generate</code> command which applies the following steps:</p>
 <ul>
 <li>creates the <strong>docker-compose.yml</strong> file that describes the configuration of all the Docker containers needed for the Cloudbreak deployment.</li>
 <li>creates the <strong>uaa.yml</strong> file that holds the configuration of the identity server used to authenticate users to Cloudbreak.</li>
 </ul>
-<h2 id="validate-the-started-cloudbreak-deployer">Validate the started Cloudbreak Deployer</h2>
-<p>After the <code>cbd start</code> command finishes followings are worth to check:</p>
+<h4 id="validate-that-cloudbreak-deployer-has-started">Validate that Cloudbreak Deployer Has Started</h4>
+<p>After the <code>cbd start</code> command finishes, check the following:</p>
 <ul>
-<li>Pre-installed Cloudbreak Deployer version and health.</li>
+<li>Pre-installed Cloudbreak Deployer version and health:</li>
 </ul>
 <pre><code>   cbd doctor
 </code></pre>
 
 <blockquote>
-<p>In case of <code>cbd update</code> is needed, please check the related documentation for <a href="../operations/#update-cloudbreak-deployer">Cloudbreak Deployer Update</a>. Most of the <code>cbd</code> commands require <code>root</code> permissions.</p>
+<p>If you need to run <code>cbd update</code>, refer to <a href="../update/#update-cloudbreak-deployer">Cloudbreak Deployer Update</a>. Most of the <code>cbd</code> commands require <code>root</code> permissions.</p>
 </blockquote>
 <ul>
 <li>Logs of the Cloudbreak Application:</li>
@@ -421,7 +439,7 @@ This will start all the Docker containers and initialize the application.</p>
 </code></pre>
 
 <blockquote>
-<p>Cloudbreak should start within a minute - you should see a line like this: `Started CloudbreakApplication in 36.823 seconds</p>
+<p>You should see a mesage like this in the log: <code>Started CloudbreakApplication in 36.823 seconds</code>. Cloudbreak normally takes less than a minute to start.</p>
 </blockquote>
 <h1 id="provisioning-prerequisites">Provisioning Prerequisites</h1>
 <h2 id="a-working-mesos-cluster-with-marathon">A working Mesos cluster with Marathon</h2>
@@ -442,7 +460,7 @@ This will start all the Docker containers and initialize the application.</p>
 <p>To be able to use the Docker containerizer, Docker must be installed on all the Mesos slave nodes. To install Docker, follow the instructions in their documentation <a href="https://docs.docker.com/engine/installation/">here</a>.</p>
 <p>After Docker is installed, it can be configured for the Mesos slave, by adding the <a href="http://mesos.apache.org/documentation/latest/docker-containerizer/">Docker containerizer</a> to each Mesos slave configuration. To configure it, add <code>docker,mesos</code> to the file <code>/etc/mesos-slave/containerizers</code> on each of the slave nodes (or start mesos-slave with the <code>--containerizers=mesos,docker</code> flag, or set the environment variable MESOS_CONTAINERIZERS="mesos,docker"). You may also want to increase the executor timeout to 10 mins by adding <code>10mins</code> to <code>/etc/mesos-slave/executor_registration_timeout</code> because it will allow time for pulling large Docker images.</p>
 <h1 id="provisioning-via-browser">Provisioning via Browser</h1>
-<p>You can log into the Cloudbreak application at <code>http://&lt;PUBLIC_IP&gt;:3000</code>.</p>
+<p>You can log into the Cloudbreak application at <code>https://&lt;PUBLIC_IP&gt;</code>.</p>
 <p>The main goal of the Cloudbreak UI is to easily create clusters on your own cloud provider, or on your existing Mesos cluster.
 This description details the Mesos setup - if you'd like to use a different cloud provider check out its manual.</p>
 <p>This document explains the four steps that need to be followed to create Cloudbreak clusters from the UI:</p>
@@ -476,8 +494,8 @@ clusters, but cannot delete it.</p>
 <p>When you create a resource constraint template, <strong>Cloudbreak does not make any requests to Marathon. Resources are only requested after the <code>create cluster</code> button was pushed and Cloudbreak starts to orchestrate containers.</strong> These templates are saved to Cloudbreak's database and can be reused with multiple clusters to describe the same resource constraints.</p>
 <p>A typical setup is to combine multiple templates in a cluster for the different types of nodes. For example you may want to request more memory for Spark nodes.</p>
 <p>The resource contraint templates can be configured on the <strong>manage templates</strong> panel on the Cloudbreak Dashboard under the Mesos tab. You can specify the memory, CPU and disk needed by the nodes in a hostgroup. If <code>Public in account</code> is checked all the users belonging to your account will be able to use this resource to create clusters, but cannot delete it.</p>
-<h2 id="defining-cluster-services">Defining cluster services</h2>
-<p><strong>Blueprints</strong></p>
+<h2 id="defining-cluster-services">Defining Cluster Services</h2>
+<h4 id="blueprints">Blueprints</h4>
 <p>Blueprints are your declarative definition of a Hadoop cluster. These are the same blueprints that are <a href="https://cwiki.apache.org/confluence/display/AMBARI/Blueprints">used by Ambari</a>.</p>
 <p>You can use the 3 default blueprints pre-defined in Cloudbreak or you can create your own ones.
 Blueprints can be added from file, URL (an <a href="https://raw.githubusercontent
@@ -486,7 +504,7 @@ whole JSON can be written in the <code>JSON text</code> box.</p>
 <p>The host groups in the JSON will be mapped to a set of instances when starting the cluster. Besides this the services and
  components will also be installed on the corresponding nodes. Blueprints can be modified later from the Ambari UI.</p>
 <blockquote>
-<p><strong>NOTE</strong> Not necessary to define all the configuration in the blueprint. If a configuration is missing, Ambari will 
+<p><strong>NOTE:</strong> It is not necessary to define all the configuration in the blueprint. If a configuration is missing, Ambari will 
 fill that with a default value.</p>
 </blockquote>
 <p>If <code>Public in account</code> is checked all the users belonging to your account will be able to use this blueprint to 
@@ -540,12 +558,13 @@ When the blueprint is exported some configurations are hardcoded for example dom
 <p><strong>Advanced options</strong></p>
 <p>There are some advanced features when deploying a new cluster, these are the following:</p>
 <p><code>Validate blueprint</code> This is selected by default. Cloudbreak validates the Ambari blueprint in this case.</p>
-<p><code>Config recommendation strategy</code> Strategy for configuration recommendations how will be applied. Recommended 
+<p><code>Custom Image</code> If you enable this, you can override the default image for provision.</p>
+<p><code>Config recommendation strategy</code> Strategy for how configuration recommendations will be applied. Recommended 
 configurations gathered by the response of the stack advisor. </p>
 <ul>
 <li><code>NEVER_APPLY</code>               Configuration recommendations are ignored with this option.</li>
 <li><code>ONLY_STACK_DEFAULTS_APPLY</code> Applies only on the default configurations for all included services.</li>
-<li><code>ALWAYS_APPLY</code>              Applies on all configuration properties</li>
+<li><code>ALWAYS_APPLY</code>              Applies on all configuration properties.</li>
 </ul>
 <h2 id="cluster-termination">Cluster termination</h2>
 <p>You can terminate running or stopped clusters with the <code>terminate</code> button in the cluster details.</p>
@@ -636,11 +655,11 @@ configurations gathered by the response of the stack advisor. </p>
                $("#cloudbreak-deployer-image").append('<br>');
                $("#cloudbreak-deployer-image").append('<br>');
                $("#cloudbreak-deployer-image").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">Download the latest Cloudbreak Deployer image to your local machine:</p>');
-               $("#cloudbreak-deployer-image").append('<pre><code style="font-size: 12pt;color:#333333">curl -O -k https://public-repo-1.hortonworks.com/HDP/cloudbreak/' + data.id + '</code></pre>');
+               $("#cloudbreak-deployer-image").append('<pre><code style="font-size: 12pt;color:#333333">curl -O https://public-repo-1.hortonworks.com/HDP/cloudbreak/' + data.metadata.image_name + '.img</code></pre>');
                $("#cloudbreak-deployer-import").append('<br>');
                $("#cloudbreak-deployer-import").append('<br>');
                $("#cloudbreak-deployer-import").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">Set the following environment variables for the OpenStack image import:</p>');
-               $("#cloudbreak-deployer-import").append('<pre><code style="font-size: 12px;color:#333333">export CBD_LATEST_IMAGE=</code>' + data.id + '</code></p>');
+               $("#cloudbreak-deployer-import").append('<pre><code style="font-size: 12px;color:#333333">export CBD_LATEST_IMAGE=</code>' + data.metadata.image_name + '.img</code></p>');
                });
 
                <!--OpenStack CB-->
@@ -648,18 +667,19 @@ configurations gathered by the response of the stack advisor. </p>
                $("#cloudbreak-image").append('<br>');
                $("#cloudbreak-image").append('<br>');
                $("#cloudbreak-image").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">Download the latest Cloudbreak image to your local machine:</p>');
-               $("#cloudbreak-image").append('<pre><code style="font-size: 12pt;color:#333333">curl -O -k https://public-repo-1.hortonworks.com/HDP/cloudbreak/' + data.id + '</code></pre>');
+               $("#cloudbreak-image").append('<pre><code style="font-size: 12pt;color:#333333">curl -O https://public-repo-1.hortonworks.com/HDP/cloudbreak/' + data.metadata.image_name + '.img</code></pre>');
                $("#cloudbreak-import").append('<br>');
                $("#cloudbreak-import").append('<br>');
-               $("#cloudbreak-import").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">This is very similar to the Cloudbrek Deployer. Set the following environment variables for the OpenStack image import:</p>');
-               $("#cloudbreak-import").append('<pre><code style="font-size: 12px;color:#333333">export CB_LATEST_IMAGE=</code>' + data.id + '</code></p>');
+               $("#cloudbreak-import").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">This is very similar to the Cloudbreak Deployer. Set the following environment variables for the OpenStack image import:</p>');
+               $("#cloudbreak-import").append('<pre><code style="font-size: 12px;color:#333333">export CB_LATEST_IMAGE=</code>' + data.metadata.image_name + '.img</code></p>');
                });
 
                <!--GCP-->
                $.getJSON("../providers/gcp.json", function(data) {
                $("#cloudbreak-deployer-gcp-image-details").append('<br>');
                $("#cloudbreak-deployer-gcp-image-details").append('<br>');
-               $("#cloudbreak-deployer-gcp-image-details").append('<pre><code style="font-size: 12pt;color:#333333">' + data.gcp.import_script + '</code></pre>');
+               $("#cloudbreak-deployer-gcp-image-details").append('<pre><code style="font-size: 12pt;color:#333333"> gcloud compute images create '
+                   + data.id + ' --source-uri gs://sequenceiqimage/' + data.id + '.tar.gz' + '</code></pre>');
                });
            });
          </script>
