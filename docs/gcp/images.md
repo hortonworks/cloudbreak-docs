@@ -13,6 +13,16 @@ Make sure that you have opened the following ports on your [Security Group](http
 
 ## Cloudbreak Deployer GCP Image Details
 
+## Please upgrade your Cloudbreak Deployer
+
+Install the Cloudbreak Deployer and unzip the platform-specific single binary to your PATH. For example:
+
+```
+yum -y install unzip tar
+curl -Ls s3.amazonaws.com/public-repo-1.hortonworks.com/HDP/cloudbreak/cloudbreak-deployer_1.16.6_$(uname)_x86_64.tgz | sudo tar -xz -C /bin cbd
+cbd --version
+```
+
 ## Import Cloudbreak Deployer Image
 
 Import the latest Cloudbreak Deployer image on the [Google Developers Console](https://console.developers.google.com/) with the help
