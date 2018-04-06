@@ -9,7 +9,7 @@
         <link rel="canonical" href="http://sequenceiq.com/cloudbreak-docs/shell/">
         <link rel="shortcut icon" href="../img/favicon.ico">
 
-	<title>CLI/Shell - Cloudbreak 1.6.2</title>
+	<title>CLI/Shell - Cloudbreak 1.3.0</title>
 
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -45,7 +45,7 @@
             <!-- Main title -->
             <img class="navbar-logo" src="../img/HWX-RGB-full-no-tagline_500pxh.png" alt="Hortonworks Documentation"
                  width="132" height="52">
-            <a class="navbar-brand" href="..">Cloudbreak 1.6.2</a>
+            <a class="navbar-brand" href="..">Cloudbreak 1.3.0</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -80,12 +80,6 @@
                             
 <li >
     <a href="../releasenotes/">Release Notes</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../issues/">Known Issues</a>
 </li>
 
                         
@@ -142,12 +136,6 @@
                         
                             
 <li >
-    <a href="../update/">Update Cloudbreak</a>
-</li>
-
-                        
-                            
-<li >
     <a href="../ui_account/">Account Management</a>
 </li>
 
@@ -160,25 +148,7 @@
                         
                             
 <li >
-    <a href="../recipes/">Recipes</a>
-</li>
-
-                        
-                            
-<li >
     <a href="../blueprints/">Blueprints</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../images/">Cloud Images (TP)</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../database/">Ambari Database (TP)</a>
 </li>
 
                         
@@ -196,12 +166,6 @@
                         
                             
 <li >
-    <a href="../ldap/">LDAP/AD (TP)</a>
-</li>
-
-                        
-                            
-<li >
     <a href="../mesos/">Mesos (TP)</a>
 </li>
 
@@ -214,7 +178,13 @@
                         
                             
 <li >
-    <a href="../operations/">Basic Operations</a>
+    <a href="../operations/">Operations</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../database/">Migration</a>
 </li>
 
                         
@@ -231,12 +201,24 @@
         
             
 <li >
+    <a href="../environments/">Environments</a>
+</li>
+
+        
+            
+<li >
     <a href="../flow/">Flows</a>
 </li>
 
         
     </ul>
   </li>
+
+                        
+                            
+<li >
+    <a href="../issues/">Known issues</a>
+</li>
 
                         
                         </ul>
@@ -265,7 +247,7 @@
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../update/">
+                        <a rel="prev" href="../ui_account/">
                             Next <i class="fa fa-arrow-right"></i>
                         </a>
                     </li>
@@ -292,11 +274,7 @@
     
         <li class="main active"><a href="#cloudbreak-shell">Cloudbreak Shell</a></li>
         
-            <li><a href="#install-and-start-cloudbreak-shell">Install and Start Cloudbreak Shell</a></li>
-        
-            <li><a href="#connect-cloudbreak-shell-with-a-remote-cloudbreak-instance">Connect Cloudbreak Shell with a Remote Cloudbreak Instance</a></li>
-        
-            <li><a href="#documentation">Documentation</a></li>
+            <li><a href="#install-and-start-cloudbreak-shell">Install and start Cloudbreak shell</a></li>
         
     
     </ul>
@@ -305,43 +283,42 @@
                     
 
 <h1 id="cloudbreak-shell">Cloudbreak Shell</h1>
-<p>The Cloudbreak Shell is an interactive command line tool which supports:</p>
+<p>The goal with the CLI was to provide an interactive command line tool which supports:</p>
 <ul>
-<li>All functionality available through the REST API or Cloudbreak web UI</li>
-<li>Complete automation of management tasks via <strong>scripts</strong></li>
-<li>Context-aware commands</li>
-<li>Required/optional parameters</li>
-<li>Tab completion</li>
-<li>The <strong>hint</strong> command that guides you when you need help</li>
+<li>all functionality available through the REST API or Cloudbreak web UI</li>
+<li>makes possible complete automation of management task via <strong>scripts</strong></li>
+<li>context aware command availability</li>
+<li>tab completion</li>
+<li>required/optional parameter support</li>
+<li><strong>hint</strong> command to guide you on the usual path</li>
 </ul>
-<h2 id="install-and-start-cloudbreak-shell">Install and Start Cloudbreak Shell</h2>
-<p>Install Cloudbreak shell using one of the following options:</p>
+<h2 id="install-and-start-cloudbreak-shell">Install and start Cloudbreak shell</h2>
+<p>You have a few options to give it a try:</p>
 <ul>
-<li><a href="#deployer">Install Cloudbreak Shell Using Cloudreak Deployer</a> (Recommended) </li>
-<li><a href="#dockerimage">Use Our Prepared Docker Image</a></li>
-<li><a href="#fromsource">Build From Source</a></li>
+<li><a href="#deployer">use Cloudreak deployer - <strong>recommended</strong></a></li>
+<li><a href="#dockerimage">use our prepared docker image</a></li>
+<li><a href="#fromsource">build it from source</a></li>
 </ul>
 <p><a name="deployer"></a></p>
-<h3 id="install-cloudbreak-shell-using-cloudbreak-deployer">Install Cloudbreak Shell Using Cloudbreak Deployer</h3>
-<p>Start the shell with <code>cbd util cloudbreak-shell</code>. This will launch the Cloudbreak shell inside a Docker container, and you can start using it.</p>
+<h3 id="starting-cloudbreak-shell-using-cloudbreak-deployer">Starting cloudbreak shell using cloudbreak deployer</h3>
+<p>Start the shell with <code>cbd util cloudbreak-shell</code>. This will launch the Cloudbreak shell inside a Docker container and you are ready to start using it.</p>
 <p><a name="dockerimage"></a></p>
-<h3 id="use-our-prepared-docker-image">Use Our Prepared Docker image</h3>
+<h3 id="starting-cloudbreak-shell-with-our-prepared-docker-image">Starting Cloudbreak shell with our prepared docker image</h3>
 <p>You can find the docker image and its documentation <a href="https://github.com/sequenceiq/docker-cb-shell">here</a>.</p>
 <p><a name="fromsource"></a></p>
-<h3 id="build-from-source">Build from Source</h3>
-<p>If want to use the code or extend it with new commands, follow the steps below.</p>
-<p><strong>Prerequisites:</strong> JDK 1.8.  </p>
-<p>Execute the folowing commands:</p>
+<h3 id="build-from-source">Build from source</h3>
+<p>If want to use the code or extend it with new commands follow the steps below. You will need:
+- jdk 1.7</p>
 <pre><code>git clone https://github.com/sequenceiq/cloudbreak.git
 cd cloudbreak/shell
 ../gradlew clean build
 </code></pre>
 
 <blockquote>
-<p><strong>Note: </strong>
-If you use the hosted version of Cloudbreak, use <code>latest-release.sh</code> to get the right version of the CLI.</p>
+<p><strong>Note</strong>
+In case you use the hosted version of Cloudbreak you should use the <code>latest-release.sh</code> to get the right version of the CLI.</p>
 </blockquote>
-<p>Start Cloudbreak-shell from the build source using:</p>
+<p><strong>Start Cloudbreak-shell from the built source</strong></p>
 <pre><code>Usage:
   java -jar cloudbreak-shell-0.5-SNAPSHOT.jar                  : Starts Cloudbreak Shell in interactive mode.
   java -jar cloudbreak-shell-0.5-SNAPSHOT.jar --cmdfile=&lt;FILE&gt; : Cloudbreak executes commands read from the file.
@@ -351,32 +328,24 @@ Options:
   --identity.address=&lt;http[s]://HOSTNAME:PORT&gt;    Address of the SequenceIQ identity server [default: https://identity.sequenceiq.com].
   --sequenceiq.user=&lt;USER&gt;                        Username of the SequenceIQ user [default: user@sequenceiq.com].
   --sequenceiq.password=&lt;PASSWORD&gt;                Password of the SequenceIQ user [default: password].
+
+Note:
+  You should specify at least your username and password.
 </code></pre>
 
+<p>Once you are connected you can start to create a cluster. If you are lost and need guidance through the process you can use <code>hint</code>. You can always use <kbd>TAB</kbd> for completion.</p>
 <blockquote>
-<p><strong>Note: </strong>
-You should specify at least your username and password.</p>
+<p><strong>Note</strong>
+All commands are <code>context aware</code> - they are available only when it makes sense - this way you are never confused and guided by the system on the right path.</p>
 </blockquote>
-<p>Once you are connected, you can create a cluster. Use <code>hint</code> if you get lost or need guidance through the process. Use <kbd>TAB</kbd> for completion.</p>
-<blockquote>
-<p><strong>Note: </strong>
-All commands are <strong>context-aware</strong>, which means that they are available only when they are relevant. This way the system guides you nad keeps you on the right path.</p>
-</blockquote>
-<h2 id="connect-cloudbreak-shell-with-a-remote-cloudbreak-instance">Connect Cloudbreak Shell with a Remote Cloudbreak Instance</h2>
-<p><strong>Prerequisites:</strong> Docker is installed and running on the local machine</p>
-<ol>
-<li>Execute <code>cbd util cloudbreak-shell-remote</code> on the remote host.</li>
-<li>Execute the result of the previous command on the local machine.</li>
-</ol>
-<h2 id="documentation">Documentation</h2>
-<p>For <strong>complete documentation</strong> of the Cloudbreak shell, see Cloudbreak  <a href="https://github.com/sequenceiq/cloudbreak/tree/master/shell">github repository</a>.</p>
-<p>For <strong>Provider-specific Documentation</strong>, see:</p>
+<p><strong>Provider specific documentations</strong></p>
 <ul>
 <li><a href="../aws/#interactive-mode-cloudbreak-shell">AWS</a></li>
 <li><a href="../azure/#interactive-mode-cloudbreak-shell">Azure</a></li>
 <li><a href="../gcp/#interactive-mode-cloudbreak-shell">GCP</a></li>
 <li><a href="../openstack/#interactive-mode-cloudbreak-shell">OpenStack</a></li>
 </ul>
+<p>or you can find a more detailed documentation about Cloudbreak-shell in its <a href="https://github.com/sequenceiq/cloudbreak-shell">Github repositiry</a>.</p>
                     <a href="https://github.com/sequenceiq/cloudbreak-docs/blob/master/docs/shell.md" ><i class="fa fa-github"></i> Edit on GitHub </a>
                 </div>
             
@@ -461,7 +430,7 @@ All commands are <strong>context-aware</strong>, which means that they are avail
                $("#cloudbreak-deployer-image").append('<br>');
                $("#cloudbreak-deployer-image").append('<br>');
                $("#cloudbreak-deployer-image").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">Download the latest Cloudbreak Deployer image to your local machine:</p>');
-               $("#cloudbreak-deployer-image").append('<pre><code style="font-size: 12pt;color:#333333">curl -O https://public-repo-1.hortonworks.com/HDP/cloudbreak/' + data.metadata.image_name + '.img</code></pre>');
+               $("#cloudbreak-deployer-image").append('<pre><code style="font-size: 12pt;color:#333333">curl -O -k https://public-repo-1.hortonworks.com/HDP/cloudbreak/' + data.metadata.image_name + '.img</code></pre>');
                $("#cloudbreak-deployer-import").append('<br>');
                $("#cloudbreak-deployer-import").append('<br>');
                $("#cloudbreak-deployer-import").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">Set the following environment variables for the OpenStack image import:</p>');
@@ -473,10 +442,10 @@ All commands are <strong>context-aware</strong>, which means that they are avail
                $("#cloudbreak-image").append('<br>');
                $("#cloudbreak-image").append('<br>');
                $("#cloudbreak-image").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">Download the latest Cloudbreak image to your local machine:</p>');
-               $("#cloudbreak-image").append('<pre><code style="font-size: 12pt;color:#333333">curl -O https://public-repo-1.hortonworks.com/HDP/cloudbreak/' + data.metadata.image_name + '.img</code></pre>');
+               $("#cloudbreak-image").append('<pre><code style="font-size: 12pt;color:#333333">curl -O -k https://public-repo-1.hortonworks.com/HDP/cloudbreak/' + data.metadata.image_name + '.img</code></pre>');
                $("#cloudbreak-import").append('<br>');
                $("#cloudbreak-import").append('<br>');
-               $("#cloudbreak-import").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">This is very similar to the Cloudbreak Deployer. Set the following environment variables for the OpenStack image import:</p>');
+               $("#cloudbreak-import").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">This is very similar to the Cloudbrek Deployer. Set the following environment variables for the OpenStack image import:</p>');
                $("#cloudbreak-import").append('<pre><code style="font-size: 12px;color:#333333">export CB_LATEST_IMAGE=</code>' + data.metadata.image_name + '.img</code></p>');
                });
 

@@ -9,7 +9,7 @@
         <link rel="canonical" href="http://sequenceiq.com/cloudbreak-docs/periscope/">
         <link rel="shortcut icon" href="../img/favicon.ico">
 
-	<title>Auto-Scaling - Cloudbreak 1.6.2</title>
+	<title>Auto-Scaling - Cloudbreak 1.3.0</title>
 
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -45,7 +45,7 @@
             <!-- Main title -->
             <img class="navbar-logo" src="../img/HWX-RGB-full-no-tagline_500pxh.png" alt="Hortonworks Documentation"
                  width="132" height="52">
-            <a class="navbar-brand" href="..">Cloudbreak 1.6.2</a>
+            <a class="navbar-brand" href="..">Cloudbreak 1.3.0</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -80,12 +80,6 @@
                             
 <li >
     <a href="../releasenotes/">Release Notes</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../issues/">Known Issues</a>
 </li>
 
                         
@@ -142,12 +136,6 @@
                         
                             
 <li >
-    <a href="../update/">Update Cloudbreak</a>
-</li>
-
-                        
-                            
-<li >
     <a href="../ui_account/">Account Management</a>
 </li>
 
@@ -160,25 +148,7 @@
                         
                             
 <li >
-    <a href="../recipes/">Recipes</a>
-</li>
-
-                        
-                            
-<li >
     <a href="../blueprints/">Blueprints</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../images/">Cloud Images (TP)</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../database/">Ambari Database (TP)</a>
 </li>
 
                         
@@ -196,12 +166,6 @@
                         
                             
 <li >
-    <a href="../ldap/">LDAP/AD (TP)</a>
-</li>
-
-                        
-                            
-<li >
     <a href="../mesos/">Mesos (TP)</a>
 </li>
 
@@ -214,7 +178,13 @@
                         
                             
 <li >
-    <a href="../operations/">Basic Operations</a>
+    <a href="../operations/">Operations</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../database/">Migration</a>
 </li>
 
                         
@@ -231,12 +201,24 @@
         
             
 <li >
+    <a href="../environments/">Environments</a>
+</li>
+
+        
+            
+<li >
     <a href="../flow/">Flows</a>
 </li>
 
         
     </ul>
   </li>
+
+                        
+                            
+<li >
+    <a href="../issues/">Known issues</a>
+</li>
 
                         
                         </ul>
@@ -265,7 +247,7 @@
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../recipes/">
+                        <a rel="prev" href="../blueprints/">
                             Next <i class="fa fa-arrow-right"></i>
                         </a>
                     </li>
@@ -292,15 +274,15 @@
     
         <li class="main active"><a href="#auto-scaling">Auto-Scaling</a></li>
         
-            <li><a href="#enable-auto-scaling-through-cloudbreak-ui">Enable Auto-scaling through Cloudbreak UI</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+        
+            <li><a href="#enable-auto-scaling-via-browser">Enable auto-scaling via Browser</a></li>
         
             <li><a href="#alerts">Alerts</a></li>
         
             <li><a href="#scaling-policies">Scaling Policies</a></li>
         
-            <li><a href="#cluster-scaling-configurations">Cluster Scaling Configurations</a></li>
-        
-            <li><a href="#downscale-scaling-considerations">Downscale Scaling Considerations</a></li>
+            <li><a href="#cluster-scaling-configuration">Cluster Scaling Configuration</a></li>
         
     
     </ul>
@@ -309,100 +291,120 @@
                     
 
 <h1 id="auto-scaling">Auto-Scaling</h1>
-<p>The goal of <strong>auto-scaling</strong> is to apply Service Level Agreement (SLA) scaling policies to a Cloudbreak-managed HDP cluster.</p>
-<p>The auto-scaling capability is based on <a href="https://cwiki.apache.org/confluence/display/AMBARI/Metrics">Ambari Metrics</a> and <a href="https://cwiki.apache.org/confluence/display/AMBARI/Alerts">Ambari Alerts</a>. Based on the blueprint
-used and the services running, Cloudbreak accesses all available metrics from the subsystem and defines alerts based on these metrics.</p>
-<p>In addition to the default Ambari Metrics, Cloudbreak includes two custom metrics: <code>Pending YARN containers</code> and <code>Pending applications</code>. These two custom metrics work with the YARN subsystem in order to bring application-level QoS to the cluster.</p>
-<h2 id="enable-auto-scaling-through-cloudbreak-ui">Enable Auto-scaling through Cloudbreak UI</h2>
-<p>Choose <code>enable</code> to enable auto-scaling:</p>
+<p>The purpose of <strong>auto-scaling</strong> is to apply <strong>SLA scaling policies to a Cloudbreak-managed Hadoop cluster</strong>.</p>
+<h2 id="how-it-works">How It Works</h2>
+<p>The auto-scaling capabilities is based on <a href="https://cwiki.apache.org/confluence/display/AMBARI/Metrics">Ambari Metrics</a> - and <a href="https://cwiki.apache.org/confluence/display/AMBARI/Alerts">Ambari Alerts</a>. Based on the Blueprint
+used and the running services, Cloudbreak can access all the available metrics from the subsystem and define <code>alerts</code> based on this information.</p>
+<p>Beside the default Ambari Metrics, Cloudbreak includes two custom metrics: <code>Pending YARN containers</code> and <code>Pending applications</code>. These two custom metrics works with the YARN subsystem in order to bring <code>application</code> level QoS to the cluster.</p>
+<h2 id="enable-auto-scaling-via-browser">Enable auto-scaling via Browser</h2>
 <p><img alt="" src="../images/enable_periscope_v2.png" />
 <sub><em>Full size <a href="../images/enable_periscope_v2.png">here</a>.</em></sub></p>
 <h2 id="alerts">Alerts</h2>
-<p>Auto-scaling supports two alert types: <strong>metric</strong> and <strong>time</strong> based.</p>
-<h3 id="metric-based-alerts">Metric-based Alerts</h3>
-<p>Metric-based alerts use Ambari metrics. These metrics have a default <code>Threshold</code> value configured in Ambari, which you can modify in Ambari web UI.</p>
-<h4 id="change-default-threshold-for-an-ambari-metric">Change Default Threshold for an Ambari Metric</h4>
-<p>To change default threshold for an Ambari metric:</p>
+<p>Auto-scaling supports two <strong>Alert</strong> types: <code>metric</code> and <code>time</code> based.</p>
+<p><strong>Metric-based Alerts</strong></p>
+<p>Metric based alerts are using the default (or custom) Ambari metrics. These metrics have a default <code>Threshold</code> value 
+configured in Ambari - nevertheless these thresholds can be configured, changed or altered in Ambari.</p>
+<p>In order to <strong>change default threshold for an Ambari metric</strong> please follow these steps:</p>
 <ol>
-<li>Log in to Ambari web UI. </li>
-<li>From the header menu, select <code>Alerts</code> to open the <strong>Alerts</strong> page. </li>
-<li>Select an alert from the list. </li>
-<li>In the <code>Configuration</code> panel, click on <code>Edit</code>. </li>
-<li>Now you can modify the values in the <code>Threshold</code> section. </li>
+<li>Go to <strong>Ambari UI</strong> and open the <code>Alerts</code> tab.</li>
+<li>Select an alert from the list.</li>
+<li>Click on the <code>Edit</code> on the <code>Configuration</code> panel. </li>
+<li>You can change the values in the <code>Threshold</code> section.</li>
 </ol>
 <p><img alt="" src="../images/ambari_threshold_v2.png" />
 <sub><em>Full size <a href="../images/ambari_threshold_v2.png">here</a>.</em></sub></p>
-<h4 id="create-a-new-metric-based-alert">Create a New Metric-based Alert</h4>
-<p>To create a new Cloudbreak metric-based alert in the Cloudbreak web UI:</p>
+<p><strong>Setting up Metric-based Alert</strong></p>
+<p>To <strong>create a new Cloudbreak metric based alert</strong> follow these steps:</p>
 <ol>
-<li>Enter the <code>alert name</code>. Only alphanumeric characters (min 5, max 100 characters) are allowed.</li>
-<li>Enter a <code>description</code> for the new alert.</li>
-<li>Select a <code>metric</code>, and then its <code>desired state</code>. The Ambari metrics available are based on installed services and their state is based on the Ambari threshold value:<ul>
+<li>Fill out <code>alert name</code><ul>
+<li>Only alphanumeric characters (min 5, max 100 characters) can be applied</li>
+</ul>
+</li>
+<li>Fill out <code>description</code> with a details here about the new alert for the cluster</li>
+<li>Select a <code>metric</code> then its <code>desired state</code> <ul>
+<li>The Ambari metric based on the installed services and their state based on the Ambari threshold value:<ul>
 <li>OK</li>
 <li>WARN </li>
 <li>CRITICAL </li>
 </ul>
 </li>
-<li>Enter the <code>period</code> (in minutes) to define the metric state endurance after the alert has been triggered. Only numeric characters are allowed.</li>
+</ul>
+</li>
+<li>Fill out the time <code>period</code> in minutes to define the metric state endurance after the alert has been triggered<ul>
+<li>Only numeric characters can be applied</li>
+</ul>
+</li>
 </ol>
 <p><img alt="" src="../images/metric_alert_v2.png" />
 <sub><em>Full size <a href="../images/metric_alert_v2.png">here</a>.</em></sub></p>
-<h3 id="time-based-alerts">Time-based Alerts</h3>
-<p>Time-based alerts are based on <code>cron</code> expressions, allowing alerts to be triggered based on time.</p>
-<h4 id="create-a-time-based-alert">Create a Time-based Alert</h4>
-<p>To create a new Cloudbreak time-based alert in the Cloudbreak UI::</p>
+<p><strong>Time-based Alerts</strong></p>
+<p>Time based alerts are based on <code>cron</code> expressions and allow alerts to be triggered based on time.</p>
+<p><strong>Setting up Time-based Alert</strong></p>
+<p>To <strong>create a new Cloudbreak time based alert</strong> follow these steps:</p>
 <ol>
-<li>Enter <code>alert name</code>. Only alphanumeric characters (min 5, max 100 characters) are allowed.</li>
-<li>Enter <code>description</code> for the new alert.</li>
-<li>Select a <code>time zone</code> for the new alert.</li>
-<li>Provide the <code>cron expression</code> to define the time-based job scheduler (<em>cron</em> expression) for this alert.</li>
+<li>Fill out <code>alert name</code><ul>
+<li>Only alphanumeric characters (min 5, max 100 characters) can be applied</li>
+</ul>
+</li>
+<li>Fill out <code>description</code> with a details here about the new alert for the cluster</li>
+<li>Select an appropriate <code>time zone</code> for this alert</li>
+<li>Fill out the <code>cron expression</code> to define the time-based job scheduler (<em>cron</em> expression) for this alert</li>
 </ol>
 <p><img alt="" src="../images/time_alert_v2.png" />
 <sub><em>Full size <a href="../images/time_alert_v2.png">here</a>.</em></sub></p>
 <h2 id="scaling-policies">Scaling Policies</h2>
-<p>Scaling is the ability to increase or decrease the capacity of the HDP cluster or an application running on it based on an alert and according to the policy definition. After you set up your alerts and a scaling policy linked to them, Cloudbreak will execute the policy. </p>
-<p>Scaling granularity is at the <code>host group</code> level; Thus you have an option to scale services or components only, not the whole cluster.</p>
-<h3 id="create-a-new-scaling-policy">Create a New Scaling Policy</h3>
-<p>To create a new Cloudbreak scaling policy:</p>
+<p>Scaling is the ability to increase or decrease the capacity of the Hadoop cluster or application based on an alert.
+When scaling policies are used, the capacity is automatically increased or decreased according to the conditions defined.
+Cloudbreak will do the heavy lifting and based on the alerts and the scaling policy linked to them it executes the 
+associated policy. We <strong>scaling granularity is at the <code>host group</code> level - thus you have the option to scale services 
+or components only, not the whole cluster</strong>.</p>
+<p><strong>Setting up Scaling Policy</strong></p>
+<p>To <strong>create a new Cloudbreak scaling policy</strong> follow these steps:</p>
 <ol>
-<li>Enter the <code>policy name</code>. Only alphanumeric characters (min 5, max 100 characters) are allowed.</li>
-<li>Select a type first, and then a value for the <code>scaling adjustment</code>:<ul>
-<li><code>node count</code> - number of nodes (added or removed)</li>
-<li><code>percentage</code> - computed percentage adjustment based on the cluster size</li>
-<li><code>exact</code> - given size of the cluster</li>
+<li>Fill out <code>policy name</code><ul>
+<li>Only alphanumeric characters (min 5, max 100 characters) can be applied</li>
 </ul>
 </li>
-<li>Select the Ambari <code>host group</code> where the cluster is to be scaled.</li>
-<li>Select the previously created Cloudbreak <code>alert</code> to apply the scaling policy to it.</li>
+<li>Select a type first then a value for the <code>scaling adjustment</code>:<ul>
+<li><code>node count</code> The number of nodes (added or removed)</li>
+<li><code>percentage</code> The computed percentage adjustment based on the cluster size</li>
+<li><code>exact</code> The given size of the cluster</li>
+</ul>
+</li>
+<li>Select the Ambari <code>host group</code> where the cluster to be scaled</li>
+<li>Select the previously created Cloudbreak <code>alert</code> to apply the scaling policy</li>
 </ol>
 <p><img alt="" src="../images/policy_v2.png" />
 <sub><em>Full size <a href="../images/policy_v2.png">here</a>.</em></sub></p>
-<h2 id="cluster-scaling-configurations">Cluster Scaling Configurations</h2>
-<p>An SLA scaling policy can contain multiple alerts. When an alert is triggered, a <code>scaling adjustment</code> is applied. </p>
-<p>To make sure the scaling this adjustemnt doesn't oversize or undersize your cluster, you can keep the cluster size within defined boundaries using <code>cluster size min.</code> and <code>cluster size max.</code></p>
-<p>To avoid stressing the cluster, we have introduced a <code>cooldown time</code> period (in minutes). When an alert is raised and there is an associated scaling policy, the system will not apply the policy within the configured cooldown timeframe.</p>
+<h2 id="cluster-scaling-configuration">Cluster Scaling Configuration</h2>
+<p><strong>An SLA scaling policy can contain multiple alerts. When an alert is triggered a <code>scaling adjustment</code> is applied, 
+however to keep the cluster size within boundaries a <code>cluster size min.</code> and <code>cluster size max.</code> is attached to the 
+cluster</strong> - thus a scaling policy can never over or undersized a cluster.</p>
+<p>In order to avoid stressing the cluster we have introduced a <code>cooldown time</code> period (in minutes) - though an alert is
+ raised and there is an associated scaling policy. The system will not apply the policy within the configured time 
+ frame.</p>
 <blockquote>
-<p><strong>Note:</strong> In an SLA scaling policy the triggered rules are applied in order.</p>
+<p><strong>NOTE</strong> In an SLA scaling policy the triggered rules are applied in order.</p>
 </blockquote>
 <p><img alt="" src="../images/scaling_config_v2.png" />
 <sub><em>Full size <a href="../images/scaling_config_v2.png">here</a>.</em></sub></p>
 <p>Explanation of the parameters:</p>
 <ul>
-<li><code>cooldown time</code> - the cluster lockdown period (in minutes) between scaling events</li>
-<li><code>cluster size min.</code> - the minimum cluster size limit, despite scaling adjustments</li>
-<li><code>cluster size max.</code> - the maximum cluster size limit, despite scaling adjustments</li>
+<li><code>cooldown time</code> The cluster lockdown period (in minutes) between scaling events</li>
+<li><code>cluster size min.</code> the minimum cluster size limit, despite scaling adjustments</li>
+<li><code>cluster size max.</code> the maximum cluster size limit, despite scaling adjustments</li>
 </ul>
-<h2 id="downscale-scaling-considerations">Downscale Scaling Considerations</h2>
-<p>To keep your cluster healthy, Cloudbreak auto-scaling runs several background checks during <code>downscale</code> operation.</p>
+<p><strong>Downscale Scaling Considerations</strong></p>
+<p>Cloudbreak auto-scaling will try to keep a healthy cluster, thus does several background checks during <code>downscale</code>.</p>
 <ul>
-<li>Cloudbreak will never remove <code>application master nodes</code> from a cluster. In order to make sure that a node running Ambari Metrics is not 
-removed, Cloudbreak has to be able to access the YARN Resource Manager. When creating a cluster using the 
-<code>default</code> secure network template, make sure that the RM's port is open on that node.</li>
-<li>In order to keep a healthy HDFS during downscale, Cloudbreak always keeps the <code>replication factor</code> configured and makes sure that there is enough <code>space</code> on HDFS to rebalance data.</li>
-<li>During downscale, in order to minimize the rebalancing, replication, and HDFS storms, Cloudbreak checks block locations 
-and computes the least costly operations.</li>
+<li><strong>We never remove <code>Application master nodes</code> from a cluster.</strong> In order to make sure that a node running AM is not 
+removed, <strong>Cloudbreak has to be able to access the YARN Resource Manager</strong> - when creating a cluster using the 
+<code>default</code> secure network template <strong>please make sure that the RM's port is open on the node</strong>.</li>
+<li>In order to <strong>keep a healthy HDFS during downscale we always keep the configured <code>replication factor</code> and make sure 
+there is enough <code>space</code> on HDFS to rebalance data</strong>.</li>
+<li>Also during downscale <strong>in order to minimize the rebalancing, replication and HDFS storms we check block locations 
+and compute the less costly operations</strong>.</li>
 </ul>
-<p>The [API documentation](The <a href="https://app.swaggerhub.com/api/Cloudbreak/Periscope/1.6.2">API documentation</a> was generated from the code using <a href="http://swagger.io/">Swagger</a>.</p>
                     <a href="https://github.com/sequenceiq/cloudbreak-docs/blob/master/docs/periscope.md" ><i class="fa fa-github"></i> Edit on GitHub </a>
                 </div>
             
@@ -487,7 +489,7 @@ and computes the least costly operations.</li>
                $("#cloudbreak-deployer-image").append('<br>');
                $("#cloudbreak-deployer-image").append('<br>');
                $("#cloudbreak-deployer-image").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">Download the latest Cloudbreak Deployer image to your local machine:</p>');
-               $("#cloudbreak-deployer-image").append('<pre><code style="font-size: 12pt;color:#333333">curl -O https://public-repo-1.hortonworks.com/HDP/cloudbreak/' + data.metadata.image_name + '.img</code></pre>');
+               $("#cloudbreak-deployer-image").append('<pre><code style="font-size: 12pt;color:#333333">curl -O -k https://public-repo-1.hortonworks.com/HDP/cloudbreak/' + data.metadata.image_name + '.img</code></pre>');
                $("#cloudbreak-deployer-import").append('<br>');
                $("#cloudbreak-deployer-import").append('<br>');
                $("#cloudbreak-deployer-import").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">Set the following environment variables for the OpenStack image import:</p>');
@@ -499,10 +501,10 @@ and computes the least costly operations.</li>
                $("#cloudbreak-image").append('<br>');
                $("#cloudbreak-image").append('<br>');
                $("#cloudbreak-image").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">Download the latest Cloudbreak image to your local machine:</p>');
-               $("#cloudbreak-image").append('<pre><code style="font-size: 12pt;color:#333333">curl -O https://public-repo-1.hortonworks.com/HDP/cloudbreak/' + data.metadata.image_name + '.img</code></pre>');
+               $("#cloudbreak-image").append('<pre><code style="font-size: 12pt;color:#333333">curl -O -k https://public-repo-1.hortonworks.com/HDP/cloudbreak/' + data.metadata.image_name + '.img</code></pre>');
                $("#cloudbreak-import").append('<br>');
                $("#cloudbreak-import").append('<br>');
-               $("#cloudbreak-import").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">This is very similar to the Cloudbreak Deployer. Set the following environment variables for the OpenStack image import:</p>');
+               $("#cloudbreak-import").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">This is very similar to the Cloudbrek Deployer. Set the following environment variables for the OpenStack image import:</p>');
                $("#cloudbreak-import").append('<pre><code style="font-size: 12px;color:#333333">export CB_LATEST_IMAGE=</code>' + data.metadata.image_name + '.img</code></p>');
                });
 

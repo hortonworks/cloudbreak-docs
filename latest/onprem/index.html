@@ -9,7 +9,7 @@
         <link rel="canonical" href="http://sequenceiq.com/cloudbreak-docs/onprem/">
         <link rel="shortcut icon" href="../img/favicon.ico">
 
-	<title>Installation - Cloudbreak 1.6.2</title>
+	<title>Installation - Cloudbreak 1.3.0</title>
 
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -45,7 +45,7 @@
             <!-- Main title -->
             <img class="navbar-logo" src="../img/HWX-RGB-full-no-tagline_500pxh.png" alt="Hortonworks Documentation"
                  width="132" height="52">
-            <a class="navbar-brand" href="..">Cloudbreak 1.6.2</a>
+            <a class="navbar-brand" href="..">Cloudbreak 1.3.0</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -80,12 +80,6 @@
                             
 <li >
     <a href="../releasenotes/">Release Notes</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../issues/">Known Issues</a>
 </li>
 
                         
@@ -142,12 +136,6 @@
                         
                             
 <li >
-    <a href="../update/">Update Cloudbreak</a>
-</li>
-
-                        
-                            
-<li >
     <a href="../ui_account/">Account Management</a>
 </li>
 
@@ -160,25 +148,7 @@
                         
                             
 <li >
-    <a href="../recipes/">Recipes</a>
-</li>
-
-                        
-                            
-<li >
     <a href="../blueprints/">Blueprints</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../images/">Cloud Images (TP)</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../database/">Ambari Database (TP)</a>
 </li>
 
                         
@@ -196,12 +166,6 @@
                         
                             
 <li >
-    <a href="../ldap/">LDAP/AD (TP)</a>
-</li>
-
-                        
-                            
-<li >
     <a href="../mesos/">Mesos (TP)</a>
 </li>
 
@@ -214,7 +178,13 @@
                         
                             
 <li >
-    <a href="../operations/">Basic Operations</a>
+    <a href="../operations/">Operations</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../database/">Migration</a>
 </li>
 
                         
@@ -231,12 +201,24 @@
         
             
 <li >
+    <a href="../environments/">Environments</a>
+</li>
+
+        
+            
+<li >
     <a href="../flow/">Flows</a>
 </li>
 
         
     </ul>
   </li>
+
+                        
+                            
+<li >
+    <a href="../issues/">Known issues</a>
+</li>
 
                         
                         </ul>
@@ -292,11 +274,17 @@
     
         <li class="main active"><a href="#install-cloudbreak-deployer">Install Cloudbreak Deployer</a></li>
         
-            <li><a href="#system-requirements">System Requirements</a></li>
+            <li><a href="#minimum-and-recommended-system-requirements">Minimum and Recommended System Requirements</a></li>
         
             <li><a href="#prerequisites">Prerequisites</a></li>
         
-            <li><a href="#cloudbreak-deployer-installation">Cloudbreak Deployer Installation</a></li>
+            <li><a href="#install-cloudbreak-deployer_1">Install Cloudbreak Deployer</a></li>
+        
+            <li><a href="#initialize-your-profile">Initialize Your Profile</a></li>
+        
+            <li><a href="#generate-your-profile">Generate Your Profile</a></li>
+        
+            <li><a href="#start-cloudbreak">Start Cloudbreak</a></li>
         
             <li><a href="#troubleshooting">Troubleshooting</a></li>
         
@@ -313,12 +301,12 @@
 <blockquote>
 <p>The instructions below are for CentOS. If you are using a differnt OS, perform equivalent steps. </p>
 </blockquote>
-<h2 id="system-requirements">System Requirements</h2>
-<p>To run the Cloudbreak Deployer and install the Cloudbreak application, your system must meet the following requirements:</p>
+<h2 id="minimum-and-recommended-system-requirements">Minimum and Recommended System Requirements</h2>
+<p>To run the Cloudbreak Deployer and install the Cloudbreak Application, you must meet the following requirements:</p>
 <ul>
 <li>RHEL / CentOS / Oracle Linux 7 (64-bit)</li>
 <li>Docker 1.9.1</li>
-<li>VM requirements:<ul>
+<li>Minimum and Recommended VM requirements:<ul>
 <li>8GB RAM</li>
 <li>10GB disk</li>
 <li>2 cores</li>
@@ -330,88 +318,85 @@
 for a production deployment of Cloudbreak.</p>
 </blockquote>
 <h2 id="prerequisites">Prerequisites</h2>
-<p>You must satisfy the following preprequisites before installing the Cloudbreak Deployer.</p>
-<h4 id="ports">Ports</h4>
-<p>Make sure that the following ports are open:</p>
-<ul>
-<li>SSH (22)</li>
-<li>Cloudbreak (443)</li>
-</ul>
-<h4 id="root-access">Root Access</h4>
+<ol>
+<li>
+<p>Make sure that you opened the following ports:</p>
+</li>
+<li>
+<p>SSH (22)</p>
+</li>
+<li>Cloudbreak API (8080)</li>
+<li>Identity server (8089)</li>
+<li>Cloudbreak GUI (3000)</li>
+<li>
+<p>User authentication (3001)</p>
+</li>
+<li>
 <p>Execute every command as <strong>root</strong>. In order to get root privileges execute:</p>
-<pre><code>sudo -i
-</code></pre>
-
-<h4 id="system-updates">System Updates</h4>
-<p>Ensure that your system is up-to-date and reboot it if necessary (for example, if there was a kernel update):</p>
-<pre><code>yum -y update
-</code></pre>
-
-<h4 id="iptables">Iptables</h4>
-<p>Install iptables-services. Without iptables-services installed the 'iptables save' command will not be available:</p>
-<pre><code>yum -y install iptables-services net-tools
-</code></pre>
-
+</li>
+</ol>
+<p><code>sudo -i</code></p>
+<ol>
+<li>Ensure that your system is up-to-date and reboot it if necessary (for example, if there was a kernel update):</li>
+</ol>
+<p><code>yum -y update</code></p>
+<ol>
+<li>Install iptables-services. Without iptables-services installed the 'iptables save' command will not be available:</li>
+</ol>
+<p><code>yum -y install iptables-services net-tools</code></p>
 <p>Then, configure permissive iptables on your machine:</p>
-<pre><code>iptables --flush INPUT &amp;&amp; \
-iptables --flush FORWARD &amp;&amp; \
-service iptables save
-</code></pre>
-
-<h4 id="docker-service">Docker Service</h4>
-<p>Configure a custom Docker repository for installing the correct version of Docker:</p>
-<pre><code>cat &gt; /etc/yum.repos.d/docker.repo &lt;&lt;&quot;EOF&quot;
-[dockerrepo]
-name=Docker Repository
-baseurl=https://yum.dockerproject.org/repo/main/centos/7
-enabled=1
-gpgcheck=1
-gpgkey=https://yum.dockerproject.org/gpg
-EOF
-</code></pre>
-
+<p><code>iptables --flush INPUT &amp;&amp; \
+  iptables --flush FORWARD &amp;&amp; \
+  service iptables save</code></p>
+<ol>
+<li>Configure a custom Docker repository for installing the correct version of Docker:</li>
+</ol>
+<p><code>cat &gt; /etc/yum.repos.d/docker.repo &lt;&lt;"EOF"
+ [dockerrepo]
+  name=Docker Repository
+  baseurl=https://yum.dockerproject.org/repo/main/centos/7
+  enabled=1
+  gpgcheck=1
+  gpgkey=https://yum.dockerproject.org/gpg
+  EOF</code></p>
 <p>Next, install the Docker service:</p>
-<pre><code>yum install -y docker-engine-1.9.1 docker-engine-selinux-1.9.1
-systemctl start docker
-systemctl enable docker
-</code></pre>
-
-<h2 id="cloudbreak-deployer-installation">Cloudbreak Deployer Installation</h2>
-<h4 id="install-cloudbreak-deployer_1">Install Cloudbreak Deployer</h4>
-<p>Install the Cloudbreak Deployer and unzip the platform-specific single binary to your PATH. For example:</p>
+<p><code>yum install -y docker-engine-1.9.1 docker-engine-selinux-1.9.1
+  systemctl start docker
+  systemctl enable docker</code></p>
+<h2 id="install-cloudbreak-deployer_1">Install Cloudbreak Deployer</h2>
+<p>Install the Cloudbreak Deployer and unzip the platform-specific single binary to your PATH. A quick way to do this is:</p>
 <pre><code>yum -y install unzip tar
-curl -Ls s3.amazonaws.com/public-repo-1.hortonworks.com/HDP/cloudbreak/cloudbreak-deployer_1.6.2_$(uname)_x86_64.tgz | sudo tar -xz -C /bin cbd
+curl -Ls s3.amazonaws.com/public-repo-1.hortonworks.com/HDP/cloudbreak/cloudbreak-deployer_1.3.0_$(uname)_x86_64.tgz | sudo tar -xz -C /bin cbd
 cbd --version
 </code></pre>
 
-<p>Once the Cloudbreak Deployer is installed, you can set up the Cloudbreak application.</p>
-<h4 id="initialize-your-profile">Initialize Your Profile</h4>
-<p>Initialize <code>cbd</code> by using:</p>
+<p>Once the Cloudbreak Deployer is installed, you can start to set up the Cloudbreak application.</p>
+<h2 id="initialize-your-profile">Initialize Your Profile</h2>
+<p>First initialize <code>cbd</code>:</p>
 <pre><code>mkdir cloudbreak-deployment
 cd cloudbreak-deployment
 cbd init
 </code></pre>
 
-<p>This creates a <code>Profile</code> file in the current directory.   </p>
-<p>Open the <code>Profile</code> file and check the <code>PUBLIC_IP</code>. Cloudbreak UI uses the <code>PUBLIC_IP</code> to access the Cloudbreak UI. In some cases, the <code>cbd</code> tool tries to guess it. If <code>cbd</code> did not get the IP address during the initialization, set the appropriate value.</p>
-<h4 id="generate-your-profile">Generate Your Profile</h4>
-<p>Generate configurations by executing:</p>
+<p>This will create a <code>Profile</code> file in the current directory. Open the <code>Profile</code> file and check the <code>PUBLIC_IP</code>. Cloudbreak UI uses the <code>PUBLIC_IP</code> to access the Cloudbreak UI. In some cases, the <code>cbd</code> tool tries to guess it. If <code>cbd</code> did not get the IP address during the initialization, set the appropriate value.</p>
+<h2 id="generate-your-profile">Generate Your Profile</h2>
+<p>You are done with the configuration of Cloudbreak Deployer. The last thing you have to do is to generate the configurations by executing:</p>
 <pre><code>rm *.yml
 cbd generate
 </code></pre>
 
-<p>This creates the following configuration files:</p>
+<p>This step creates the following configurations:</p>
 <ul>
-<li>The <strong>docker-compose.yml</strong> file that describes the configurations of all the Docker containers required for the Cloudbreak deployment.</li>
-<li>The <strong>uaa.yml</strong> file that holds the configurations of the identity server used to authenticate users to Cloudbreak.</li>
+<li>Creates the <strong>docker-compose.yml</strong> file that describes the configuration of all the Docker containers needed for the Cloudbreak deployment.</li>
+<li>Creates the <strong>uaa.yml</strong> file that holds the configuration of the identity server used to authenticate users to Cloudbreak.</li>
 </ul>
-<h4 id="start-cloudbreak-application">Start Cloudbreak Application</h4>
-<p>To start the Cloudbreak application, use the following command:</p>
+<h2 id="start-cloudbreak">Start Cloudbreak</h2>
+<p>To start the Cloudbreak application use the following command:</p>
 <pre><code>cbd pull
 cbd start
 </code></pre>
 
-<p>This will start all the Docker containers and initialize the Cloudbreak application. It will take a few minutes for all the services to start.</p>
+<p>This will start all the Docker containers and initialize the application. It will take a few minutes for all the services to start.</p>
 <blockquote>
 <p>The first time you start the Coudbreak app, the process will take longer than usual due to the download of all the necessary docker images.</p>
 </blockquote>
@@ -421,17 +406,17 @@ cbd start
 
 <p>You should see a message like this in the log: <code>Started CloudbreakApplication in 36.823 seconds</code>. Cloudbreak normally takes less than a minute to start. </p>
 <h2 id="troubleshooting">Troubleshooting</h2>
-<p>If you face permission or connection issues, disable <strong>SELinux</strong>:</p>
+<p>If you are faced with permission or connection issues, try to disable <strong>SELinux</strong>:</p>
 <ol>
-<li>Set the <code>SELINUX=disabled</code> in <code>/etc/selinux/config</code>.</li>
-<li>Reboot the machine.</li>
-<li>Ensure the SELinux is not turned on afterwards:</li>
+<li>Set the <code>SELINUX=disabled</code> in <code>/etc/selinux/config</code></li>
+<li>Reboot the machine</li>
+<li>Ensure the SELinux is not turned on afterwards.</li>
 </ol>
-<pre><code>setenforce 0 &amp;&amp; sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/ selinux/config
+<pre><code>setenforce 0 &amp;&amp; sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
 </code></pre>
 
 <h2 id="next-steps">Next Steps</h2>
-<p>After you have installed Cloudbreak Deployer, perform cloud provider specific configurations and then provision a cluster. See <strong>cloud provider specific</strong> steps:</p>
+<p>After you have met all the pre-requisites for Cloudbreak, perform the <strong>cloud provider specific</strong> configuration. Select your cloud  provider and follow the steps in the <strong>Setup</strong> section:</p>
 <ul>
 <li><a href="../aws/#aws-setup">AWS</a></li>
 <li><a href="../azure/">Azure</a></li>
@@ -439,7 +424,7 @@ cbd start
 <li><a href="../openstack/#openstack-setup">OpenStack</a></li>
 </ul>
 <blockquote>
-<p><strong>Note:</strong> AWS and OpenStack Setup sections contain provider-specific and other additional <code>Profile</code> settings.</p>
+<p><strong>Note:</strong> AWS and OpenStack Setup sections contain additional and provider-specific <code>Profile</code> settings.</p>
 </blockquote>
                     <a href="https://github.com/sequenceiq/cloudbreak-docs/blob/master/docs/onprem.md" ><i class="fa fa-github"></i> Edit on GitHub </a>
                 </div>
@@ -525,7 +510,7 @@ cbd start
                $("#cloudbreak-deployer-image").append('<br>');
                $("#cloudbreak-deployer-image").append('<br>');
                $("#cloudbreak-deployer-image").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">Download the latest Cloudbreak Deployer image to your local machine:</p>');
-               $("#cloudbreak-deployer-image").append('<pre><code style="font-size: 12pt;color:#333333">curl -O https://public-repo-1.hortonworks.com/HDP/cloudbreak/' + data.metadata.image_name + '.img</code></pre>');
+               $("#cloudbreak-deployer-image").append('<pre><code style="font-size: 12pt;color:#333333">curl -O -k https://public-repo-1.hortonworks.com/HDP/cloudbreak/' + data.metadata.image_name + '.img</code></pre>');
                $("#cloudbreak-deployer-import").append('<br>');
                $("#cloudbreak-deployer-import").append('<br>');
                $("#cloudbreak-deployer-import").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">Set the following environment variables for the OpenStack image import:</p>');
@@ -537,10 +522,10 @@ cbd start
                $("#cloudbreak-image").append('<br>');
                $("#cloudbreak-image").append('<br>');
                $("#cloudbreak-image").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">Download the latest Cloudbreak image to your local machine:</p>');
-               $("#cloudbreak-image").append('<pre><code style="font-size: 12pt;color:#333333">curl -O https://public-repo-1.hortonworks.com/HDP/cloudbreak/' + data.metadata.image_name + '.img</code></pre>');
+               $("#cloudbreak-image").append('<pre><code style="font-size: 12pt;color:#333333">curl -O -k https://public-repo-1.hortonworks.com/HDP/cloudbreak/' + data.metadata.image_name + '.img</code></pre>');
                $("#cloudbreak-import").append('<br>');
                $("#cloudbreak-import").append('<br>');
-               $("#cloudbreak-import").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">This is very similar to the Cloudbreak Deployer. Set the following environment variables for the OpenStack image import:</p>');
+               $("#cloudbreak-import").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">This is very similar to the Cloudbrek Deployer. Set the following environment variables for the OpenStack image import:</p>');
                $("#cloudbreak-import").append('<pre><code style="font-size: 12px;color:#333333">export CB_LATEST_IMAGE=</code>' + data.metadata.image_name + '.img</code></p>');
                });
 
