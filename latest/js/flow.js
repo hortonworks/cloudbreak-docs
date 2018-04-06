@@ -5,7 +5,6 @@ var colors = {
 }
 
 var flows = {
-    "ChangePrimaryGatewayFlowConfig" : "Change primary gateway flow",
     "ClusterCreationFlowConfig" : "Cluster creation flow",
     "ClusterCredentialChangeFlowConfig" : "Ambari user/password change flow",
     "ClusterDownscaleFlowConfig" : "Cluster downscale flow",
@@ -16,7 +15,6 @@ var flows = {
     "ClusterTerminationFlowConfig" : "Cluster termination flow",
     "ClusterUpgradeFlowConfig" : "Cluster upgrade flow",
     "ClusterUpscaleFlowConfig" : "Cluster upscale flow",
-    "EphemeralClusterFlowConfig" : "Ephemeral cluster flow",
     "InstanceTerminationFlowConfig" : "Instance termination flow",
     "ManualStackRepairTriggerFlowConfig" : "Manual stack repair flow",
     "StackCreationFlowConfig": "Stack creation flow",
