@@ -18,7 +18,7 @@ Make sure that you have opened the following ports on your [security group](http
 Install the Cloudbreak Deployer and unzip the platform-specific single binary to your PATH. For example:
 
 ```
-yum -y install unzip tar
+cd /var/lib/cloudbreak-deployment/
 curl -Ls s3.amazonaws.com/public-repo-1.hortonworks.com/HDP/cloudbreak/cloudbreak-deployer_1.16.6_$(uname)_x86_64.tgz | sudo tar -xz -C /bin cbd
 cbd --version
 ```
