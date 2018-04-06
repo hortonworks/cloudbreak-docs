@@ -16,7 +16,7 @@ Make sure that you have opened the following ports on your [security group](http
 ## VM Requirements
 When selecting an instance type, consider these minimum and recomended requirements:  
 
-- 8GB RAM, 10GB disk, 2 cores. 
+- 16GB RAM, 10GB disk, 4 cores. 
 - The minimum instance type which is suitable for Cloudbreak is **m3.large**.
 
 To learn about all requirements, see [System Requirements](onprem.md#system-requirements).
