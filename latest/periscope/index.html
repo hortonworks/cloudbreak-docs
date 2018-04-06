@@ -6,10 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="http://hortonworks.github.io/cloudbreak-docs/periscope/">
+        <link rel="canonical" href="http://sequenceiq.com/cloudbreak-docs/periscope/">
         <link rel="shortcut icon" href="../img/favicon.ico">
 
-	<title>Auto-Scaling - Cloudbreak 1.16.5</title>
+	<title>Auto-Scaling - Cloudbreak 1.14.4</title>
 
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -45,7 +45,7 @@
             <!-- Main title -->
             <img class="navbar-logo" src="../img/HWX-RGB-full-no-tagline_500pxh.png" alt="Hortonworks Documentation"
                  width="132" height="52">
-            <a class="navbar-brand" href="..">Cloudbreak 1.16.5</a>
+            <a class="navbar-brand" href="..">Cloudbreak 1.14.4</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -142,18 +142,6 @@
                         
                             
 <li >
-    <a href="../customizations/">Customizations</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../development/">Local Development</a>
-</li>
-
-                        
-                            
-<li >
     <a href="../security/">Cloudbreak Security</a>
 </li>
 
@@ -190,7 +178,13 @@
                         
                             
 <li >
-    <a href="../images/">Custom Images (TP)</a>
+    <a href="../images/">Cloud Images (TP)</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../database/">Ambari Database (TP)</a>
 </li>
 
                         
@@ -238,27 +232,6 @@
                         
                             
   <li class="dropdown-submenu">
-    <a tabindex="-1" href="">Database configuration</a>
-    <ul class="dropdown-menu">
-        
-            
-<li >
-    <a href="../cloudbreak_database/">Cloudbreak Database</a>
-</li>
-
-        
-            
-<li >
-    <a href="../ambari_database/">Ambari Database (TP)</a>
-</li>
-
-        
-    </ul>
-  </li>
-
-                        
-                            
-  <li class="dropdown-submenu">
     <a tabindex="-1" href="">Development</a>
     <ul class="dropdown-menu">
         
@@ -270,12 +243,6 @@
         
     </ul>
   </li>
-
-                        
-                            
-<li >
-    <a href="../help/">Get Help</a>
-</li>
 
                         
                         </ul>
@@ -311,7 +278,7 @@
                 
                 
                     <li>
-                        <a href="https://github.com/hortonworks/cloudbreak-docs/blob/master/docs/" >
+                        <a href="https://github.com/sequenceiq/cloudbreak-docs/blob/master/docs/" >
                             
                                 <i class="fa fa-github"></i>
                             
@@ -351,6 +318,7 @@
 <p>The goal of <strong>auto-scaling</strong> is to apply Service Level Agreement (SLA) scaling policies to a Cloudbreak-managed HDP cluster.</p>
 <p>The auto-scaling capability is based on <a href="https://cwiki.apache.org/confluence/display/AMBARI/Metrics">Ambari Metrics</a> and <a href="https://cwiki.apache.org/confluence/display/AMBARI/Alerts">Ambari Alerts</a>. Based on the blueprint
 used and the services running, Cloudbreak accesses all available metrics from the subsystem and defines alerts based on these metrics.</p>
+<p>In addition to the default Ambari Metrics, Cloudbreak includes two custom metrics: <code>Pending YARN containers</code> and <code>Pending applications</code>. These two custom metrics work with the YARN subsystem in order to bring application-level QoS to the cluster.</p>
 <h2 id="enable-auto-scaling-through-cloudbreak-ui">Enable Auto-scaling through Cloudbreak UI</h2>
 <p>Choose <code>enable</code> to enable auto-scaling:</p>
 <p><img alt="" src="../images/enable_periscope_v2.png" />
@@ -440,8 +408,8 @@ removed, Cloudbreak has to be able to access the YARN Resource Manager. When cre
 <li>During downscale, in order to minimize the rebalancing, replication, and HDFS storms, Cloudbreak checks block locations 
 and computes the least costly operations.</li>
 </ul>
-<p>The <a href="https://app.swaggerhub.com/api/Cloudbreak/Periscope/1.16.1">API documentation</a> was generated from the code using <a href="http://swagger.io/">Swagger</a>.</p>
-                    <a href="https://github.com/hortonworks/cloudbreak-docs/blob/master/docs/periscope.md" ><i class="fa fa-github"></i> Edit on GitHub </a>
+<p>The <a href="https://app.swaggerhub.com/api/Cloudbreak/Periscope/1.14.0">API documentation</a> was generated from the code using <a href="http://swagger.io/">Swagger</a>.</p>
+                    <a href="https://github.com/sequenceiq/cloudbreak-docs/blob/master/docs/periscope.md" ><i class="fa fa-github"></i> Edit on GitHub </a>
                 </div>
             
         </div>
@@ -486,10 +454,10 @@ and computes the least costly operations.</li>
 
          <script>
            $( document ).ready(function() {
-               $.getJSON("http://hortonworks.github.io/cloudbreak-docs//versions.json", function(data) {
-               $("#versions-dropdown").append('<li><a href="http://hortonworks.github.io/cloudbreak-docs//latest">latest ('+data.latest+')</a></li>');
+               $.getJSON("http://sequenceiq.com/cloudbreak-docs/versions.json", function(data) {
+               $("#versions-dropdown").append('<li><a href="http://sequenceiq.com/cloudbreak-docs/latest">latest ('+data.latest+')</a></li>');
                 $.each(data.versions, function( index, value ) {
-                  $("#versions-dropdown").append('<li><a href="http://hortonworks.github.io/cloudbreak-docs//'+value+'">'+value+'</a></li>');
+                  $("#versions-dropdown").append('<li><a href="http://sequenceiq.com/cloudbreak-docs/'+value+'">'+value+'</a></li>');
                 });
                });
 

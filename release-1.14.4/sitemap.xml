@@ -5,37 +5,37 @@
         
     <url>
      <loc>http://sequenceiq.com/cloudbreak-docs/</loc>
-     <lastmod>2017-06-15</lastmod>
+     <lastmod>2018-04-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>http://sequenceiq.com/cloudbreak-docs/architecture/</loc>
-     <lastmod>2017-06-15</lastmod>
+     <lastmod>2018-04-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>http://sequenceiq.com/cloudbreak-docs/onprem/</loc>
-     <lastmod>2017-06-15</lastmod>
+     <lastmod>2018-04-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>http://sequenceiq.com/cloudbreak-docs/releasenotes/</loc>
-     <lastmod>2017-06-15</lastmod>
+     <lastmod>2018-04-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>http://sequenceiq.com/cloudbreak-docs/issues/</loc>
-     <lastmod>2017-06-15</lastmod>
+     <lastmod>2018-04-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>http://sequenceiq.com/cloudbreak-docs/changelog/</loc>
-     <lastmod>2017-06-15</lastmod>
+     <lastmod>2018-04-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -44,7 +44,7 @@
     
     <url>
      <loc>http://sequenceiq.com/cloudbreak-docs/aws/</loc>
-     <lastmod>2017-06-15</lastmod>
+     <lastmod>2018-04-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -52,7 +52,7 @@
     
     <url>
      <loc>http://sequenceiq.com/cloudbreak-docs/azure/</loc>
-     <lastmod>2017-06-15</lastmod>
+     <lastmod>2018-04-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -60,7 +60,7 @@
     
     <url>
      <loc>http://sequenceiq.com/cloudbreak-docs/gcp/</loc>
-     <lastmod>2017-06-15</lastmod>
+     <lastmod>2018-04-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -68,7 +68,7 @@
     
     <url>
      <loc>http://sequenceiq.com/cloudbreak-docs/openstack/</loc>
-     <lastmod>2017-06-15</lastmod>
+     <lastmod>2018-04-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -77,103 +77,103 @@
         
     <url>
      <loc>http://sequenceiq.com/cloudbreak-docs/api/</loc>
-     <lastmod>2017-06-15</lastmod>
+     <lastmod>2018-04-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>http://sequenceiq.com/cloudbreak-docs/shell/</loc>
-     <lastmod>2017-06-15</lastmod>
+     <lastmod>2018-04-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>http://sequenceiq.com/cloudbreak-docs/security/</loc>
-     <lastmod>2017-06-15</lastmod>
+     <lastmod>2018-04-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>http://sequenceiq.com/cloudbreak-docs/update/</loc>
-     <lastmod>2017-06-15</lastmod>
+     <lastmod>2018-04-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>http://sequenceiq.com/cloudbreak-docs/ui_account/</loc>
-     <lastmod>2017-06-15</lastmod>
+     <lastmod>2018-04-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>http://sequenceiq.com/cloudbreak-docs/periscope/</loc>
-     <lastmod>2017-06-15</lastmod>
+     <lastmod>2018-04-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>http://sequenceiq.com/cloudbreak-docs/recipes/</loc>
-     <lastmod>2017-06-15</lastmod>
+     <lastmod>2018-04-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>http://sequenceiq.com/cloudbreak-docs/blueprints/</loc>
-     <lastmod>2017-06-15</lastmod>
+     <lastmod>2018-04-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>http://sequenceiq.com/cloudbreak-docs/images/</loc>
-     <lastmod>2017-06-15</lastmod>
+     <lastmod>2018-04-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>http://sequenceiq.com/cloudbreak-docs/database/</loc>
-     <lastmod>2017-06-15</lastmod>
+     <lastmod>2018-04-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>http://sequenceiq.com/cloudbreak-docs/topologies/</loc>
-     <lastmod>2017-06-15</lastmod>
+     <lastmod>2018-04-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>http://sequenceiq.com/cloudbreak-docs/kerberos/</loc>
-     <lastmod>2017-06-15</lastmod>
+     <lastmod>2018-04-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>http://sequenceiq.com/cloudbreak-docs/ldap/</loc>
-     <lastmod>2017-06-15</lastmod>
+     <lastmod>2018-04-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>http://sequenceiq.com/cloudbreak-docs/mesos/</loc>
-     <lastmod>2017-06-15</lastmod>
+     <lastmod>2018-04-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>http://sequenceiq.com/cloudbreak-docs/spi/</loc>
-     <lastmod>2017-06-15</lastmod>
+     <lastmod>2018-04-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>http://sequenceiq.com/cloudbreak-docs/operations/</loc>
-     <lastmod>2017-06-15</lastmod>
+     <lastmod>2018-04-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>http://sequenceiq.com/cloudbreak-docs/configuration/</loc>
-     <lastmod>2017-06-15</lastmod>
+     <lastmod>2018-04-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         

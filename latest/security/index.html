@@ -6,10 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="http://hortonworks.github.io/cloudbreak-docs/security/">
+        <link rel="canonical" href="http://sequenceiq.com/cloudbreak-docs/security/">
         <link rel="shortcut icon" href="../img/favicon.ico">
 
-	<title>Cloudbreak Security - Cloudbreak 1.16.5</title>
+	<title>Cloudbreak Security - Cloudbreak 1.14.4</title>
 
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -45,7 +45,7 @@
             <!-- Main title -->
             <img class="navbar-logo" src="../img/HWX-RGB-full-no-tagline_500pxh.png" alt="Hortonworks Documentation"
                  width="132" height="52">
-            <a class="navbar-brand" href="..">Cloudbreak 1.16.5</a>
+            <a class="navbar-brand" href="..">Cloudbreak 1.14.4</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -141,18 +141,6 @@
 
                         
                             
-<li >
-    <a href="../customizations/">Customizations</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../development/">Local Development</a>
-</li>
-
-                        
-                            
 <li class="active">
     <a href="./">Cloudbreak Security</a>
 </li>
@@ -190,7 +178,13 @@
                         
                             
 <li >
-    <a href="../images/">Custom Images (TP)</a>
+    <a href="../images/">Cloud Images (TP)</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../database/">Ambari Database (TP)</a>
 </li>
 
                         
@@ -238,27 +232,6 @@
                         
                             
   <li class="dropdown-submenu">
-    <a tabindex="-1" href="">Database configuration</a>
-    <ul class="dropdown-menu">
-        
-            
-<li >
-    <a href="../cloudbreak_database/">Cloudbreak Database</a>
-</li>
-
-        
-            
-<li >
-    <a href="../ambari_database/">Ambari Database (TP)</a>
-</li>
-
-        
-    </ul>
-  </li>
-
-                        
-                            
-  <li class="dropdown-submenu">
     <a tabindex="-1" href="">Development</a>
     <ul class="dropdown-menu">
         
@@ -270,12 +243,6 @@
         
     </ul>
   </li>
-
-                        
-                            
-<li >
-    <a href="../help/">Get Help</a>
-</li>
 
                         
                         </ul>
@@ -299,7 +266,7 @@
                 </li>
                 
                     <li >
-                        <a rel="next" href="../development/">
+                        <a rel="next" href="../shell/">
                             <i class="fa fa-arrow-left"></i> Previous
                         </a>
                     </li>
@@ -311,7 +278,7 @@
                 
                 
                     <li>
-                        <a href="https://github.com/hortonworks/cloudbreak-docs/blob/master/docs/" >
+                        <a href="https://github.com/sequenceiq/cloudbreak-docs/blob/master/docs/" >
                             
                                 <i class="fa fa-github"></i>
                             
@@ -366,7 +333,7 @@ export UAA_SULTANS_SECRET='[authenticator secret]'
 <p>In this case Cloudbreak deployer wouldn't be able to add the default user, so you have to do it manually by executing the following command:</p>
 <pre><code>cbd util add-default-user
 </code></pre>
-                    <a href="https://github.com/hortonworks/cloudbreak-docs/blob/master/docs/security.md" ><i class="fa fa-github"></i> Edit on GitHub </a>
+                    <a href="https://github.com/sequenceiq/cloudbreak-docs/blob/master/docs/security.md" ><i class="fa fa-github"></i> Edit on GitHub </a>
                 </div>
             
         </div>
@@ -411,10 +378,10 @@ export UAA_SULTANS_SECRET='[authenticator secret]'
 
          <script>
            $( document ).ready(function() {
-               $.getJSON("http://hortonworks.github.io/cloudbreak-docs//versions.json", function(data) {
-               $("#versions-dropdown").append('<li><a href="http://hortonworks.github.io/cloudbreak-docs//latest">latest ('+data.latest+')</a></li>');
+               $.getJSON("http://sequenceiq.com/cloudbreak-docs/versions.json", function(data) {
+               $("#versions-dropdown").append('<li><a href="http://sequenceiq.com/cloudbreak-docs/latest">latest ('+data.latest+')</a></li>');
                 $.each(data.versions, function( index, value ) {
-                  $("#versions-dropdown").append('<li><a href="http://hortonworks.github.io/cloudbreak-docs//'+value+'">'+value+'</a></li>');
+                  $("#versions-dropdown").append('<li><a href="http://sequenceiq.com/cloudbreak-docs/'+value+'">'+value+'</a></li>');
                 });
                });
 

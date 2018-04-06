@@ -6,10 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="http://hortonworks.github.io/cloudbreak-docs/azure/">
+        <link rel="canonical" href="http://sequenceiq.com/cloudbreak-docs/azure/">
         <link rel="shortcut icon" href="../img/favicon.ico">
 
-	<title>Azure - Cloudbreak 1.16.5</title>
+	<title>Azure - Cloudbreak 1.14.4</title>
 
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -45,7 +45,7 @@
             <!-- Main title -->
             <img class="navbar-logo" src="../img/HWX-RGB-full-no-tagline_500pxh.png" alt="Hortonworks Documentation"
                  width="132" height="52">
-            <a class="navbar-brand" href="..">Cloudbreak 1.16.5</a>
+            <a class="navbar-brand" href="..">Cloudbreak 1.14.4</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -142,18 +142,6 @@
                         
                             
 <li >
-    <a href="../customizations/">Customizations</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../development/">Local Development</a>
-</li>
-
-                        
-                            
-<li >
     <a href="../security/">Cloudbreak Security</a>
 </li>
 
@@ -190,7 +178,13 @@
                         
                             
 <li >
-    <a href="../images/">Custom Images (TP)</a>
+    <a href="../images/">Cloud Images (TP)</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../database/">Ambari Database (TP)</a>
 </li>
 
                         
@@ -238,27 +232,6 @@
                         
                             
   <li class="dropdown-submenu">
-    <a tabindex="-1" href="">Database configuration</a>
-    <ul class="dropdown-menu">
-        
-            
-<li >
-    <a href="../cloudbreak_database/">Cloudbreak Database</a>
-</li>
-
-        
-            
-<li >
-    <a href="../ambari_database/">Ambari Database (TP)</a>
-</li>
-
-        
-    </ul>
-  </li>
-
-                        
-                            
-  <li class="dropdown-submenu">
     <a tabindex="-1" href="">Development</a>
     <ul class="dropdown-menu">
         
@@ -270,12 +243,6 @@
         
     </ul>
   </li>
-
-                        
-                            
-<li >
-    <a href="../help/">Get Help</a>
-</li>
 
                         
                         </ul>
@@ -311,7 +278,7 @@
                 
                 
                     <li>
-                        <a href="https://github.com/hortonworks/cloudbreak-docs/blob/master/docs/" >
+                        <a href="https://github.com/sequenceiq/cloudbreak-docs/blob/master/docs/" >
                             
                                 <i class="fa fa-github"></i>
                             
@@ -394,7 +361,7 @@
 <h1 id="azure-setup">Azure Setup</h1>
 <p>Setting up Cloudbreak on Azure is different than on other cloud providers for which we provide pre-built public images with Cloudbreak Deployer pre-installed. On Azure, you launch Cloudbreak Deployer using the <a href="https://github.com/Azure/azure-quickstart-templates">Azure Resource Manager Templates</a>.</p>
 <h2 id="deploy-using-the-azure-portal">Deploy Using the Azure Portal</h2>
-<p>To get started with Cloudbreak installation using the Azure Resource Manager template, click here: <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fsequenceiq%2Fazure-cbd-quickstart%2F1.16.5%2FmainTemplate.json">  <img alt="deploy on azure" src="http://azuredeploy.net/deploybutton.png" /> </a></p>
+<p>To get started with Cloudbreak installation using the Azure Resource Manager template, click here: <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fsequenceiq%2Fazure-cbd-quickstart%2F1.14.4%2Fazuredeploy.json">  <img alt="deploy on azure" src="http://azuredeploy.net/deploybutton.png" /> </a></p>
 <h3 id="vm-requirements">VM Requirements</h3>
 <p>When selecting an instance type, consider these minimum and recomended requirements:<br />
 - 8GB RAM, 10GB disk, 2 cores 
@@ -407,41 +374,18 @@
 <li>Create a new <code>Resource group</code></li>
 <li>Select an appropriate <code>Resource group location</code></li>
 </ul>
-<p>On the <code>Settings</code> panel:</p>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Admin Username</td>
-<td>Create an admin login that you will use to log in to the Cloudbreak UI. Must be a valid email address.</td>
-</tr>
-<tr>
-<td>Admin User Password</td>
-<td>Password for the admin login. Must be at least 8 characters containing letters, numbers, and symbols.</td>
-</tr>
-<tr>
-<td>Username</td>
-<td>Enter an admin username for the virtual machine. You will use it to SSH to the VM.</td>
-</tr>
-<tr>
-<td>Smartsense</td>
-<td>Select  whether you want to use SmartSense telemetry.</td>
-</tr>
-<tr>
-<td>Remote Location</td>
-<td>Allow connections from this address range. Must be a valid CIDR IP.</td>
-</tr>
-<tr>
-<td>Ssh key</td>
-<td><p>Paste your SSH public key.</p><p>You can use <code>pbcopy</code> to quickly copy it. For example: <code>pbcopy &lt; /Users/homedir/.ssh/id_rsa.pub</code></p></td>
-</tr>
-</tbody>
-</table>
+<p>On the <code>Parameters</code> panel:</p>
+<ul>
+<li>Select the same <code>LOCATION</code> as for the resource group</li>
+<li><code>PASSWORD</code> must be between 6-72 characters long and must satisfy
+  at least 3 of the following password complexity requirements:<ul>
+<li>Contains an uppercase character</li>
+<li>Contains a lowercase character</li>
+<li>Contains a numeric digit</li>
+<li>Contains a special character</li>
+</ul>
+</li>
+</ul>
 <p><strong>Finally</strong> you should review the <code>Legal terms</code> from the <code>Custom deployment</code> panel:</p>
 <ul>
 <li>To agree with the terms and conditions, click on <code>Create</code> button in this panel</li>
@@ -618,8 +562,6 @@ be in the same storage account nor in the same container. You can add as many ac
 <p><strong>IMPORTANT:</strong> Make sure that your cloud account can launch instances using the new Azure ARM (a.k.a. V2) API and
 you have sufficient qouta (CPU, network, etc) for the requested cluster size.</p>
 </blockquote>
-<h3 id="examples">Examples</h3>
-<p>You can find additional examples for accessing resources in your storage accounts with Hadoop FileSystem Shell for <strong>WASB</strong> <a href="https://hadoop.apache.org/docs/stable/hadoop-azure/index.html#Accessing_wasb_URLs">here</a> and for <strong>ADLS</strong> <a href="https://hadoop.apache.org/docs/current/hadoop-azure-datalake/index.html#Accessing_adl_URLs">here</a>.</p>
 <h2 id="generate-a-new-ssh-key">Generate a New SSH Key</h2>
 <p>All the instances created by Cloudbreak are configured to allow key-based SSH,
 so you'll need to provide an SSH public key that can be used later to SSH onto the instances in the clusters you'll create with Cloudbreak.
@@ -671,7 +613,6 @@ your Cloudbreak credential.</p>
 <li>App based</li>
 </ul>
 <h2 id="interactive-login">Interactive login</h2>
-<p>Interactive login based credential creation is fully automated, meaning that the creation of the necessary Azure resources (application and service principal) is done automatically driven by Cloudbreak application itself, the user has to provide only a minimal set of input. </p>
 <p><strong>Before you can use interactive login, you have to provide your tenant ID and subscription ID in your Profile</strong></p>
 <ul>
 <li>
@@ -697,36 +638,6 @@ your Cloudbreak credential.</p>
 </ul>
 </li>
 <li>
-<p>Select Azure role type. You have the option to decide if Cloudbreak should use the built-in <code>Contributor</code> Azure role or a custom existing or new role for managing cluster resources in Azure. 
-    You have the following options:</p>
-<ul>
-<li><code>Use existing "Contributor" role</code><ul>
-<li>This is the default behaviour which needs no further input and will assign Cloudbreak service principal <code>Contributor</code> role for your subscription</li>
-</ul>
-</li>
-<li><code>Reuse existing custom role</code><ul>
-<li>You can reuse an already existing Azure role which has the required minimal permission set necessary for Cloudbreak to be able the manage the cluster's resources. It returns an error if no role with the name specified exists or the role does not have the required permission set. <blockquote>
-<p>You can find documentation about creating custom roles <a href="https://docs.microsoft.com/en-us/azure/active-directory/role-based-access-control-custom-roles">here</a>.</p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li><code>Let Cloudbreak create a custom role</code><ul>
-<li>Choosing this option will let Cloudbreak application create the Azure role with the necessary permissions. It returns an error if a role alerady exists with the name specified.</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<blockquote>
-<p>The necessary Action set for Cloudbreak to be able to manage the clusters include:
-                    "Microsoft.Compute/*",
-                    "Microsoft.Network/*",
-                    "Microsoft.Storage/*",
-                    "Microsoft.Resources/*"</p>
-</blockquote>
-<ol>
-<li>
 <p>Click next. Then you will see a device code on the screen. Click on the 'Azure login' button and please enter the code on the azure portal. </p>
 <p><img alt="" src="../azure/images/azure-device-code.png" title="Azure device code" /></p>
 </li>
@@ -743,7 +654,6 @@ your Cloudbreak credential.</p>
 </li>
 </ol>
 <h2 id="app-based">App based</h2>
-<p>You have to complete the <a href="./#azure-application-setup-with-cloudbreak-deployer">Provisioning prerequisites</a> where you can find the steps how can get the mandatory <code>Subscription ID</code>, <code>App ID</code>, <code>Password</code> and <code>App Owner Tenant ID</code> for your Cloudbreak credential.</p>
 <ul>
 <li>Fill out the new credential <code>Name</code><ul>
 <li>Only alphanumeric and lowercase characters (min 5, max 100 characters) can be applied</li>
@@ -925,7 +835,7 @@ capability to attach multiple security groups to an existing subnet. If you'd li
 <p>Blueprints are your declarative definition of a Hadoop cluster. These are the same blueprints that are <a href="https://cwiki.apache.org/confluence/display/AMBARI/Blueprints">used by Ambari</a>.</p>
 <p>You can use the 3 default blueprints pre-defined in Cloudbreak or you can create your own ones.
 Blueprints can be added from file, URL (an <a href="https://raw.githubusercontent
-.com/hortonworks/cloudbreak/master/integration-test/src/main/resources/blueprint/multi-node-hdfs-yarn.bp">example blueprint</a>) or the 
+.com/sequenceiq/cloudbreak/master/integration-test/src/main/resources/blueprint/multi-node-hdfs-yarn.bp">example blueprint</a>) or the 
 whole JSON can be written in the <code>JSON text</code> box.</p>
 <p>The host groups in the JSON will be mapped to a set of instances when starting the cluster. Besides this the services and
  components will also be installed on the corresponding nodes. Blueprints can be modified later from the Ambari UI.</p>
@@ -1022,6 +932,7 @@ the <code>Azure Portal Resource groups</code> page.
 <p><code>Validate blueprint</code> This is selected by default. Cloudbreak validates the Ambari blueprint in this case.</p>
 <p><code>Custom Image</code> If you enable this, you can override the default image for provision.</p>
 <p><code>Enable Availability sets</code> You can set up availability set support if enabled.</p>
+<p><code>Shipyard enabled cluster</code> This is selected by default. Cloudbreak will start a <a href="https://shipyard-project.com/">Shipyard</a> container which helps you to manage your containers.</p>
 <p><code>Persistent Storage Name</code> This is <code>cbstore</code> by default. Cloudbreak will copy the image into a storage which is not deleting under the termination. When you starting a new cluster then the provisioning will be much faster because of the existing image.</p>
 <p><code>Attached Storage Type</code> This is <code>single storage for all vm</code> by default. If are you using the default option then your whole cluster will by in one storage which could be a bottleneck in case of <a href="https://azure.microsoft.com/hu-hu/documentation/articles/azure-subscription-service-limits/#storage-limits">Azure</a>. If you are using the <code>separated storage for every vm</code> then we will deploy as much storage account as many node you have and in this case IOPS limit concern just for one node.</p>
 <p><code>Config recommendation strategy</code> Strategy for how configuration recommendations will be applied. Recommended
@@ -1196,7 +1107,7 @@ network template.</p>
 <h4 id="blueprints_1">Blueprints</h4>
 <p>Blueprints are your declarative definition of a Hadoop cluster. These are the same blueprints that are <a href="https://cwiki.apache.org/confluence/display/AMBARI/Blueprints">used by Ambari</a>.</p>
 <p>You can use the 3 default blueprints pre-defined in Cloudbreak or you can create your own ones.
-Blueprints can be added from file or URL (an <a href="https://raw.githubusercontent.com/hortonworks/cloudbreak/master/integration-test/src/main/resources/blueprint/multi-node-hdfs-yarn.bp">example blueprint</a>).</p>
+Blueprints can be added from file or URL (an <a href="https://raw.githubusercontent.com/sequenceiq/cloudbreak/master/integration-test/src/main/resources/blueprint/multi-node-hdfs-yarn.bp">example blueprint</a>).</p>
 <p>The host groups in the JSON will be mapped to a set of instances when starting the cluster. Besides this the services and
  components will also be installed on the corresponding nodes. Blueprints can be modified later from the Ambari UI.</p>
 <blockquote>
@@ -1399,7 +1310,7 @@ cluster create --description &quot;My first cluster&quot; --wait true
 
 <p><strong>Congratulations!</strong> Your cluster should now be up and running on this way as well. To learn more about Cloudbreak and 
 provisioning, we have some <a href="../operations/">interesting insights</a> for you.</p>
-                    <a href="https://github.com/hortonworks/cloudbreak-docs/blob/master/docs/azure.md" ><i class="fa fa-github"></i> Edit on GitHub </a>
+                    <a href="https://github.com/sequenceiq/cloudbreak-docs/blob/master/docs/azure.md" ><i class="fa fa-github"></i> Edit on GitHub </a>
                 </div>
             
         </div>
@@ -1444,10 +1355,10 @@ provisioning, we have some <a href="../operations/">interesting insights</a> for
 
          <script>
            $( document ).ready(function() {
-               $.getJSON("http://hortonworks.github.io/cloudbreak-docs//versions.json", function(data) {
-               $("#versions-dropdown").append('<li><a href="http://hortonworks.github.io/cloudbreak-docs//latest">latest ('+data.latest+')</a></li>');
+               $.getJSON("http://sequenceiq.com/cloudbreak-docs/versions.json", function(data) {
+               $("#versions-dropdown").append('<li><a href="http://sequenceiq.com/cloudbreak-docs/latest">latest ('+data.latest+')</a></li>');
                 $.each(data.versions, function( index, value ) {
-                  $("#versions-dropdown").append('<li><a href="http://hortonworks.github.io/cloudbreak-docs//'+value+'">'+value+'</a></li>');
+                  $("#versions-dropdown").append('<li><a href="http://sequenceiq.com/cloudbreak-docs/'+value+'">'+value+'</a></li>');
                 });
                });
 

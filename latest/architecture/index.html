@@ -6,10 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="http://hortonworks.github.io/cloudbreak-docs/architecture/">
+        <link rel="canonical" href="http://sequenceiq.com/cloudbreak-docs/architecture/">
         <link rel="shortcut icon" href="../img/favicon.ico">
 
-	<title>Architecture - Cloudbreak 1.16.5</title>
+	<title>Architecture - Cloudbreak 1.14.4</title>
 
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -45,7 +45,7 @@
             <!-- Main title -->
             <img class="navbar-logo" src="../img/HWX-RGB-full-no-tagline_500pxh.png" alt="Hortonworks Documentation"
                  width="132" height="52">
-            <a class="navbar-brand" href="..">Cloudbreak 1.16.5</a>
+            <a class="navbar-brand" href="..">Cloudbreak 1.14.4</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -142,18 +142,6 @@
                         
                             
 <li >
-    <a href="../customizations/">Customizations</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../development/">Local Development</a>
-</li>
-
-                        
-                            
-<li >
     <a href="../security/">Cloudbreak Security</a>
 </li>
 
@@ -190,7 +178,13 @@
                         
                             
 <li >
-    <a href="../images/">Custom Images (TP)</a>
+    <a href="../images/">Cloud Images (TP)</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../database/">Ambari Database (TP)</a>
 </li>
 
                         
@@ -238,27 +232,6 @@
                         
                             
   <li class="dropdown-submenu">
-    <a tabindex="-1" href="">Database configuration</a>
-    <ul class="dropdown-menu">
-        
-            
-<li >
-    <a href="../cloudbreak_database/">Cloudbreak Database</a>
-</li>
-
-        
-            
-<li >
-    <a href="../ambari_database/">Ambari Database (TP)</a>
-</li>
-
-        
-    </ul>
-  </li>
-
-                        
-                            
-  <li class="dropdown-submenu">
     <a tabindex="-1" href="">Development</a>
     <ul class="dropdown-menu">
         
@@ -270,12 +243,6 @@
         
     </ul>
   </li>
-
-                        
-                            
-<li >
-    <a href="../help/">Get Help</a>
-</li>
 
                         
                         </ul>
@@ -311,7 +278,7 @@
                 
                 
                     <li>
-                        <a href="https://github.com/hortonworks/cloudbreak-docs/blob/master/docs/" >
+                        <a href="https://github.com/sequenceiq/cloudbreak-docs/blob/master/docs/" >
                             
                                 <i class="fa fa-github"></i>
                             
@@ -357,7 +324,7 @@
 <p>Cloudbreak is built on the foundation of cloud provider APIs and Apache Ambari.</p>
 <h3 id="apache-ambari">Apache Ambari</h3>
 <p>The goal of the Apache Ambari project is to simplify Hadoop management by developing software for provisioning, managing, and monitoring Apache Hadoop clusters. Ambari provides an intuitive, easy-to-use Hadoop management web UI backed by its RESTful APIs.</p>
-<p><img alt="" src="https://raw.githubusercontent.com/hortonworks/cloudbreak-docs/master/docs/diagrams/ambari-overview.png" /></p>
+<p><img alt="" src="https://raw.githubusercontent.com/sequenceiq/cloudbreak-docs/master/docs/diagrams/ambari-overview.png" /></p>
 <p>Ambari enables System Administrators to: </p>
 <ol>
 <li><strong>Provision a Hadoop Cluster</strong>:  <ul>
@@ -380,10 +347,10 @@
 <p>Ambari blueprints are a declarative definition of a cluster. With a blueprint, you can specify stack, component
  layout, and configurations to materialise a Hadoop cluster instance (via a REST API) without having to use the Ambari
   Cluster Install Wizard.</p>
-<p><img alt="" src="https://raw.githubusercontent.com/hortonworks/cloudbreak/master/docs/images/ambari-create-cluster.png" /></p>
+<p><img alt="" src="https://raw.githubusercontent.com/sequenceiq/cloudbreak/master/docs/images/ambari-create-cluster.png" /></p>
 <h4 id="salt">Salt</h4>
 <p>Salt manages complex systems at scale. Salt can be used for data-driven orchestration, remote execution for any infrastructure, configuration management for any app stack, and much more.</p>
-                    <a href="https://github.com/hortonworks/cloudbreak-docs/blob/master/docs/architecture.md" ><i class="fa fa-github"></i> Edit on GitHub </a>
+                    <a href="https://github.com/sequenceiq/cloudbreak-docs/blob/master/docs/architecture.md" ><i class="fa fa-github"></i> Edit on GitHub </a>
                 </div>
             
         </div>
@@ -428,10 +395,10 @@
 
          <script>
            $( document ).ready(function() {
-               $.getJSON("http://hortonworks.github.io/cloudbreak-docs//versions.json", function(data) {
-               $("#versions-dropdown").append('<li><a href="http://hortonworks.github.io/cloudbreak-docs//latest">latest ('+data.latest+')</a></li>');
+               $.getJSON("http://sequenceiq.com/cloudbreak-docs/versions.json", function(data) {
+               $("#versions-dropdown").append('<li><a href="http://sequenceiq.com/cloudbreak-docs/latest">latest ('+data.latest+')</a></li>');
                 $.each(data.versions, function( index, value ) {
-                  $("#versions-dropdown").append('<li><a href="http://hortonworks.github.io/cloudbreak-docs//'+value+'">'+value+'</a></li>');
+                  $("#versions-dropdown").append('<li><a href="http://sequenceiq.com/cloudbreak-docs/'+value+'">'+value+'</a></li>');
                 });
                });
 

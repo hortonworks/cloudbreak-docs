@@ -6,10 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="http://hortonworks.github.io/cloudbreak-docs/shell/">
+        <link rel="canonical" href="http://sequenceiq.com/cloudbreak-docs/shell/">
         <link rel="shortcut icon" href="../img/favicon.ico">
 
-	<title>CLI/Shell - Cloudbreak 1.16.5</title>
+	<title>CLI/Shell - Cloudbreak 1.14.4</title>
 
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -45,7 +45,7 @@
             <!-- Main title -->
             <img class="navbar-logo" src="../img/HWX-RGB-full-no-tagline_500pxh.png" alt="Hortonworks Documentation"
                  width="132" height="52">
-            <a class="navbar-brand" href="..">Cloudbreak 1.16.5</a>
+            <a class="navbar-brand" href="..">Cloudbreak 1.14.4</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -142,18 +142,6 @@
                         
                             
 <li >
-    <a href="../customizations/">Customizations</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../development/">Local Development</a>
-</li>
-
-                        
-                            
-<li >
     <a href="../security/">Cloudbreak Security</a>
 </li>
 
@@ -190,7 +178,13 @@
                         
                             
 <li >
-    <a href="../images/">Custom Images (TP)</a>
+    <a href="../images/">Cloud Images (TP)</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../database/">Ambari Database (TP)</a>
 </li>
 
                         
@@ -238,27 +232,6 @@
                         
                             
   <li class="dropdown-submenu">
-    <a tabindex="-1" href="">Database configuration</a>
-    <ul class="dropdown-menu">
-        
-            
-<li >
-    <a href="../cloudbreak_database/">Cloudbreak Database</a>
-</li>
-
-        
-            
-<li >
-    <a href="../ambari_database/">Ambari Database (TP)</a>
-</li>
-
-        
-    </ul>
-  </li>
-
-                        
-                            
-  <li class="dropdown-submenu">
     <a tabindex="-1" href="">Development</a>
     <ul class="dropdown-menu">
         
@@ -270,12 +243,6 @@
         
     </ul>
   </li>
-
-                        
-                            
-<li >
-    <a href="../help/">Get Help</a>
-</li>
 
                         
                         </ul>
@@ -304,14 +271,14 @@
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../customizations/">
+                        <a rel="prev" href="../security/">
                             Next <i class="fa fa-arrow-right"></i>
                         </a>
                     </li>
                 
                 
                     <li>
-                        <a href="https://github.com/hortonworks/cloudbreak-docs/blob/master/docs/" >
+                        <a href="https://github.com/sequenceiq/cloudbreak-docs/blob/master/docs/" >
                             
                                 <i class="fa fa-github"></i>
                             
@@ -371,7 +338,7 @@
 <p>If want to use the code or extend it with new commands, follow the steps below.</p>
 <p><strong>Prerequisites:</strong> JDK 1.8.  </p>
 <p>Execute the folowing commands:</p>
-<pre><code>git clone https://github.com/hortonworks/cloudbreak.git
+<pre><code>git clone https://github.com/sequenceiq/cloudbreak.git
 cd cloudbreak/shell
 ../gradlew clean build
 </code></pre>
@@ -408,7 +375,7 @@ All commands are <strong>context-aware</strong>, which means that they are avail
 <li>Execute the result of the previous command on the local machine.</li>
 </ol>
 <h2 id="documentation">Documentation</h2>
-<p>For <strong>complete documentation</strong> of the Cloudbreak shell, see Cloudbreak  <a href="https://github.com/hortonworks/cloudbreak/tree/master/shell">github repository</a>.</p>
+<p>For <strong>complete documentation</strong> of the Cloudbreak shell, see Cloudbreak  <a href="https://github.com/sequenceiq/cloudbreak/tree/master/shell">github repository</a>.</p>
 <p>For <strong>Provider-specific Documentation</strong>, see:</p>
 <ul>
 <li><a href="../aws/#interactive-mode-cloudbreak-shell">AWS</a></li>
@@ -416,7 +383,7 @@ All commands are <strong>context-aware</strong>, which means that they are avail
 <li><a href="../gcp/#interactive-mode-cloudbreak-shell">GCP</a></li>
 <li><a href="../openstack/#interactive-mode-cloudbreak-shell">OpenStack</a></li>
 </ul>
-                    <a href="https://github.com/hortonworks/cloudbreak-docs/blob/master/docs/shell.md" ><i class="fa fa-github"></i> Edit on GitHub </a>
+                    <a href="https://github.com/sequenceiq/cloudbreak-docs/blob/master/docs/shell.md" ><i class="fa fa-github"></i> Edit on GitHub </a>
                 </div>
             
         </div>
@@ -461,10 +428,10 @@ All commands are <strong>context-aware</strong>, which means that they are avail
 
          <script>
            $( document ).ready(function() {
-               $.getJSON("http://hortonworks.github.io/cloudbreak-docs//versions.json", function(data) {
-               $("#versions-dropdown").append('<li><a href="http://hortonworks.github.io/cloudbreak-docs//latest">latest ('+data.latest+')</a></li>');
+               $.getJSON("http://sequenceiq.com/cloudbreak-docs/versions.json", function(data) {
+               $("#versions-dropdown").append('<li><a href="http://sequenceiq.com/cloudbreak-docs/latest">latest ('+data.latest+')</a></li>');
                 $.each(data.versions, function( index, value ) {
-                  $("#versions-dropdown").append('<li><a href="http://hortonworks.github.io/cloudbreak-docs//'+value+'">'+value+'</a></li>');
+                  $("#versions-dropdown").append('<li><a href="http://sequenceiq.com/cloudbreak-docs/'+value+'">'+value+'</a></li>');
                 });
                });
 

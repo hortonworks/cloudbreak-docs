@@ -1,17 +1,17 @@
 {
-  "username": "hortonworks",
+  "username": "sequenceiq",
   "name": "cbd",
-  "tag": "hortonworks/cbd",
-  "slug": "hortonworks/cbd/googlecompute.image/1",
+  "tag": "sequenceiq/cbd",
+  "slug": "sequenceiq/cbd/googlecompute.image/24",
   "artifact_type": "googlecompute.image",
-  "id": "cloudbreak-deployer-1165-2017-11-17",
-  "version": 1,
+  "id": "cloudbreak-deployer-1144-2017-05-15",
+  "version": 24,
   "metadata": {
-    "created": "2017-08-29 10:07:02 +0000",
+    "created": "2017-05-15 12:49:10 +0000",
     "os_user": "cloudbreak",
-    "created_at": "1504001222",
-    "image_name": "cloudbreak-deployer-1165-2017-11-17",
-    "cbd_version": "1.16.5",
+    "created_at": "1494852550",
+    "image_name": "cloudbreak-deployer-1144-2017-05-15",
+    "cbd_version": "1.14.4",
     "yum_version_docker": "1.9.1"
   },
   "file": false
