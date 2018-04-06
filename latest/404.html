@@ -9,7 +9,7 @@
         
         <link rel="shortcut icon" href="./img/favicon.ico">
 
-	<title>Cloudbreak 1.2.3</title>
+	<title>Cloudbreak 1.2.0</title>
 
         <link href="./css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="./css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -43,9 +43,8 @@
             
 
             <!-- Main title -->
-            <img class="navbar-logo" src="./img/HWX-RGB-full-no-tagline_500pxh.png" alt="Hortonworks Documentation"
-                 width="132" height="52">
-            <a class="navbar-brand" href=".">Cloudbreak 1.2.3</a>
+            <img class="navbar-logo" src="http://docs.hortonworks.com/HDPDocuments/Ambari-2.1.0.0/bk_Installing_HDP_AMB/common/images/hortonworks-logo.png" alt="Hortonworks Documentation" width="132" height="52">
+            <a class="navbar-brand" href=".">Cloudbreak 1.2.0</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -379,8 +378,7 @@
                $.getJSON("../providers/gcp.json", function(data) {
                $("#cloudbreak-deployer-gcp-image-details").append('<br>');
                $("#cloudbreak-deployer-gcp-image-details").append('<br>');
-               $("#cloudbreak-deployer-gcp-image-details").append('<pre><code style="font-size: 12pt;color:#333333"> [HACK] gcloud compute images create '
-                   + data.id + ' --source-uri gs://sequenceiqimage/' + data.id + '.tar.gz' + '</code></pre>');
+               $("#cloudbreak-deployer-gcp-image-details").append('<pre><code style="font-size: 12pt;color:#333333">' + data.gcp.import_script + '</code></pre>');
                });
            });
          </script>

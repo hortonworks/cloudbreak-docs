@@ -9,7 +9,7 @@
         <link rel="canonical" href="http://sequenceiq.com/cloudbreak-docs/releasenotes/">
         <link rel="shortcut icon" href="../img/favicon.ico">
 
-	<title>Release Notes - Cloudbreak 1.2.3</title>
+	<title>Release Notes - Cloudbreak 1.2.0</title>
 
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -43,9 +43,8 @@
             
 
             <!-- Main title -->
-            <img class="navbar-logo" src="../img/HWX-RGB-full-no-tagline_500pxh.png" alt="Hortonworks Documentation"
-                 width="132" height="52">
-            <a class="navbar-brand" href="..">Cloudbreak 1.2.3</a>
+            <img class="navbar-logo" src="http://docs.hortonworks.com/HDPDocuments/Ambari-2.1.0.0/bk_Installing_HDP_AMB/common/images/hortonworks-logo.png" alt="Hortonworks Documentation" width="132" height="52">
+            <a class="navbar-brand" href="..">Cloudbreak 1.2.0</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -271,9 +270,11 @@
     
         <li class="main active"><a href="#release-notes">Release Notes</a></li>
         
-            <li><a href="#fixes">Fixes</a></li>
+            <li><a href="#new-features">New Features</a></li>
         
             <li><a href="#technical-preview">Technical Preview</a></li>
+        
+            <li><a href="#behavioral-changes">Behavioral Changes</a></li>
         
     
     </ul>
@@ -283,8 +284,8 @@
 
 <h1 id="release-notes">Release Notes</h1>
 <p>The Release Notes summarize and describe changes released in Cloudbreak.</p>
-<h2 id="fixes">Fixes</h2>
-<p>This release includes the following fixes and improvements:</p>
+<h2 id="new-features">New Features</h2>
+<p>This release includes the following new features and improvements:</p>
 <table>
 <thead>
 <tr>
@@ -294,20 +295,60 @@
 </thead>
 <tbody>
 <tr>
-<td>Ability to create clusters without public IP</td>
-<td>In case a cluster is deployd in a private subnet then instances will not have public IP addresses.</td>
+<td>Cloudbreak Recipes</td>
+<td>Ability to script extensions that run before/after cluster installation. See <a href="../recipes/">Recipes</a> for more information.</td>
 </tr>
 <tr>
-<td>UI pageload fix</td>
-<td>Sometimes the UI load was hanging.</td>
+<td>Cloudbreak Shell</td>
+<td>A Command Line Interface (CLI) for interactively managing Cloudbreak. See <a href="../shell/">Shell</a> for more information.</td>
 </tr>
 <tr>
-<td>Ability to use Cloudbreak with IAM instance profiles</td>
-<td>In case you already have instance profiles roles configured (and they can assume roles) you can pass it to Cloudbreak.</td>
+<td>Cloud Provider SPI</td>
+<td>Cloudbreak Service Provider Interface (SPI) for pluging-in new providers. See <a href="../spi/">SPI</a> for more information.</td>
 </tr>
 <tr>
-<td>Lazy format fix on Azure</td>
-<td>Azure format was extremely slow when more than 16 disks are attached.</td>
+<td>Pre-built Cloud Images</td>
+<td>Pre-built Cloud images for AWS, GCP and OpenStack that include Cloudbreak Deployer pre-installed and configured.</td>
+</tr>
+<tr>
+<td>Azure Resource Manager Template</td>
+<td>Pre-build ARM template to install the Cloudbreak Deployer. See <a href="../azure/">Azure Setup</a> for more information.</td>
+</tr>
+<tr>
+<td>Azure WASB Support</td>
+<td>For clusters launched on Microsoft Azure the default file system in use will be <a href="http://blogs.msdn.com/b/cindygross/archive/2015/02/04/understanding-wasb-and-hadoop-storage-in-azure.aspx">WASB</a>. Users will still have to option to use local HDFS with attached disk but the recommended file system will be WASB. See Filesystem configuration for more information.</td>
+</tr>
+<tr>
+<td>Azure DASH Support for WASB</td>
+<td>When WASB is used as a Hadoop filesystem, the files are full-value blobs in a storage account. It means better performance compared to the data disks and the WASB filesystem can be configured very easily but Azure storage accounts have their own <a href="https://azure.microsoft.com/en-us/documentation/articles/azure-subscription-service-limits/#storage-limits">limitations</a> as well. There is a space limitation for TB per storage account (500 TB) as well but the real bottleneck is the total request rate that is only 20000 IOPS where Azure will start to throw errors when trying to do an I/O operation. To bypass those limits Microsoft created a small service called <a href="https://github.com/MicrosoftDX/Dash">DASH</a>. See <a href="../azure/#file-system-configuration">File system configuration</a> for more information.</td>
+</tr>
+<tr>
+<td>Azure Premium Storage</td>
+<td>Added support for Premium Storage with DS type instances.</td>
+</tr>
+<tr>
+<td>OpenStack</td>
+<td>Support for OpenStack Juno and Kilo. See <a href="../openstack/">OpenStack</a> for more information.</td>
+</tr>
+<tr>
+<td>New Regions</td>
+<td>On AWS we added support for <strong>Frankfurt</strong>. On GCP we added support for <strong>us-east-1</strong>.</td>
+</tr>
+<tr>
+<td>Custom Security Groups</td>
+<td>Ability to define and create custom security groups and rules.</td>
+</tr>
+<tr>
+<td>Add/Remove Nodes</td>
+<td>Introduced the availability to add or remove nodes (arbitrary number) to different hostgroups from the UI. This feature was previousely available from the shell or API only.</td>
+</tr>
+<tr>
+<td>Auto-scaling</td>
+<td>Support for SLA-based <a href="../periscope/">Auto-Scaling</a>.</td>
+</tr>
+<tr>
+<td>Auto-termination</td>
+<td>Automatic termination for unused nodes.</td>
 </tr>
 </tbody>
 </table>
@@ -336,6 +377,34 @@
 <tr>
 <td>Platforms</td>
 <td><strong>Technical Preview</strong> Support for defining Platforms to relate different configurations together. See <a href="../topologies/">Platforms</a> for more information.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="behavioral-changes">Behavioral Changes</h2>
+<p>This release introduces the following changes in behavior as compared to previous Cloudbreak versions:</p>
+<table>
+<thead>
+<tr>
+<th>Title</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cloudbreak Web UI</td>
+<td>New cluster create wizard, new cluster details panel, new progress bars for Ambari.</td>
+</tr>
+<tr>
+<td>UAA zones</td>
+<td>Updated to UAA 2.7.1 version, which introduced the concept of <strong>zones</strong>. See <a href="../configuration/">Access from custom domains</a> for more information.</td>
+</tr>
+<tr>
+<td>Ambari</td>
+<td>Upgraded to Ambari 2.2.1.1.</td>
+</tr>
+<tr>
+<td>Blueprints</td>
+<td>Includes new HDP 2.4 Ambari Blueprints.</td>
 </tr>
 </tbody>
 </table>
@@ -446,8 +515,7 @@
                $.getJSON("../providers/gcp.json", function(data) {
                $("#cloudbreak-deployer-gcp-image-details").append('<br>');
                $("#cloudbreak-deployer-gcp-image-details").append('<br>');
-               $("#cloudbreak-deployer-gcp-image-details").append('<pre><code style="font-size: 12pt;color:#333333"> [HACK] gcloud compute images create '
-                   + data.id + ' --source-uri gs://sequenceiqimage/' + data.id + '.tar.gz' + '</code></pre>');
+               $("#cloudbreak-deployer-gcp-image-details").append('<pre><code style="font-size: 12pt;color:#333333">' + data.gcp.import_script + '</code></pre>');
                });
            });
          </script>

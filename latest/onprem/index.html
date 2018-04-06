@@ -9,7 +9,7 @@
         <link rel="canonical" href="http://sequenceiq.com/cloudbreak-docs/onprem/">
         <link rel="shortcut icon" href="../img/favicon.ico">
 
-	<title>Installation - Cloudbreak 1.2.3</title>
+	<title>Installation - Cloudbreak 1.2.0</title>
 
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -43,9 +43,8 @@
             
 
             <!-- Main title -->
-            <img class="navbar-logo" src="../img/HWX-RGB-full-no-tagline_500pxh.png" alt="Hortonworks Documentation"
-                 width="132" height="52">
-            <a class="navbar-brand" href="..">Cloudbreak 1.2.3</a>
+            <img class="navbar-logo" src="http://docs.hortonworks.com/HDPDocuments/Ambari-2.1.0.0/bk_Installing_HDP_AMB/common/images/hortonworks-logo.png" alt="Hortonworks Documentation" width="132" height="52">
+            <a class="navbar-brand" href="..">Cloudbreak 1.2.0</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -292,7 +291,7 @@
                     
 
 <h1 id="install-cloudbreak-deployer">Install Cloudbreak Deployer</h1>
-<p>To install Cloudbreak Deployer on your selected environment you have to follow the steps below. The instruction
+<p>To install Cloudbreak Deployer on your selected environment you have to follow the steps below. The instruction 
 describe a CentOS based installation.</p>
 <h2 id="minimum-and-recommended-system-requirements">Minimum and Recommended System Requirements</h2>
 <p>To run the Cloudbreak Deployer and install the Cloudbreak Application, you must meet the following requirements:</p>
@@ -307,7 +306,7 @@ describe a CentOS based installation.</p>
 </li>
 </ul>
 <blockquote>
-<p>You can install Cloudbreak on <strong>Mac OS X for evaluation purposes only</strong>. This operating system is not supported
+<p>You can install Cloudbreak on <strong>Mac OS X for evaluation purposes only</strong>. This operating system is not supported 
 for a production deployment of Cloudbreak.</p>
 </blockquote>
 <p>Make sure you opened the following ports:</p>
@@ -356,7 +355,7 @@ systemctl enable docker
 <h2 id="install-cloudbreak-deployer_1">Install Cloudbreak Deployer</h2>
 <p>Install the Cloudbreak Deployer and unzip the platform specific single binary to your PATH. The one-liner way is:</p>
 <pre><code>yum -y install unzip tar
-curl -Ls s3.amazonaws.com/public-repo-1.hortonworks.com/HDP/cloudbreak/cloudbreak-deployer_1.2.3_$(uname)_x86_64.tgz | sudo tar -xz -C /bin cbd
+curl -Ls s3.amazonaws.com/public-repo-1.hortonworks.com/HDP/cloudbreak/cloudbreak-deployer_1.2.0_$(uname)_x86_64.tgz | sudo tar -xz -C /bin cbd
 cbd --version
 </code></pre>
 
@@ -410,7 +409,7 @@ cbd start
 </code></pre>
 
 <h2 id="next-steps">Next steps</h2>
-<p>Now you have all the pre-requisites for Cloudbreak. You can follow with the <strong>cloud provider specific</strong> configuration. Select one of the provider in the header
+<p>Now you have all the pre-requisites for Cloudbreak. You can follow with the <strong>cloud provider specific</strong> configuration. Select one of the provider in the header 
 then follow the steps from the <strong>Setup</strong> section:</p>
 <ul>
 <li><a href="../aws/#aws-setup">AWS</a></li>
@@ -528,8 +527,7 @@ then follow the steps from the <strong>Setup</strong> section:</p>
                $.getJSON("../providers/gcp.json", function(data) {
                $("#cloudbreak-deployer-gcp-image-details").append('<br>');
                $("#cloudbreak-deployer-gcp-image-details").append('<br>');
-               $("#cloudbreak-deployer-gcp-image-details").append('<pre><code style="font-size: 12pt;color:#333333"> [HACK] gcloud compute images create '
-                   + data.id + ' --source-uri gs://sequenceiqimage/' + data.id + '.tar.gz' + '</code></pre>');
+               $("#cloudbreak-deployer-gcp-image-details").append('<pre><code style="font-size: 12pt;color:#333333">' + data.gcp.import_script + '</code></pre>');
                });
            });
          </script>

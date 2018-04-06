@@ -9,7 +9,7 @@
         <link rel="canonical" href="http://sequenceiq.com/cloudbreak-docs/aws/">
         <link rel="shortcut icon" href="../img/favicon.ico">
 
-	<title>AWS - Cloudbreak 1.2.3</title>
+	<title>AWS - Cloudbreak 1.2.0</title>
 
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -43,9 +43,8 @@
             
 
             <!-- Main title -->
-            <img class="navbar-logo" src="../img/HWX-RGB-full-no-tagline_500pxh.png" alt="Hortonworks Documentation"
-                 width="132" height="52">
-            <a class="navbar-brand" href="..">Cloudbreak 1.2.3</a>
+            <img class="navbar-logo" src="http://docs.hortonworks.com/HDPDocuments/Ambari-2.1.0.0/bk_Installing_HDP_AMB/common/images/hortonworks-logo.png" alt="Hortonworks Documentation" width="132" height="52">
+            <a class="navbar-brand" href="..">Cloudbreak 1.2.0</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -380,7 +379,7 @@ This is mandatory, because of to can access the Cloudbreak UI (called Uluwatu). 
 guess it. If <code>cbd</code> cannot get the IP address during the initialization, please set the appropriate value.</p>
 <h3 id="aws-specific-configuration">AWS specific configuration</h3>
 <p><strong>AWS Account Keys</strong></p>
-<p>There are 2 ways to create AWS credentials in Cloudbreak.</p>
+<p>There are 2 ways to create AWS credentials in Cloudbreak. </p>
 <ul>
 <li>Key-based: It requires your AWS access and secret key and Cloudbreak will use this key to launch the resources. This key needs to be provided when you create your credential in Cloudbreak either with Cloudbreak UI or Cloudbreak CLI.</li>
 <li>Role-based: It requires a valid IAM User role and Cloudbreak will assume this role to get a temporary access and secret key. For this action you need to set your AWS key in the <code>Profile</code> file.
@@ -390,9 +389,6 @@ We suggest to use the keys of a valid <strong>IAM User</strong> here.</li>
 export AWS_SECRET_ACCESS_KEY=RWCT4Cs8******************/*skiOkWD
 </code></pre>
 
-<blockquote>
-<p>If you'd like to use instance profiles then these variables should not be configured. Please be sure that the instance profile role can assume roles on AWS if you want to provision your clusters with Role ARN's and not with AWS access and secret keys.</p>
-</blockquote>
 <h2 id="start-cloudbreak-deployer">Start Cloudbreak Deployer</h2>
 <p>To start the Cloudbreak application use the following command.
 This will start all the Docker containers and initialize the application.</p>
@@ -582,41 +578,32 @@ fulfilled by Amazon). <strong>This option is <em>not supported</em> by the defau
 If you choose an existing VPC it is possible to create a new subnet within the VPC or use an already existing one.
 The subnet's IP range must be defined in the <code>Subnet (CIDR)</code> field using the general CIDR notation.</p>
 <p><em>Default AWS Network</em></p>
-<p>If you don't want to create or use your custom VPC, you can use the <code>default-aws-network</code> for all your
+<p>If you don't want to create or use your custom VPC, you can use the <code>default-aws-network</code> for all your 
 Cloudbreak clusters. It will create a new VPC with a <code>10.0.0.0/16</code> subnet every time a cluster is created.</p>
 <p><em>Custom AWS Network</em></p>
-<p>If you'd like to deploy a cluster to a custom VPC you'll have to <strong>create a new network</strong> template on the <strong>manage
-networks</strong> panel.</p>
-<p>You have the following options:</p>
-<ul>
-<li><strong>Create a new VPC and a new subnet</strong>: Every time a cluster is created with this kind of network setup a new VPC and a new subnet with the specified IP range will be created for the instances on AWS.</li>
-<li><strong>Create a new subnet in an existing VPC</strong>:  Use this kind of network setup if you already have a VPC on AWS where you'd like to put the Cloudbreak created cluster but you'd like to have a separate subnet for it. This setup is only supported for basic VPCs, where an Internet Gateway is configured and instances can have public IP addresses to access the Internet. If you have a specific VPC setup (VGW, NAT, private subnets, etc..) then only the third option can be used.</li>
-<li><strong>Use an existing subnet in an existing VPC</strong>:  Use this kind of network setup if you have an existing VPC with one or more subnets on AWS and you'd like to start the instances of a cluster in one of those subnets. Use this setup if you have a specific VPC setup: you should first create the subnet(s) where you'd like to install your clusters directly through AWS and provide their IDs here. In this case there are only 2 requirements for the subnets:</li>
-<li>instances in the subnet should be able to reach the Internet to download yum packages (it can be done through a Virtual Gateway, a NAT instance, an Internet Gateway or any other setup)</li>
-<li>the VM where Cloudbreak is deployed must be able to reach the instances in the cluster on port 443. (It’s in the same subnet, or through a router from another subnet)</li>
-<li><strong>NOTE</strong>: instances in the subnet doesn't need to have public IP addresses in this case</li>
-</ul>
-<p>You can configure the <code>Subnet Identifier</code> and the <code>Internet Gateway Identifier</code> (IGW) of your VPC.</p>
+<p>If you'd like to deploy a cluster to a custom VPC you'll have to <strong>create a new network</strong> template on the <strong>manage 
+networks</strong> panel. You can configure the <code>Subnet Identifier</code> and the <code>Internet Gateway Identifier</code> (IGW) of your VPC.</p>
 <blockquote>
-<p><strong>IMPORTANT</strong> The subnet CIDR cannot overlap each other in a VPC. So you have to create different network
+<p><strong>IMPORTANT</strong> The subnet CIDR cannot overlap each other in a VPC. So you have to create different network 
 templates for every each clusters.</p>
 </blockquote>
-<p>To create a new subnet within the VPC, provide the ID of the subnet which is in the existing VPC and your cluster
-will be launched into that subnet. <strong>For example</strong> you can create 3 different clusters with 3 different network
+<p>To create a new subnet within the VPC, provide the ID of the subnet which is in the existing VPC and your cluster 
+will be launched into that subnet. <strong>For example</strong> you can create 3 different clusters with 3 different network 
 templates for multiple subnets <code>10.0.0.0/24</code>, <code>10.0.1.0/24</code>, <code>10.0.2.0/24</code> with the same VPC and IGW identifiers.</p>
 <blockquote>
-<p><strong>IMPORTANT</strong> Please make sure the define subnet here doesn't overlap with any of your already deployed subnet in
+<p><strong>IMPORTANT</strong> Please make sure the define subnet here doesn't overlap with any of your already deployed subnet in 
 the VPC, because of the validation only happens after the cluster creation starts.</p>
-<p>In case of existing subnet make sure you have enough room within your network space for the new instances.</p>
+<p>In case of existing subnet make sure you have enough room within your network space for the new instances. The 
+provided subnet CIDR will be ignored, but a proper CIDR range will be used.</p>
 </blockquote>
-<p>If <code>Public in account</code> is checked all the users belonging to your account will be able to use this network template
+<p>If <code>Public in account</code> is checked all the users belonging to your account will be able to use this network template 
 to create clusters, but cannot delete it.</p>
 <blockquote>
-<p><strong>NOTE</strong> The VPCs, IGWs and subnet are created on AWS only after the the cluster provisioning starts with the selected
+<p><strong>NOTE</strong> The VPCs, IGWs and subnet are created on AWS only after the the cluster provisioning starts with the selected 
 network template.</p>
 </blockquote>
-<p><img alt="" src="../aws/images/aws-network_v4.png" />
-<sub><em>Full size <a href="../aws/images/aws-network_v4.png">here</a>.</em></sub></p>
+<p><img alt="" src="../aws/images/aws-network_v3.png" />
+<sub><em>Full size <a href="../aws/images/aws-network_v3.png">here</a>.</em></sub></p>
 <p><strong>Security groups</strong></p>
 <p>Security group templates are very similar to the <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html">security groups on the AWS Console</a>.
 <strong>They describe the allowed inbound traffic to the instances in the cluster.</strong>
@@ -1262,8 +1249,7 @@ provisioning, we have some <a href="../operations/">interesting insights</a> for
                $.getJSON("../providers/gcp.json", function(data) {
                $("#cloudbreak-deployer-gcp-image-details").append('<br>');
                $("#cloudbreak-deployer-gcp-image-details").append('<br>');
-               $("#cloudbreak-deployer-gcp-image-details").append('<pre><code style="font-size: 12pt;color:#333333"> [HACK] gcloud compute images create '
-                   + data.id + ' --source-uri gs://sequenceiqimage/' + data.id + '.tar.gz' + '</code></pre>');
+               $("#cloudbreak-deployer-gcp-image-details").append('<pre><code style="font-size: 12pt;color:#333333">' + data.gcp.import_script + '</code></pre>');
                });
            });
          </script>

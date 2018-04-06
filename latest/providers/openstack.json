@@ -3,13 +3,13 @@
   "name": "cbd",
   "Tag": "sequenceiq/cbd",
   "artifact_type": "openstack.image",
-  "id": "cloudbreak-deployer-122-2016-05-04.img",
+  "id": "cloudbreak-deployer-1_2_0-2016-03-22.img",
   "version": 9,
   "metadata": {
-    "cbd_version": "1.2.2",
-    "created": "2016-04-07 13:33:52 +0000",
+    "cbd_version": "1.2.0",
+    "created": "2016-03-22 13:33:52 +0000",
     "created_at": "1458653632",
-    "image_name": "cloudbreak-deployer-122-2016-05-04",
+    "image_name": "cloudbreak-deployer-1_2_0-2016-03-22",
     "os_user": "cloudbreak",
     "yum_version_docker": "1.9.1"
   },

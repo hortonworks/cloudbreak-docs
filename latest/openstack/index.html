@@ -9,7 +9,7 @@
         <link rel="canonical" href="http://sequenceiq.com/cloudbreak-docs/openstack/">
         <link rel="shortcut icon" href="../img/favicon.ico">
 
-	<title>OpenStack - Cloudbreak 1.2.3</title>
+	<title>OpenStack - Cloudbreak 1.2.0</title>
 
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -43,9 +43,8 @@
             
 
             <!-- Main title -->
-            <img class="navbar-logo" src="../img/HWX-RGB-full-no-tagline_500pxh.png" alt="Hortonworks Documentation"
-                 width="132" height="52">
-            <a class="navbar-brand" href="..">Cloudbreak 1.2.3</a>
+            <img class="navbar-logo" src="http://docs.hortonworks.com/HDPDocuments/Ambari-2.1.0.0/bk_Installing_HDP_AMB/common/images/hortonworks-logo.png" alt="Hortonworks Documentation" width="132" height="52">
+            <a class="navbar-brand" href="..">Cloudbreak 1.2.0</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -543,31 +542,34 @@ server that provides IP addresses to instances...The admin or other privileged u
 it connects directly to the physical network infrastructure."</p>
 <p>Here you can read more about OpenStack <a href="http://docs.openstack.org/liberty/install-guide-rdo/launch-instance.html#create-virtual-networks">virtual network</a> and <a href="http://docs.openstack.org/liberty/install-guide-rdo/launch-instance-networks-public.html">public provider network</a>.</p>
 </blockquote>
-<p>You have the following options to create a new network:</p>
-<ul>
-<li><strong>Create a new network and a new subnet</strong>: Every time a cluster is created with this kind of network setup a new network and a new subnet with the specified IP range will be created for the instances on OpenStack.</li>
-<li><strong>Create a new subnet in an existing network</strong>: Use this kind of network setup if you already have a network on OpenStack where you'd like to put the Cloudbreak created cluster but you'd like to have a separate subnet for it.</li>
-<li><strong>Use an existing subnet in an existing network</strong>: Use this kind of network setup if you have an existing network with one or more subnets on OpenStack and you'd like to start the instances of a cluster in one of those subnets.</li>
-</ul>
-<p>Explanation of the parameters:</p>
-<ul>
-<li><code>Name</code> the name of the new network<ul>
-<li>it must be between 5 and 100 characters long</li>
+<p>To create a new OpenStack network follow these steps:</p>
+<ol>
+<li>Fill out the new network <code>Name</code><ul>
+<li>The name must be between 5 and 100 characters long and must satisfy the followings:<ul>
 <li>Starts with a lowercase alphabetic character</li>
 <li>Can contain lowercase alphanumeric and hyphens only</li>
 </ul>
 </li>
-<li><code>Subnet (CIDR)</code> Copy your OpenStack public network's subnet with CIDR block to the <code>Subnet (CIDR)</code> field</li>
-<li><code>Public Network ID</code> Copy your OpenStack public network ID to the <code>Public Network ID</code> field</li>
-<li><code>Virtual Network Identifier</code> This must be an ID of an existing OpenStack virtual network.</li>
-<li><code>Router Identifier</code> Your virtual network router ID (must be provided in case of existing virtual network).</li>
-<li><code>Subnet Identifier</code> Your subnet ID within your virtual network. If the identifier is provided, the <code>Subnet (CIDR)</code> will be ignored.</li>
 </ul>
+</li>
+<li>Copy your OpenStack public network's subnet with CIDR block to the <code>Subnet (CIDR)</code> field</li>
+<li>Copy your OpenStack public network ID to the <code>Public Network ID</code> field</li>
+</ol>
+<p>Any other parameter is optional here:</p>
+<p><code>Virtual Network Identifier</code> This must be an ID of an existing OpenStack virtual network.</p>
+<p><code>Router Identifier</code> Your virtual network router ID (must be provided in case of existing virtual network).</p>
+<p><code>Subnet Identifier(optional)</code> Your subnet ID within your virtual network. If the identifier is provided, the <code>Subnet 
+(CIDR)</code> will be ignored. Leave it blank if you'd like to create a new subnet within the virtual network with the 
+provided <code>Subnet (CIDR)</code> range.</p>
 <blockquote>
-<p><strong>IMPORTANT</strong> Please make sure the defined subnet here doesn't overlap with any of your already deployed subnet in the
- network, because of the validation only happens after the cluster creation starts.</p>
-<p>In case of existing subnet make sure you have enough room within your network space for the new instances. The 
-provided subnet CIDR will be ignored, but a proper CIDR range will be used.</p>
+<p><strong>IMPORTANT</strong></p>
+<ul>
+<li>In case of existing subnet all three parameters must be provided, with new subnet only two are required.</li>
+<li>Please make sure the defined subnet here doesn't overlap with any of your already deployed subnet in the
+ network, because of the validation only happens after the cluster creation starts.</li>
+<li>In case of existing subnet make sure you have enough room within your network space for the new instances. The 
+provided subnet CIDR will be ignored, but a proper CIDR range will be used.</li>
+</ul>
 </blockquote>
 <p>If <code>Public in account</code> is checked all the users belonging to your account will be able to use this network template 
 to create clusters, but cannot delete it.</p>
@@ -575,8 +577,8 @@ to create clusters, but cannot delete it.</p>
 <p><strong>NOTE</strong> The new networks are created on OpenStack only after the the cluster provisioning starts with the selected 
 network template.</p>
 </blockquote>
-<p><img alt="" src="../images/os-networks_v2.png" />
-<sub><em>Full size <a href="../images/os-networks_v2.png">here</a>.</em></sub></p>
+<p><img alt="" src="../images/os-networks.png" />
+<sub><em>Full size <a href="../images/os-networks.png">here</a>.</em>&lt;/sub</p>
 <p><strong>Security groups</strong></p>
 <p>Security group templates are very similar to the <a href="http://docs.openstack.org/openstack-ops/content/security_groups.html">Security Groups on OpenStack</a>. <strong>They describe the allowed inbound traffic 
 to the instances in the cluster.</strong> Currently only one security group template can be selected for a Cloudbreak cluster 
@@ -1250,8 +1252,7 @@ provisioning, we have some <a href="../operations/">interesting insights</a> for
                $.getJSON("../providers/gcp.json", function(data) {
                $("#cloudbreak-deployer-gcp-image-details").append('<br>');
                $("#cloudbreak-deployer-gcp-image-details").append('<br>');
-               $("#cloudbreak-deployer-gcp-image-details").append('<pre><code style="font-size: 12pt;color:#333333"> [HACK] gcloud compute images create '
-                   + data.id + ' --source-uri gs://sequenceiqimage/' + data.id + '.tar.gz' + '</code></pre>');
+               $("#cloudbreak-deployer-gcp-image-details").append('<pre><code style="font-size: 12pt;color:#333333">' + data.gcp.import_script + '</code></pre>');
                });
            });
          </script>

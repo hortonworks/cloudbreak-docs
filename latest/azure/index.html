@@ -9,7 +9,7 @@
         <link rel="canonical" href="http://sequenceiq.com/cloudbreak-docs/azure/">
         <link rel="shortcut icon" href="../img/favicon.ico">
 
-	<title>Azure - Cloudbreak 1.2.3</title>
+	<title>Azure - Cloudbreak 1.2.0</title>
 
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -43,9 +43,8 @@
             
 
             <!-- Main title -->
-            <img class="navbar-logo" src="../img/HWX-RGB-full-no-tagline_500pxh.png" alt="Hortonworks Documentation"
-                 width="132" height="52">
-            <a class="navbar-brand" href="..">Cloudbreak 1.2.3</a>
+            <img class="navbar-logo" src="http://docs.hortonworks.com/HDPDocuments/Ambari-2.1.0.0/bk_Installing_HDP_AMB/common/images/hortonworks-logo.png" alt="Hortonworks Documentation" width="132" height="52">
+            <a class="navbar-brand" href="..">Cloudbreak 1.2.0</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -333,10 +332,10 @@
 
 <h1 id="azure-setup">Azure Setup</h1>
 <p>On other cloud providers, we provide “public images” that are pre-built with the Cloudbreak Deployer. But on Azure, its a different process.
-We provide a way to launch Cloudbreak Deployer based on the new <a href="https://github.com/Azure/azure-quickstart-templates">Azure Resource Manager
+We provide a way to launch Cloudbreak Deployer based on the new <a href="https://github.com/Azure/azure-quickstart-templates">Azure Resource Manager 
 Templates</a>.</p>
 <h2 id="deploy-using-the-azure-portal">Deploy using the Azure Portal</h2>
-<p>To get started using the Azure Resource Manager template to install Cloudbreak, it is as simple as clicking here: <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fsequenceiq%2Fazure-cbd-quickstart%2F1.2.3%2Fazuredeploy.json">  <img alt="deploy on azure" src="http://azuredeploy.net/deploybutton.png" /> </a></p>
+<p>To get started using the Azure Resource Manager template to install Cloudbreak, it is as simple as clicking here: <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fsequenceiq%2Fazure-cbd-quickstart%2F1.2.0%2Fazuredeploy.json">  <img alt="deploy on azure" src="http://azuredeploy.net/deploybutton.png" /> </a></p>
 <blockquote>
 <p><strong><a href="../onprem/#minimum-and-recommended-system-requirements">Minimum and Recommended VM requirements</a>:</strong> 8GB RAM, 10GB disk, 2 cores (The minimum instance type which is fit for cloudbreak is <strong>D2</strong>)</p>
 </blockquote>
@@ -349,7 +348,7 @@ Templates</a>.</p>
 <p>On the <code>Parameters</code> panel:</p>
 <ul>
 <li>Select the same <code>LOCATION</code> as for the resource group</li>
-<li><code>PASSWORD</code> must be between 6-72 characters long and must satisfy
+<li><code>PASSWORD</code> must be between 6-72 characters long and must satisfy 
   at least 3 of password complexity requirements from the following:<ul>
 <li>Contains an uppercase character</li>
 <li>Contains a lowercase character</li>
@@ -360,18 +359,18 @@ Templates</a>.</p>
 </ul>
 <p><strong>Finally</strong> you should review the <code>Legal terms</code> from the <code>Custom deployment</code> panel:</p>
 <ul>
-<li>If you agree with the terms and conditions, just click on <code>Create</code>
+<li>If you agree with the terms and conditions, just click on <code>Create</code> 
 button of this panel</li>
-<li>Also click on the <code>Create</code> button on the <code>Custom deployment</code></li>
+<li>Also click on the <code>Create</code> button on the <code>Custom deployment</code> </li>
 </ul>
 <blockquote>
-<p>Deployment takes about <strong>15-20 minutes</strong>. You can track the
-progress on the resource group details. If any issue has occurred, open the <code>Audit logs</code> from the settings.
-We have faced an interesting behaviour on the Azure Portal: <a href="https://github.com/Azure/azure-quickstart-templates/issues/1294">All operations were successful on template deployment,
+<p>Deployment takes about <strong>15-20 minutes</strong>. You can track the 
+progress on the resource group details. If any issue has occurred, open the <code>Audit logs</code> from the settings. 
+We have faced an interesting behaviour on the Azure Portal: <a href="https://github.com/Azure/azure-quickstart-templates/issues/1294">All operations were successful on template deployment, 
 but overall fail</a>.</p>
 </blockquote>
 <ul>
-<li>Once it's successful done, you can reach the Cloudbreak UI
+<li>Once it's successful done, you can reach the Cloudbreak UI 
 at:<code>http://&lt;VM Public IP&gt;:3000/</code><ul>
 <li>email: admin@example.com</li>
 <li>password: cloudbreak</li>
@@ -382,18 +381,18 @@ at:<code>http://&lt;VM Public IP&gt;:3000/</code><ul>
 <p>Meanwhile Azure is creating the deployment, here is some information about what happens in the background:</p>
 <ul>
 <li>Start an instance from the official CentOS image<ul>
-<li>So no custom image copy is needed, which would take about 30
+<li>So no custom image copy is needed, which would take about 30 
    minutes</li>
 </ul>
 </li>
 <li>Use <a href="https://github.com/Azure/azure-docker-extension">Docker VM Extension</a> to install Docker</li>
-<li>Use <a href="https://github.com/Azure/azure-linux-extensions/tree/master/CustomScript">CustomScript Extension</a> to install
+<li>Use <a href="https://github.com/Azure/azure-linux-extensions/tree/master/CustomScript">CustomScript Extension</a> to install 
 Cloudbreak Deployer (<code>cbd</code>)</li>
 </ul>
 <p><strong>Cloudbreak Deployer Highlights</strong></p>
 <ul>
 <li>The default SSH username for the Azure VMs is <code>cloudbreak</code>.</li>
-<li>Cloudbreak Deployer location is <code>/var/lib/cloudbreak-deployment</code> on the launched <code>cbd</code> VM. This is the
+<li>Cloudbreak Deployer location is <code>/var/lib/cloudbreak-deployment</code> on the launched <code>cbd</code> VM. This is the 
       <code>cbd</code> root folder there.</li>
 <li>All <code>cbd</code> actions must be executed from the <code>cbd</code> root folder.</li>
 <li>Most of the <code>cbd</code> commands require <code>root</code> permissions. So it would be worth if you apply the <code>sudo su</code>.</li>
@@ -675,12 +674,9 @@ the <code>Subnet (CIDR)</code> field using the general CIDR notation.</p>
 Cloudbreak clusters. It will create a new network with a <code>10.0.0.0/16</code> subnet every time a cluster is created.</p>
 <p><em>Custom AZURE Network</em></p>
 <p>If you'd like to deploy a cluster to a custom network you'll have to <strong>create a new network</strong> template on the <strong>manage 
-networks</strong> panel.</p>
-<p>You have the following options:</p>
-<ul>
-<li><strong>Create a new virtual network and a new subnet</strong>:  Every time a cluster is created with this kind of network setup a new virtual network and a new subnet with the specified IP range will be created for the instances on Azure.</li>
-<li><strong>Use an existing subnet in an existing virtual network</strong>: Use this kind of network setup if you have an existing virtual network with one or more subnets on Azure and you'd like to start the instances of a cluster in one of those subnets. In this case you can define the <code>Subnet Identifier</code> and the <code>Virtual Network Identifier</code> and the <code>Resource Group Identifier</code> of your network. The <code>Resource Group Identifier</code> identifies the resource group which contains your existing virtual network. The <code>Virtual Network Identifier</code> and the <code>Subnet Identifier</code> will tell Cloudbreak which network and subnet to use to launch the new instances.</li>
-</ul>
+networks</strong> panel. If you have an existing network on Azure you can define the <code>Subnet Identifier</code> and the <code>Virtual Network Identifier</code> and the <code>Resource Group Identifier</code> of your network.</p>
+<p>The <code>Resource Group Identifier</code> identifies the resource group which contains your existing virtual network. The <code>Virtual Network Identifier</code> and the 
+<code>Subnet Identifier</code> will tell Cloudbreak which network and subnet to use to launch the new instances.</p>
 <blockquote>
 <p><strong>IMPORTANT</strong> In case of existing subnet make sure you have enough room within your network space for the new instances. The 
 provided subnet CIDR will be ignored, but the existing subnet's CIDR range will be used. The security group behavior will be changed in this case as well
@@ -692,8 +688,8 @@ to create clusters, but cannot delete it.</p>
 <p><strong>NOTE</strong> The new networks are created on AZURE only after the the cluster provisioning starts with the selected 
 network template.</p>
 </blockquote>
-<p><img alt="" src="../azure/images/azure-network_v2.png" />
-<sub><em>Full size <a href="../azure/images/azure-network_v2.png">here</a>.</em></sub></p>
+<p><img alt="" src="../azure/images/azure-network.png" />
+<sub><em>Full size <a href="../azure/images/azure-network.png">here</a>.</em>&lt;/sub</p>
 <p><strong>Security groups</strong></p>
 <p>Security group templates are very similar to the <a href="https://azure.microsoft.com/en-us/documentation/articles/virtual-networks-nsg/">security groups on Azure</a>.
 <strong>They describe the allowed inbound traffic to the instances in the cluster.</strong>
@@ -1382,8 +1378,7 @@ provisioning, we have some <a href="../operations/">interesting insights</a> for
                $.getJSON("../providers/gcp.json", function(data) {
                $("#cloudbreak-deployer-gcp-image-details").append('<br>');
                $("#cloudbreak-deployer-gcp-image-details").append('<br>');
-               $("#cloudbreak-deployer-gcp-image-details").append('<pre><code style="font-size: 12pt;color:#333333"> [HACK] gcloud compute images create '
-                   + data.id + ' --source-uri gs://sequenceiqimage/' + data.id + '.tar.gz' + '</code></pre>');
+               $("#cloudbreak-deployer-gcp-image-details").append('<pre><code style="font-size: 12pt;color:#333333">' + data.gcp.import_script + '</code></pre>');
                });
            });
          </script>

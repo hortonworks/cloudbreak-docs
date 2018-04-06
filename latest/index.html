@@ -9,7 +9,7 @@
         <link rel="canonical" href="http://sequenceiq.com/cloudbreak-docs/">
         <link rel="shortcut icon" href="./img/favicon.ico">
 
-	<title>Cloudbreak 1.2.3</title>
+	<title>Cloudbreak 1.2.0</title>
 
         <link href="./css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="./css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -43,9 +43,8 @@
             
 
             <!-- Main title -->
-            <img class="navbar-logo" src="./img/HWX-RGB-full-no-tagline_500pxh.png" alt="Hortonworks Documentation"
-                 width="132" height="52">
-            <a class="navbar-brand" href=".">Cloudbreak 1.2.3</a>
+            <img class="navbar-logo" src="http://docs.hortonworks.com/HDPDocuments/Ambari-2.1.0.0/bk_Installing_HDP_AMB/common/images/hortonworks-logo.png" alt="Hortonworks Documentation" width="132" height="52">
+            <a class="navbar-brand" href=".">Cloudbreak 1.2.0</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -289,6 +288,20 @@
 <p>Due to a recent change on Google Cloud Platform, all clusters created with Cloudbreak before 1.16.6 on Google Cloud will fail. This issue will be fixed in Cloudbreak 1.16.6. If you are already using Cloudbreak with Google Cloud, upgrade to Cloudbreak 1.16.6. If you were planning to install Cloudbreak 1.16.6, use Cloudbreak 1.16.6 instead. 
 </font></p>
 </blockquote>
+<p><font color='red'>
+<font color='red' size='5'>Apr 5, 2016 <font color='red' size='5'><a href="https://github.com/sequenceiq/cloudbreak/issues/1461">Production issue</a></font></font></br></p>
+<blockquote>
+<p>On 31st March 2016 the Systemd package has been updated with a newer version in the central CentOS repository which caused incompatibilities during HDP install and that is the reason why the cluster stopped at 8%. The main problem is that when the Ambari installs the rpcbind package then the Systemd also gets updated and when the next package which had systemd service file packaged with it is installed the yum is completely freeze. The 1.2.1 release will fix the issue.</p>
+</blockquote>
+<p>To apply the patch please update your Profile file:</p>
+<pre><code> export DOCKER_TAG_CLOUDBREAK=1.2.4-rc.1
+</code></pre>
+
+<p>and then restart cbd with:</p>
+<pre><code>cbd kill &amp;&amp; cbd regenerate &amp;&amp; cbd start
+</code></pre>
+
+<p></font></p>
 <h1 id="introduction">Introduction</h1>
 <p>Cloudbreak simplifies the provisioning, management and monitoring of on-demand HDP clusters in virtual and cloud environments. Cloudbreak leverages the cloud infrastructure platform resources to create host instances, uses Docker technology to deploy the requisite containers cloud-agnostically, and uses Apache Ambari (via Ambari Blueprints) to install and manage the HDP cluster.</p>
 <p>Use the Cloudbreak Web UI or CLI to launch HDP clusters on public cloud infrastructure platforms such as Microsoft Azure, Amazon Web Services (AWS), and Google Cloud Platform (GCP) and the private cloud infrastructure platform OpenStack.</p>
@@ -491,8 +504,7 @@ provider specific guides to configure and launch <strong>cbd (Cloudbreak Deploye
                $.getJSON("../providers/gcp.json", function(data) {
                $("#cloudbreak-deployer-gcp-image-details").append('<br>');
                $("#cloudbreak-deployer-gcp-image-details").append('<br>');
-               $("#cloudbreak-deployer-gcp-image-details").append('<pre><code style="font-size: 12pt;color:#333333"> [HACK] gcloud compute images create '
-                   + data.id + ' --source-uri gs://sequenceiqimage/' + data.id + '.tar.gz' + '</code></pre>');
+               $("#cloudbreak-deployer-gcp-image-details").append('<pre><code style="font-size: 12pt;color:#333333">' + data.gcp.import_script + '</code></pre>');
                });
            });
          </script>
@@ -501,5 +513,5 @@ provider specific guides to configure and launch <strong>cbd (Cloudbreak Deploye
 
 <!--
 MkDocs version : 0.15.3
-Build Date UTC : 2018-04-06 10:18:54.030523
+Build Date UTC : 2018-04-06 10:19:00.745172
 -->

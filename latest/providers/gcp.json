@@ -1,18 +1,12 @@
 {
-  "username": "sequenceiq",
-  "name": "cbd",
-  "tag": "sequenceiq/cbd",
-  "slug": "sequenceiq/cbd/googlecompute.image/11",
-  "artifact_type": "googlecompute.image",
-  "id": "cloudbreak-deployer-123-2016-05-19",
-  "version": 11,
-  "metadata": {
-    "created": "2016-05-19 21:52:40 +0000",
-    "os_user": "cloudbreak",
-    "created_at": "1463694760",
-    "image_name": "cloudbreak-deployer-123-2016-05-19",
-    "cbd_version": "1.2.3",
-    "yum_version_docker": "1.9.1"
+  "gcp": {
+    "default": "sequenceiqimage/cloudbreak-deployer-120-2016-03-22.tar.gz",
+    "import_script": "gcloud compute images create cloudbreak-deployer-120-2016-03-22 --source-uri gs://sequenceiqimage/cloudbreak-deployer-120-2016-03-22.tar.gz"
   },
-  "file": false
+  "versions": {
+    "cbd": "1.2.0",
+    "docker": "1.9.1",
+    "kernel": "3.10.0-327.3.1.el7",
+    "systemd": "219-19.el7"
+  }
 }

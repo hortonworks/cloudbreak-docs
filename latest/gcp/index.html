@@ -9,7 +9,7 @@
         <link rel="canonical" href="http://sequenceiq.com/cloudbreak-docs/gcp/">
         <link rel="shortcut icon" href="../img/favicon.ico">
 
-	<title>GCP - Cloudbreak 1.2.3</title>
+	<title>GCP - Cloudbreak 1.2.0</title>
 
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -43,9 +43,8 @@
             
 
             <!-- Main title -->
-            <img class="navbar-logo" src="../img/HWX-RGB-full-no-tagline_500pxh.png" alt="Hortonworks Documentation"
-                 width="132" height="52">
-            <a class="navbar-brand" href="..">Cloudbreak 1.2.3</a>
+            <img class="navbar-logo" src="http://docs.hortonworks.com/HDPDocuments/Ambari-2.1.0.0/bk_Installing_HDP_AMB/common/images/hortonworks-logo.png" alt="Hortonworks Documentation" width="132" height="52">
+            <a class="navbar-brand" href="..">Cloudbreak 1.2.0</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -540,14 +539,9 @@ networks</a>.</p>
 Cloudbreak clusters. It will create a new network with a <code>10.0.0.0/16</code> subnet every time a cluster is created.</p>
 <p><em>Custom GCP Network</em></p>
 <p>If you'd like to deploy a cluster to a custom network you'll have to <strong>create a new network</strong> template on the <strong>manage 
-networks</strong> panel.</p>
-<p>You have the following options:</p>
-<ul>
-<li><strong>Create a new virtual network and a new subnet</strong>: Every time a cluster is created with this kind of network setup a new virtual network and a new subnet with the specified IP range will be created for the instances on Google Cloud.</li>
-<li><strong>Create a new subnet in an existing virtual network</strong>: Use this kind of network setup if you already have a virtual network on Google Cloud where you'd like to put the Cloudbreak created cluster but you'd like to have a separate subnet for it.</li>
-<li><strong>Use an existing subnet in an existing virtual network</strong>: Use this kind of network setup if you have an existing virtual network with one or more subnets on Google Cloud and you'd like to start the instances of a cluster in one of those subnets.</li>
-<li><strong>Use a legacy network without subnets</strong>: Use this kind of network setup if you have a legacy virtual network on Google Cloud that doesn't have subnet support and you'd like to start instances in that virtual network directly.</li>
-</ul>
+networks</strong> panel. You can define the <code>Virtual Network Identifier</code> of your network.</p>
+<p><code>Virtual Network Identifier</code> is an optional value. This must be an ID of an existing GCP virtual network. This option only works
+if there are no subnets within the existing network.</p>
 <blockquote>
 <p><strong>IMPORTANT</strong> Please make sure the defined subnet here doesn't overlap with any of your already deployed subnet in the
  network, because of the validation only happens after the cluster creation starts.</p>
@@ -560,8 +554,8 @@ to create clusters, but cannot delete it.</p>
 <p><strong>NOTE</strong> The new networks are created on GCP only after the the cluster provisioning starts with the selected 
 network template.</p>
 </blockquote>
-<p><img alt="" src="../gcp/images/gcp-network_v2.png" />
-<sub><em>Full size <a href="../gcp/images/gcp-network_v2.png">here</a>.</em></sub></p>
+<p><img alt="" src="../gcp/images/gcp-network.png" />
+<sub><em>Full size <a href="../gcp/images/gcp-network.png">here</a>.</em></sub></p>
 <p><strong>Security groups</strong></p>
 <p>Security group templates are very similar to the <a href="https://cloud.google
 .com/compute/docs/networks-and-firewalls#firewalls">Firewalls on GCP</a>. <strong>They describe the allowed inbound traffic 
@@ -876,7 +870,7 @@ the <code>Subnet (CIDR)</code> field using the general CIDR notation. You can re
 Cloudbreak clusters. It will create a new network with a <code>10.0.0.0/16</code> subnet every time a cluster is created.</p>
 <p><em>Custom GCP Network</em></p>
 <p>If you'd like to deploy a cluster to a custom network you'll have to apply the following command:</p>
-<pre><code>network create --GCP --name my-gcp-network --description &quot;sample description&quot;
+<pre><code>network create --GCP --name my-gcp-network --description &quot;sample description&quot; --subnet 10.0.0.0/16
 </code></pre>
 
 <p>Other available options here:</p>
@@ -885,8 +879,6 @@ value and must be an ID of an existing GCP virtual network. If the identifier is
 ignored and the existing network's CIDR range will be used.</p>
 <p><code>--publicInAccount</code> is true, all the users belonging to your account will be able to use this network template 
 to create clusters, but cannot delete it.</p>
-<p><code>--subnet</code> specified subnet which will be used by the cluster (will be created under the provisioning).</p>
-<p><code>--subnetId</code> if you have an existing subnet in the network then you can specify the id here and the cluster will use that existing subnet.</p>
 <blockquote>
 <p><strong>IMPORTANT</strong> Please make sure the defined subnet here doesn't overlap with any of your 
 already deployed subnet in the network, because of the validation only happens after the cluster creation starts.</p>
@@ -1229,8 +1221,7 @@ provisioning, we have some <a href="../operations/">interesting insights</a> for
                $.getJSON("../providers/gcp.json", function(data) {
                $("#cloudbreak-deployer-gcp-image-details").append('<br>');
                $("#cloudbreak-deployer-gcp-image-details").append('<br>');
-               $("#cloudbreak-deployer-gcp-image-details").append('<pre><code style="font-size: 12pt;color:#333333"> [HACK] gcloud compute images create '
-                   + data.id + ' --source-uri gs://sequenceiqimage/' + data.id + '.tar.gz' + '</code></pre>');
+               $("#cloudbreak-deployer-gcp-image-details").append('<pre><code style="font-size: 12pt;color:#333333">' + data.gcp.import_script + '</code></pre>');
                });
            });
          </script>
