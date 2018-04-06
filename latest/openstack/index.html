@@ -9,7 +9,7 @@
         <link rel="canonical" href="http://hortonworks.github.io/cloudbreak-docs/openstack/">
         <link rel="shortcut icon" href="../img/favicon.ico">
 
-	<title>OpenStack - Cloudbreak 1.16.4</title>
+	<title>OpenStack - Cloudbreak 1.16.1</title>
 
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -45,7 +45,7 @@
             <!-- Main title -->
             <img class="navbar-logo" src="../img/HWX-RGB-full-no-tagline_500pxh.png" alt="Hortonworks Documentation"
                  width="132" height="52">
-            <a class="navbar-brand" href="..">Cloudbreak 1.16.4</a>
+            <a class="navbar-brand" href="..">Cloudbreak 1.16.1</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -142,12 +142,6 @@
                         
                             
 <li >
-    <a href="../development/">Local Development</a>
-</li>
-
-                        
-                            
-<li >
     <a href="../security/">Cloudbreak Security</a>
 </li>
 
@@ -184,7 +178,7 @@
                         
                             
 <li >
-    <a href="../images/">Custom Images (TP)</a>
+    <a href="../images/">Cloud Images (TP)</a>
 </li>
 
                         
@@ -740,7 +734,7 @@ security group template.</p>
 <p>Blueprints are your declarative definition of a Hadoop cluster. These are the same blueprints that are <a href="https://cwiki.apache.org/confluence/display/AMBARI/Blueprints">used by Ambari</a>.</p>
 <p>You can use the 3 default blueprints pre-defined in Cloudbreak or you can create your own ones.
 Blueprints can be added from file, URL (an <a href="https://raw.githubusercontent
-.com/hortonworks/cloudbreak/master/integration-test/src/main/resources/blueprint/multi-node-hdfs-yarn.bp">example blueprint</a>) or the 
+.com/sequenceiq/cloudbreak/master/integration-test/src/main/resources/blueprint/multi-node-hdfs-yarn.bp">example blueprint</a>) or the 
 whole JSON can be written in the <code>JSON text</code> box.</p>
 <p>The host groups in the JSON will be mapped to a set of instances when starting the cluster. Besides this the services and
  components will also be installed on the corresponding nodes. Blueprints can be modified later from the Ambari UI.</p>
@@ -837,6 +831,7 @@ be Kerberized. See more about it in the <a href="../kerberos/">Kerberos</a> sect
 <p><code>Minimum cluster size</code> The provisioning strategy in case the cloud provider cannot allocate all the requested nodes.</p>
 <p><code>Validate blueprint</code> This is selected by default. Cloudbreak validates the Ambari blueprint in this case.</p>
 <p><code>Custom Image</code> If you enable this, you can override the default image for provision.</p>
+<p><code>Shipyard enabled cluster</code> This is selected by default. Cloudbreak will start a <a href="https://shipyard-project.com/">Shipyard</a> container which helps you to manage your containers.</p>
 <p><code>Config recommendation strategy</code> Strategy for how configuration recommendations will be applied. Recommended 
 configurations gathered by the response of the stack advisor. </p>
 <ul>

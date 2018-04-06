@@ -9,7 +9,7 @@
         <link rel="canonical" href="http://hortonworks.github.io/cloudbreak-docs/images/">
         <link rel="shortcut icon" href="../img/favicon.ico">
 
-	<title>Custom Images (TP) - Cloudbreak 1.16.4</title>
+	<title>Cloud Images (TP) - Cloudbreak 1.16.1</title>
 
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -45,7 +45,7 @@
             <!-- Main title -->
             <img class="navbar-logo" src="../img/HWX-RGB-full-no-tagline_500pxh.png" alt="Hortonworks Documentation"
                  width="132" height="52">
-            <a class="navbar-brand" href="..">Cloudbreak 1.16.4</a>
+            <a class="navbar-brand" href="..">Cloudbreak 1.16.1</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -142,12 +142,6 @@
                         
                             
 <li >
-    <a href="../development/">Local Development</a>
-</li>
-
-                        
-                            
-<li >
     <a href="../security/">Cloudbreak Security</a>
 </li>
 
@@ -184,7 +178,7 @@
                         
                             
 <li class="active">
-    <a href="./">Custom Images (TP)</a>
+    <a href="./">Cloud Images (TP)</a>
 </li>
 
                         
@@ -323,11 +317,15 @@
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#custom-images">Custom Images</a></li>
+        <li class="main active"><a href="#custom-cloud-images">Custom Cloud Images</a></li>
         
-            <li><a href="#building-custom-images">Building Custom Images</a></li>
+            <li><a href="#aws">AWS</a></li>
         
-            <li><a href="#registering-custom-images">Registering Custom Images</a></li>
+            <li><a href="#azure">Azure</a></li>
+        
+            <li><a href="#gcp">GCP</a></li>
+        
+            <li><a href="#openstack">OpenStack</a></li>
         
     
     </ul>
@@ -335,61 +333,18 @@
                 <div class="col-md-9" role="main">
                     
 
-<h1 id="custom-images">Custom Images</h1>
+<h1 id="custom-cloud-images">Custom Cloud Images</h1>
 <blockquote>
-<p>Custom Images support is part of <code>TECHNICAL PREVIEW</code> and is not suitable for production use.</p>
+<p>Custom Images support is part of <code>TECHNICAL PREVIEW</code>. It may not be suitable for production use.</p>
 </blockquote>
-<p>Cloudbreak includes <strong>Standard</strong> images by default for each cloud platform. These default images are declared in <code>yml</code> files
-in Cloudbreak, which Cloudbreak loads upon start.</p>
-<table>
-<thead>
-<tr>
-<th>Cloud Provider</th>
-<th>Standard Image OS</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>AWS</td>
-<td>Amazon Linux 2017.03</td>
-</tr>
-<tr>
-<td>Azure</td>
-<td>CentOS 7</td>
-</tr>
-<tr>
-<td>Google Cloud Platform</td>
-<td>CentOS 7</td>
-</tr>
-<tr>
-<td>OpenStack</td>
-<td>CentOS 7</td>
-</tr>
-</tbody>
-</table>
-<p>In some cases, your OS setup and configuration requirements necessitate changes to the image used by Cloudbreak.
-The process to bring your own image is referred to as using a <em>Custom Image</em>. If you wish to
-use a <em>Custom Image</em> instead of the default <strong>Standard</strong> images used by Cloudbreak, you can <strong>build</strong> and <strong>register</strong> your custom image(s) for use
-in Cloudbreak. This section describes that process.</p>
-<h2 id="building-custom-images">Building Custom Images</h2>
-<p>To build a custom image, Cloudbreak includes instructions and a set of scripts that leverage <a href="https://www.packer.io/docs/">Packer</a>.
-Those instructions and scripts can be found in this <a href="https://github.com/hortonworks/cloudbreak-images">GitHub repository</a>:</p>
-<pre><code>https://github.com/hortonworks/cloudbreak-images
-</code></pre>
-
-<p>Following the instructions in this repository to build your custom images. Once complete, you are ready to register your
-image in Cloudbreak for use. </p>
-<h2 id="registering-custom-images">Registering Custom Images</h2>
-<p>Register your custom image(s) in Cloudbreak by placing <code>yml</code> files that
-declare your custom images in the <code>/var/lib/cloudbreak-deployment/etc</code> directory on the Cloudbreak host. The
-<code>etc</code> directory does not exist by default so you need to create it.</p>
-<p>The format of the <code>yml</code> files is cloud provider specific and described in the following sections.  </p>
+<p>Every cloud platform comes with default images that contain packages required to build an Ambari and HDP stack. These default images are declared in yml files, which Cloudbreak loads upon start. You can customize these images and use them instead of the defaults. </p>
+<p>To overwrite the default yml files, place files declaring your custom images in the <code>/var/lib/cloudbreak-deployment/etc</code> directory. The etc directory does not exist by default so you need to create it.</p>
+<p>The format of the yml files is platform-specific and described in the following sections.  </p>
 <blockquote>
-<p>Important: If you register images after Cloudbreak has been started, you need to restart the application after updating the images.</p>
+<p><code>Note:</code> If you wish to change the images after Cloudbreak has been launched, you need to restart the application after updating the images.</p>
 </blockquote>
-<h3 id="aws">AWS</h3>
-<p>To override the default images, create the following file: <code>/var/lib/cloudbreak-deployment/etc/aws-images.yml</code> and
-replace its content by updating <strong>to your custom image</strong> for each region as desired. The default content of the <code>yml</code> file is:</p>
+<h2 id="aws">AWS</h2>
+<p>To override the default images, create the following file: <code>/var/lib/cloudbreak-deployment/etc/aws-images.yml</code> and replace its content by region as desired. The default content of the yml file is:</p>
 <pre><code>aws:
   ap-northeast-1: ami-76729917
   ap-northeast-2: ami-7c1ad112
@@ -398,14 +353,13 @@ replace its content by updating <strong>to your custom image</strong> for each r
   eu-central-1: ami-71da331e
   eu-west-1: ami-cba43bb8
   sa-east-1: ami-f8901a94
-  us-east-1: ami-48ba9d5e
+  us-east-1: ami-bde327d0
   us-west-1: ami-b76421d7
   us-west-2: ami-d541bbb5
 </code></pre>
 
-<h3 id="azure">Azure</h3>
-<p>To override the default images, create the following file: <code>/var/lib/cloudbreak-deployment/etc/arm-images.yml</code> and
-replace its content by updating <strong>to your custom image</strong> for each region as desired. The default content of the <code>yml</code> file is:</p>
+<h2 id="azure">Azure</h2>
+<p>To override the default images, create the following file: <code>/var/lib/cloudbreak-deployment/etc/arm-images.yml</code> and replace its content by region as desired. The default content of the yml file is:</p>
 <pre><code>azure_rm:
   East Asia: https://sequenceiqeastasia2.blob.core.windows.net/images/cb-2016-06-14-03-27.vhd
   East US: https://sequenceiqeastus2.blob.core.windows.net/images/cb-2016-06-14-03-27.vhd
@@ -422,16 +376,14 @@ replace its content by updating <strong>to your custom image</strong> for each r
   Brazil South: https://sequenceiqbrazilsouth2.blob.core.windows.net/images/cb-2016-06-14-03-27.vhd
 </code></pre>
 
-<h3 id="gcp">GCP</h3>
-<p>To override the default images, create the following file: <code>/var/lib/cloudbreak-deployment/etc/gcp-images.yml</code> and
-replace its content by updating <strong>to your custom image</strong> for each region as desired. It is not required to have an image in every region, as the <code>default</code> is used everywhere. The default content of the <code>yml</code> file is:</p>
+<h2 id="gcp">GCP</h2>
+<p>To override the default images, create the following file: <code>/var/lib/cloudbreak-deployment/etc/gcp-images.yml</code> and replace its content as desired. It is not required to have an image in every region, as the <code>default</code> is used everywhere. The default content of the yml file is:</p>
 <pre><code>gcp:
   default: sequenceiqimage/cb-2016-06-14-03-27.tar.gz
 </code></pre>
 
-<h3 id="openstack">OpenStack</h3>
-<p>To override the default images, create the following file: <code>/var/lib/cloudbreak-deployment/etc/os-images.yml</code> and
-replace its content by updating <strong>to your custom image</strong> for each region as desired. It is not required to have an image in every region, as the <code>default</code> is used everywhere. The default content of the <code>yml</code> file is:</p>
+<h2 id="openstack">OpenStack</h2>
+<p>To override the default images, create the following file: <code>/var/lib/cloudbreak-deployment/etc/os-images.yml</code> and replace its content as desired. It is not required to have an image in every region, as the <code>default</code> is used everywhere. The default content of the yml file is:</p>
 <pre><code>openstack:
   default: cloudbreak-2016-06-14-10-58
 </code></pre>
