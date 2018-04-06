@@ -1,7 +1,6 @@
 digraph {
 INIT_STATE [label="ClusterDownscaleFlowConfig" shape=ellipse color=green];
 INIT_STATE -> DECOMMISSION_STATE [label="DECOMMISSION_EVENT" color=black style=solid];
-INIT_STATE -> DECOMMISSION_STATE [label="DECOMMISSION_AND_DOWNSCALE_EVENT" color=black style=solid];
 DECOMMISSION_STATE -> UPDATE_INSTANCE_METADATA_STATE [label="DECOMMISSION_FINISHED_EVENT" color=black style=solid];
 DECOMMISSION_STATE -> CLUSTER_DOWNSCALE_FAILED_STATE [label="DECOMMISSION_FAILED_EVENT" color=red style=dashed];
 CLUSTER_DOWNSCALE_FAILED_STATE -> FINAL_STATE [label="FAIL_HANDLED_EVENT" color=red style=dashed];

@@ -1,7 +1,6 @@
 digraph {
 INIT_STATE [label="StackSyncFlowConfig" shape=ellipse color=green];
 INIT_STATE -> SYNC_STATE [label="SYNC_EVENT" color=black style=solid];
-INIT_STATE -> SYNC_STATE [label="FULL_SYNC_EVENT" color=black style=solid];
 SYNC_STATE -> SYNC_FINISHED_STATE [label="SYNC_FINISHED_EVENT" color=black style=solid];
 SYNC_STATE -> SYNC_FAILED_STATE [label="SYNC_FAILURE_EVENT" color=red style=dashed];
 SYNC_FAILED_STATE -> FINAL_STATE [label="SYNC_FAIL_HANDLED_EVENT" color=red style=dashed];

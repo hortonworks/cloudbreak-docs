@@ -142,6 +142,12 @@
     </url>
         
     <url>
+     <loc>http://sequenceiq.com/cloudbreak-docs/ldap/</loc>
+     <lastmod>2018-04-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
      <loc>http://sequenceiq.com/cloudbreak-docs/mesos/</loc>
      <lastmod>2018-04-06</lastmod>
      <changefreq>daily</changefreq>

@@ -16,6 +16,7 @@ var flows = {
     "ClusterTerminationFlowConfig" : "Cluster termination flow",
     "StackTerminationFlowConfig" : "Stack termination flow",
     "InstanceTerminationFlowConfig" : "Instance termination flow",
+    "ClusterCreationFlowConfig" : "Cluster creation flow",
     "ClusterStartFlowConfig" : "Cluster start flow",
     "ClusterStopFlowConfig" : "Cluster stop flow",
     "ClusterResetFlowConfig" : "Cluster reinstall flow",

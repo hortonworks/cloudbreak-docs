@@ -6,10 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="http://sequenceiq.com/cloudbreak-docs/database/">
+        <link rel="canonical" href="http://sequenceiq.com/cloudbreak-docs/ldap/">
         <link rel="shortcut icon" href="../img/favicon.ico">
 
-	<title>Ambari Database (TP) - Cloudbreak 1.6.2</title>
+	<title>LDAP/AD (TP) - Cloudbreak 1.6.2</title>
 
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -177,8 +177,8 @@
 
                         
                             
-<li class="active">
-    <a href="./">Ambari Database (TP)</a>
+<li >
+    <a href="../database/">Ambari Database (TP)</a>
 </li>
 
                         
@@ -195,8 +195,8 @@
 
                         
                             
-<li >
-    <a href="../ldap/">LDAP/AD (TP)</a>
+<li class="active">
+    <a href="./">LDAP/AD (TP)</a>
 </li>
 
                         
@@ -260,12 +260,12 @@
                 </li>
                 
                     <li >
-                        <a rel="next" href="../images/">
+                        <a rel="next" href="../kerberos/">
                             <i class="fa fa-arrow-left"></i> Previous
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../topologies/">
+                        <a rel="prev" href="../mesos/">
                             Next <i class="fa fa-arrow-right"></i>
                         </a>
                     </li>
@@ -290,13 +290,9 @@
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#ambari-database">Ambari Database</a></li>
+        <li class="main active"><a href="#ldapad-configuration">LDAP/AD configuration</a></li>
         
-            <li><a href="#important-considerations">Important Considerations</a></li>
-        
-            <li><a href="#configure-database-with-the-web-ui">Configure Database with the Web UI</a></li>
-        
-            <li><a href="#configure-database-with-the-shell">Configure Database with the Shell</a></li>
+            <li><a href="#mapping-oauth2-scopes-to-ldap-groups">Mapping Oauth2 scopes to LDAP groups</a></li>
         
     
     </ul>
@@ -304,52 +300,79 @@
                 <div class="col-md-9" role="main">
                     
 
-<h1 id="ambari-database">Ambari Database</h1>
-<blockquote>
-<p>Ambari Database support is part of <code>TECHNICAL PREVIEW</code>. It may not be suitable for production use.</p>
-</blockquote>
-<p>By default, Ambari uses an embedded database to store data. However, Ambari and Cloudbreak don't perform backups of this database, so although this database is sufficient for ephemeral or test clusters, it is not be sufficient for long-running production clusters. Therefore, you may need to configure a remote database for Ambari in Cloudbreak.  </p>
-<p>You have two options for configuring a remote database: you can set up a supported database on your own or use a cloud provider's database service. Next, you need to pass the details to Cloudbreak during cluster creation, and Cloudbreak will configure Ambari to connect to that remote database. </p>
-<p>Cloudbreak supports out of the box PostgreSQL, MariaDB and MySQL. This means that if you are using any of these databases, you only need to create the database itself and configure user permissions to create the cluster. Cloudbreak will initialize database tables, relations, default values, and will download JDBC driver for Ambari. For other databases, you have to execute create SQL on your database and deliver JDBC driver to <code>/opt/jdbc-drivers</code> directory on Ambari server node.</p>
-<h2 id="important-considerations">Important Considerations</h2>
-<p>Consider these constraints when setting up your remote datatabse:   </p>
-<ul>
-<li>Cloudbreak doesn't validate the database connection, so wrong connection parameters will cause the cluster installation to fail.</li>
-<li>Your database must be available to the Ambari server. Note that:<ul>
-<li>The database must be located in the same region as the Ambari cluster. Slow database connection will cause cluster installation fail.</li>
-<li>The database could be on a public server with firewall protection, but for security reasons we suggest that you use a private virtual network with subnet, and configure the Cloudbreak network to use existing resources.</li>
-</ul>
-</li>
-<li>For the supported out of the box databases, Cloudbreak creates the tables and upgrades Ambari if neccessary, but performing any other operations on the database is your responsibility.</li>
-<li>If you selected PostgreSQL, Ambari must use the <code>public</code> schema. It is not possible to configure a different schema.</li>
-<li>Database name, username, and password should not contain the <code>'</code> character. Other special characters are allowed.</li>
-</ul>
-<h2 id="configure-database-with-the-web-ui">Configure Database with the Web UI</h2>
-<p>You can find database configuration in the <strong><em>Configure Ambari Database</em></strong> tab, under <strong><em>Advanced options</em></strong>:</p>
-<p><img alt="" src="../images/ambari-database.png" />
-<sub><em>Full size <a href="../images/ambari-database.png">here</a>.</em></sub></p>
-<h2 id="configure-database-with-the-shell">Configure Database with the Shell</h2>
-<p>To configure a remote database for Ambari with Cloudbreak shell, use <code>database configure</code> command before <code>cluster create</code> command. The syntax is:</p>
-<pre><code>database configure --vendor [vendor] --host [host-or-ip] --port [port] --name [database-name] --username [user-name] --password [password]
+<h1 id="ldapad-configuration">LDAP/AD configuration</h1>
+<p>There are cases where it might be useful to authenticate Cloudbreak users against an existing enterprise LDAP/AD server as it might already have all the users preconfigured. Cloudbreak supports this without the need to modify the existing LDAP schema.</p>
+<p>To setup LDAP/AD authentication for Cloudbreak, the <code>/var/lib/cloudbreak-deployment/uaa.yml</code> must be changed as it is described in <a href="https://github.com/cloudfoundry/uaa/blob/master/docs/UAA-LDAP.md">Cloudfoundry's documentation</a>.</p>
+<p>Sample for LDAP authentication (the CN of the users in LDAP is the e-mail address in this case, as Cloudbreak uses an e-mail address as identifier):</p>
+<pre><code>spring_profiles: postgresql,ldap
+
+ldap:
+  profile:
+    file: ldap/ldap-search-and-bind.xml
+  base:
+    url: 'ldap://10.0.3.138:389/'
+    userDn: 'CN=Administrator,CN=Users,DC=ad,DC=hortonworks,DC=com'
+    password: 'Admin123!'
+    searchBase: 'DC=ad,DC=hortonworks,DC=com'
+    searchFilter: 'cn={0}'
+  groups:
+    file: ldap/ldap-groups-map-to-scopes.xml
+    searchBase: ou=scopes,dc=ad,dc=hortonworks,dc=com
+    searchSubtree: true
+    groupSearchFilter: member={0}
+    maxSearchDepth: 10
+    autoAdd: true
+
+... rest of the content of uaa.yml
 </code></pre>
 
-<p>Accepted <code>vendor</code> values are:</p>
-<ul>
-<li>MARIADB</li>
-<li>MSSQL</li>
-<li>MYSQL</li>
-<li>ORACLE</li>
-<li>POSTGRES</li>
-<li>SQLANYWHERE</li>
-</ul>
-<h3 id="upgrade-the-jdbc-driver">Upgrade the JDBC Driver</h3>
-<p>During installation, Cloudbreak distributes the JDBC driver for Ambari to different locations. If you want to upgrade the driver or use a different one, you have to perform these steps:</p>
-<ol>
-<li>Copy the driver to the <code>/var/lib/ambari-server/jdbc-drivers</code> directory.</li>
-<li>Symlink the driver to <code>/usr/share/java</code>, <code>/usr/lib/jvm/java/jre/lib/ext</code> directories.</li>
-<li>Reconfigure Ambari by executing the <code>ambari-server setup --jdbc-db=[db-vendor] --jdbc-driver=[driver-location]</code> command.</li>
-</ol>
-                    <a href="https://github.com/sequenceiq/cloudbreak-docs/blob/master/docs/database.md" ><i class="fa fa-github"></i> Edit on GitHub </a>
+<p>An ldapsearch query can be run to verify the Administrator's credentials and to be able to bind (sample):</p>
+<pre><code>ldapsearch -x -h 10.0.3.138 -D &quot;CN=Administrator,CN=Users,DC=ad,DC=hortonworks,DC=com&quot; -W -b &quot;uid=user,cn=Users,dc=ad,dc=hortonworks,dc=com&quot;
+</code></pre>
+
+<p>If the user cannot bind, then it is possible to use password comparison method as well as described <a href="https://github.com/cloudfoundry/uaa/blob/master/docs/UAA-LDAP.md#selecting-an-authentication-method">here</a>.</p>
+<p>Once the changes are made the following property must be set in the Profile file:</p>
+<pre><code>CBD_FORCE_START=true
+</code></pre>
+
+<p>This will ensure that the application will start with the modified uaa.yml. After that changes are made restart the application:</p>
+<pre><code>cbd kill
+cbd start
+</code></pre>
+
+<p><code>Note:</code> DO NOT use the <code>cbd restart</code> command as it regenerates all the yml files so the changes will be lost in uaa.yml.</p>
+<h2 id="mapping-oauth2-scopes-to-ldap-groups">Mapping Oauth2 scopes to LDAP groups</h2>
+<p>In order for the users to have access to Cloudbreak resources and to be able to create clusters the Oauth2 scopes must be mapped to LDAP groups. At the moment Cloudbreak only supports <code>one LDAP group per user</code> scenario.
+To see the Oauth2 scopes, execute the following command:</p>
+<pre><code>docker exec -it cbreak_uaadb_1 psql -U postgres -c 'select displayname from groups;'
+</code></pre>
+
+<p>To save them to a <code>groups.txt</code> file:</p>
+<pre><code>docker exec cbreak_uaadb_1 psql -U postgres -c 'select displayname from groups;' | tail -n +3 | grep -v rows | xargs -I@ echo @ &gt;&gt; groups.txt
+</code></pre>
+
+<p>To generate the SQL commands for the mapping we'll use <a href="https://github.com/gliderlabs/sigil">sigil</a>, which is a string interpolator and template processor. It is a single binary written in Golang and you can download it from the <a href="https://github.com/gliderlabs/sigil/releases">releases</a> page.
+Save the following in a file called: <code>template.sig</code> (cn=admin,ou=scopes,dc=ad,dc=hortonworks,dc=com depends on your LDAP group, it must be inside searchBase parameter configured in the first step in UAA.yml):</p>
+<pre><code>{{ range $k, $v := stdin|split &quot;\n&quot;}}
+ INSERT INTO external_group_mapping (group_id, external_group, added, origin) VALUES ((select id from groups where displayname='{{$v}}'), 'cn=admin,ou=scopes,dc=ad,dc=hortonworks,dc=com', '2016-09-30 19:28:24.255', 'ldap');{{end}}
+</code></pre>
+
+<p>then generate the SQL commands into <code>mapping.sql</code>:</p>
+<pre><code>cat groups.txt | sigil -f template.sig &gt; mapping.sql
+</code></pre>
+
+<p>and remove lines with empty displayname:</p>
+<pre><code>sed -i.bak &quot;/displayname=''/d&quot; mapping.sql
+</code></pre>
+
+<p>then execute the commands:</p>
+<pre><code>docker cp mapping.sql cbreak_uaadb_1:/tmp/mapping.sql
+docker exec cbreak_uaadb_1 psql -U postgres -f /tmp/mapping.sql
+</code></pre>
+
+<p>After the mapping is successfully done, you can log in with users authenticated against LDAP.
+If a user is a member of multiple LDAP groups, then an error message is presented during Cloudbreak login.  </p>
+                    <a href="https://github.com/sequenceiq/cloudbreak-docs/blob/master/docs/ldap.md" ><i class="fa fa-github"></i> Edit on GitHub </a>
                 </div>
             
         </div>

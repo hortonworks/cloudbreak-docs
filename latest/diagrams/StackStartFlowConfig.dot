@@ -1,9 +1,11 @@
 digraph {
 INIT_STATE [label="StackStartFlowConfig" shape=ellipse color=green];
 INIT_STATE -> START_STATE [label="START_EVENT" color=black style=solid];
-START_STATE -> START_FINISHED_STATE [label="START_FINISHED_EVENT" color=black style=solid];
+START_STATE -> COLLECTING_METADATA [label="START_FINISHED_EVENT" color=black style=solid];
 START_STATE -> START_FAILED_STATE [label="START_FAILURE_EVENT" color=red style=dashed];
 START_FAILED_STATE -> FINAL_STATE [label="START_FAIL_HANDLED_EVENT" color=red style=dashed];
+COLLECTING_METADATA -> START_FINISHED_STATE [label="COLLECT_METADATA_FINISHED_EVENT" color=black style=solid];
+COLLECTING_METADATA -> START_FAILED_STATE [label="COLLECT_METADATA_FAILED_EVENT" color=red style=dashed];
 START_FINISHED_STATE -> FINAL_STATE [label="START_FINALIZED_EVENT" color=black style=solid];
 START_FINISHED_STATE -> START_FAILED_STATE [label="START_FAILURE_EVENT" color=red style=dashed];
 }
