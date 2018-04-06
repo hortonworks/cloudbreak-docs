@@ -6,10 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="http://sequenceiq.com/cloudbreak-docs/releasenotes/">
+        <link rel="canonical" href="http://sequenceiq.com/cloudbreak-docs/database/">
         <link rel="shortcut icon" href="../img/favicon.ico">
 
-	<title>Release Notes - Cloudbreak 1.2.1</title>
+	<title>Migration - Cloudbreak 1.2.1</title>
 
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -55,7 +55,7 @@
                 <ul class="nav navbar-nav">
                 
                 
-                    <li class="dropdown active">
+                    <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Home <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                         
@@ -78,8 +78,8 @@
 
                         
                             
-<li class="active">
-    <a href="./">Release Notes</a>
+<li >
+    <a href="../releasenotes/">Release Notes</a>
 </li>
 
                         
@@ -118,7 +118,7 @@
                 
                 
                 
-                    <li class="dropdown">
+                    <li class="dropdown active">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reference <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                         
@@ -195,8 +195,8 @@
 
                         
                             
-<li >
-    <a href="../database/">Migration</a>
+<li class="active">
+    <a href="./">Migration</a>
 </li>
 
                         
@@ -239,12 +239,12 @@
                 </li>
                 
                     <li >
-                        <a rel="next" href="../onprem/">
+                        <a rel="next" href="../operations/">
                             <i class="fa fa-arrow-left"></i> Previous
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../changelog/">
+                        <a rel="prev" href="../configuration/">
                             Next <i class="fa fa-arrow-right"></i>
                         </a>
                     </li>
@@ -269,13 +269,7 @@
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#release-notes">Release Notes</a></li>
-        
-            <li><a href="#fixes">Fixes</a></li>
-        
-            <li><a href="#technical-preview">Technical Preview</a></li>
-        
-            <li><a href="#behavioral-changes">Behavioral Changes</a></li>
+        <li class="main active"><a href="#migrate-the-databases">Migrate the databases</a></li>
         
     
     </ul>
@@ -283,77 +277,20 @@
                 <div class="col-md-9" role="main">
                     
 
-<h1 id="release-notes">Release Notes</h1>
-<p>The Release Notes summarize and describe changes released in Cloudbreak.</p>
-<h2 id="fixes">Fixes</h2>
-<p>This release includes the following fixes and improvements:</p>
-<table>
-<thead>
-<tr>
-<th>Feature</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Cloudbreak Cluster installation</td>
-<td><a href="https://github.com/sequenceiq/cloudbreak/issues/1461">Fixed hanging cluster installation</a>.</td>
-</tr>
-<tr>
-<td>Azure Persistent Storage name fix</td>
-<td>Storage name generation was buggy after some API change.</td>
-</tr>
-<tr>
-<td>GCP attached disk type was buggy</td>
-<td>Attached disk was buggy after some API change.</td>
-</tr>
-</tbody>
-</table>
-<h2 id="technical-preview">Technical Preview</h2>
-<p>This release includes the following Technical Preview features and improvements:</p>
-<table>
-<thead>
-<tr>
-<th>Feature</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Mesos</td>
-<td><strong>Technical Preview</strong> Support for Mesos cloud provider.</td>
-</tr>
-<tr>
-<td>Kerberos</td>
-<td><strong>Technical Preview</strong> Support for enabling Kerberos on the HDP clusters deployed by Cloudbreak. See <a href="../kerberos/">Kerberos</a> for more information.</td>
-</tr>
-<tr>
-<td>SSSD</td>
-<td><strong>Technical Preview</strong> Support for configuring System Security Services Daemon (SSSD) to help with cluster user management. See <a href="../sssd/">SSSD</a> for more information.</td>
-</tr>
-<tr>
-<td>Platforms</td>
-<td><strong>Technical Preview</strong> Support for defining Platforms to relate different configurations together. See <a href="../topologies/">Platforms</a> for more information.</td>
-</tr>
-</tbody>
-</table>
-<h2 id="behavioral-changes">Behavioral Changes</h2>
-<p>This release introduces the following changes in behavior as compared to previous Cloudbreak versions:</p>
-<table>
-<thead>
-<tr>
-<th>Title</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Cloudbreak Web UI</td>
-<td>Network creation form changes (easier creation of existing network).</td>
-</tr>
-</tbody>
-</table>
-                    <a href="https://github.com/sequenceiq/cloudbreak-docs/blob/master/docs/releasenotes.md" ><i class="fa fa-github"></i> Edit on GitHub </a>
+<h1 id="migrate-the-databases">Migrate the databases</h1>
+<p>Create the database schema or migrate it to the latest version:</p>
+<pre><code>cbd startdb
+cbd migrate cbdb up
+</code></pre>
+
+<p>Verify that all scripts have been applied:</p>
+<pre><code>cbd migrate cbdb status
+</code></pre>
+
+<pre><code>cbd generate
+cbd migrate cbdb up
+</code></pre>
+                    <a href="https://github.com/sequenceiq/cloudbreak-docs/blob/master/docs/database.md" ><i class="fa fa-github"></i> Edit on GitHub </a>
                 </div>
             
         </div>

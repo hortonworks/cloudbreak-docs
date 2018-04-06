@@ -1,18 +1,12 @@
 {
-  "username": "hortonworks",
-  "name": "cbd",
-  "tag": "hortonworks/cbd",
-  "slug": "hortonworks/cbd/googlecompute.image/1",
-  "artifact_type": "googlecompute.image",
-  "id": "cloudbreak-deployer-1164-2017-08-29",
-  "version": 1,
-  "metadata": {
-    "created": "2017-08-29 10:07:02 +0000",
-    "os_user": "cloudbreak",
-    "created_at": "1504001222",
-    "image_name": "cloudbreak-deployer-1164-2017-08-29",
-    "cbd_version": "1.16.4",
-    "yum_version_docker": "1.9.1"
+  "gcp": {
+    "default": "sequenceiqimage/cloudbreak-deployer-121-2016-04-08.tar.gz",
+    "import_script": "gcloud compute images create cloudbreak-deployer-121-2016-04-08 --source-uri gs://sequenceiqimage/cloudbreak-deployer-121-2016-04-08.tar.gz"
   },
-  "file": false
+  "versions": {
+    "cbd": "1.2.1",
+    "docker": "1.9.1",
+    "kernel": "3.10.0-327.3.1.el7",
+    "systemd": "219-19.el7"
+  }
 }

@@ -6,10 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="http://hortonworks.github.io/cloudbreak-docs/development/">
+        <link rel="canonical" href="http://sequenceiq.com/cloudbreak-docs/development/">
         <link rel="shortcut icon" href="../img/favicon.ico">
 
-	<title>Local Development - Cloudbreak 1.16.4</title>
+	<title>Development - Cloudbreak 1.2.1</title>
 
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -45,7 +45,7 @@
             <!-- Main title -->
             <img class="navbar-logo" src="../img/HWX-RGB-full-no-tagline_500pxh.png" alt="Hortonworks Documentation"
                  width="132" height="52">
-            <a class="navbar-brand" href="..">Cloudbreak 1.16.4</a>
+            <a class="navbar-brand" href="..">Cloudbreak 1.2.1</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -80,12 +80,6 @@
                             
 <li >
     <a href="../releasenotes/">Release Notes</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../issues/">Known Issues</a>
 </li>
 
                         
@@ -141,24 +135,6 @@
 
                         
                             
-<li class="active">
-    <a href="./">Local Development</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../security/">Cloudbreak Security</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../update/">Update Cloudbreak</a>
-</li>
-
-                        
-                            
 <li >
     <a href="../ui_account/">Account Management</a>
 </li>
@@ -167,6 +143,12 @@
                             
 <li >
     <a href="../periscope/">Auto-Scaling</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../sssd/">SSSD Configuration</a>
 </li>
 
                         
@@ -184,31 +166,19 @@
                         
                             
 <li >
-    <a href="../images/">Custom Images (TP)</a>
+    <a href="../topologies/">Platforms</a>
 </li>
 
                         
                             
 <li >
-    <a href="../topologies/">Platforms (TP)</a>
+    <a href="../kerberos/">Kerberos</a>
 </li>
 
                         
                             
 <li >
-    <a href="../kerberos/">Kerberos (TP)</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../ldap/">LDAP/AD (TP)</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../mesos/">Mesos (TP)</a>
+    <a href="../mesos/">Mesos</a>
 </li>
 
                         
@@ -220,7 +190,13 @@
                         
                             
 <li >
-    <a href="../operations/">Basic Operations</a>
+    <a href="../operations/">Operations</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../database/">Migration</a>
 </li>
 
                         
@@ -231,44 +207,14 @@
 
                         
                             
-  <li class="dropdown-submenu">
-    <a tabindex="-1" href="">Database configuration</a>
-    <ul class="dropdown-menu">
-        
-            
-<li >
-    <a href="../cloudbreak_database/">Cloudbreak Database</a>
+<li class="active">
+    <a href="./">Development</a>
 </li>
-
-        
-            
-<li >
-    <a href="../ambari_database/">Ambari Database (TP)</a>
-</li>
-
-        
-    </ul>
-  </li>
-
-                        
-                            
-  <li class="dropdown-submenu">
-    <a tabindex="-1" href="">Development</a>
-    <ul class="dropdown-menu">
-        
-            
-<li >
-    <a href="../flow/">Flows</a>
-</li>
-
-        
-    </ul>
-  </li>
 
                         
                             
 <li >
-    <a href="../help/">Get Help</a>
+    <a href="../issues/">Known issues</a>
 </li>
 
                         
@@ -293,19 +239,19 @@
                 </li>
                 
                     <li >
-                        <a rel="next" href="../shell/">
+                        <a rel="next" href="../configuration/">
                             <i class="fa fa-arrow-left"></i> Previous
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../security/">
+                        <a rel="prev" href="../issues/">
                             Next <i class="fa fa-arrow-right"></i>
                         </a>
                     </li>
                 
                 
                     <li>
-                        <a href="https://github.com/hortonworks/cloudbreak-docs/blob/master/docs/" >
+                        <a href="https://github.com/sequenceiq/cloudbreak-docs/blob/master/docs/" >
                             
                                 <i class="fa fa-github"></i>
                             
@@ -339,20 +285,20 @@
 <h2 id="cloudbreak-application">Cloudbreak application</h2>
 <h4 id="local-development-setup">Local Development Setup</h4>
 <p>To use this development environment on OSX, you need to have Docker and Boot2docker installed.</p>
-<p>Simplest way to prepare the working environment is to start the Cloudbreak on your local machine is to use the <a href="https://github.com/hortonworks/cloudbreak-deployer">Cloudbreak Deployer</a>.</p>
-<p>First you need to create a <em>sandbox</em> directory which will store the necessary  configuration files and dependencies of <a href="https://github.com/hortonworks/cloudbreak-deployer">Cloudbreak Deployer</a>. This directory must be created outside of the cloned Cloudbreak git repository:</p>
+<p>Simplest way to prepare the working environment is to start the Cloudbreak on your local machine is to use the <a href="https://github.com/sequenceiq/cloudbreak-deployer">Cloudbreak Deployer</a>.</p>
+<p>First you need to create a <em>sandbox</em> directory which will store the necessary  configuration files and dependencies of <a href="https://github.com/sequenceiq/cloudbreak-deployer">Cloudbreak Deployer</a>. This directory must be created outside of the cloned Cloudbreak git repository:</p>
 <pre><code>mkdir cbd-local
 </code></pre>
 
 <p>To start the complete Cloudbreak ecosystem on your machine just execute the following sequence of commands:</p>
 <pre><code>cd cbd-local
-curl https://raw.githubusercontent.com/hortonworks/cloudbreak-deployer/master/install | sh &amp;&amp; cbd --version
+curl https://raw.githubusercontent.com/sequenceiq/cloudbreak-deployer/master/install | sh &amp;&amp; cbd --version
 cbd update master
 cbd init
 cbd start
 </code></pre>
 
-<p>If everything went well then the Cloudbreak will be available on http://192.168.59.103:3000. For more details and config parameters please check the documentation of <a href="https://github.com/hortonworks/cloudbreak-deployer">Cloudbreak Deployer</a>.</p>
+<p>If everything went well then the Cloudbreak will be available on http://192.168.59.103:3000. For more details and config parameters please check the documentation of <a href="https://github.com/sequenceiq/cloudbreak-deployer">Cloudbreak Deployer</a>.</p>
 <p>The deployer has generated a <code>certs</code> directory under <code>cbd-local</code> directory which will be needed later on to set up the IDEA properly.</p>
 <p>The next step is to edit the <code>cbd-local/Profile</code> file with any editor and add the CB_SCHEMA_SCRIPTS_LOCATION environment variable which configures the location of SQL scripts that are in the 'core/src/main/resources/schema' directory in the cloned Cloudbreak git repository. Please note that the full path needs to be configured and env variables like $USER cannot be used.</p>
 <pre><code>export CB_SCHEMA_SCRIPTS_LOCATION=/Users/myusername/prj/cloudbreak/core/src/main/resources/schema
@@ -378,7 +324,7 @@ cbd start
 
 <p>The <code>-Dcb.cert.dir=FULL_PATH_OF_THE_CERTS_DIR_GENERATED_BY_CBD</code> value above needs to be replaced with the full path of <code>certs</code> directory generated by Cloudbreak Deployer e.g. <code>-Dcb.cert.dir=/Users/myusername/prj/cbd-local/certs</code></p>
 <h4 id="command-line">Command line</h4>
-<p>To run Cloudbreak from command line you have to create a property file, for example application.properties, with the content below, and execute <code>./gradlew bootRun -Dspring.config.location=file:/path/of/property/application.properties</code> command at project root.</p>
+<p>To run Cloudbreak from command line you have to create a property file, for example <code>application.properties</code>, with the content below, and execute <code>java -jar -XX:MaxPermSize=1024m -Dspring.config.location=file:///path/of/property/application.properties core/build/libs/cloudbreak.jar</code> command at project root. Important that the path of <code>application.properties</code> must be an absolute path.</p>
 <pre><code>cb.cert.dir=FULL_PATH_OF_THE_CERTS_DIR_GENERATED_BY_CBD
 cb.client.id=cloudbreak
 cb.client.secret=cbsecret2015
@@ -472,7 +418,7 @@ All successful builds from the <code>master</code> branch are uploaded to the pu
 </code></pre>
 
 <h4 id="release-process-of-the-clodbreak-deployer-tool">Release Process of the Clodbreak Deployer tool</h4>
-<p>The master branch is always built on <a href="https://circleci.com/gh/hortonworks/cloudbreak-deployer">CircleCI</a>.
+<p>The master branch is always built on <a href="https://circleci.com/gh/sequenceiq/cloudbreak-deployer">CircleCI</a>.
 When you wan’t a new release, all you have to do:</p>
 <pre><code>make release-next-ver
 </code></pre>
@@ -496,11 +442,11 @@ When you wan’t a new release, all you have to do:</p>
 <p>Now you should test this release. You can get it by <code>cbd update release-x.y.z</code>. Comment with LGTM (Looking Good To Me).</p>
 <p>Once the PR is merged, CircleCI will:</p>
 <ul>
-<li>create a new release on <a href="https://github.com/hortonworks/cloudbreak-deployer/releases">GitHub releases tab</a>, with the
+<li>create a new release on <a href="https://github.com/sequenceiq/cloudbreak-deployer/releases">GitHub releases tab</a>, with the
  help of <a href="https://github.com/progrium/gh-release">gh-release</a>.</li>
 <li>it will create the git tag with <code>v</code> prefix like: <code>v0.0.3</code></li>
 </ul>
-                    <a href="https://github.com/hortonworks/cloudbreak-docs/blob/master/docs/development.md" ><i class="fa fa-github"></i> Edit on GitHub </a>
+                    <a href="https://github.com/sequenceiq/cloudbreak-docs/blob/master/docs/development.md" ><i class="fa fa-github"></i> Edit on GitHub </a>
                 </div>
             
         </div>
@@ -545,10 +491,10 @@ When you wan’t a new release, all you have to do:</p>
 
          <script>
            $( document ).ready(function() {
-               $.getJSON("http://hortonworks.github.io/cloudbreak-docs//versions.json", function(data) {
-               $("#versions-dropdown").append('<li><a href="http://hortonworks.github.io/cloudbreak-docs//latest">latest ('+data.latest+')</a></li>');
+               $.getJSON("http://sequenceiq.com/cloudbreak-docs/versions.json", function(data) {
+               $("#versions-dropdown").append('<li><a href="http://sequenceiq.com/cloudbreak-docs/latest">latest ('+data.latest+')</a></li>');
                 $.each(data.versions, function( index, value ) {
-                  $("#versions-dropdown").append('<li><a href="http://hortonworks.github.io/cloudbreak-docs//'+value+'">'+value+'</a></li>');
+                  $("#versions-dropdown").append('<li><a href="http://sequenceiq.com/cloudbreak-docs/'+value+'">'+value+'</a></li>');
                 });
                });
 
@@ -584,11 +530,11 @@ When you wan’t a new release, all you have to do:</p>
                $("#cloudbreak-deployer-image").append('<br>');
                $("#cloudbreak-deployer-image").append('<br>');
                $("#cloudbreak-deployer-image").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">Download the latest Cloudbreak Deployer image to your local machine:</p>');
-               $("#cloudbreak-deployer-image").append('<pre><code style="font-size: 12pt;color:#333333">curl -O https://public-repo-1.hortonworks.com/HDP/cloudbreak/' + data.metadata.image_name + '.img</code></pre>');
+               $("#cloudbreak-deployer-image").append('<pre><code style="font-size: 12pt;color:#333333">curl -O -k https://public-repo-1.hortonworks.com/HDP/cloudbreak/' + data.id + '</code></pre>');
                $("#cloudbreak-deployer-import").append('<br>');
                $("#cloudbreak-deployer-import").append('<br>');
                $("#cloudbreak-deployer-import").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">Set the following environment variables for the OpenStack image import:</p>');
-               $("#cloudbreak-deployer-import").append('<pre><code style="font-size: 12px;color:#333333">export CBD_LATEST_IMAGE=</code>' + data.metadata.image_name + '.img</code></p>');
+               $("#cloudbreak-deployer-import").append('<pre><code style="font-size: 12px;color:#333333">export CBD_LATEST_IMAGE=</code>' + data.id + '</code></p>');
                });
 
                <!--OpenStack CB-->
@@ -596,19 +542,18 @@ When you wan’t a new release, all you have to do:</p>
                $("#cloudbreak-image").append('<br>');
                $("#cloudbreak-image").append('<br>');
                $("#cloudbreak-image").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">Download the latest Cloudbreak image to your local machine:</p>');
-               $("#cloudbreak-image").append('<pre><code style="font-size: 12pt;color:#333333">curl -O https://public-repo-1.hortonworks.com/HDP/cloudbreak/' + data.metadata.image_name + '.img</code></pre>');
+               $("#cloudbreak-image").append('<pre><code style="font-size: 12pt;color:#333333">curl -O -k https://public-repo-1.hortonworks.com/HDP/cloudbreak/' + data.id + '</code></pre>');
                $("#cloudbreak-import").append('<br>');
                $("#cloudbreak-import").append('<br>');
-               $("#cloudbreak-import").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">This is very similar to the Cloudbreak Deployer. Set the following environment variables for the OpenStack image import:</p>');
-               $("#cloudbreak-import").append('<pre><code style="font-size: 12px;color:#333333">export CB_LATEST_IMAGE=</code>' + data.metadata.image_name + '.img</code></p>');
+               $("#cloudbreak-import").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">This is very similar to the Cloudbrek Deployer. Set the following environment variables for the OpenStack image import:</p>');
+               $("#cloudbreak-import").append('<pre><code style="font-size: 12px;color:#333333">export CB_LATEST_IMAGE=</code>' + data.id + '</code></p>');
                });
 
                <!--GCP-->
                $.getJSON("../providers/gcp.json", function(data) {
                $("#cloudbreak-deployer-gcp-image-details").append('<br>');
                $("#cloudbreak-deployer-gcp-image-details").append('<br>');
-               $("#cloudbreak-deployer-gcp-image-details").append('<pre><code style="font-size: 12pt;color:#333333"> gcloud compute images create '
-                   + data.id + ' --source-uri gs://sequenceiqimage/' + data.id + '.tar.gz' + '</code></pre>');
+               $("#cloudbreak-deployer-gcp-image-details").append('<pre><code style="font-size: 12pt;color:#333333">' + data.gcp.import_script + '</code></pre>');
                });
            });
          </script>

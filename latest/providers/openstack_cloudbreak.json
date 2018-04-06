@@ -1,30 +1,19 @@
 {
   "username": "sequenceiq",
   "name": "cloudbreak",
-  "tag": "sequenceiq/cloudbreak",
-  "slug": "sequenceiq/cloudbreak/openstack.image/71",
+  "Tag": "sequenceiq/cloudbreak",
   "artifact_type": "openstack.image",
-  "id": "c6933b44-1d5a-4862-a16c-86700169b07c",
-  "version": 71,
+  "id": "cloudbreak-2016-04-06.img",
+  "version": 36,
   "metadata": {
-    "created": "2017-06-14 12:44:45 +0000",
-    "git_rev": "",
-    "git_tag": "",
-    "os_user": "cloudbreak",
-    "created_at": "1497444285",
-    "git_branch": "",
-    "hdp_repoid": "",
-    "image_name": "hdc-hdp--1706141444",
-    "prometheus": "true",
-    "hdp_baseurl": "",
-    "hdp_version": "",
-    "orchestrator": "salt",
-    "ambari_gpgkey": "",
-    "ambari_baseurl": "",
-    "ambari_version": "",
-    "hdputil_repoid": "",
-    "hdputil_baseurl": "",
-    "hdputil_version": ""
+    "all_docker_images": "<no value>,<no value>,sequenceiq/docker-consul-watch-plugn:1.6,gliderlabs/registrator:v6,sequenceiq/logrotate:v0.5.1,sequenceiq/kerberos:1.1,postgres:9.4.1,sequenceiq/munchausen:0.6.0,gliderlabs/consul:0.6,sequenceiq/cb-gateway-nginx:0.3,gliderlabs/alpine:3.1,swarm:1.1.0,ehazlett/cert-tool:0.0.3,sequenceiq/haveged:1.0,sequenceiq/docker-ldap:1.0,shipyard/shipyard:v3.0.0,rethinkdb:2.2.4,tianon/true,",
+    "cloudbreak_image_version": "1.2.0-v15",
+    "created": "2016-04-06 09:01:04 +0000",
+    "created_at": "1458637264",
+    "image_name": "cloudbreak-2016-04-06"
   },
-  "file": false
+  "file": true,
+  "slug": "sequenceiq/cloudbreak/openstack.image/36",
+  "upload_path": "",
+  "upload_token": ""
 }

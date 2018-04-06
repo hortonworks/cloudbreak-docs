@@ -6,10 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="http://hortonworks.github.io/cloudbreak-docs/openstack/">
+        <link rel="canonical" href="http://sequenceiq.com/cloudbreak-docs/openstack/">
         <link rel="shortcut icon" href="../img/favicon.ico">
 
-	<title>OpenStack - Cloudbreak 1.16.4</title>
+	<title>OpenStack - Cloudbreak 1.2.1</title>
 
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -45,7 +45,7 @@
             <!-- Main title -->
             <img class="navbar-logo" src="../img/HWX-RGB-full-no-tagline_500pxh.png" alt="Hortonworks Documentation"
                  width="132" height="52">
-            <a class="navbar-brand" href="..">Cloudbreak 1.16.4</a>
+            <a class="navbar-brand" href="..">Cloudbreak 1.2.1</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -80,12 +80,6 @@
                             
 <li >
     <a href="../releasenotes/">Release Notes</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../issues/">Known Issues</a>
 </li>
 
                         
@@ -142,24 +136,6 @@
                         
                             
 <li >
-    <a href="../development/">Local Development</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../security/">Cloudbreak Security</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../update/">Update Cloudbreak</a>
-</li>
-
-                        
-                            
-<li >
     <a href="../ui_account/">Account Management</a>
 </li>
 
@@ -167,6 +143,12 @@
                             
 <li >
     <a href="../periscope/">Auto-Scaling</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../sssd/">SSSD Configuration</a>
 </li>
 
                         
@@ -184,31 +166,19 @@
                         
                             
 <li >
-    <a href="../images/">Custom Images (TP)</a>
+    <a href="../topologies/">Platforms</a>
 </li>
 
                         
                             
 <li >
-    <a href="../topologies/">Platforms (TP)</a>
+    <a href="../kerberos/">Kerberos</a>
 </li>
 
                         
                             
 <li >
-    <a href="../kerberos/">Kerberos (TP)</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../ldap/">LDAP/AD (TP)</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../mesos/">Mesos (TP)</a>
+    <a href="../mesos/">Mesos</a>
 </li>
 
                         
@@ -220,7 +190,13 @@
                         
                             
 <li >
-    <a href="../operations/">Basic Operations</a>
+    <a href="../operations/">Operations</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../database/">Migration</a>
 </li>
 
                         
@@ -231,44 +207,14 @@
 
                         
                             
-  <li class="dropdown-submenu">
-    <a tabindex="-1" href="">Database configuration</a>
-    <ul class="dropdown-menu">
-        
-            
 <li >
-    <a href="../cloudbreak_database/">Cloudbreak Database</a>
+    <a href="../development/">Development</a>
 </li>
-
-        
-            
-<li >
-    <a href="../ambari_database/">Ambari Database (TP)</a>
-</li>
-
-        
-    </ul>
-  </li>
-
-                        
-                            
-  <li class="dropdown-submenu">
-    <a tabindex="-1" href="">Development</a>
-    <ul class="dropdown-menu">
-        
-            
-<li >
-    <a href="../flow/">Flows</a>
-</li>
-
-        
-    </ul>
-  </li>
 
                         
                             
 <li >
-    <a href="../help/">Get Help</a>
+    <a href="../issues/">Known issues</a>
 </li>
 
                         
@@ -305,7 +251,7 @@
                 
                 
                     <li>
-                        <a href="https://github.com/hortonworks/cloudbreak-docs/blob/master/docs/" >
+                        <a href="https://github.com/sequenceiq/cloudbreak-docs/blob/master/docs/" >
                             
                                 <i class="fa fa-github"></i>
                             
@@ -323,10 +269,7 @@
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#openstack-supported-versions">OpenStack Supported Versions</a></li>
-        
-    
-        <li class="main "><a href="#openstack-images">OpenStack Images</a></li>
+        <li class="main active"><a href="#openstack-images">OpenStack Images</a></li>
         
             <li><a href="#openstack-image-details">OpenStack Image Details</a></li>
         
@@ -335,22 +278,16 @@
     
         <li class="main "><a href="#openstack-setup">OpenStack Setup</a></li>
         
-            <li><a href="#set-up-cloudbreak-deployer">Set up Cloudbreak Deployer</a></li>
-        
-            <li><a href="#initialize-your-profile">Initialize Your Profile</a></li>
-        
-            <li><a href="#using-self-signed-certificates">Using Self-signed Certificates</a></li>
-        
-            <li><a href="#availability-zones-and-region-config">Availability Zones and Region config</a></li>
+            <li><a href="#setup-cloudbreak-deployer">Setup Cloudbreak Deployer</a></li>
         
             <li><a href="#start-cloudbreak-deployer">Start Cloudbreak Deployer</a></li>
         
-            <li><a href="#validate-that-cloudbreak-deployer-has-started">Validate that Cloudbreak Deployer Has Started</a></li>
+            <li><a href="#validate-the-started-cloudbreak-deployer">Validate the started Cloudbreak Deployer</a></li>
         
     
         <li class="main "><a href="#provisioning-prerequisites">Provisioning Prerequisites</a></li>
         
-            <li><a href="#generate-a-new-ssh-key">Generate a New SSH Key</a></li>
+            <li><a href="#generate-a-new-ssh-key">Generate a new SSH key</a></li>
         
     
         <li class="main "><a href="#provisioning-via-browser">Provisioning via Browser</a></li>
@@ -359,7 +296,7 @@
         
             <li><a href="#infrastructure-templates">Infrastructure templates</a></li>
         
-            <li><a href="#defining-cluster-services">Defining Cluster Services</a></li>
+            <li><a href="#defining-cluster-services">Defining cluster services</a></li>
         
             <li><a href="#cluster-deployment">Cluster deployment</a></li>
         
@@ -370,7 +307,7 @@
         
             <li><a href="#start-cloudbreak-shell">Start Cloudbreak Shell</a></li>
         
-            <li><a href="#autocomplete-and-hints">Autocomplete and Hints</a></li>
+            <li><a href="#autocomplete-and-hints">Autocomplete and hints</a></li>
         
     
         <li class="main "><a href="#provisioning-via-cli">Provisioning via CLI</a></li>
@@ -379,15 +316,15 @@
         
             <li><a href="#infrastructure-templates_1">Infrastructure templates</a></li>
         
-            <li><a href="#defining-cluster-services_1">Defining Cluster Services</a></li>
+            <li><a href="#defining-cluster-services_1">Defining cluster services</a></li>
         
-            <li><a href="#metadata-show">Metadata Show</a></li>
+            <li><a href="#metadata-show">Metadata show</a></li>
         
             <li><a href="#cluster-deployment_1">Cluster deployment</a></li>
         
-            <li><a href="#cluster-termination_1">Cluster Termination</a></li>
+            <li><a href="#cluster-termination_1">Cluster termination</a></li>
         
-            <li><a href="#silent-mode">Silent Mode</a></li>
+            <li><a href="#silent-mode">Silent mode</a></li>
         
     
     </ul>
@@ -395,23 +332,6 @@
                 <div class="col-md-9" role="main">
                     
 
-<h1 id="openstack-supported-versions">OpenStack Supported Versions</h1>
-<p>Cloudbreak was tested against the following versions of <a href="https://www.rdoproject.org">Red Hat Distribution of OpenStack</a> (RDO):</p>
-<ul>
-<li>Juno</li>
-<li>Kilo</li>
-<li>Liberty</li>
-<li>Mitaka</li>
-</ul>
-<p>Cloudbreak requires that the  standard components are installed and configured on OpenStack:</p>
-<ul>
-<li>Keystone V2 or Keystone V3</li>
-<li>Neutron (self-service and provider networking)</li>
-<li>Nova (KVM or Xen hypervisor)</li>
-<li>Glance</li>
-<li>Cinder (optional)</li>
-<li>Heat (optional, but it is highly recommended, since provisioning through native api calls will be deprecated in the future)</li>
-</ul>
 <h1 id="openstack-images">OpenStack Images</h1>
 <p>We have pre-built cloud images for OpenStack with the Cloudbreak Deployer pre-installed and with Cloudbreak
 pre-installed. Following steps will guide you through the launch of the images then the needed configuration.</p>
@@ -422,7 +342,10 @@ pre-installed. Following steps will guide you through the launch of the images t
 <p>Please make sure you opened the following ports on your <a href="http://docs.openstack.org/openstack-ops/content/security_groups.html">security group</a>:</p>
 <ul>
 <li>SSH (22)</li>
-<li>Cloudbreak (443)</li>
+<li>Cloudbreak API (8080)</li>
+<li>Identity server (8089)</li>
+<li>Cloudbreak GUI (3000)</li>
+<li>User authentication (3001)</li>
 </ul>
 <h2 id="openstack-image-details">OpenStack Image Details</h2>
 <h3 id="cloudbreak-deployer-image">Cloudbreak Deployer image</h3>
@@ -458,94 +381,70 @@ export OS_TENANT_NAME=&lt;your_os_tenant_name&gt;
 </code></pre>
 
 <h1 id="openstack-setup">OpenStack Setup</h1>
-<p>Before configuring Cloudbreak Deployer, you should know that:</p>
+<p><strong>Cloudbreak Deployer Highlights</strong></p>
 <ul>
 <li>The default SSH username for the OpenStack instances is <code>cloudbreak</code>.</li>
-<li>Cloudbreak Deployer location on the launched EC2 instance is <code>/var/lib/cloudbreak-deployment</code>. This is the
+<li>Cloudbreak Deployer location is <code>/var/lib/cloudbreak-deployment</code> on the launched EC2 instance. This is the
   <code>cbd</code> root folder.</li>
-<li>You must execute all <code>cbd</code> actions from the <code>cbd</code> root folder as a <code>cloudbreak</code> user.</li>
+<li>All <code>cbd</code> actions must be executed from the <code>cbd</code> root folder as <code>cloudbreak</code> user.</li>
 </ul>
-<h2 id="set-up-cloudbreak-deployer">Set up Cloudbreak Deployer</h2>
-<p>You should have already installed the Cloudbreak Deployer either by <a href="./">using the OpenStack Cloud Images</a> or by
+<h2 id="setup-cloudbreak-deployer">Setup Cloudbreak Deployer</h2>
+<p>You should already have the Cloudbreak Deployer either by <a href="./">using the OpenStack Cloud Images</a> or by
 <a href="../onprem/">installing the Cloudbreak Deployer</a> manually on your own VM.</p>
-<p>If you have your own installed VM, check the <a href="./#initialize-your-profile">Initialize your Profile</a>
+<p>If you have your own installed VM, you should check the <a href="./#initialize-your-profile">Initialize your Profile</a>
 section here before starting the provisioning.</p>
 <p>You can <a href="http://docs.openstack.org/user-guide/dashboard_launch_instances.html#connect-to-your-instance-by-using-ssh">connect to the previously created <code>cbd</code> VM</a>.</p>
-<p>To open the <code>cloudbreak-deployment</code> directory, run:</p>
+<p>To open the <code>cloudbreak-deployment</code> directory:</p>
 <pre><code>cd /var/lib/cloudbreak-deployment/
 </code></pre>
 
-<p>This directory contains configuration files and the supporting binaries for Cloudbreak Deployer.</p>
-<h2 id="initialize-your-profile">Initialize Your Profile</h2>
-<p>First, initialize deployer by creating a <code>Profile</code> file with the following content:</p>
-<pre><code>export UAA_DEFAULT_SECRET='[SECRET]'
-export UAA_DEFAULT_USER_PW='[PASSWORD]'
-export PUBLIC_IP='[PUBLIC_IP]'
+<p>This is the directory of the configuration files and the supporting binaries for Cloudbreak Deployer.</p>
+<h3 id="initialize-your-profile">Initialize your Profile</h3>
+<p>First initialize <code>cbd</code> by creating a <code>Profile</code> file:</p>
+<pre><code>cbd init
 </code></pre>
 
-<p>The <code>PUBLIC_IP</code> is mandatory, because it is used to access the Cloudbreak UI.</p>
-<h3 id="openstack-specific-configuration">OpenStack-specific Configuration</h3>
+<p>It will create a <code>Profile</code> file in the current directory. Please open the <code>Profile</code> file then check the <code>PUBLIC_IP</code>.
+This is mandatory, because of to can access the Cloudbreak UI (called Uluwatu). In some cases the <code>cbd</code> tool tries to
+guess it. If <code>cbd</code> cannot get the IP address during the initialization, please set the appropriate value.</p>
+<h3 id="openstack-specific-configuration">OpenStack specific configuration</h3>
 <p>Make sure that the <a href="./#cloudbreak-import">VM image used by Cloudbreak is imported on your OpenStack</a>.</p>
-<h2 id="using-self-signed-certificates">Using Self-signed Certificates</h2>
-<p>If your OpenStack is secured with a self-signed certificate, you need to import that certificate into Cloudbreak, 
-or else Cloudbreak won't be able to communicate with your OpenStack. To import the certificate, place the certificate 
-file in the generated certs directory <code>/certs/trusted/</code>. The trusted directory does not exist by default, so you need to create it.
-Cloudbreak will automatically pick up these certificates and import them into its truststore upon start.</p>
-<h2 id="availability-zones-and-region-config">Availability Zones and Region config</h2>
-<p>By default Cloudbreak uses <code>RegionOne</code> region with <code>nova</code> availability zone, but OpenStack supports multiple regions and multiple availability zones. You can customize Cloudbreak deployment and enable multiple
-regions and availability zones by creating an <code>openstack-zone.json</code> under the <code>etc</code> directory of Cloudbreak deployment (e.g. <code>/var/lib/cloudbreak-deployment/etc/openstack-zone.json</code>).
-You can find an example of <code>openstack-zone.json</code> containing two regions and four availability zones below:</p>
-<pre><code>{
-  &quot;items&quot;: [
-    {
-      &quot;name&quot;: &quot;MyRegionOne&quot;,
-      &quot;zones&quot;: [ &quot;az1&quot;, &quot;az2&quot;, &quot;az3&quot;]
-    },
-    {
-      &quot;name&quot;: &quot;MyRegionTwo&quot;,
-      &quot;zones&quot;: [ &quot;myaz&quot;]
-    }
-  ]
-}
-</code></pre>
-
-<p>If the <code>etc</code> directory does not exist under Cloudbreak deployment directory, then please create it. Restart is needed to pick up the changes done in <code>openstack-zone.json</code> file. </p>
 <h2 id="start-cloudbreak-deployer">Start Cloudbreak Deployer</h2>
-<p>To start the Cloudbreak application, use the following command:</p>
+<p>To start the Cloudbreak application use the following command.
+This will start all the Docker containers and initialize the application.</p>
 <pre><code>cbd start
 </code></pre>
 
-<p>This will start all the Docker containers and initialize the application.</p>
 <blockquote>
-<p>The first time you start the Coudbreak app, the process will take longer than usual due to the download of all the necessary docker images.</p>
+<p>At the very first time it will take for a while, because of need to download all the necessary docker images.</p>
 </blockquote>
 <p>The <code>cbd start</code> command includes the <code>cbd generate</code> command which applies the following steps:</p>
 <ul>
 <li>creates the <strong>docker-compose.yml</strong> file that describes the configuration of all the Docker containers needed for the Cloudbreak deployment.</li>
 <li>creates the <strong>uaa.yml</strong> file that holds the configuration of the identity server used to authenticate users to Cloudbreak.</li>
 </ul>
-<h2 id="validate-that-cloudbreak-deployer-has-started">Validate that Cloudbreak Deployer Has Started</h2>
-<p>After the <code>cbd start</code> command finishes, check the following:</p>
+<h2 id="validate-the-started-cloudbreak-deployer">Validate the started Cloudbreak Deployer</h2>
+<p>After the <code>cbd start</code> command finishes followings are worthy to check:</p>
 <ul>
-<li>Pre-installed Cloudbreak Deployer version and health:</li>
+<li>Pre-installed Cloudbreak Deployer version and health.</li>
 </ul>
 <pre><code>   cbd doctor
 </code></pre>
 
 <blockquote>
-<p>If you need to run <code>cbd update</code>, refer to <a href="../update/#update-cloudbreak-deployer">Cloudbreak Deployer Update</a>.</p>
+<p>In case of <code>cbd update</code> is needed, please check the related documentation for <a href="../operations/#update-cloudbreak-deployer">Cloudbreak Deployer Update</a>.</p>
 </blockquote>
 <ul>
-<li>Cloudbreak Application logs:</li>
+<li>Started Cloudbreak Application logs.</li>
 </ul>
 <pre><code>   cbd logs cloudbreak
 </code></pre>
 
 <blockquote>
-<p>You should see a line like this: <code>Started CloudbreakApplication in 36.823 seconds</code>. Cloudbreak normally takes less than a minute to start.</p>
+<p>Cloudbreak should start within a minute - you should see a line like this: <code>Started CloudbreakApplication in 36.823 seconds</code></p>
 </blockquote>
 <h1 id="provisioning-prerequisites">Provisioning Prerequisites</h1>
-<h2 id="generate-a-new-ssh-key">Generate a New SSH Key</h2>
+<h2 id="generate-a-new-ssh-key">Generate a new SSH key</h2>
 <p>All the instances created by Cloudbreak are configured to allow key-based SSH,
 so you'll need to provide an SSH public key that can be used later to SSH onto the instances in the clusters you'll create with Cloudbreak.
 You can use one of your existing keys or you can generate a new one.</p>
@@ -562,7 +461,7 @@ You'll be asked to enter a passphrase, but you can leave it empty.
 # Enter same passphrase again: [Type passphrase again]
 </code></pre>
 
-<p>After you enter a passphrase the keypair is generated. The output should look something like below. </p>
+<p>After you enter a passphrase the keypair is generated. The output should look something like below.</p>
 <pre><code># Your identification has been saved in /Users/you/.ssh/id_rsa.
 # Your public key has been saved in /Users/you/.ssh/id_rsa.pub.
 # The key fingerprint is:
@@ -571,14 +470,14 @@ You'll be asked to enter a passphrase, but you can leave it empty.
 
 <p>Later you'll need to pass the <code>.pub</code> file's contents to Cloudbreak and use the private part to SSH to the instances</p>
 <h1 id="provisioning-via-browser">Provisioning via Browser</h1>
-<p>You can log into the Cloudbreak application at <code>https://&lt;Public_IP&gt;/</code>.</p>
+<p>You can log into the Cloudbreak application at <code>http://&lt;Public_IP&gt;:3000/</code>.</p>
 <p>The main goal of the Cloudbreak UI is to easily create clusters on your own cloud provider account.
 This description details the OpenStack setup - if you'd like to use a different cloud provider check out its manual.</p>
 <p>This document explains the four steps that need to be followed to create Cloudbreak clusters from the UI:</p>
 <ul>
 <li>connect your OpenStack account with Cloudbreak</li>
 <li>create some template resources on the UI that describe the infrastructure of your clusters</li>
-<li>create a blueprint that describes the HDP services in your clusters</li>
+<li>create a blueprint that describes the HDP services in your clusters and add some recipes for customization</li>
 <li>launch the cluster itself based on these resources</li>
 </ul>
 <blockquote>
@@ -608,12 +507,11 @@ instance</a> of every cluster you'll create with this credential.</li>
 </ol>
 <blockquote>
 <p>Any other parameter is optional here. You can read more about Keystone v3 <a href="http://developer.openstack.org/api-ref-identity-v3.html">here</a>.</p>
-<p><code>API Facing</code> is the URL perspective in which the API is accessing data.</p>
 <p><code>Public in account</code> means that all the users belonging to your account will be able to use this credential to create 
 clusters, but cannot delete it.</p>
 </blockquote>
-<p><img alt="" src="../images/os-credential_v2.png" />
-<sub><em>Full size <a href="../images/os-credential_v2.png">here</a>.</em></sub></p>
+<p><img alt="" src="../images/os-credential.png" />
+<sub><em>Full size <a href="../images/os-credential.png">here</a>.</em>&lt;/sub</p>
 <h2 id="infrastructure-templates">Infrastructure templates</h2>
 <p>After your OpenStack account is linked to Cloudbreak you can start creating resource templates that describe your 
 clusters' infrastructure:</p>
@@ -622,7 +520,7 @@ clusters' infrastructure:</p>
 <li>networks</li>
 <li>security groups</li>
 </ul>
-<p>When you create one of the above resources, <strong>Cloudbreak does not make any requests to OpenStack. Resources are only
+<p>When you create one of the above resource, <strong>Cloudbreak does not make any requests to OpenStack. Resources are only 
 created on OpenStack after the <code>create cluster</code> button has pushed.</strong> These templates are saved to Cloudbreak's 
 database and can be reused with multiple clusters to describe the infrastructure.</p>
 <p><strong>Templates</strong></p>
@@ -632,16 +530,16 @@ database and can be reused with multiple clusters to describe the infrastructure
 <p>The instance templates can be configured on the <strong>manage templates</strong> panel on the Cloudbreak Dashboard.</p>
 <p>If <code>Public in account</code> is checked all the users belonging to your account will be able to use this resource to create clusters, but cannot delete it.</p>
 <p><strong>Networks</strong></p>
-<p>Your clusters can be created in their own <strong>networks</strong> or in one of your already existing one. If you choose an
-existing network, it is possible to create a new subnet within the network. The subnet's IP range must be defined in
+<p>Your clusters can be created in their own <strong>networks</strong> or in one of your already existing one. If you choose an 
+existing network, it is possible to create a new subnet within the network. The subnet's IP range must be defined in 
 the <code>Subnet (CIDR)</code> field using the general CIDR notation. Here you can read more about <a href="http://docs.openstack.org/liberty/networking-guide/intro-networking.html">OpenStack networking</a>.</p>
 <p><em>Custom OpenStack Network</em></p>
-<p>If you'd like to deploy a cluster to your OpenStack network you'll have to <strong>create a new network</strong> template on the
+<p>If you'd like to deploy a cluster to your OpenStack network you'll have to <strong>create a new network</strong> template on the 
 <strong>manage networks</strong> panel on the Cloudbreak Dashboard.</p>
 <blockquote>
-<p>"Before launching an instance, you must create the necessary virtual network infrastructure...an instance uses a
-public provider virtual network that connects to the physical network infrastructure...This network includes a DHCP
-server that provides IP addresses to instances...The admin or other privileged user must create this network because
+<p>"Before launching an instance, you must create the necessary virtual network infrastructure...an instance uses a 
+public provider virtual network that connects to the physical network infrastructure...This network includes a DHCP 
+server that provides IP addresses to instances...The admin or other privileged user must create this network because 
 it connects directly to the physical network infrastructure."</p>
 <p>Here you can read more about OpenStack <a href="http://docs.openstack.org/liberty/install-guide-rdo/launch-instance.html#create-virtual-networks">virtual network</a> and <a href="http://docs.openstack.org/liberty/install-guide-rdo/launch-instance-networks-public.html">public provider network</a>.</p>
 </blockquote>
@@ -654,27 +552,27 @@ it connects directly to the physical network infrastructure."</p>
 <p>Explanation of the parameters:</p>
 <ul>
 <li><code>Name</code> the name of the new network<ul>
-<li>Length must be between 5 and 100 characters</li>
+<li>it must be between 5 and 100 characters long</li>
 <li>Starts with a lowercase alphabetic character</li>
 <li>Can contain lowercase alphanumeric and hyphens only</li>
 </ul>
 </li>
-<li><code>Subnet (CIDR)</code> With this field you define the IP address space usable by your VMs within the cluster. Cloudbreak supports the private address space defined in <a href="https://tools.ietf.org/html/rfc1918">RFC1918</a>. E.g. you can use 10.0.0.0/24</li>
-<li><code>Floating Pool ID</code> <a href="http://docs.openstack.org/openstack-ops/content/floating_ips.html">Floating IPs</a>  are not automatically allocated to instances by default, they needs to be attached to instances after creation. The Floating IPs are used to provide access to your VMs running on OpenStack. You can figure out the available network pools and their IDs by using the <code>nova floating-ip-pool-list</code> and <code>neutron net-external-list</code> or copy-pasting it from OpenStack Horizon UI. Such networks have the <code>External Network</code> field set to <code>Yes</code>. If you are unable to find the ID then just consult with your OpenStack network administrator. Please note that if you do not set this field then your cluster might not be accessible.</li>
-<li><code>Virtual Network Identifier</code> This is the ID of an existing virtual network on OpenStack where you would like to launch the cluster. (Must be provided for <strong>Create a new subnet in an existing network</strong> and <strong>Use an existing subnet in an existing network</strong>)</li>
-<li><code>Router Identifier</code> Specify the router ID that shall interconnect your existing Network with the Subnet which will be created by CLoudbreak. (Must be provided for <strong>Create a new subnet in an existing network</strong>).</li>
-<li><code>Subnet Identifier</code> This is the ID of an existing subnet on OpenStack where you would like to launch the cluster. (Must be provided for <strong>Use an existing subnet in an existing network</strong>)</li>
+<li><code>Subnet (CIDR)</code> Copy your OpenStack public network's subnet with CIDR block to the <code>Subnet (CIDR)</code> field</li>
+<li><code>Public Network ID</code> Copy your OpenStack public network ID to the <code>Public Network ID</code> field</li>
+<li><code>Virtual Network Identifier</code> This must be an ID of an existing OpenStack virtual network.</li>
+<li><code>Router Identifier</code> Your virtual network router ID (must be provided in case of existing virtual network).</li>
+<li><code>Subnet Identifier</code> Your subnet ID within your virtual network. If the identifier is provided, the <code>Subnet (CIDR)</code> will be ignored.</li>
 </ul>
 <blockquote>
 <p><strong>IMPORTANT</strong> Please make sure the defined subnet here doesn't overlap with any of your already deployed subnet in the
- network, because the validation only happens after the cluster creation starts.</p>
-<p>In case of existing subnet make sure you have enough room within your network space for the new instances. The
+ network, because of the validation only happens after the cluster creation starts.</p>
+<p>In case of existing subnet make sure you have enough room within your network space for the new instances. The 
 provided subnet CIDR will be ignored, but a proper CIDR range will be used.</p>
 </blockquote>
-<p>If <code>Public in account</code> is checked all the users belonging to your account will be able to use this network template
+<p>If <code>Public in account</code> is checked all the users belonging to your account will be able to use this network template 
 to create clusters, but cannot delete it.</p>
 <blockquote>
-<p><strong>NOTE</strong> The new networks are created on OpenStack only after the the cluster provisioning starts with the selected
+<p><strong>NOTE</strong> The new networks are created on OpenStack only after the the cluster provisioning starts with the selected 
 network template.</p>
 </blockquote>
 <p><img alt="" src="../images/os-networks_v2.png" />
@@ -686,46 +584,51 @@ and all the instances have a public IP address so all the instances in the clust
 group. This may change in a later release.</p>
 <p><em>Default Security Group</em></p>
 <p>You can also use the two pre-defined security groups in Cloudbreak.</p>
-<p><code>only-ssh-and-ssl:</code> all ports are locked down except for SSH and the selected Ambari Server HTTPS (you can't access Hadoop services 
+<p><code>only-ssh-and-ssl:</code> all ports are locked down except for SSH and gateway HTTPS (you can't access Hadoop services 
 outside of the network):</p>
 <ul>
 <li>SSH (22)</li>
 <li>HTTPS (443)</li>
 </ul>
+<p><code>all-services-port:</code> all Hadoop services and SSH, gateway HTTPS are accessible by default:</p>
+<ul>
+<li>SSH (22)</li>
+<li>HTTPS (443)</li>
+<li>Ambari (8080)</li>
+<li>Consul (8500)</li>
+<li>NN (50070)</li>
+<li>RM Web (8088)</li>
+<li>Scheduler (8030RM)</li>
+<li>IPC (8050RM)</li>
+<li>Job history server (19888)</li>
+<li>HBase master (60000)</li>
+<li>HBase master web (60010)</li>
+<li>HBase RS (16020)</li>
+<li>HBase RS info (60030)</li>
+<li>Falcon (15000)</li>
+<li>Storm (8744)</li>
+<li>Hive metastore (9083)</li>
+<li>Hive server (10000)</li>
+<li>Hive server HTTP (10001)</li>
+<li>Accumulo master (9999)</li>
+<li>Accumulo Tserver (9997)</li>
+<li>Atlas (21000)</li>
+<li>KNOX (8443)</li>
+<li>Oozie (11000)</li>
+<li>Spark HS (18080)</li>
+<li>NM Web (8042)</li>
+<li>Zeppelin WebSocket (9996)</li>
+<li>Zeppelin UI (9995)</li>
+<li>Kibana (3080)</li>
+<li>Elasticsearch (9200)</li>
+</ul>
 <p><em>Custom Security Group</em></p>
 <p>You can define your own security group by adding all the ports, protocols and CIDR range you'd like to use. The rules
  defined here doesn't need to contain the internal rules, those are automatically added by Cloudbreak to the security
   group on OpenStack.</p>
-<p>Hadoop services :
-<em> Ambari (8080)
-</em> Consul (8500)
-<em> NN (50070)
-</em> RM Web (8088)
-<em> Scheduler (8030RM)
-</em> IPC (8050RM)
-<em> Job history server (19888)
-</em> HBase master (60000)
-<em> HBase master web (60010)
-</em> HBase RS (16020)
-<em> HBase RS info (60030)
-</em> Falcon (15000)
-<em> Storm (8744)
-</em> Hive metastore (9083)
-<em> Hive server (10000)
-</em> Hive server HTTP (10001)
-<em> Accumulo master (9999)
-</em> Accumulo Tserver (9997)
-<em> Atlas (21000)
-</em> KNOX (8443)
-<em> Oozie (11000)
-</em> Spark HS (18080)
-<em> NM Web (8042)
-</em> Zeppelin WebSocket (9996)
-<em> Zeppelin UI (9995)
-</em> Kibana (3080)
-* Elasticsearch (9200)</p>
 <blockquote>
-<p><strong>IMPORTANT</strong> 443, 9443, and 22 ports needs to be there in every security group otherwise Cloudbreak won't be able to communicate with the provisioned cluster.</p>
+<p><strong>IMPORTANT</strong> 443 and 22 ports needs to be there in every security group otherwise Cloudbreak won't be able to communicate with the 
+provisioned cluster</p>
 </blockquote>
 <p>If <code>Public in account</code> is checked all the users belonging to your account will be able to use this security group 
 template to create clusters, but cannot delete it.</p>
@@ -735,17 +638,17 @@ security group template.</p>
 </blockquote>
 <p><img alt="" src="../images/ui-secgroup_v3.png" />
 <sub><em>Full size <a href="../images/ui-secgroup_v3.png">here</a>.</em>&lt;/sub</p>
-<h2 id="defining-cluster-services">Defining Cluster Services</h2>
-<h4 id="blueprints">Blueprints</h4>
+<h2 id="defining-cluster-services">Defining cluster services</h2>
+<p><strong>Blueprints</strong></p>
 <p>Blueprints are your declarative definition of a Hadoop cluster. These are the same blueprints that are <a href="https://cwiki.apache.org/confluence/display/AMBARI/Blueprints">used by Ambari</a>.</p>
 <p>You can use the 3 default blueprints pre-defined in Cloudbreak or you can create your own ones.
 Blueprints can be added from file, URL (an <a href="https://raw.githubusercontent
-.com/hortonworks/cloudbreak/master/integration-test/src/main/resources/blueprint/multi-node-hdfs-yarn.bp">example blueprint</a>) or the 
+.com/sequenceiq/cloudbreak/master/integration-test/src/main/resources/blueprint/multi-node-hdfs-yarn.bp">example blueprint</a>) or the 
 whole JSON can be written in the <code>JSON text</code> box.</p>
 <p>The host groups in the JSON will be mapped to a set of instances when starting the cluster. Besides this the services and
  components will also be installed on the corresponding nodes. Blueprints can be modified later from the Ambari UI.</p>
 <blockquote>
-<p><strong>NOTE:</strong> It is not necessary to define all the configuration in the blueprint. If a configuration is missing, Ambari will 
+<p><strong>NOTE</strong> Not necessary to define all the configuration in the blueprint. If a configuration is missing, Ambari will 
 fill that with a default value.</p>
 </blockquote>
 <p>If <code>Public in account</code> is checked all the users belonging to your account will be able to use this blueprint to 
@@ -757,6 +660,17 @@ modifications.</strong>
 There is no automatic way to modify an exported blueprint and make it instantly usable in Cloudbreak, the 
 modifications have to be done manually.
 When the blueprint is exported some configurations are hardcoded for example domain names, memory configurations...etc. that won't be applicable to the Cloudbreak cluster</p>
+<p><strong>Cluster customization</strong></p>
+<p>Sometimes it can be useful to <strong>define some custom scripts so called Recipes in Cloudbreak</strong> that run during cluster 
+creation and add some additional functionality.</p>
+<p>For example it can be a service you'd like to install but it's not supported by Ambari or some script that 
+automatically downloads some data to the necessary nodes.
+The most <strong>notable example is Ranger setup</strong>:</p>
+<ul>
+<li>It has a prerequisite of a running database when Ranger Admin is installing.</li>
+<li>A PostgreSQL database can be easily started and configured with a recipe before the blueprint installation starts.</li>
+</ul>
+<p>To learn more about these and check the Ranger recipe out, take a look at the <a href="../recipes/">Cluster customization</a></p>
 <h2 id="cluster-deployment">Cluster deployment</h2>
 <p>After all the cluster resources are configured you can deploy a new HDP cluster.</p>
 <p>Here is a <strong>basic flow for cluster creation on Cloudbreak Web UI</strong>:</p>
@@ -788,6 +702,7 @@ When the blueprint is exported some configurations are hardcoded for example dom
 <p><code>Setup Network and Security</code> tab</p>
 <ul>
 <li>Select one of your previously created networks</li>
+<li>Select one of the security groups</li>
 <li>Click on the <code>Choose Blueprint</code> button<blockquote>
 <p>If <code>Enable security</code> is checked as well, Cloudbreak will install Key Distribution Center (KDC) and the cluster will 
 be Kerberized. See more about it in the <a href="../kerberos/">Kerberos</a> section of this documentation.</p>
@@ -799,14 +714,10 @@ be Kerberized. See more about it in the <a href="../kerberos/">Kerberos</a> sect
 <li>Select one of the blueprints</li>
 <li>After you've selected a <code>Blueprint</code>, you should be able to configure:<ul>
 <li>the templates</li>
-<li>the securitygroups</li>
 <li>the number of nodes for all of the host groups in the blueprint</li>
+<li>the recipes for nodes</li>
 </ul>
 </li>
-<li>You need to select where you want to install the Ambari server to. Only 1 host group can be selected.
-   If you want to install the Ambari server to a separate node, you need to extend your blueprint with a new host group
-   which contains only 1 service: HDFS_CLIENT and select this host group for the Ambari server. Note: this host group cannot be scaled so 
-   it is not advised to select a 'slave' host group for this purpose.</li>
 <li>Click on the <code>Review and Launch</code> button</li>
 </ul>
 <p><code>Review and Launch</code> tab</p>
@@ -822,8 +733,7 @@ be Kerberized. See more about it in the <a href="../kerberos/">Kerberos</a> sect
 <img alt="" src="../images/os-eventhistory.png" />
 <sub><em>Full size <a href="../images/os-eventhistory.png">here</a>.</em></sub></p>
 <p><strong>Advanced options</strong></p>
-<p><code>Ambari Username</code> This user will be used as admin user in Ambari. You can log in using this username on the Ambari UI.</p>
-<p><code>Ambari Password</code> The password associated with the Ambari username. This password will be also the default password for all required passwords which are not specified in the blueprint. E.g: hive DB password.</p>
+<p><code>Consul server count</code> the number of Consul servers (add number), by default is 3. It varies with the cluster size.</p>
 <p><code>Connector Variant</code> Cloudbreak provides two implementation for creating OpenStack cluster</p>
 <ul>
 <li><code>HEAT</code> using <a href="https://wiki.openstack.org/wiki/Heat">HEAT</a> template to create the resources</li>
@@ -834,16 +744,17 @@ be Kerberized. See more about it in the <a href="../kerberos/">Kerberos</a> sect
   by using a sequence of API calls without Heat to achieve the same result, although both of them are using the same 
   authentication and credential management.</p>
 </blockquote>
-<p><code>Minimum cluster size</code> The provisioning strategy in case the cloud provider cannot allocate all the requested nodes.</p>
+<p><code>Minimum cluster size</code> The provisioning strategy in case of the cloud provider cannot allocate all the requested nodes.</p>
 <p><code>Validate blueprint</code> This is selected by default. Cloudbreak validates the Ambari blueprint in this case.</p>
-<p><code>Custom Image</code> If you enable this, you can override the default image for provision.</p>
-<p><code>Config recommendation strategy</code> Strategy for how configuration recommendations will be applied. Recommended 
+<p><code>Shipyard enabled cluster</code> This is selected by default. Cloudbreak will start a <a href="https://shipyard-project.com/">Shipyard</a> container which helps you to manage your containers.</p>
+<p><code>Config recommendation strategy</code> Strategy for configuration recommendations how will be applied. Recommended 
 configurations gathered by the response of the stack advisor. </p>
 <ul>
 <li><code>NEVER_APPLY</code>               Configuration recommendations are ignored with this option.</li>
 <li><code>ONLY_STACK_DEFAULTS_APPLY</code> Applies only on the default configurations for all included services.</li>
 <li><code>ALWAYS_APPLY</code>              Applies on all configuration properties.</li>
 </ul>
+<p><code>Start LDAP and configure SSSD</code> Enables the <a href="../sssd/">System Security Services Daemon</a> configuration.</p>
 <h2 id="cluster-termination">Cluster termination</h2>
 <p>You can terminate running or stopped clusters with the <code>terminate</code> button in the cluster details.</p>
 <blockquote>
@@ -851,7 +762,7 @@ configurations gathered by the response of the stack advisor. </p>
 OpenStack instances first. Instances are started in an Auto Scaling Group so they may be restarted if you terminate an 
 instance manually!</p>
 </blockquote>
-<p>Sometimes Cloudbreak cannot synchronize its state with the cluster state at the cloud provider and the cluster can't
+<p>Sometimes Cloudbreak cannot synchronize it's state with the cluster state at the cloud provider and the cluster can't
  be terminated. In this case the <code>Forced termination</code> option can help to terminate the cluster at the Cloudbreak 
  side. <strong>If it has happened:</strong></p>
 <ol>
@@ -859,7 +770,7 @@ instance manually!</p>
 <li>If it is needed you need to manually remove resources from there</li>
 </ol>
 <p><img alt="" src="../images/os-forceterminate.png" />
-<sub><em>Full size <a href="../images/os-forceterminate.png">here</a>.</em></sub></p>
+<sub><em>Full size <a href="../images/os-forceterminate.png">here</a>.</em>&lt;/sub</p>
 <h1 id="interactive-mode-cloudbreak-shell">Interactive mode / Cloudbreak Shell</h1>
 <p>The goal with the Cloudbreak Shell (Cloudbreak CLI) was to provide an interactive command line tool which supports:</p>
 <ul>
@@ -901,10 +812,10 @@ instance manually!</p>
 example if your <code>cbd</code> working directory is <code>~/cloudbreak-deployment</code> then copy your <strong>blueprint JSON, public ssh key 
 file...etc.</strong> to here. You can refer to these files with their names from the shell.</p>
 </blockquote>
-<h2 id="autocomplete-and-hints">Autocomplete and Hints</h2>
-<p>Cloudbreak Shell helps you with <strong>hint messages</strong> from the very beginning, for example:</p>
+<h2 id="autocomplete-and-hints">Autocomplete and hints</h2>
+<p>Cloudbreak Shell helps to you with <strong>hint messages</strong> from the very beginning, for example:</p>
 <pre><code>cloudbreak-shell&gt;hint
-Hint: Add a blueprint with the 'blueprint create' command or select an existing one with 'blueprint select'
+Hint: Add a blueprint with the 'blueprint add' command or select an existing one with 'blueprint select'
 cloudbreak-shell&gt;
 </code></pre>
 
@@ -931,11 +842,6 @@ find further details <a href="./#provisioning-prerequisites">here</a>.</p>
 <li>you can upload your public key from an url: <code>—sshKeyUrl</code> </li>
 <li>or you can add the path of your public key: <code>—sshKeyPath</code></li>
 </ul>
-<p>Other available option:</p>
-<p><code>--facing</code> URL perspective in which the API is accessing data, allowed types are: public, admin and internal.</p>
-<blockquote>
-<p><strong>NOTE</strong> If facing not specified OpenStack default value will be applied.</p>
-</blockquote>
 <p>You can check whether the credential was created successfully</p>
 <pre><code>credential list
 </code></pre>
@@ -952,7 +858,7 @@ clusters' infrastructure:</p>
 <li>networks</li>
 <li>templates</li>
 </ul>
-<p>When you create one of the above resources, <strong>Cloudbreak does not make any requests to OpenStack. Resources are only 
+<p>When you create one of the above resource, <strong>Cloudbreak does not make any requests to OpenStack. Resources are only 
 created on OpenStack after the <code>cluster create</code> has applied.</strong> These templates are saved to Cloudbreak's database and
  can be reused with multiple clusters to describe the infrastructure.</p>
 <p><strong>Templates</strong></p>
@@ -995,7 +901,7 @@ public network&gt; --subnet 10.0.0.0/16
 <ul>
 <li>In case of existing subnet all three parameters must be provided, with new subnet only two are required.</li>
 <li>Please make sure the defined subnet here doesn't overlap with any of your already deployed subnet in the
- network, because the validation only happens after the cluster creation starts.</li>
+ network, because of the validation only happens after the cluster creation starts.</li>
 <li>In case of existing subnet make sure you have enough room within your network space for the new instances. The 
 provided subnet CIDR will be ignored, but a proper CIDR range will be used.</li>
 </ul>
@@ -1013,17 +919,17 @@ provided <code>Subnet (CIDR)</code> range.</p>
 <pre><code>network list
 </code></pre>
 
-<h2 id="defining-cluster-services_1">Defining Cluster Services</h2>
-<h4 id="blueprints_1">Blueprints</h4>
+<h2 id="defining-cluster-services_1">Defining cluster services</h2>
+<p><strong>Blueprints</strong></p>
 <p>Blueprints are your declarative definition of a Hadoop cluster. These are the same blueprints that are <a href="https://cwiki.apache.org/confluence/display/AMBARI/Blueprints">used by Ambari</a>.</p>
 <p>You can use the 3 default blueprints pre-defined in Cloudbreak or you can create your own ones.
-Blueprints can be added from file or URL (an <a href="https://raw.githubusercontent.com/hortonworks/cloudbreak/master/integration-test/src/main/resources/blueprint/multi-node-hdfs-yarn.bp">example blueprint</a>).</p>
+Blueprints can be added from file or URL (an <a href="https://raw.githubusercontent.com/sequenceiq/cloudbreak/master/integration-test/src/main/resources/blueprint/multi-node-hdfs-yarn.bp">example blueprint</a>).</p>
 <p>The host groups in the JSON will be mapped to a set of instances when starting the cluster. Besides this the services and
  components will also be installed on the corresponding nodes. Blueprints can be modified later from the Ambari UI.</p>
 <blockquote>
-<p><strong>NOTE:</strong> It is not necessary to define all the configuration in the blueprint. If a configuration is missing, Ambari will fill that with a default value.</p>
+<p><strong>NOTE</strong> Not necessary to define all the configuration in the blueprint. If a configuration is missing, Ambari will fill that with a default value.</p>
 </blockquote>
-<pre><code>blueprint create --name my-blueprint --description &quot;sample description&quot; --file &lt;the path of the blueprint&gt;
+<pre><code>blueprint add --name my-blueprint --description &quot;sample description&quot; --file &lt;the path of the blueprint&gt;
 </code></pre>
 
 <p>Other available options:</p>
@@ -1039,7 +945,18 @@ modifications.</strong>
 There is no automatic way to modify an exported blueprint and make it instantly usable in Cloudbreak, the 
 modifications have to be done manually.
 When the blueprint is exported some configurations are hardcoded for example domain names, memory configurations..etc. that won't be applicable to the Cloudbreak cluster.</p>
-<h2 id="metadata-show">Metadata Show</h2>
+<p><strong>Cluster customization</strong></p>
+<p>Sometimes it can be useful to <strong>define some custom scripts so called Recipes in Cloudbreak</strong> that run during cluster 
+creation and add some additional functionality.</p>
+<p>For example it can be a service you'd like to install but it's not supported by Ambari or some script that 
+automatically downloads some data to the necessary nodes.
+The most <strong>notable example is Ranger setup</strong>:</p>
+<ul>
+<li>It has a prerequisite of a running database when Ranger Admin is installing.</li>
+<li>A PostgreSQL database can be easily started and configured with a recipe before the blueprint installation starts.</li>
+</ul>
+<p>To learn more about these and check the Ranger recipe out, take a look at the <a href="../recipes/">Cluster customization</a></p>
+<h2 id="metadata-show">Metadata show</h2>
 <p>You can check the stack metadata with</p>
 <pre><code>stack metadata --name myawsstack --instancegroup master
 </code></pre>
@@ -1062,12 +979,10 @@ you a <strong>basic flow for cluster creation with Cloudbreak Shell</strong>.</p
 
 <p><strong>Configure instance groups</strong></p>
 <p>You must configure instance groups before provisioning. An instance group define a group of nodes with a specified 
-template and security group. Usually we create instance groups for host groups in the blueprint. For Ambari server only 1 host group can be specified.
-If you want to install the Ambari server to a separate node, you need to extend your blueprint with a new host group
-which contains only 1 service: HDFS_CLIENT and select this host group for the Ambari server. Note: this host group cannot be scaled so 
-it is not advised to select a 'slave' host group for this purpose.</p>
-<pre><code>instancegroup configure --instanceGroup master --nodecount 1 --templateName minviable-aws --securityGroupName all-services-port --ambariServer true
-instancegroup configure --instanceGroup slave_1 --nodecount 1 --templateName minviable-aws --securityGroupName all-services-port --ambariServer false
+template. Usually we create instance groups for host groups in the blueprint.</p>
+<pre><code>instancegroup configure --instanceGroup cbgateway --nodecount 1 --templateName my-os-template
+instancegroup configure --instanceGroup master --nodecount 1 --templateName my-os-template
+instancegroup configure --instanceGroup slave_1 --nodecount 1 --templateName my-os-template
 </code></pre>
 
 <p>Other available option:</p>
@@ -1077,12 +992,17 @@ instancegroup configure --instanceGroup slave_1 --nodecount 1 --templateName min
 <pre><code>network select --name my-os-network
 </code></pre>
 
+<p><strong>Select security group</strong></p>
+<p>Select one of your previously created security which fits your needs or a default one:</p>
+<pre><code>securitygroup select --name all-services-port
+</code></pre>
+
 <p><strong>Create stack / Create cloud infrastructure</strong></p>
 <p>Stack means the running cloud infrastructure that is created based on the instance groups configured earlier 
 (<code>credential</code>, <code>instancegroups</code>, <code>network</code>, <code>securitygroup</code>). Same as in case of the API or UI the new cluster will 
 use your templates and by using OpenStack will launch your cloud stack. Use the following command to create a 
 stack to be used with your Hadoop cluster:</p>
-<pre><code>stack create --OPENSTACK --name myosstack --region local
+<pre><code>stack create --name myosstack --region local
 </code></pre>
 
 <p>The infrastructure is created asynchronously, the state of the stack can be checked with the stack <code>show command</code>. If 
@@ -1126,7 +1046,7 @@ new cluster's <code>details</code> and its <code>Event History</code> here.</li>
 <p>For example:
 <img alt="" src="../images/ui-eventhistory_4.png" />
 <sub><em>Full size <a href="../images/ui-eventhistory_4.png">here</a>.</em></sub></p>
-<h4 id="stop-cluster">Stop Cluster</h4>
+<p><strong>Stop cluster</strong></p>
 <p>You have the ability to <strong>stop your existing stack then its cluster</strong> if you want to suspend the work on it.</p>
 <p>Select a stack for example with its name:</p>
 <pre><code>stack select --name my-stack
@@ -1139,7 +1059,7 @@ selected stack:</p>
 stack stop
 </code></pre>
 
-<h4 id="restart-cluster">Restart Cluster</h4>
+<p><strong>Restart cluster</strong></p>
 <p><strong>Select your stack that you would like to restart</strong> after this you can apply:</p>
 <pre><code>stack start
 </code></pre>
@@ -1148,7 +1068,7 @@ stack stop
 <pre><code>cluster start
 </code></pre>
 
-<h4 id="upscale-cluster">Upscale Cluster</h4>
+<p><strong>Upscale cluster</strong></p>
 <p>If you need more instances to your infrastructure, you can <strong>upscale your selected stack</strong>:</p>
 <pre><code>stack node --ADD --instanceGroup host_group_slave_1 --adjustment 6
 </code></pre>
@@ -1158,7 +1078,7 @@ stack stop
 <pre><code>cluster node --ADD --hostgroup host_group_slave_1 --adjustment 6
 </code></pre>
 
-<h4 id="downscale-cluster">Downscale Cluster</h4>
+<p><strong>Downscale cluster</strong></p>
 <p>You also can reduce the number of instances in your infrastructure. <strong>After you selected your stack</strong>:</p>
 <pre><code>cluster node --REMOVE  --hostgroup host_group_slave_1 --adjustment -2
 </code></pre>
@@ -1168,24 +1088,24 @@ stack stop
 <pre><code>stack node --REMOVE  --instanceGroup host_group_slave_1 --adjustment -2
 </code></pre>
 
-<h2 id="cluster-termination_1">Cluster Termination</h2>
+<h2 id="cluster-termination_1">Cluster termination</h2>
 <p>You can terminate running or stopped clusters with</p>
-<pre><code>stack delete --name myawsstack
+<pre><code>stack terminate --name myawsstack
 </code></pre>
 
 <p>Other available option is <code>--wait</code> - in this case the terminate command will return only after the process has finished. </p>
 <blockquote>
-<p><strong>IMPORTANT:</strong> Always use Cloudbreak to terminate the cluster. If that fails for some reason, try to delete the 
+<p><strong>IMPORTANT</strong> Always use Cloudbreak to terminate the cluster. If that fails for some reason, try to delete the 
 CloudFormation stack first. Instances are started in an Auto Scaling Group so they may be restarted if you terminate an instance manually!</p>
 </blockquote>
-<p>Sometimes Cloudbreak cannot synchronize its state with the cluster state at the cloud provider and the cluster can't
+<p>Sometimes Cloudbreak cannot synchronize it's state with the cluster state at the cloud provider and the cluster can't
  be terminated. In this case the <code>Forced termination</code> option on the Cloudbreak Web UI can help to terminate the cluster
   at the Cloudbreak side. <strong>If it has happened:</strong></p>
 <ol>
 <li>You should check the related resources at the AWS CloudFormation</li>
-<li>If it is needed you need to manually remove resources from there</li>
+<li>If it is needed you need to manually remove resources from ther</li>
 </ol>
-<h2 id="silent-mode">Silent Mode</h2>
+<h2 id="silent-mode">Silent mode</h2>
 <p>With Cloudbreak Shell you can execute script files as well. A script file contains shell commands and can 
 be executed with the <code>script</code> cloudbreak shell command</p>
 <pre><code>script &lt;your script file&gt;
@@ -1196,7 +1116,7 @@ be executed with the <code>script</code> cloudbreak shell command</p>
 </code></pre>
 
 <blockquote>
-<p><strong>IMPORTANT:</strong> You have to copy all your files into the <code>cbd</code> working directory, what you would like to use in shell.
+<p><strong>IMPORTANT</strong> You have to copy all your files into the <code>cbd</code> working directory, what you would like to use in shell.
  For example if your <code>cbd</code> working directory is ~/cloudbreak-deployment then copy your script file to here.</p>
 </blockquote>
 <h3 id="example">Example</h3>
@@ -1208,20 +1128,22 @@ be executed with the <code>script</code> cloudbreak shell command</p>
 credential select --name my-os-credential
 template create --OPENSTACK --name ostemplate --description openstack-template --instanceType m1.large --volumeSize 100 --volumeCount 2
 blueprint select --name hdp-small-default
-instancegroup configure --instanceGroup host_group_master_1 --nodecount 1 --templateName ostemplate --securityGroupName all-services-port --ambariServer true
-instancegroup configure --instanceGroup host_group_master_2 --nodecount 1 --templateName ostemplate --securityGroupName all-services-port --ambariServer false
-instancegroup configure --instanceGroup host_group_master_3 --nodecount 1 --templateName ostemplate --securityGroupName all-services-port --ambariServer false
-instancegroup configure --instanceGroup host_group_client_1  --nodecount 1 --templateName ostemplate --securityGroupName all-services-port --ambariServer false
-instancegroup configure --instanceGroup host_group_slave_1 --nodecount 3 --templateName ostemplate --securityGroupName all-services-port --ambariServer false
+instancegroup configure --instanceGroup cbgateway --nodecount 1 --templateName ostemplate
+instancegroup configure --instanceGroup host_group_master_1 --nodecount 1 --templateName ostemplate
+instancegroup configure --instanceGroup host_group_master_2 --nodecount 1 --templateName ostemplate
+instancegroup configure --instanceGroup host_group_master_3 --nodecount 1 --templateName ostemplate
+instancegroup configure --instanceGroup host_group_client_1  --nodecount 1 --templateName ostemplate
+instancegroup configure --instanceGroup host_group_slave_1 --nodecount 3 --templateName ostemplate
 network create --OPENSTACK --name osnetwork --description openstack-network --publicNetID &lt;id of an OpenStack public network&gt; --subnet 10.0.0.0/16
 network select --name osnetwork
-stack create --OPENSTACK --name my-first-stack --region local --wait true
-cluster create --description &quot;My first cluster&quot; --wait true
+securitygroup select --name all-services-port
+stack create --name my-first-stack --region local
+cluster create --description &quot;My first cluster&quot;
 </code></pre>
 
 <p><strong>Congratulations!</strong> Your cluster should now be up and running on this way as well. To learn more about Cloudbreak and 
 provisioning, we have some <a href="../operations/">interesting insights</a> for you.</p>
-                    <a href="https://github.com/hortonworks/cloudbreak-docs/blob/master/docs/openstack.md" ><i class="fa fa-github"></i> Edit on GitHub </a>
+                    <a href="https://github.com/sequenceiq/cloudbreak-docs/blob/master/docs/openstack.md" ><i class="fa fa-github"></i> Edit on GitHub </a>
                 </div>
             
         </div>
@@ -1266,10 +1188,10 @@ provisioning, we have some <a href="../operations/">interesting insights</a> for
 
          <script>
            $( document ).ready(function() {
-               $.getJSON("http://hortonworks.github.io/cloudbreak-docs//versions.json", function(data) {
-               $("#versions-dropdown").append('<li><a href="http://hortonworks.github.io/cloudbreak-docs//latest">latest ('+data.latest+')</a></li>');
+               $.getJSON("http://sequenceiq.com/cloudbreak-docs/versions.json", function(data) {
+               $("#versions-dropdown").append('<li><a href="http://sequenceiq.com/cloudbreak-docs/latest">latest ('+data.latest+')</a></li>');
                 $.each(data.versions, function( index, value ) {
-                  $("#versions-dropdown").append('<li><a href="http://hortonworks.github.io/cloudbreak-docs//'+value+'">'+value+'</a></li>');
+                  $("#versions-dropdown").append('<li><a href="http://sequenceiq.com/cloudbreak-docs/'+value+'">'+value+'</a></li>');
                 });
                });
 
@@ -1305,11 +1227,11 @@ provisioning, we have some <a href="../operations/">interesting insights</a> for
                $("#cloudbreak-deployer-image").append('<br>');
                $("#cloudbreak-deployer-image").append('<br>');
                $("#cloudbreak-deployer-image").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">Download the latest Cloudbreak Deployer image to your local machine:</p>');
-               $("#cloudbreak-deployer-image").append('<pre><code style="font-size: 12pt;color:#333333">curl -O https://public-repo-1.hortonworks.com/HDP/cloudbreak/' + data.metadata.image_name + '.img</code></pre>');
+               $("#cloudbreak-deployer-image").append('<pre><code style="font-size: 12pt;color:#333333">curl -O -k https://public-repo-1.hortonworks.com/HDP/cloudbreak/' + data.id + '</code></pre>');
                $("#cloudbreak-deployer-import").append('<br>');
                $("#cloudbreak-deployer-import").append('<br>');
                $("#cloudbreak-deployer-import").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">Set the following environment variables for the OpenStack image import:</p>');
-               $("#cloudbreak-deployer-import").append('<pre><code style="font-size: 12px;color:#333333">export CBD_LATEST_IMAGE=</code>' + data.metadata.image_name + '.img</code></p>');
+               $("#cloudbreak-deployer-import").append('<pre><code style="font-size: 12px;color:#333333">export CBD_LATEST_IMAGE=</code>' + data.id + '</code></p>');
                });
 
                <!--OpenStack CB-->
@@ -1317,19 +1239,18 @@ provisioning, we have some <a href="../operations/">interesting insights</a> for
                $("#cloudbreak-image").append('<br>');
                $("#cloudbreak-image").append('<br>');
                $("#cloudbreak-image").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">Download the latest Cloudbreak image to your local machine:</p>');
-               $("#cloudbreak-image").append('<pre><code style="font-size: 12pt;color:#333333">curl -O https://public-repo-1.hortonworks.com/HDP/cloudbreak/' + data.metadata.image_name + '.img</code></pre>');
+               $("#cloudbreak-image").append('<pre><code style="font-size: 12pt;color:#333333">curl -O -k https://public-repo-1.hortonworks.com/HDP/cloudbreak/' + data.id + '</code></pre>');
                $("#cloudbreak-import").append('<br>');
                $("#cloudbreak-import").append('<br>');
-               $("#cloudbreak-import").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">This is very similar to the Cloudbreak Deployer. Set the following environment variables for the OpenStack image import:</p>');
-               $("#cloudbreak-import").append('<pre><code style="font-size: 12px;color:#333333">export CB_LATEST_IMAGE=</code>' + data.metadata.image_name + '.img</code></p>');
+               $("#cloudbreak-import").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">This is very similar to the Cloudbrek Deployer. Set the following environment variables for the OpenStack image import:</p>');
+               $("#cloudbreak-import").append('<pre><code style="font-size: 12px;color:#333333">export CB_LATEST_IMAGE=</code>' + data.id + '</code></p>');
                });
 
                <!--GCP-->
                $.getJSON("../providers/gcp.json", function(data) {
                $("#cloudbreak-deployer-gcp-image-details").append('<br>');
                $("#cloudbreak-deployer-gcp-image-details").append('<br>');
-               $("#cloudbreak-deployer-gcp-image-details").append('<pre><code style="font-size: 12pt;color:#333333"> gcloud compute images create '
-                   + data.id + ' --source-uri gs://sequenceiqimage/' + data.id + '.tar.gz' + '</code></pre>');
+               $("#cloudbreak-deployer-gcp-image-details").append('<pre><code style="font-size: 12pt;color:#333333">' + data.gcp.import_script + '</code></pre>');
                });
            });
          </script>
