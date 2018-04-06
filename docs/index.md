@@ -1,3 +1,10 @@
+<p><font color='red' size='6'>Repository moved under Hortonwors account. Please use <a href="https://docs.hortonworks.com/HDPDocuments/Cloudbreak/Cloudbreak-2.4.1/index.html">this</a> page.</font></br></p>  
+
+<font color='red'>
+<font color='red' size='5'>March 26, 2018 <font color='red' size='5'>Known issue related to Google Cloud</font></font></br>
+> Due to a recent change on Google Cloud Platform, all clusters created with Cloudbreak before 1.16.6 on Google Cloud will fail. This issue will be fixed in Cloudbreak 1.16.6. If you are already using Cloudbreak with Google Cloud, upgrade to Cloudbreak 1.16.6. If you were planning to install Cloudbreak 1.16.6, use Cloudbreak 1.16.6 instead. 
+</font>
+
 <font color='red'>
 <font color='red' size='5'>Apr 5, 2016 <font color='red' size='5'>[Production issue](https://github.com/sequenceiq/cloudbreak/issues/1461)</font></font></br>
 > On 31st March 2016 the Systemd package has been updated with a newer version in the central CentOS repository which caused incompatibilities during HDP install and that is the reason why the cluster stopped at 8%. The main problem is that when the Ambari installs the rpcbind package then the Systemd also gets updated and when the next package which had systemd service file packaged with it is installed the yum is completely freeze. The 1.2.1 release will fix the issue.
