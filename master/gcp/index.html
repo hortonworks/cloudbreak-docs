@@ -335,6 +335,8 @@
         
             <li><a href="#cloudbreak-deployer-gcp-image-details">Cloudbreak Deployer GCP Image Details</a></li>
         
+            <li><a href="#please-upgrade-your-cloudbreak-deployer">Please upgrade your Cloudbreak Deployer</a></li>
+        
             <li><a href="#import-cloudbreak-deployer-image">Import Cloudbreak Deployer Image</a></li>
         
             <li><a href="#vm-requirements">VM Requirements</a></li>
@@ -413,6 +415,13 @@
 <li>Cloudbreak (443)</li>
 </ul>
 <h2 id="cloudbreak-deployer-gcp-image-details">Cloudbreak Deployer GCP Image Details</h2>
+<h2 id="please-upgrade-your-cloudbreak-deployer">Please upgrade your Cloudbreak Deployer</h2>
+<p>Install the Cloudbreak Deployer and unzip the platform-specific single binary to your PATH. For example:</p>
+<pre><code>yum -y install unzip tar
+curl -Ls s3.amazonaws.com/public-repo-1.hortonworks.com/HDP/cloudbreak/cloudbreak-deployer_1.16.6_$(uname)_x86_64.tgz | sudo tar -xz -C /bin cbd
+cbd --version
+</code></pre>
+
 <h2 id="import-cloudbreak-deployer-image">Import Cloudbreak Deployer Image</h2>
 <p>Import the latest Cloudbreak Deployer image on the <a href="https://console.developers.google.com/">Google Developers Console</a> with the help
  of the <a href="https://cloud.google.com/cloud-shell/docs/">Google Cloud Shell</a>.</p>
