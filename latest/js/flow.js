@@ -5,25 +5,21 @@ var colors = {
 }
 
 var flows = {
-    "ClusterCreationFlowConfig" : "Cluster creation flow",
-    "ClusterCredentialChangeFlowConfig" : "Ambari user/password change flow",
-    "ClusterDownscaleFlowConfig" : "Cluster downscale flow",
-    "ClusterResetFlowConfig" : "Cluster reinstall flow",
+    "StackCreationFlowConfig": "Stack creation flow",
+    "StackSyncFlowConfig" : "Stack synchronization flow",
+    "ClusterSyncFlowConfig" : "Cluster synchronization flow",
+    "StackStopFlowConfig" : "Stack stop flow",
+    "StackStartFlowConfig" : "Stack start flow",
+    "ClusterUpscaleFlowConfig" : "Cluster upscale flow",
+    "StackUpscaleConfig" : "Stack upscale flow",
+    "StackDownscaleConfig" : "Stack downscale flow",
+    "ClusterTerminationFlowConfig" : "Cluster termination flow",
+    "StackTerminationFlowConfig" : "Stack termination flow",
+    "InstanceTerminationFlowConfig" : "Instance termination flow",
     "ClusterStartFlowConfig" : "Cluster start flow",
     "ClusterStopFlowConfig" : "Cluster stop flow",
-    "ClusterSyncFlowConfig" : "Cluster synchronization flow",
-    "ClusterTerminationFlowConfig" : "Cluster termination flow",
-    "ClusterUpgradeFlowConfig" : "Cluster upgrade flow",
-    "ClusterUpscaleFlowConfig" : "Cluster upscale flow",
-    "InstanceTerminationFlowConfig" : "Instance termination flow",
-    "ManualStackRepairTriggerFlowConfig" : "Manual stack repair flow",
-    "StackCreationFlowConfig": "Stack creation flow",
-    "StackDownscaleConfig" : "Stack downscale flow",
-    "StackStartFlowConfig" : "Stack start flow",
-    "StackStopFlowConfig" : "Stack stop flow",
-    "StackSyncFlowConfig" : "Stack synchronization flow",
-    "StackTerminationFlowConfig" : "Stack termination flow",
-    "StackUpscaleConfig" : "Stack upscale flow"
+    "ClusterResetFlowConfig" : "Cluster reinstall flow",
+    "ClusterCredentialChangeFlowConfig" : "Ambari user/password change flow"
 };
 
 var initGraphByDot = function(dot) {

@@ -9,7 +9,7 @@
         <link rel="canonical" href="http://sequenceiq.com/cloudbreak-docs/azure/">
         <link rel="shortcut icon" href="../img/favicon.ico">
 
-	<title>Azure - Cloudbreak 1.6.3</title>
+	<title>Azure - Cloudbreak 1.6.1</title>
 
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -45,7 +45,7 @@
             <!-- Main title -->
             <img class="navbar-logo" src="../img/HWX-RGB-full-no-tagline_500pxh.png" alt="Hortonworks Documentation"
                  width="132" height="52">
-            <a class="navbar-brand" href="..">Cloudbreak 1.6.3</a>
+            <a class="navbar-brand" href="..">Cloudbreak 1.6.1</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -191,12 +191,6 @@
                             
 <li >
     <a href="../kerberos/">Kerberos (TP)</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../ldap/">LDAP/AD (TP)</a>
 </li>
 
                         
@@ -351,7 +345,7 @@
 <h1 id="azure-setup">Azure Setup</h1>
 <p>Setting up Cloudbreak on Azure is different than on other cloud providers for which we provide pre-built public images with Cloudbreak Deployer pre-installed. On Azure, you launch Cloudbreak Deployer using the <a href="https://github.com/Azure/azure-quickstart-templates">Azure Resource Manager Templates</a>.</p>
 <h2 id="deploy-using-the-azure-portal">Deploy Using the Azure Portal</h2>
-<p>To get started with Cloudbreak installation using the Azure Resource Manager template, click here: <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fsequenceiq%2Fazure-cbd-quickstart%2F1.6.3%2Fazuredeploy.json">  <img alt="deploy on azure" src="http://azuredeploy.net/deploybutton.png" /> </a></p>
+<p>To get started with Cloudbreak installation using the Azure Resource Manager template, click here: <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fsequenceiq%2Fazure-cbd-quickstart%2F1.6.1%2Fazuredeploy.json">  <img alt="deploy on azure" src="http://azuredeploy.net/deploybutton.png" /> </a></p>
 <h3 id="vm-requirements">VM Requirements</h3>
 <p>When selecting an instance type, consider these minimum and recomended requirements:<br />
 - 8GB RAM, 10GB disk, 2 cores 
@@ -413,7 +407,7 @@ Cloudbreak Deployer (<code>cbd</code>)</li>
 <li>All <code>cbd</code> actions must be executed from the <code>cbd</code> root folder.</li>
 <li>Most of the <code>cbd</code> commands require <code>root</code> permissions. So it would be worth if you apply the <code>sudo su</code>.</li>
 </ul>
-<h3 id="validate-that-cloudbreak-deployer-has-started-and-profile-has-public-ip-properly-configured">Validate That Cloudbreak Deployer Has Started and Profile has public IP properly configured</h3>
+<h3 id="validate-that-cloudbreak-deployer-has-started">Validate That Cloudbreak Deployer Has Started</h3>
 <ul>
 <li>
 <p>SSH to the launched Azure VM.</p>
@@ -432,18 +426,6 @@ Cloudbreak Deployer (<code>cbd</code>)</li>
 <li>Open the <code>cloudbreak-deployment</code> directory:</li>
 </ul>
 <pre><code>  cd /var/lib/cloudbreak-deployment
-</code></pre>
-
-<ul>
-<li>Check if the <code>Profile</code> has the public IP properly configured. It should contain a line like this:</li>
-</ul>
-<pre><code>  export PUBLIC_IP=&lt;PUBLIC_IP_OF_VM&gt;
-</code></pre>
-
-<blockquote>
-<p>If you can't see the public IP of the VM in the Profile, add it manually and restart cbd with</p>
-</blockquote>
-<pre><code>  cbd restart
 </code></pre>
 
 <ul>
@@ -682,9 +664,9 @@ infrastructure:</p>
 <li>networks</li>
 <li>security groups</li>
 </ul>
-<p>When you create one of the above resources, <strong>Cloudbreak does not make any requests to AZURE. Resources are only created
+<p>When you create one of the above resource, <strong>Cloudbreak does not make any requests to AZURE. Resources are only created
  on AZURE after the <code>create cluster</code> button has pushed.</strong> These templates are saved to Cloudbreak's database and can be 
- reused with multiple clusters to describe the infrastructure.</p>
+ reused with multiple clusters to describe the infrastructure</p>
 <h4 id="templates">Templates</h4>
 <p>Templates describe the <strong>instances of your cluster</strong> - the instance type and the attached volumes. A typical setup is
  to combine multiple templates in a cluster for the different types of nodes. For example you may want to attach multiple
@@ -706,15 +688,7 @@ networks</strong> panel.</p>
 <p>You have the following options:</p>
 <ul>
 <li><strong>Create a new virtual network and a new subnet</strong>:  Every time a cluster is created with this kind of network setup a new virtual network and a new subnet with the specified IP range will be created for the instances on Azure.</li>
-<li><strong>Use an existing subnet in an existing virtual network</strong>: 
-Use this kind of network setup if you have an existing virtual network with one or more subnets on Azure and you'd like to start the instances of a cluster in one of those subnets. 
-In this case you can define the <code>Subnet Identifier</code> and the <code>Virtual Network Identifier</code> and the <code>Resource Group Identifier</code> of your network. <ul>
-<li>The <code>Resource Group Identifier</code> identifies the resource group which contains your existing virtual network. </li>
-<li>The <code>Virtual Network Identifier</code> and the <code>Subnet Identifier</code> will tell Cloudbreak which network and subnet to use to launch the new instances.</li>
-<li>If you enable <code>Don't create public IPs</code>, then Cloudbreak will not assign public ip address to the VMs. Please make sure that Cloudbreak can access the launched instances and the instances can reach the internet.</li>
-<li>If you enable <code>Don't create new firewall rules</code>, then Cloudbreak will not create security groups. Make sure that the created instances in the subnet can reach each other.</li>
-</ul>
-</li>
+<li><strong>Use an existing subnet in an existing virtual network</strong>: Use this kind of network setup if you have an existing virtual network with one or more subnets on Azure and you'd like to start the instances of a cluster in one of those subnets. In this case you can define the <code>Subnet Identifier</code> and the <code>Virtual Network Identifier</code> and the <code>Resource Group Identifier</code> of your network. The <code>Resource Group Identifier</code> identifies the resource group which contains your existing virtual network. The <code>Virtual Network Identifier</code> and the <code>Subnet Identifier</code> will tell Cloudbreak which network and subnet to use to launch the new instances.</li>
 </ul>
 <blockquote>
 <p><strong>IMPORTANT:</strong> In case of existing subnet make sure you have enough room within your network space for the new instances. The 
@@ -743,38 +717,42 @@ outside of the virtual network):</p>
 <li>SSH (22)</li>
 <li>HTTPS (443)</li>
 </ul>
+<p><code>all-services-port:</code> all Hadoop services, SSH and HTTPS are accessible by default:</p>
+<ul>
+<li>SSH (22)</li>
+<li>HTTPS (443)</li>
+<li>Ambari (8080)</li>
+<li>Consul (8500)</li>
+<li>NN (50070)</li>
+<li>RM Web (8088)</li>
+<li>Scheduler (8030RM)</li>
+<li>IPC (8050RM)</li>
+<li>Job history server (19888)</li>
+<li>HBase master (60000)</li>
+<li>HBase master web (60010)</li>
+<li>HBase RS (16020)</li>
+<li>HBase RS info (60030)</li>
+<li>Falcon (15000)</li>
+<li>Storm (8744)</li>
+<li>Hive metastore (9083)</li>
+<li>Hive server (10000)</li>
+<li>Hive server HTTP (10001)</li>
+<li>Accumulo master (9999)</li>
+<li>Accumulo Tserver (9997)</li>
+<li>Atlas (21000)</li>
+<li>KNOX (8443)</li>
+<li>Oozie (11000)</li>
+<li>Spark HS (18080)</li>
+<li>NM Web (8042)</li>
+<li>Zeppelin WebSocket (9996)</li>
+<li>Zeppelin UI (9995)</li>
+<li>Kibana (3080)</li>
+<li>Elasticsearch (9200)</li>
+</ul>
 <p><em>Custom Security Group</em></p>
 <p>You can define your own security group by adding all the ports, protocols and CIDR range you'd like to use. The rules
  defined here doesn't need to contain the internal rules, those are automatically added by Cloudbreak to the security
   group on Azure.</p>
-<p>Hadoop services :
-<em> Ambari (8080)
-</em> Consul (8500)
-<em> NN (50070)
-</em> RM Web (8088)
-<em> Scheduler (8030RM)
-</em> IPC (8050RM)
-<em> Job history server (19888)
-</em> HBase master (60000)
-<em> HBase master web (60010)
-</em> HBase RS (16020)
-<em> HBase RS info (60030)
-</em> Falcon (15000)
-<em> Storm (8744)
-</em> Hive metastore (9083)
-<em> Hive server (10000)
-</em> Hive server HTTP (10001)
-<em> Accumulo master (9999)
-</em> Accumulo Tserver (9997)
-<em> Atlas (21000)
-</em> KNOX (8443)
-<em> Oozie (11000)
-</em> Spark HS (18080)
-<em> NM Web (8042)
-</em> Zeppelin WebSocket (9996)
-<em> Zeppelin UI (9995)
-</em> Kibana (3080)
-* Elasticsearch (9200)</p>
 <blockquote>
 <p><strong>IMPORTANT</strong> 443 and 22 ports needs to be there in every security group otherwise Cloudbreak won't be able to communicate with the 
 provisioned cluster</p>
@@ -886,13 +864,12 @@ the <code>Azure Portal Resource groups</code> page.
 <p>There are some advanced features when deploying a new cluster, these are the following:</p>
 <p><code>Ambari Username</code> This user will be used as admin user in Ambari. You can log in using this username on the Ambari UI.</p>
 <p><code>Ambari Password</code> The password associated with the Ambari username. This password will be also the default password for all required passwords which are not specified in the blueprint. E.g: hive DB password.</p>
-<p><code>Minimum cluster size</code> The provisioning strategy in case the cloud provider cannot allocate all the requested nodes.</p>
+<p><code>Minimum cluster size</code> The provisioning strategy in case of the cloud provider cannot allocate all the requested nodes.</p>
 <p><code>Validate blueprint</code> This is selected by default. Cloudbreak validates the Ambari blueprint in this case.</p>
-<p><code>Custom Image</code> If you enable this, you can override the default image for provision.</p>
 <p><code>Shipyard enabled cluster</code> This is selected by default. Cloudbreak will start a <a href="https://shipyard-project.com/">Shipyard</a> container which helps you to manage your containers.</p>
 <p><code>Persistent Storage Name</code> This is <code>cbstore</code> by default. Cloudbreak will copy the image into a storage which is not deleting under the termination. When you starting a new cluster then the provisioning will be much faster because of the existing image.</p>
 <p><code>Attached Storage Type</code> This is <code>single storage for all vm</code> by default. If are you using the default option then your whole cluster will by in one storage which could be a bottleneck in case of <a href="https://azure.microsoft.com/hu-hu/documentation/articles/azure-subscription-service-limits/#storage-limits">Azure</a>. If you are using the <code>separated storage for every vm</code> then we will deploy as much storage account as many node you have and in this case IOPS limit concern just for one node.</p>
-<p><code>Config recommendation strategy</code> Strategy for how configuration recommendations will be applied. Recommended
+<p><code>Config recommendation strategy</code> Strategy for configuration recommendations how will be applied. Recommended
 configurations gathered by the response of the stack advisor.</p>
 <ul>
 <li><code>NEVER_APPLY</code>               Configuration recommendations are ignored with this option.</li>
@@ -906,7 +883,7 @@ configurations gathered by the response of the stack advisor.</p>
 Azure resource group first. Instances are started in an Auto Scaling Group so they may be restarted if you terminate an 
 instance manually!</p>
 </blockquote>
-<p>Sometimes Cloudbreak cannot synchronize its state with the cluster state at the cloud provider and the cluster can't
+<p>Sometimes Cloudbreak cannot synchronize it's state with the cluster state at the cloud provider and the cluster can't
  be terminated. In this case the <code>Forced termination</code> option can help to terminate the cluster at the Cloudbreak 
  side. <strong>If it has happened:</strong></p>
 <ol>
@@ -957,7 +934,7 @@ example if your <code>cbd</code> working directory is <code>~/cloudbreak-deploym
 file...etc.</strong> to here. You can refer to these files with their names from the shell.</p>
 </blockquote>
 <h2 id="autocomplete-and-hints">Autocomplete and Hints</h2>
-<p>Cloudbreak Shell helps you with <strong>hint messages</strong> from the very beginning, for example:</p>
+<p>Cloudbreak Shell helps to you with <strong>hint messages</strong> from the very beginning, for example:</p>
 <pre><code>cloudbreak-shell&gt;hint
 Hint: Add a blueprint with the 'blueprint create' command or select an existing one with 'blueprint select'
 cloudbreak-shell&gt;
@@ -1003,7 +980,7 @@ infrastructure:</p>
 <li>networks</li>
 <li>templates</li>
 </ul>
-<p>When you create one of the above resources, <strong>Cloudbreak does not make any requests to Azure. Resources are only created
+<p>When you create one of the above resource, <strong>Cloudbreak does not make any requests to Azure. Resources are only created
  on Azure after the <code>cluster create</code> has applied.</strong> These templates are saved to Cloudbreak's database and can be 
  reused with multiple clusters to describe the infrastructure.</p>
 <h4 id="templates_1">Templates</h4>
@@ -1038,7 +1015,7 @@ time a cluster is created.</p>
 
 <blockquote>
 <p><strong>IMPORTANT:</strong> Make sure the defined subnet and theirs address prefixes here doesn't overlap with any of your 
-already deployed subnet and its already used address prefix in the network, because the validation only happens
+already deployed subnet and its already used address prefix in the network, because of the validation only happens 
 after the cluster creation 
 starts.</p>
 <p>In case of existing subnet make sure you have enough room within your network space for the new instances. The 
@@ -1224,12 +1201,12 @@ stack stop
 <p><strong>IMPORTANT:</strong> Always use Cloudbreak to terminate the cluster. If that fails for some reason, try to delete the 
 CloudFormation stack first. Instances are started in an Auto Scaling Group so they may be restarted if you terminate an instance manually!</p>
 </blockquote>
-<p>Sometimes Cloudbreak cannot synchronize its state with the cluster state at the cloud provider and the cluster can't
+<p>Sometimes Cloudbreak cannot synchronize it's state with the cluster state at the cloud provider and the cluster can't
  be terminated. In this case the <code>Forced termination</code> option on the Cloudbreak Web UI can help to terminate the cluster
   at the Cloudbreak side. <strong>If it has happened:</strong></p>
 <ol>
 <li>You should check the related resources at the AWS CloudFormation</li>
-<li>If it is needed you need to manually remove resources from there</li>
+<li>If it is needed you need to manually remove resources from ther</li>
 </ol>
 <h2 id="silent-mode">Silent Mode</h2>
 <p>With Cloudbreak Shell you can execute script files as well. A script file contains shell commands and can 
@@ -1351,7 +1328,7 @@ provisioning, we have some <a href="../operations/">interesting insights</a> for
                $("#cloudbreak-deployer-image").append('<br>');
                $("#cloudbreak-deployer-image").append('<br>');
                $("#cloudbreak-deployer-image").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">Download the latest Cloudbreak Deployer image to your local machine:</p>');
-               $("#cloudbreak-deployer-image").append('<pre><code style="font-size: 12pt;color:#333333">curl -O https://public-repo-1.hortonworks.com/HDP/cloudbreak/' + data.metadata.image_name + '.img</code></pre>');
+               $("#cloudbreak-deployer-image").append('<pre><code style="font-size: 12pt;color:#333333">curl -O -k https://public-repo-1.hortonworks.com/HDP/cloudbreak/' + data.metadata.image_name + '.img</code></pre>');
                $("#cloudbreak-deployer-import").append('<br>');
                $("#cloudbreak-deployer-import").append('<br>');
                $("#cloudbreak-deployer-import").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">Set the following environment variables for the OpenStack image import:</p>');
@@ -1363,10 +1340,10 @@ provisioning, we have some <a href="../operations/">interesting insights</a> for
                $("#cloudbreak-image").append('<br>');
                $("#cloudbreak-image").append('<br>');
                $("#cloudbreak-image").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">Download the latest Cloudbreak image to your local machine:</p>');
-               $("#cloudbreak-image").append('<pre><code style="font-size: 12pt;color:#333333">curl -O https://public-repo-1.hortonworks.com/HDP/cloudbreak/' + data.metadata.image_name + '.img</code></pre>');
+               $("#cloudbreak-image").append('<pre><code style="font-size: 12pt;color:#333333">curl -O -k https://public-repo-1.hortonworks.com/HDP/cloudbreak/' + data.metadata.image_name + '.img</code></pre>');
                $("#cloudbreak-import").append('<br>');
                $("#cloudbreak-import").append('<br>');
-               $("#cloudbreak-import").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">This is very similar to the Cloudbreak Deployer. Set the following environment variables for the OpenStack image import:</p>');
+               $("#cloudbreak-import").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">This is very similar to the Cloudbrek Deployer. Set the following environment variables for the OpenStack image import:</p>');
                $("#cloudbreak-import").append('<pre><code style="font-size: 12px;color:#333333">export CB_LATEST_IMAGE=</code>' + data.metadata.image_name + '.img</code></p>');
                });
 

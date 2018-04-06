@@ -9,7 +9,7 @@
         <link rel="canonical" href="http://sequenceiq.com/cloudbreak-docs/aws/">
         <link rel="shortcut icon" href="../img/favicon.ico">
 
-	<title>AWS - Cloudbreak 1.6.3</title>
+	<title>AWS - Cloudbreak 1.6.1</title>
 
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -45,7 +45,7 @@
             <!-- Main title -->
             <img class="navbar-logo" src="../img/HWX-RGB-full-no-tagline_500pxh.png" alt="Hortonworks Documentation"
                  width="132" height="52">
-            <a class="navbar-brand" href="..">Cloudbreak 1.6.3</a>
+            <a class="navbar-brand" href="..">Cloudbreak 1.6.1</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -191,12 +191,6 @@
                             
 <li >
     <a href="../kerberos/">Kerberos (TP)</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../ldap/">LDAP/AD (TP)</a>
 </li>
 
                         
@@ -599,7 +593,7 @@ clusters, but cannot delete it.</p>
 <li>networks</li>
 <li>security groups</li>
 </ul>
-<p>When you create one of the above resources, <strong>Cloudbreak does not make any requests to AWS. Resources are only created
+<p>When you create one of the above resource, <strong>Cloudbreak does not make any requests to AWS. Resources are only created
  on AWS after the <code>create cluster</code> button has pushed.</strong> These templates are saved to Cloudbreak's database and can be 
  reused with multiple clusters to describe the infrastructure.</p>
 <h4 id="templates">Templates</h4>
@@ -645,7 +639,7 @@ will be launched into that subnet. <strong>For example</strong> you can create 3
 templates for multiple subnets <code>10.0.0.0/24</code>, <code>10.0.1.0/24</code>, <code>10.0.2.0/24</code> with the same VPC and IGW identifiers.</p>
 <blockquote>
 <p><strong>IMPORTANT:</strong> Make sure the define subnet here doesn't overlap with any of your already deployed subnet in
-the VPC, because the validation only happens after the cluster creation starts.</p>
+the VPC, because of the validation only happens after the cluster creation starts.</p>
 <p>In case of existing subnet make sure you have enough room within your network space for the new instances.</p>
 </blockquote>
 <p>If <code>Public in account</code> is checked all the users belonging to your account will be able to use this network template
@@ -669,43 +663,45 @@ This may change in a later release.</p>
 <li>SSH (22)</li>
 <li>HTTPS (443)</li>
 </ul>
+<p><code>all-services-port:</code> all Hadoop services, SSH and HTTPS are accessible by default:</p>
+<ul>
+<li>SSH (22)</li>
+<li>HTTPS (443)</li>
+<li>Ambari (8080)</li>
+<li>Consul (8500)</li>
+<li>NN (50070)</li>
+<li>RM Web (8088)</li>
+<li>Scheduler (8030RM)</li>
+<li>IPC (8050RM)</li>
+<li>Job history server (19888)</li>
+<li>HBase master (60000)</li>
+<li>HBase master web (60010)</li>
+<li>HBase RS (16020)</li>
+<li>HBase RS info (60030)</li>
+<li>Falcon (15000)</li>
+<li>Storm (8744)</li>
+<li>Hive metastore (9083)</li>
+<li>Hive server (10000)</li>
+<li>Hive server HTTP (10001)</li>
+<li>Accumulo master (9999)</li>
+<li>Accumulo Tserver (9997)</li>
+<li>Atlas (21000)</li>
+<li>KNOX (8443)</li>
+<li>Oozie (11000)</li>
+<li>Spark HS (18080)</li>
+<li>NM Web (8042)</li>
+<li>Zeppelin WebSocket (9996)</li>
+<li>Zeppelin UI (9995)</li>
+<li>Kibana (3080)</li>
+<li>Elasticsearch (9200)</li>
+</ul>
 <p><em>Custom Security Group</em></p>
 <p>You can define your own security group by adding all the ports, protocols and CIDR range you'd like to use. The rules
  defined here doesn't need to contain the internal rules, those are automatically added by Cloudbreak to the security group on AWS.</p>
-<p>Hadoop services :
-<em> Ambari (8080)
-</em> Consul (8500)
-<em> NN (50070)
-</em> RM Web (8088)
-<em> Scheduler (8030RM)
-</em> IPC (8050RM)
-<em> Job history server (19888)
-</em> HBase master (60000)
-<em> HBase master web (60010)
-</em> HBase RS (16020)
-<em> HBase RS info (60030)
-</em> Falcon (15000)
-<em> Storm (8744)
-</em> Hive metastore (9083)
-<em> Hive server (10000)
-</em> Hive server HTTP (10001)
-<em> Accumulo master (9999)
-</em> Accumulo Tserver (9997)
-<em> Atlas (21000)
-</em> KNOX (8443)
-<em> Oozie (11000)
-</em> Spark HS (18080)
-<em> NM Web (8042)
-</em> Zeppelin WebSocket (9996)
-<em> Zeppelin UI (9995)
-</em> Kibana (3080)
-* Elasticsearch (9200)</p>
 <blockquote>
 <p><strong>IMPORTANT</strong> 443 and 22 ports needs to be there in every security group otherwise Cloudbreak won't be able to communicate with the 
 provisioned cluster</p>
 </blockquote>
-<p><em>Use existing security group</em></p>
-<p>Use this kind of security group if you have an existing security group and you'd like to apply same rules to each host group in a cluster.</p>
 <p>If <code>Public in account</code> is checked all the users belonging to your account will be able to use this security group 
 template to create clusters, but cannot delete it.</p>
 <blockquote>
@@ -799,10 +795,9 @@ the AWS Console CloudFormation page.
 <p><code>Availability Zone</code> You can restrict the instances to a <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html">specific availability zone</a>. It may be useful if you're using
  reserved instances.</p>
 <p><code>Use dedicated instances</code> You can use <a href="https://aws.amazon.com/ec2/purchasing-options/dedicated-instances/">dedicated instances</a> on EC2</p>
-<p><code>Minimum cluster size</code> The provisioning strategy in case the cloud provider cannot allocate all the requested nodes.</p>
+<p><code>Minimum cluster size</code> The provisioning strategy in case of the cloud provider cannot allocate all the requested nodes.</p>
 <p><code>Validate blueprint</code> This is selected by default. Cloudbreak validates the Ambari blueprint in this case.</p>
-<p><code>Custom Image</code> If you enable this, you can override the default image for provision.</p>
-<p><code>Config recommendation strategy</code> Strategy for how configuration recommendations will be applied. Recommended 
+<p><code>Config recommendation strategy</code> Strategy for configuration recommendations how will be applied. Recommended 
 configurations gathered by the response of the stack advisor. </p>
 <ul>
 <li><code>NEVER_APPLY</code>               Configuration recommendations are ignored with this option.</li>
@@ -823,7 +818,7 @@ configurations gathered by the response of the stack advisor. </p>
 <p><strong>IMPORTANT:</strong> Always use Cloudbreak to terminate the cluster. If that fails for some reason, try to delete the 
 CloudFormation stack first. Instances are started in an Auto Scaling Group so they may be restarted if you terminate an instance manually!</p>
 </blockquote>
-<p>Sometimes Cloudbreak cannot synchronize its state with the cluster state at the cloud provider and the cluster can't
+<p>Sometimes Cloudbreak cannot synchronize it's state with the cluster state at the cloud provider and the cluster can't
  be terminated. In this case the <code>Forced termination</code> option can help to terminate the cluster at the Cloudbreak 
  side. <strong>If it has happened:</strong></p>
 <ol>
@@ -874,7 +869,7 @@ example if your <code>cbd</code> working directory is <code>~/cloudbreak-deploym
 file...etc.</strong> to here. You can refer to these files with their names from the shell.</p>
 </blockquote>
 <h2 id="autocomplete-and-hints">Autocomplete and Hints</h2>
-<p>Cloudbreak Shell helps you with <strong>hint messages</strong> from the very beginning, for example:</p>
+<p>Cloudbreak Shell helps to you with <strong>hint messages</strong> from the very beginning, for example:</p>
 <pre><code>cloudbreak-shell&gt;hint
 Hint: Add a blueprint with the 'blueprint create' command or select an existing one with 'blueprint select'
 cloudbreak-shell&gt;
@@ -917,7 +912,7 @@ find further details <a href="./#provisioning-prerequisites">here</a>.</p>
 <li>networks</li>
 <li>templates</li>
 </ul>
-<p>When you create one of the above resources, <strong>Cloudbreak does not make any requests to AWS. Resources are only created
+<p>When you create one of the above resource, <strong>Cloudbreak does not make any requests to AWS. Resources are only created
  on AWS after the <code>cluster create</code> has applied.</strong> These templates are saved to Cloudbreak's database and can be 
  reused with multiple clusters to describe the infrastructure.</p>
 <h4 id="templates_1">Templates</h4>
@@ -1132,12 +1127,12 @@ stack stop
 <p><strong>IMPORTANT:</strong> Always use Cloudbreak to terminate the cluster. If that fails for some reason, try to delete the 
 CloudFormation stack first. Instances are started in an Auto Scaling Group so they may be restarted if you terminate an instance manually!</p>
 </blockquote>
-<p>Sometimes Cloudbreak cannot synchronize its state with the cluster state at the cloud provider and the cluster can't
+<p>Sometimes Cloudbreak cannot synchronize it's state with the cluster state at the cloud provider and the cluster can't
  be terminated. In this case the <code>Forced termination</code> option on the Cloudbreak Web UI can help to terminate the cluster
   at the Cloudbreak side. <strong>If it has happened:</strong></p>
 <ol>
 <li>You should check the related resources at the AWS CloudFormation</li>
-<li>If it is needed you need to manually remove resources from there</li>
+<li>If it is needed you need to manually remove resources from ther</li>
 </ol>
 <h2 id="silent-mode">Silent Mode</h2>
 <p>With Cloudbreak Shell you can execute script files as well. A script file contains shell commands and can 
@@ -1258,7 +1253,7 @@ provisioning, we have some <a href="../operations/">interesting insights</a> for
                $("#cloudbreak-deployer-image").append('<br>');
                $("#cloudbreak-deployer-image").append('<br>');
                $("#cloudbreak-deployer-image").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">Download the latest Cloudbreak Deployer image to your local machine:</p>');
-               $("#cloudbreak-deployer-image").append('<pre><code style="font-size: 12pt;color:#333333">curl -O https://public-repo-1.hortonworks.com/HDP/cloudbreak/' + data.metadata.image_name + '.img</code></pre>');
+               $("#cloudbreak-deployer-image").append('<pre><code style="font-size: 12pt;color:#333333">curl -O -k https://public-repo-1.hortonworks.com/HDP/cloudbreak/' + data.metadata.image_name + '.img</code></pre>');
                $("#cloudbreak-deployer-import").append('<br>');
                $("#cloudbreak-deployer-import").append('<br>');
                $("#cloudbreak-deployer-import").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">Set the following environment variables for the OpenStack image import:</p>');
@@ -1270,10 +1265,10 @@ provisioning, we have some <a href="../operations/">interesting insights</a> for
                $("#cloudbreak-image").append('<br>');
                $("#cloudbreak-image").append('<br>');
                $("#cloudbreak-image").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">Download the latest Cloudbreak image to your local machine:</p>');
-               $("#cloudbreak-image").append('<pre><code style="font-size: 12pt;color:#333333">curl -O https://public-repo-1.hortonworks.com/HDP/cloudbreak/' + data.metadata.image_name + '.img</code></pre>');
+               $("#cloudbreak-image").append('<pre><code style="font-size: 12pt;color:#333333">curl -O -k https://public-repo-1.hortonworks.com/HDP/cloudbreak/' + data.metadata.image_name + '.img</code></pre>');
                $("#cloudbreak-import").append('<br>');
                $("#cloudbreak-import").append('<br>');
-               $("#cloudbreak-import").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">This is very similar to the Cloudbreak Deployer. Set the following environment variables for the OpenStack image import:</p>');
+               $("#cloudbreak-import").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">This is very similar to the Cloudbrek Deployer. Set the following environment variables for the OpenStack image import:</p>');
                $("#cloudbreak-import").append('<pre><code style="font-size: 12px;color:#333333">export CB_LATEST_IMAGE=</code>' + data.metadata.image_name + '.img</code></p>');
                });
 
