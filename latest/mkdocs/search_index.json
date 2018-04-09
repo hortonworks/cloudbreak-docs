@@ -152,7 +152,7 @@
         }, 
         {
             "location": "/releasenotes/", 
-            "text": "Release Notes\n\n\nThe Release Notes document describes new features and fixes incorporated in this version of Cloudbreak.\n\n\nNew Features\n\n\nThere are no new features.\n\n\nFixes \n Changes\n\n\nThis release include the following changes:\n\n\n\n\nRefer to the \nChange Log\n for a full list of changes.\n\n\n\n\nTechnical Preview\n\n\nThis release includes the following Technical Preview features and improvements:\n\n\n\n\n\n\n\n\nFeature\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nCustom Images\n\n\nTechnical Preview\n Ability to set custom images. See \nCloud Images\n for more information.\n\n\n\n\n\n\nAWS: Spot Pricing\n\n\nTechnical Preview\n Support for configuring Spot Price with resource templates.\n\n\n\n\n\n\nMesos\n\n\nTechnical Preview\n Support for Mesos cloud provider. See \nMesos\n for more information.\n\n\n\n\n\n\nKerberos\n\n\nTechnical Preview\n Support for enabling Kerberos on the HDP clusters deployed by Cloudbreak. See \nKerberos\n for more information.\n\n\n\n\n\n\nPlatforms\n\n\nTechnical Preview\n Support for defining Platforms to relate different configurations together. See \nPlatforms\n for more information.\n\n\n\n\n\n\nAmbari Database\n\n\nTechnical Preview\n Support for using an external database for Ambari. See \nAmbari Database\n for more information.", 
+            "text": "Release Notes\n\n\nThe Release Notes document describes new features and fixes incorporated in this version of Cloudbreak.\n\n\nNew Features\n\n\nThere are no new features.\n\n\nFixes \n Changes\n\n\nThis release include the following changes:\n\n\n\n\nRefer to the \nChange Log\n for a full list of changes.\n\n\n\n\n\n\n\n\n\n\nArea\n\n\nChange\n\n\n\n\n\n\n\n\n\n\nGCP\n\n\nBUG-99168 Fix for a critical GCP issue.\n\n\n\n\n\n\n\n\nTechnical Preview\n\n\nThis release includes the following Technical Preview features and improvements:\n\n\n\n\n\n\n\n\nFeature\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nCustom Images\n\n\nTechnical Preview\n Ability to set custom images. See \nCloud Images\n for more information.\n\n\n\n\n\n\nAWS: Spot Pricing\n\n\nTechnical Preview\n Support for configuring Spot Price with resource templates.\n\n\n\n\n\n\nMesos\n\n\nTechnical Preview\n Support for Mesos cloud provider. See \nMesos\n for more information.\n\n\n\n\n\n\nKerberos\n\n\nTechnical Preview\n Support for enabling Kerberos on the HDP clusters deployed by Cloudbreak. See \nKerberos\n for more information.\n\n\n\n\n\n\nPlatforms\n\n\nTechnical Preview\n Support for defining Platforms to relate different configurations together. See \nPlatforms\n for more information.\n\n\n\n\n\n\nAmbari Database\n\n\nTechnical Preview\n Support for using an external database for Ambari. See \nAmbari Database\n for more information.", 
             "title": "Release Notes"
         }, 
         {
@@ -167,7 +167,7 @@
         }, 
         {
             "location": "/releasenotes/#fixes-changes", 
-            "text": "This release include the following changes:   Refer to the  Change Log  for a full list of changes.", 
+            "text": "This release include the following changes:   Refer to the  Change Log  for a full list of changes.      Area  Change      GCP  BUG-99168 Fix for a critical GCP issue.", 
             "title": "Fixes &amp; Changes"
         }, 
         {
