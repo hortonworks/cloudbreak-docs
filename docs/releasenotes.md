@@ -11,8 +11,9 @@ There are no new features.
 This release include the following changes:
 > Refer to the [Change Log](changelog.md) for a full list of changes.
 
-[//]: <> (| Area | Change |)
-[//]: <> (|---|---|)
+| Area | Change |
+|---|---|
+| GCP | BUG-99168 Fix for a critical GCP issue. |
 
 
 ## Technical Preview
