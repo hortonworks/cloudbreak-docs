@@ -1,0 +1,15 @@
+digraph {
+INIT_STATE [label="StackTerminationFlowConfig" shape=ellipse color=green];
+PRE_TERMINATION_STATE [label="PRE_TERMINATION_STATE\nStackPreTerminationAction" shape=rect color=black];
+INIT_STATE -> PRE_TERMINATION_STATE [label="TERMINATION_EVENT" color=black style=solid];
+TERMINATION_STATE [label="TERMINATION_STATE\nStackTerminationAction" shape=rect color=black];
+PRE_TERMINATION_STATE -> TERMINATION_STATE [label="PRE_TERMINATION_FINISHED_EVENT" color=black style=solid];
+TERMINATION_FAILED_STATE [label="TERMINATION_FAILED_STATE\nStackTerminationFailureAction" shape=rect color=black];
+PRE_TERMINATION_STATE -> TERMINATION_FAILED_STATE [label="PRE_TERMINATION_FAILED_EVENT" color=red style=dashed];
+TERMINATION_FAILED_STATE -> FINAL_STATE [label="STACK_TERMINATION_FAIL_HANDLED_EVENT" color=red style=dashed];
+TERMINATION_FINISHED_STATE [label="TERMINATION_FINISHED_STATE\nStackTerminationFinishedAction" shape=rect color=black];
+TERMINATION_STATE -> TERMINATION_FINISHED_STATE [label="TERMINATION_FINISHED_EVENT" color=black style=solid];
+TERMINATION_STATE -> TERMINATION_FAILED_STATE [label="TERMINATION_FAILED_EVENT" color=red style=dashed];
+TERMINATION_FINISHED_STATE -> FINAL_STATE [label="TERMINATION_FINALIZED_EVENT" color=black style=solid];
+TERMINATION_FINISHED_STATE -> TERMINATION_FAILED_STATE [label="TERMINATION_FAILED_EVENT" color=red style=dashed];
+}

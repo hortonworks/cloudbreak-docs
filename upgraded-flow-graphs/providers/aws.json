@@ -1,0 +1,29 @@
+{
+  "username": "hortonworks",
+  "name": "cbd",
+  "tag": "hortonworks/cbd",
+  "slug": "hortonworks/cbd/amazon.image/1",
+  "artifact_type": "amazon.image",
+  "id": "ap-northeast-1:ami-8c3382ea,ap-southeast-1:ami-4cb8ed2f,ap-southeast-2:ami-6fcb200d,eu-central-1:ami-3127a75e,eu-west-1:ami-21b41e58,sa-east-1:ami-76094c1a,us-east-1:ami-bc890bc6,us-west-1:ami-209ea740,us-west-2:ami-22c6155a",
+  "version": 1,
+  "metadata": {
+    "ami_id": "ami-8c3382ea,ami-4cb8ed2f,ami-6fcb200d,ami-3127a75e,ami-21b41e58,ami-76094c1a,ami-bc890bc6,ami-209ea740,ami-22c6155a",
+    "region": "ap-northeast-1,ap-southeast-1,ap-southeast-2,eu-central-1,eu-west-1,sa-east-1,us-east-1,us-west-1,us-west-2",
+    "created": "2017-08-25 13:00:23 +0000",
+    "os_user": "cloudbreak",
+    "created_at": "1503666023",
+    "image_name": "cloudbreak-deployer-1165-2017-11-171",
+    "cbd_version": "1.16.5",
+    "region.eu-west-1": "ami-21b41e58",
+    "region.sa-east-1": "ami-76094c1a",
+    "region.us-east-1": "ami-bc890bc6",
+    "region.us-west-1": "ami-209ea740",
+    "region.us-west-2": "ami-22c6155a",
+    "yum_version_docker": "1.9.1",
+    "region.eu-central-1": "ami-3127a75e",
+    "region.ap-northeast-1": "ami-8c3382ea",
+    "region.ap-southeast-1": "ami-4cb8ed2f",
+    "region.ap-southeast-2": "ami-6fcb200d"
+  },
+  "file": false
+}

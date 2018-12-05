@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="http://hortonworks.github.io/cloudbreak-docs/kerberos/">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+
+	<title>Kerberos (TP) - Cloudbreak 1.16.6</title>
+
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="../css/highlight.css">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation" background="red">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+            <img class="navbar-logo" src="../img/HWX-RGB-full-no-tagline_500pxh.png" alt="Hortonworks Documentation"
+                 width="132" height="52">
+            <a class="navbar-brand" href="..">Cloudbreak 1.16.6</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Home <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="..">Introduction</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../architecture/">Architecture</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../onprem/">Installation</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../releasenotes/">Release Notes</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../issues/">Known Issues</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../changelog/">Change Log</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../aws/">AWS</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../azure/">Azure</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../gcp/">GCP</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../openstack/">OpenStack</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reference <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../api/">API</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../shell/">CLI/Shell</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../customizations/">Customizations</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../development/">Local Development</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../security/">Cloudbreak Security</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../update/">Update Cloudbreak</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../ui_account/">Account Management</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../periscope/">Auto-Scaling</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../recipes/">Recipes</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../blueprints/">Blueprints</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../images/">Custom Images (TP)</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../topologies/">Platforms (TP)</a>
+</li>
+
+                        
+                            
+<li class="active">
+    <a href="./">Kerberos (TP)</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../ldap/">LDAP/AD (TP)</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../mesos/">Mesos (TP)</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../spi/">SPI</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../operations/">Basic Operations</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../configuration/">Advanced Configuration</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Database configuration</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../cloudbreak_database/">Cloudbreak Database</a>
+</li>
+
+        
+            
+<li >
+    <a href="../ambari_database/">Ambari Database (TP)</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Development</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../flow/">Flows</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../help/">Get Help</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+            
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Versions <b class="caret"></b></a>
+                    <ul class="dropdown-menu" id="versions-dropdown">
+                    </ul>
+                </li>
+                
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                
+                    <li >
+                        <a rel="next" href="../topologies/">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../ldap/">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a href="https://github.com/hortonworks/cloudbreak-docs/blob/master/docs/" >
+                            
+                                <i class="fa fa-github"></i>
+                            
+                            GitHub
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+            
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#kerberos-security">Kerberos Security</a></li>
+        
+            <li><a href="#create-new-mit-kerberos-at-provisioning-time">Create new MIT Kerberos at provisioning time</a></li>
+        
+            <li><a href="#use-your-existing-mit-kerberos-server-with-a-cloudbreak-provisioned-cluster">Use your Existing MIT Kerberos server with a Cloudbreak provisioned cluster.</a></li>
+        
+            <li><a href="#use-your-existing-active-directory-with-a-cloudbreak-provisioned-cluster">Use your Existing Active Directory with a Cloudbreak provisioned cluster.</a></li>
+        
+            <li><a href="#create-hadoop-users">Create Hadoop Users</a></li>
+        
+    
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+                    
+
+<h1 id="kerberos-security">Kerberos Security</h1>
+<blockquote>
+<p>This feature is part of <code>TECHNICAL PREVIEW</code>.</p>
+</blockquote>
+<p>Cloudbreak Supports 3 different way for provision Kerberos enabled clusters all the possibilities described above:</p>
+<h2 id="create-new-mit-kerberos-at-provisioning-time">Create new MIT Kerberos at provisioning time</h2>
+<p>Cloudbreak supports using Kerberos security on the cluster. When creating a cluster, provide your Kerberos configuration details, and Cloudbreak will install an MIT KDC and enable Kerberos on the cluster.</p>
+<h3 id="enable-kerberos">Enable Kerberos</h3>
+<p>To enable Kerberos on a cluster, do the following when creating your cluster via Cloudbreak web UI:</p>
+<ol>
+<li>In the <strong>Create cluster</strong> wizard, in the <strong>Setup Network and Security</strong> tab, check the <strong>Enable security</strong> option and select <strong>Create New MIT Kerberos</strong>.</li>
+<li>Fill in the following fields:</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kerberos master key</td>
+<td>The master key to use for the KDC.</td>
+</tr>
+<tr>
+<td>Kerberos admin</td>
+<td>The KDC admin username to use for the KDC.</td>
+</tr>
+<tr>
+<td>Kerberos password</td>
+<td>The KDC admin password to use for the KDC.</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="" src="../images/kerberosnew.png" />
+<sub><em>Full size <a href="../images/kerberosnew.png">here</a>.</em></sub></p>
+<h4 id="testing-kerberos">Testing Kerberos</h4>
+<p>To run a job on the cluster, you can use one of the default Hadoop users, like <code>ambari-qa</code>.
+Once kerberos is enabled, you need a <code>ticket</code> to execute any job on the cluster. </p>
+<p>Here's an example of how to get a ticket:</p>
+<pre><code>kinit -V -kt /etc/security/keytabs/smokeuser.headless.keytab ambari-qa-sparktest-rec@NODE.DC1.CONSUL
+</code></pre>
+
+<p>Here is an example job:</p>
+<pre><code class="java">export HADOOP_LIBS=/usr/hdp/current/hadoop-mapreduce-client
+export JAR_EXAMPLES=$HADOOP_LIBS/hadoop-mapreduce-examples.jar
+export JAR_JOBCLIENT=$HADOOP_LIBS/hadoop-mapreduce-client-jobclient.jar
+
+hadoop jar $JAR_EXAMPLES teragen 10000000 /user/ambari-qa/terasort-input
+
+hadoop jar $JAR_JOBCLIENT mrbench -baseDir /user/ambari-qa/smallJobsBenchmark -numRuns 5 -maps 10 -reduces 5 -inputLines 10 -inputType ascending
+</code></pre>
+
+<h2 id="use-your-existing-mit-kerberos-server-with-a-cloudbreak-provisioned-cluster">Use your Existing MIT Kerberos server with a Cloudbreak provisioned cluster.</h2>
+<p>Cloudbreak supports using Kerberos security on the cluster with an existing MIT Kerberos. When creating a cluster, provide your Kerberos configuration details, and Cloudbreak will automatically extend your blueprint configuration with the defined properties. <a href="https://docs.hortonworks.com/HDPDocuments/Ambari-2.2.0.0/bk_Ambari_Security_Guide/content/_use_an_exisiting_mit_kdc.html">Setup an exiting MIT KDC</a></p>
+<p>To enable Kerberos on a cluster, do the following when creating your cluster via Cloudbreak web UI:</p>
+<ol>
+<li>In the <strong>Create cluster</strong> wizard, in the <strong>Setup Network and Security</strong> tab, check the <strong>Enable security</strong> option and select <strong>Use Existing MIT Kerberos</strong>.</li>
+<li>Fill in the following fields:</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kerberos Password</td>
+<td>The KDC admin password to use for the KDC.</td>
+</tr>
+<tr>
+<td>Existing Kerberos Principal</td>
+<td>The KDC principal in your existing MIT KDC.</td>
+</tr>
+<tr>
+<td>Existing Kerberos URL</td>
+<td>The location of your existing MIT KDC.</td>
+</tr>
+<tr>
+<td>Use Tcp Connection</td>
+<td>The connection type for your existing MIT KDC (default is <strong>UDP</strong>).</td>
+</tr>
+<tr>
+<td>Existing Kerberos Realm</td>
+<td>The realm in your existing MIT KDC.</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="" src="../images/kerberosmit.png" />
+<sub><em>Full size <a href="../images/kerberosmit.png">here</a>.</em></sub></p>
+<p>To enable Kerberos on a cluster, do the following when creating your cluster via Cloudbreak shell:</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>--kerberosPassword</td>
+<td>The KDC admin password to use for the KDC.</td>
+</tr>
+<tr>
+<td>--kerberosPrincipal</td>
+<td>The KDC principal in your existing MIT KDC.</td>
+</tr>
+<tr>
+<td>--kerberosUrl</td>
+<td>The location of your existing MIT KDC.</td>
+</tr>
+<tr>
+<td>--kerberosTcpAllowed</td>
+<td>The connection type for your existing MIT KDC (default is <strong>UDP</strong>).</td>
+</tr>
+<tr>
+<td>--kerberosRealm</td>
+<td>The realm in your existing MIT KDC.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="use-your-existing-active-directory-with-a-cloudbreak-provisioned-cluster">Use your Existing Active Directory with a Cloudbreak provisioned cluster.</h2>
+<p>Cloudbreak supports using Kerberos security on the cluster with an existing Active Directory. When creating a cluster, provide your Kerberos configuration details, and Cloudbreak will automatically extend your blueprint configuration with the defined properties. <a href="https://docs.hortonworks.com/HDPDocuments/Ambari-2.2.0.0/bk_Ambari_Security_Guide/content/_use_an_existing_active_directory_domain.html">Setup an Active Directory for Kerberos</a></p>
+<h3 id="enable-kerberos_1">Enable Kerberos</h3>
+<p>To enable Kerberos on a cluster, do the following when creating your cluster via Cloudbreak web UI:</p>
+<ol>
+<li>In the <strong>Create cluster</strong> wizard, in the <strong>Setup Network and Security</strong> tab, check the <strong>Enable security</strong> option and select <strong>Use Existing Active Directory</strong>.</li>
+<li>Fill in the following fields:</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kerberos Password</td>
+<td>The KDC admin password to use for the KDC.</td>
+</tr>
+<tr>
+<td>Existing Kerberos Principal</td>
+<td>The KDC principal in your existing MIT KDC.</td>
+</tr>
+<tr>
+<td>Existing Kerberos URL</td>
+<td>The location of your existing MIT KDC.</td>
+</tr>
+<tr>
+<td>Use Tcp Connection</td>
+<td>The connection type for your existing MIT KDC (default is <strong>UDP</strong>).</td>
+</tr>
+<tr>
+<td>Existing Kerberos Realm</td>
+<td>The realm in your existing MIT KDC.</td>
+</tr>
+<tr>
+<td>Existing Kerberos Ldap AD Url</td>
+<td>The url of the existing secure ldap (eg. ldaps://10.1.1.5).</td>
+</tr>
+<tr>
+<td>Existing Kerberos AD Container DN</td>
+<td>Active Directory User container for principals. For example, "OU=Hadoop,OU=People,dc=apache,dc=org".</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="" src="../images/kerberosad.png" />
+<sub><em>Full size <a href="../images/kerberosad.png">here</a>.</em></sub></p>
+<p>To enable Kerberos on a cluster, do the following when creating your cluster via Cloudbreak shell:</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>--kerberosPassword</td>
+<td>The KDC admin password to use for the KDC.</td>
+</tr>
+<tr>
+<td>--kerberosPrincipal</td>
+<td>The KDC principal in your existing MIT KDC.</td>
+</tr>
+<tr>
+<td>--kerberosUrl</td>
+<td>The location of your existing MIT KDC.</td>
+</tr>
+<tr>
+<td>--kerberosTcpAllowed</td>
+<td>The connection type for your existing MIT KDC (default is <strong>UDP</strong>).</td>
+</tr>
+<tr>
+<td>--kerberosRealm</td>
+<td>The realm in your existing MIT KDC.</td>
+</tr>
+<tr>
+<td>--kerberosLdapUrl</td>
+<td>The url of the existing secure ldap (eg. ldaps://10.1.1.5).</td>
+</tr>
+<tr>
+<td>--kerberosContainerDn</td>
+<td>Active Directory User container for principals. For example, "OU=Hadoop,OU=People,dc=apache,dc=org".</td>
+</tr>
+</tbody>
+</table>
+<h2 id="create-hadoop-users">Create Hadoop Users</h2>
+<p>To create Hadoop users, follow the steps below.</p>
+<ul>
+<li>Log in via SSH to the node where the Ambari Server is (IP address is the same as the Ambari UI) and run:</li>
+</ul>
+<pre><code>kadmin -p [admin_user]/[admin_user]@NODE.DC1.CONSUL (type admin password)
+addprinc custom-user (type user password twice)
+</code></pre>
+
+<ul>
+<li>Log in via SSH to all other nodes and, on each node, run:</li>
+</ul>
+<pre><code>useradd custom-user
+</code></pre>
+
+<ul>
+<li>Log in via SSH to one of the nodes and run:</li>
+</ul>
+<pre><code>su custom-user
+kinit -p custom-user (type user password)
+hdfs dfs -mkdir input
+hdfs dfs -put /tmp/wait-for-host-number.sh input
+yarn jar $(find /usr/hdp -name hadoop-mapreduce-examples.jar) wordcount input output
+hdfs dfs -cat output/*
+</code></pre>
+                    <a href="https://github.com/hortonworks/cloudbreak-docs/blob/master/docs/kerberos.md" ><i class="fa fa-github"></i> Edit on GitHub </a>
+                </div>
+            
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            
+            <center>Documentation built with <a href="https://gliderlabs.com/pagebuilder">Pagebuilder</a>.</center>
+        </footer>
+
+        <script src="../js/jquery-1.10.2.min.js"></script>
+        <script src="../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../js/highlight.pack.js"></script>
+        <script>var base_url = '..';</script>
+        <script data-main="../mkdocs/js/search.js" src="../mkdocs/js/require.js"></script>
+        <script src="../js/base.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            From here you can search these documents. Enter
+                            your search terms below.
+                        </p>
+                        <form role="form">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                            </div>
+                        </form>
+                        <div id="mkdocs-search-results"></div>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+         <script>
+           $( document ).ready(function() {
+               $.getJSON("http://hortonworks.github.io/cloudbreak-docs//versions.json", function(data) {
+               $("#versions-dropdown").append('<li><a href="http://hortonworks.github.io/cloudbreak-docs//latest">latest ('+data.latest+')</a></li>');
+                $.each(data.versions, function( index, value ) {
+                  $("#versions-dropdown").append('<li><a href="http://hortonworks.github.io/cloudbreak-docs//'+value+'">'+value+'</a></li>');
+                });
+               });
+
+               <!--AWS Table-->
+               $.getJSON("../providers/aws.json", function(data) {
+               $("#cloudbreak-deployer-aws-image-details").append('<br>');
+               $("#cloudbreak-deployer-aws-image-details").append('<br>');
+               $("#cloudbreak-deployer-aws-image-details").append('<table>');
+                 $("#cloudbreak-deployer-aws-image-details").append('<col width="290">');
+                 $("#cloudbreak-deployer-aws-image-details").append('<col width="290">');
+                 $("#cloudbreak-deployer-aws-image-details").append('<thead>');
+                  $("#cloudbreak-deployer-aws-image-details").append('<tr>');
+                   $("#cloudbreak-deployer-aws-image-details").append('<th halign="center" style="font-size: 14pt;border:none;border-bottom:solid #DDDDDD 1.5pt;padding:6.0pt 6.0pt 6.0pt 6.0pt">' + "Region" + '</th>');
+                   $("#cloudbreak-deployer-aws-image-details").append('<th halign="center" style="font-size: 14pt;border:none;border-bottom:solid #DDDDDD 1.5pt;padding:6.0pt 6.0pt 6.0pt 6.0pt">' + "Image Name" + '</th>');
+                  $("#cloudbreak-deployer-aws-image-details").append('</tr>');
+                 $("#cloudbreak-deployer-aws-image-details").append('</thead>');
+                $("#cloudbreak-deployer-aws-image-details").append('<tbody>');
+                 $.each(data.metadata, function( index, value ) {
+                 if (index.indexOf("region.") === 0) {
+                   shortIndex = index.substring(7)
+                  $("#cloudbreak-deployer-aws-image-details").append('<tr>');
+                   $("#cloudbreak-deployer-aws-image-details").append('<td halign="center" valign="center" text-align="left" style="font-size: 12pt;border:none;border-bottom:solid #DDDDDD 1.5pt;padding:6.0pt 6.0pt 6.0pt 6.0pt">' + shortIndex + '</td>');
+                   $("#cloudbreak-deployer-aws-image-details").append('<td halign="center" valign="center" text-align="right" style="font-size: 12pt;border:none;border-bottom:solid #DDDDDD 1.5pt;padding:6.0pt 6.0pt 6.0pt 6.0pt">' + value + '</td>');
+                  $("#cloudbreak-deployer-aws-image-details").append('</tr>');
+                  }
+                 });
+                $("#cloudbreak-deployer-aws-image-details").append('</tbody>');
+               $("#cloudbreak-deployer-aws-image-details").append('</table>');
+               });
+
+               <!--OpenStack CBD-->
+               $.getJSON("../providers/openstack.json", function(data) {
+               $("#cloudbreak-deployer-image").append('<br>');
+               $("#cloudbreak-deployer-image").append('<br>');
+               $("#cloudbreak-deployer-image").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">Download the latest Cloudbreak Deployer image to your local machine:</p>');
+               $("#cloudbreak-deployer-image").append('<pre><code style="font-size: 12pt;color:#333333">curl -O https://public-repo-1.hortonworks.com/HDP/cloudbreak/' + data.metadata.image_name + '.img</code></pre>');
+               $("#cloudbreak-deployer-import").append('<br>');
+               $("#cloudbreak-deployer-import").append('<br>');
+               $("#cloudbreak-deployer-import").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">Set the following environment variables for the OpenStack image import:</p>');
+               $("#cloudbreak-deployer-import").append('<pre><code style="font-size: 12px;color:#333333">export CBD_LATEST_IMAGE=</code>' + data.metadata.image_name + '.img</code></p>');
+               });
+
+               <!--OpenStack CB-->
+               $.getJSON("../providers/openstack_cloudbreak.json", function(data) {
+               $("#cloudbreak-image").append('<br>');
+               $("#cloudbreak-image").append('<br>');
+               $("#cloudbreak-image").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">Download the latest Cloudbreak image to your local machine:</p>');
+               $("#cloudbreak-image").append('<pre><code style="font-size: 12pt;color:#333333">curl -O https://public-repo-1.hortonworks.com/HDP/cloudbreak/' + data.metadata.image_name + '.img</code></pre>');
+               $("#cloudbreak-import").append('<br>');
+               $("#cloudbreak-import").append('<br>');
+               $("#cloudbreak-import").append('<p style="font-size: 14px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.428571429;color: #555;">This is very similar to the Cloudbreak Deployer. Set the following environment variables for the OpenStack image import:</p>');
+               $("#cloudbreak-import").append('<pre><code style="font-size: 12px;color:#333333">export CB_LATEST_IMAGE=</code>' + data.metadata.image_name + '.img</code></p>');
+               });
+
+               <!--GCP-->
+               $.getJSON("../providers/gcp.json", function(data) {
+               $("#cloudbreak-deployer-gcp-image-details").append('<br>');
+               $("#cloudbreak-deployer-gcp-image-details").append('<br>');
+               $("#cloudbreak-deployer-gcp-image-details").append('<pre><code style="font-size: 12pt;color:#333333"> gcloud compute images create '
+                   + data.id + ' --source-uri gs://sequenceiqimage/' + data.id + '.tar.gz' + '</code></pre>');
+               });
+           });
+         </script>
+    </body>
+</html>

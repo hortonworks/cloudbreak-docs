@@ -1,0 +1,30 @@
+{
+  "username": "sequenceiq",
+  "name": "cloudbreak",
+  "tag": "sequenceiq/cloudbreak",
+  "slug": "sequenceiq/cloudbreak/openstack.image/71",
+  "artifact_type": "openstack.image",
+  "id": "c6933b44-1d5a-4862-a16c-86700169b07c",
+  "version": 71,
+  "metadata": {
+    "created": "2017-06-14 12:44:45 +0000",
+    "git_rev": "",
+    "git_tag": "",
+    "os_user": "cloudbreak",
+    "created_at": "1497444285",
+    "git_branch": "",
+    "hdp_repoid": "",
+    "image_name": "hdc-hdp--1706141444",
+    "prometheus": "true",
+    "hdp_baseurl": "",
+    "hdp_version": "",
+    "orchestrator": "salt",
+    "ambari_gpgkey": "",
+    "ambari_baseurl": "",
+    "ambari_version": "",
+    "hdputil_repoid": "",
+    "hdputil_baseurl": "",
+    "hdputil_version": ""
+  },
+  "file": false
+}
